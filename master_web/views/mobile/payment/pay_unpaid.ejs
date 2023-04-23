@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>未完成支付的订单</title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/payment/pay_unpaid.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% console.log(results,"未完成支付的订单") %>
+        <% let order_id=results.order_no || "" %>
+            <div class="wwc-order-container">
+                <%- include('../layout/header.ejs'); %>
+                    <h1>支付中心</h1>
+                    <div class="box">
+                        <ul>
+                            <li><span>会员套餐</span><span>
+                                    <%= results.payment_content %>
+                                </span></li>
+                            <li><span>会员服务价格</span><span>￥<%= results.total_amount %></span></li>
+                            <li><span>已支付</span><span>￥<%= results.paid_amount %></span></li>
+                            <li><span>未支付</span><span>￥<%= results.remain_amount %></span></li>
+                        </ul>
+                        <form id="pay_submit" name="pay_submit" method="post" action="/payment/keep">
+                            <% var method=results.paymenthod%>
+                                <div class="zf" data-id="<%= results.child_id %>" data-fs="<%= results.paymenthod %>">
+                                    <h2>
+                                        <%= translate("payment_method") %>
+                                    </h2>
+                                    <!-- 用户数据信息中的 user.paymenthod 存在就取,不存在默认取1  wglobals.user.user_functional.fm 判断币种(历史支付订单的币种)，存在就取他，不存在取'na'' -->
+                                    <p>
+                                        <span data-type=1 class="<%= method==1?" active":"" %>"><img
+                                                src="<%= STATIC %>mobile/images/payment/pay_detail/zhifubao.jpg" />支付宝支付
+                                            <input type="radio" hidden name="method" value="1"
+                                                <%=method==1?'checked=checked':'' %> >
+                                        </span>
+
+                                        <span data-type=2 class="<%= method==2?" active":"" %>"><img
+                                                src="<%= STATIC %>mobile/images/payment/pay_detail/weixinzhifu.png" />微信支付
+                                            <input type="radio" hidden name="method" value="2"
+                                                <%=method==2?'checked=checked':'' %> >
+                                        </span>
+                                    </p>
+                                </div>
+                                <input type="hidden" name="child_id" value="<%=results.child_id %>">
+                        </form>
+                        <div class="zf-dd">
+
+                            <h2>订单描述</h2>
+                            <div class="zf-je">
+                                <span>未支付金额：</span><span>¥<%=results.remain_amount %>
+                                        元</span><span>，本次支付：</span><span>￥<%=results.payamount %></span>
+                            </div>
+
+                            <div class="zf-zf">
+                                <div>
+                                    <span>实付：</span>￥<%=results.payamount %><span></span>
+                                </div>
+                                <a href="javascript:void(0);" onclick="submit_payment()">立即支付</a>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+            <script type="application/javascript">
+
+                let order_key = { method: `${$('.zf').data("fs")}`, child_id: `${$('.zf').data("id")}` }
+                console.log(order_key, "支付参数")
+                // 支付方式切换
+                $(".zf p span").click(function () {
+                    order_key.method = $(this).data("type")
+                    $(this).addClass("active").siblings().removeClass("active")
+                    console.log(order_key.method)
+                })
+
+                $(function () {
+                    // 支付方式
+                    $('input[name="method"]').change(function () {
+                        let $this = $(this), $pe = $this.parents('span')
+                        $pe.addClass("active").siblings().removeClass("active");
+                    })
+                })
+                /*添加订单*/
+                function submit_payment() {
+                    axios.post("/payment/keep", order_key).then(function (res) {
+                        console.log(res.data.wx_url, "子订单支付")
+                        if(res.data.state==0){
+                            window.location.href=res.data.wx_url
+                        }
+                    })
+                }
+            </script>
+</body>
+
+</html>

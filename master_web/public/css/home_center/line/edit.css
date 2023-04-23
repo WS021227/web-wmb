@@ -1,0 +1,331 @@
+.logo{float:none;}
+.line-setting {
+    display: block;
+}
+
+.setting-liucheng {
+    font-size: 15.4px;
+    color: #333;
+    font-weight:normal;
+    margin-bottom: 20px;
+}
+.setting-liucheng div{display:inline;opacity:0.65;}
+.setting-liucheng div.active{opacity:1;font-weight:bold;}
+.setting-liucheng div font{font-weight:100;font-family:fangsong;color:#999;padding:0 13px;}
+.setting-liucheng div span{display:inline-block;height:22px;width:22px;line-height:22px;text-align:center;background:#005FB9;
+    border-radius:100px;margin-right:5px;color:#fff;font-size:14.4px;font-weight:normal;vertical-align:top;}
+
+.line-setting .setting-content {
+    position: relative;
+    padding-right: 320px;
+}
+
+.line-setting .setting-content .content-left {
+    width: 100%;
+}
+
+.line-setting .setting-content .content-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+}
+
+.setting-stop{font-size:13.4px;background:#FFFCF9;color:#f30;padding:15px 20px;margin-bottom:20px;border-radius:5px;}
+.upload-pic-feed{display:block;font-size:12.4px;margin-top:5px;color:#777;}
+.upload-pic-feed font, .setting-tip font, .upload-tip font{font-family:Arial, Helvetica, sans-serif;font-size:12.4px;color:#999;}
+.setting-module {
+    display: block;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.setting-module .topic {
+    display: block;
+    padding: 20px 20px 0;
+    margin-bottom: 10px;
+    line-height: 20px;
+}
+
+.setting-module .topic .title {
+    font-size: 16.4px;
+    color: #333;
+    font-weight:bold;
+}
+
+.setting-module .topic .link {
+    float: right;
+    font-size: 12.4px;
+    color: #007FFF;
+}
+
+.setting-module .content {
+    padding: 0 20px 20px;
+}
+
+.setting-module .upload-pic {
+    display: block;
+    width: 100%;
+    height: 180px;
+}
+
+.setting-module .upload-pic .pic-show {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.setting-module .upload-pic .pic-show img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    border-radius:5px;
+}
+.setting-module .upload-tip {
+    font-size: 12.4px;
+    margin-top:5px;
+    color: #777;
+    line-height:150%;
+}
+
+.setting-module .upload-pic.head {
+    width: 180px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.upload-pic-other-size {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.upload-pic-other-size img {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    background-color: #eee;
+}
+
+.upload-pic-other-size .size-1 {
+    width: 100px;
+    height: 100px;
+    border-radius:5px;
+}
+
+.upload-pic-other-size .size-2 {
+    width: 60px;
+    height: 60px;
+    border-radius:5px;
+}
+.upload-img-tips{font-size:13.4px;color:#666;;padding-top:10px;display:block;}
+.setting-module .upload-pic.logo {
+    width: 160px;
+    height: 110px;
+    position: relative;
+    margin-top:10px;
+}
+
+.setting-module .upload-pic.logo .del {
+    position: absolute;
+    top: 0;
+    right: 0;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    color: #999;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 13.4px;
+}
+
+.setting-module .setting-label {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.setting-module .setting-label:last-child {
+    margin-bottom: 0;
+}
+
+.setting-module .setting-label.flex {
+    display: flex;
+    font-size: 0;
+    margin-right: -20px;
+    margin-bottom: 0;
+}
+
+.setting-module .setting-label.flex .setting-label {
+    width: calc(50% - 20px);
+    margin-right: 20px;
+}
+
+.setting-module .setting-label .label-name {
+    display: block;
+    font-size: 14.4px;
+    color: #333;
+    margin-bottom: 7px;
+    line-height: 20px;
+}
+
+.setting-module .setting-label .label-content {
+    display: block;
+}
+
+.setting-module .setting-label .label-textarea,
+.setting-module .setting-label .label-select,
+.setting-module .setting-label .label-text {
+    width: 100%;
+    padding: 0 10px;
+    min-height: 45px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+    font-family:微软雅黑;
+}
+
+.setting-module .setting-label .label-textarea {
+    resize: none;
+    min-height:150px;
+    padding:15px;
+    line-height:160%;
+}
+
+.purchase-info .purchase-edit {
+    display: block;
+    display: flex;
+    align-items: center;
+}
+
+.purchase-info .purchase-edit .input-text {
+    width: 100%;
+    padding: 0 15px;
+    min-height: 45px;
+    border: 1px solid #ccc;
+    outline: none;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    box-sizing: border-box;
+}
+.purchase-info .purchase-edit .input-text.bs {
+    width: calc(100% - 90px);
+    border-right: none;
+    border-top-right-radius: 0;
+    -webkit-border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    -webkit-border-bottom-right-radius: 0;
+}
+.purchase-info .purchase-edit .btn {
+      height: 45px;
+      line-height:45px;
+    width:90px;
+    color: #fff;
+    outline: none;
+    border: none;
+    background:#007FFF;
+    font-size:14.4px;
+    text-align:center;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.purchase-info .purchase-list {
+    margin-right: -15px;
+}
+
+.purchase-info .purchase-list .purchase-item {
+    display: inline-block;
+    vertical-align: top;
+    height: 32px;
+    line-height: 32px;
+    border-radius:100px;
+    font-size: 13.4px;
+    color: #333;
+    background:#EAEDF2;
+    margin-right:5px;
+    padding: 0 15px;
+    margin-top:10px;
+    text-transform:capitalize;
+}
+
+.purchase-info .purchase-list .purchase-item .purchase {
+    display: inline;
+}
+
+.purchase-info .purchase-list .purchase-item .del {
+    display: inline;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.setting-module .setting-tip {
+    font-size: 12.4px;
+    color: #777;
+    line-height:1.5;
+    margin-top:5px;
+}
+.setting-module .setting-tip-right {
+    font-size: 13.4px;
+    color: #333;
+    line-height: 1.6;
+    margin-top:5px;
+}
+
+.setting-module .save-btn {
+    display: block;
+    height: 47px;
+    width: 100%;
+    border: none;
+    color: #fff;
+    font-size: 15.4px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background-color: #007FFF;
+    font-weight:bold;
+    letter-spacing:0.1px;
+    cursor: pointer;
+}
+.setting-module .save-btn.ds{background-color: #ccc;cursor:no-drop;}
+
+.wlayer-btns{text-align:center; pointer-events: auto; user-select: none; -webkit-user-select: none;}
+.wlayer-btns a{height:32px; line-height:32px; margin: 5px 5px 0;border-radius:5px;padding: 0 15px; border: 1px solid #dedede; background-color:#fff; color: #333; border-radius: 2px; font-weight:400; cursor:pointer; text-decoration: none;}
+.wlayer-btns a:hover{opacity: 0.9; text-decoration: none;}
+.wlayer-btns a:active{opacity: 0.8;}
+.wlayer-btns .btn0{border-color: #1E9FFF; background-color: #1E9FFF; color:#fff;font-size:13.4px;border-radius:5px;height:32px;line-height:32px;padding:0 25px;display:inline-block;}
+
+.bl-noopen-des{margin-bottom:20px;font-size:18.4px;font-weight:bold;background:#EAEDF2;padding:15px 20px;border-radius:5px;}
+.bl-noopen-des a{float:right;font-size:13.4px;font-weight:normal;color:#666;line-height:22px;}
+.setting-title{margin-bottom:20px;}
+
+.bl-shenhe-ing{background:#EDEFF3;padding:25px 20px;border-radius:5px;margin-bottom:20px;box-sizing: border-box;position:relative;padding-right:200px;}
+.bl-shenhe-ing h2{font-size:19.4px;color:#1f3a5f;}
+.bl-shenhe-ing p{font-size:14.4px;color:#1f3a5f;line-height:150%;padding-top:10px;}
+.bl-shenhe-ing a{display:inline-block;margin-right:10px;height:32px;line-height:32px;border:1px #0059B2 solid;color:#fff;background:#0059B2;
+    font-size:12.4px;padding:0 15px;border-radius:3px;margin-top:10px;}
+    .bl-shenhe-ing i{position:absolute;right:35px;top:46px;}
+    .bl-shenhe-ing.bl-shenhe-no i{position:absolute;right:35px;top:13px;}
+
+
+.bl-shenhe-product{border-radius:3px;background:#fff;margin-bottom:20px;padding:20px;}
+.bl-shenhe-product h2{font-size:16.4px;margin-bottom:8px;}
+.bl-shenhe-product .des{color:#666;font-size:11.4px;margin-bottom:8px;}
+.bl-shenhe-product .des a{font-weight:normal;font-size:13.4px;color:#007FFF;font-weight:bold;padding-right:8px;}
+.bl-shenhe-product .text textarea{width:100%;height:160px;border:1px #ccc solid;padding:10px;box-sizing:border-box;}
+.bl-shenhe-product .pic{margin-top:30px;}
+.bl-shenhe-product .pic-list{display:flex;}
+.bl-shenhe-product .pic-list .pic-list-item{height:140px;width:140px;background:#f7f7f7;margin-right:10px;position:relative;}
+.bl-shenhe-product .pic-list .pic-list-item:last-child{margin-right:0;}
+.bl-shenhe-product .pic-list .pic-list-item span{position:absolute;right:9px;top:5px;font-size:13.4px;color:#666;cursor: pointer;}
+.bl-shenhe-product .pic-list .pic-list-item img{width: 100%;height: 100%}
+.bl-shenhe-product .button{text-align:left;margin-top:30px;}
+.bl-shenhe-product .button a{display:inline-block;height:47px;line-height:47px;width:300px;text-align:center;border-radius:5px;font-size:15.4px;color:#fff;
+background:#007FFF;font-weight:bold;}

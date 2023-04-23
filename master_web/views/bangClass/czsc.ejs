@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/help_center/help.css?v=<%=VERSION%>">
+    <title><%=translate('class_name_brochure')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%if(wglobals.lang == 'cn'){%>
+<div class="class-k">
+   <div class="class-product-nav">
+        <div class="pannel-list">
+            <h3>手册目录</h3>
+            <a class="download-category" href="https://static.52wmb.com/wmb_new/52wmb_new.zip">下载操作手册</a>
+            <div class="pannel-item active">
+                <div class="item-name">1. 外贸邦账号管理</div>
+                <ul>
+                    <li class="pannel-child active"><a href="#1">1.1. 注册</a></li>
+                    <li class="pannel-child"><a href="#2">1.2. 登录</a></li>
+                    <li class="pannel-child"><a href="#3">1.3. 账户管理</a></li>
+                    <li class="pannel-child"><a href="#4">1.4. 子账号权限分配</a></li>
+                    <li class="pannel-child"><a href="#5">1.5. 账号等级权限</a></li>
+                </ul>
+            </div>
+            <div class="pannel-item">
+                <div class="item-name">2. 查找贸易公司</div>
+                <ul>
+                    <li class="pannel-child"><a href="#6">2.1. 公司搜索方式</a></li>
+                    <li class="pannel-child"><a href="#7">2.2. 公司分类介绍</a></li>                
+                    <li class="pannel-child"><a href="#8">2.3. 自定义公司分类设置</a></li>
+                    <li class="pannel-child"><a href="#9">2.4. 公司分类详情</a></li>
+                </ul>
+            </div>
+            <div class="pannel-item">
+                <div class="item-name">3. 公司搜索列表</div>
+                <ul>
+                    <li class="pannel-child"><a href="#10">3.1. 公司列表介绍</a></li>
+                    <li class="pannel-child"><a href="#11">3.2. 收藏目标公司</a></li>
+                    <li class="pannel-child"><a href="#12">3.3. 高级筛选+保存筛选</a></li>
+                </ul>
+            </div>
+            <div class="pannel-item">
+                <div class="item-name">4. 公司贸易报告</div>
+                <ul>
+                    <li class="pannel-child"><a href="#13">4.1. 公司名栏目</a></li>
+                    <li class="pannel-child"><a href="#14">4.2. 主营产品选择</a></li>
+                    <li class="pannel-child"><a href="#15">4.3. 贸易概述</a></li>
+                    <li class="pannel-child"><a href="#16">4.4. 联系方式</a></li>
+                    <li class="pannel-child"><a href="#17">4.5. 贸易数据</a></li>
+                    <li class="pannel-child"><a href="#18">4.6. 贸易伙伴</a></li>
+                    <li class="pannel-child"><a href="#19">4.7. HS编码</a></li>
+                    <li class="pannel-child"><a href="#20">4.8. 采供产品</a></li>
+                    <li class="pannel-child"><a href="#21">4.9. 贸易区域</a></li>
+                    <li class="pannel-child"><a href="#22">4.10. 港口统计</a></li>
+                    <li class="pannel-child"><a href="#23">4.11. 邮箱采集</a></li>
+                </ul>
+            </div>
+            <div class="pannel-item">
+                <div class="item-name">5. 查找贸易数据</div>
+                <ul>
+                    <li class="pannel-child"><a href="#24">5.1. 多维度搜索海关数据</a></li>
+                    <li class="pannel-child"><a href="#25">5.2. 创建行业标签、报告</a></li>
+                </ul>
+            </div>
+            <div class="pannel-item">
+                <div class="item-name">6. 查阅行业报告</div>
+                <ul>
+                    <li class="pannel-child"><a href="#26">6.1. 贸易数据</a></li>
+                    <li class="pannel-child"><a href="#27">6.2. 市场分析</a></li>
+                    <li class="pannel-child"><a href="#28">6.3. 供应国</a></li>
+                    <li class="pannel-child"><a href="#29">6.4. 出口港</a></li>
+                    <li class="pannel-child"><a href="#30">6.5. 供应商</a></li>
+                    <li class="pannel-child"><a href="#31">6.6. 采购商</a></li>
+                    <li class="pannel-child"><a href="#32">6.7. 进口港</a></li>
+                    <li class="pannel-child"><a href="#33">6.8. HS编码</a></li>
+                </ul>
+            </div>
+            <div class="pannel-item">
+                <div class="item-name">7. 我的个人中心</div>
+                <ul>
+                    <li class="pannel-child"><a href="#34">7.1. 数据中心</a></li>
+                    <li class="pannel-child"><a href="#35">7.2. 收藏的公司</a></li>
+                    <li class="pannel-child"><a href="#36">7.3. 标签管理</a></li>
+                    <li class="pannel-child"><a href="#37">7.4. 下载管理</a></li>
+                    <li class="pannel-child"><a href="#38">7.5. 浏览记录</a></li>
+                    <li class="pannel-child"><a href="#39">7.6. 成员管理</a></li>
+                    <li class="pannel-child"><a href="#40">7.7. 订单管理</a></li>
+                    <li class="pannel-child"><a href="#41">7.8. 个人设置</a></li>
+                </ul>
+            </div>
+        </div>   
+   </div>
+   <div class="help-content class-product-c">
+       <h2>1.外贸邦账号管理</h2>
+       <p style="margin-top:0;">
+            <a name="1"></a><b>1.1.注册</b><br/>
+            进入外贸邦 www.52wmb.com，点击右上角【注册】进入会员注册页面，选择手机注册或邮箱注册，填写相应的账号信息，完成账号注册。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/1.png?v=01"/><br/><br/><br/>
+     
+            <a name="2"></a><b>1.2.登录</b><br/>
+            在注册页面，选择【已有账号，立即登录】，输入注册好的账号，完成账号登录。<br/><br/>
+     
+            <a name="3"></a><b>1.3.账户管理</b><br/>
+            登录账号，进入【我的】页面，点击【个人设置】，在设置中完善个人账号信息。想要修改密码的小伙伴可以在管理后台修改密码。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/2.png?v=01"/><br/><br/><br/>
+     
+           <a name="4"></a><b>1.4.子账号权限分配</b><br/>
+           进入【我的】页面，点击【成员管理】，点击右上角的成员管理，就可以给子账户设置权限了，权限包括数据下载、增值服务使用、行业贸易国查看等。
+注：设置的子账号，必须是注册过外贸邦的用户，且该功能只适用于黄钻会员用户。<br/>
+<img src="https://static.52wmb.com/wmb_new/images/czsc_pics/3.png?v=01"/><br/><br/><br/>
+
+            <a name="5"></a><b>1.5.账号等级权限</b><br/>
+            进入【报价与服务】页面，选择要购买的等级会员，升级账号功能权限。现在会员分为VIP、黄钻和外贸三剑客，选定后点击【购买】，支持选择paypal/支付宝/微信/对公等方式支付。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/4.png?v=01"/><br/><br/>
+        </p>  
+
+
+        <h2 style="margin-top:40px;">2.查找贸易公司</h2>
+        <p style="margin-top:5px;">
+            <a name="6"></a><b>2.1.搜索方式</b><br/>
+            外贸邦海关数据目前提供三种搜索方式，分别是产品名称搜索、公司名称搜索、HS编码搜索。每种搜索方式满足不同用户需求。<br/><br/>
+            例如：想要获取到大量有采购过led产品的商家，可以用产品名搜索，找到曾采购过该产品的公司，再筛选下贸易地区等，即可大概筛选出潜在客户。<br/><br/>
+            公司名称搜索针对有明确公司名称的客户。在输入时可以去掉LNC、LLC、LTD.等，这样可以搜索出最佳的效果。<br/><br/>
+            HS编码搜索则是作为产品搜索的一种精准补充。同样的产品名，可能因为语言不同就搜索不到，但HS编码是国际通用的，在搜索结果上也更精准。
+         </p>
+         <p>
+            <a name="7"></a><b>2.2.公司分类介绍</b><br/>
+            公司分类主要由两部分组成：第一部分是官方根据用户经常搜索的标签来进行了一个推荐。例如：从中国有采购、包含联系方式等。第二部分是用户自定义创建的搜索分类。针对不同的客户需求外贸邦给您提供一整套自定义标签筛选系统。通过公司分类筛选帮助您更为便捷的找到精准的外贸公司。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/5.png?v=01"/><br/><br/>
+        </p>            
+        <p>
+            <a name="8"></a><b>2.3.自定义公司分类设置</b><br/>    
+            在公司分类页面右侧的【快捷工具栏】中，点击【创建分类】，就可以根据需求设置自己的公司分类了。设置完毕后，在搜索结果末尾就会显示您设置的分类。点击【编辑分类】还可以对设置好的分类进行修改。这样在之后的搜索中无需二次设置，就可以直接拿来用方便快捷。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/6.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="9"></a><b>2.4.公司分类详情</b><br/> 
+            2.4.1.智能匹配<br/>
+            利用搜索词匹配产品描述获得结果，按照匹配度排序<br/><br/>
+            
+            2.4.2.从中国有采购商<br/>
+            贸易伙伴有中国供应商，或者贸易区域中包含中国，这些公司从中国有采购记录。<br/><br/>
+
+            2.4.3.精准匹配<br/>
+            精准匹配模式，可统计近2年产品的交易量和交易占比。<br/><br/>
+
+            2.4.4.包含联系方式<br/>
+            公司包含官网和联系人邮箱，创建销售清单更便捷。<br/><br/>
+
+            2.4.5.交易量多<br/>
+            智能匹配模式，按照相关产品交易量从高到低排序。<br/><br/>
+
+            2.4.6.近期有交易<br/>
+            智能匹配模式，按照相关产品的交易时间就近排序。
+         </p>
+         
+         
+         <h2 style="margin-top:40px;">3.公司列表</h2>
+         <p style="margin-top:5px;">
+            <a name="10"></a><b>3.1.公司列表介绍</b><br/> 
+            进入公司列表页，选择想要查询公司的贸易国家后。您还可以通过左侧的高级筛选进行二次筛选。在每家贸易公司中您可以看到该公司的活跃值、推荐理由、主营业务以及筛选标签。活跃值越高说明该公司越符合你的筛选条件，推荐理由里详细说明了近两年相关产品的采购次数，最近一次的采购日期以及该产品的采购占比。帮助您更快的找到采购多，采购期限近，采购频率大的客户。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/7.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="11"></a><b>3.2.收藏目标公司</b><br/> 
+            进入贸易公司页，点击公司名右侧的【收藏】，即可单独收藏目标公司。在搜索结果页面的最右侧的【快捷工具栏】，点击【批量收藏】按键，然后为收藏的公司选择一个标签，即可收藏该页面下的全部公司。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/8.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="12"></a><b>3.3.高级筛选+保存筛选</b><br/> 
+            在公司列表，采用高级搜索进行二次筛选后。点击右侧快捷工具栏里的【保存筛选】，您只需要设置一个标签名，即可保存本次公司分类的筛选标签。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/9.png?v=01"/><br/><br/>
+        </p>
+        
+
+        <h2 style="margin-top:40px;">4.查阅公司贸易报告</h2>
+        <p style="margin-top:5px;">
+            <a name="13"></a><b>4.1.公司名栏目</b><br/> 
+            在公司名称栏目中，您可以获取企业的公司名、国家、数据最近更新日期以及地址。帮您快速确认客户信息。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/10.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="14"></a><b>4.2.主营产品选择</b><br/> 
+            进入目标公司详情页，在【主营产品】选项，点击相应的产品名，就可以查看目标公司某一类产品详细的贸易数据。通过查看不同的产品数据，了解目标公司产品结构组成。 <br/><br/>
+            点击【更多】，在公司产品标签页的右侧，点击【创建标签】。输入标签名称、产品名或HS编码，就可以添加公司标签。<br/>
+        </p>
+        <p>
+            <a name="15"></a><b>4.3.贸易概述</b><br/> 
+            点击【贸易概述】，可以查阅该公司近一年的市场趋势分析图。在趋势图的下方，可以通过查看三个不同的维度数据。帮助您了解目标公司的采供周期和业务稳定性。<br/>
+        </p>
+        <p>
+            <a name="16"></a><b>4.4.联系方式</b><br/> 
+            点击【联系方式】，可以获取企业官方联系方式，包括联系人、联系电话、传真、邮箱、公司地址、公司官网等。通过该功能可以更为直观方便获取到客户的联系方式。<br/>
+        </p>
+        <p>
+            <a name="17"></a><b>4.5.贸易数据</b><br/> 
+            点击【贸易数据】，可以轻松获取与该公司发生过贸易往来的提关单信息，支持筛选时间段、产品描述、HS编码等维度自定义搜索数据。点击【详情】可查阅详细的贸易提单数据。通过这些信息了解目标公司的采购能力，从而找到最适合自己的目标客户。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/11.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="18"></a><b>4.6.贸易伙伴</b><br/> 
+            点击【贸易伙伴】，选择贸易深度来对数据进行筛选。获取与该公司发生过交易记录的同行公司。点击公司名称，可以直接进入该公司详情页查阅该公司贸易数据详情。当你点击【详情】，还可以查看目标公司与该公司近一年内的贸易趋势图，以及详细的贸易数据。通过该功能判断跟进的优先级，对于采购量大、采购频率稳定的客户您可以稍后跟踪。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/12.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="19"></a><b>4.7.HS编码</b><br/> 
+            点击【HS编码】，通过贸易深度筛选，了解目标公司产品流失和新增情况，以及目标公司产品贸易情况。点击HS编码后面的【详情】，可以查看其产品近一年内的贸易趋势图，以及详细的贸易数据。通过该功能确认产品在目标国的编码，以及了解目标公司产品范围。<br/>
+        </p>
+        <p>
+            <a name="20"></a><b>4.8.采供产品</b><br/> 
+            点击【采供产品】，可以了解目标公司每类产品的采购情况是怎样的。那些产品采购频繁且采购量大，那些产品一年甚至是几年都没复购。通过了解掌握客户业务特点，判断客户是否符合您的开发需求。<br/>
+        </p>
+        <p>
+            <a name="21"></a><b>4.9.贸易区域</b><br/> 
+            点击【贸易区域】，可以了解到每个地区的交易次数和交易占比的情况，点击贸易区域后面的【详情】，还可以查看该公司在此区域内近一年的贸易趋势图，以及详细的贸易数据。通过该功能了解客户的采购特点，从而判断客户跟进优先级。<br/>
+        </p>
+        <p>
+            <a name="22"></a><b>4.10.港口统计</b><br/> 
+            点击【港口统计】，可以获取到该公司所有进出口港数据，页面支持港口精准搜索。当点击港口名后面的【详情】还可以查看目标公司近一年的港口贸易趋势图。以及详细的贸易数据。掌握目标公司的交易港口，可以帮助您了解客户的一个进出口情况，有利于我们后期做客户的开发。 <br/>
+        <p>
+            <a name="23"></a><b>4.11.邮箱采集</b><br/> 
+            在目标公司详情页右侧的【快捷工具栏】，点击【邮箱采集】，在网址列表勾选需求信息，确认并采集邮箱。对于【联系方式】里没有邮箱的客户，我们可以通过该功能从对方官网获取其邮箱。然后向客户发送开发信。<br/>
+        </p>
+
+
+
+        <h2 style="margin-top:40px;">5.查找贸易数据</h2>
+        <p style="margin-top:5px;">
+            <a name="24"></a><b>5.1.多维度搜索</b><br/> 
+            点击【贸易数据】选择目标贸易国，进入贸易数据主界面，在输入框中填写交易日期、产品描述等筛选信息，可以搜索到符合条件的贸易数据。点击展开搜索可筛选更多维度。通过进行多维度的筛选，有助于您更为精确的找到符合要求的行业分析。<br/>
+        </p>
+        <p>
+            <a name="25"></a><b>5.2.创建行业标签</b><br/> 
+            在目标贸易国页面右侧的【快捷工具栏】，点击【创建标签】，填写对应的筛选信息，保存后方便您下次筛选使用。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/13.png?v=01"/><br/><br/>
+        </p>
+
+        <h2 style="margin-top:40px;">6.查阅行业分析报告</h2>
+        <p style="margin-top:5px;">
+            <a name="26"></a><b>6.1.贸易数据</b><br/> 
+            点击【贸易数据】，可以看到筛选条件下的所有交易数据，点击详情可查看目标国详细的贸易数据。通过该功能了解其详细的包装运输信息。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/14.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="27"></a><b>6.2.市场分析</b><br/> 
+            点击【市场分析】，可以看到一年内每个月的市场采购趋势分析表，在趋势表的下方可以选择不同维度查看目标国数据。同时在分析表下方可以查看近一年每月详细的数据报告，包括每个月的交易数、交易占比、数量、箱数、总价等，当您点击相应的采购商和供应商时，还可以看到相关公司列表。通过该数据了解目标国行业规律，从而更为合理制定销售策略。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/15.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="28"></a><b>6.3.供应国</b><br/> 
+            点击【供应国】，可以看到全球区域分布图以及与各国贸易数据报告，数据报告中包括交易数、交易占比、数量、箱数、总价等。通过该功能了解各国供应占比，方便您提前预估市场。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/16.png?v=01"/><br/><br/>
+        </p>
+
+        <p>
+            <a name="29"></a><b>6.4.出口港</b><br/> 
+            点击【出口港】，可以看到各出口港口的占比图以及各港口详细的贸易状况，同样可进行智能排序，或关键词搜索。通过查看出口港，帮助您制定合理的产品运输估价。<br/>
+        </p>
+        <p>
+            <a name="30"></a><b>6.5.供应商</b><br/> 
+            点击【供应商】，可以看到供应商的交易占比图以及详细的供应商公司数据。点击公司名称可以进入到其公司详情页。通过供应商，了解全球的竞争对手有哪些，以及他们的产品是怎样的。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/17.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="31"></a><b>6.6.采购商</b><br/> 
+            点击【采购商】，可以看到采购商的交易占比图和详细的采购商公司数据。通过【采购商】了解近一年采购目标产品较多的采购商有那些，采购情况是怎样的。通过采购商了解龙头企业有那些，他们的产品要求是怎样的。<br/>
+        </p>
+        <p>
+            <a name="32"></a><b>6.7.进口港</b><br/> 
+            点击【进口港】，可以看到各个进口港口的交易占比图以及各港口详细运输情况。掌握目标国家卸货港口，有助于您了解各区域的采购和销售分布情况，帮您合理制定销售策略。<br/>
+        </p>
+        <p>
+            <a name="33"></a><b>6.8.HS编码</b><br/> 
+            点击【HS编码】，可以看到目标国HS编码交易占比图和HS编码详细的数据统计。通过查看了解产品的报关情况。<br/>
+        </p>
+
+
+        <h2 style="margin-top:40px;">7.我的(个人中心)</h2>
+        <p style="margin-top:0;">
+            <a name="34"></a><b>7.1.数据中心</b><br/>
+            数据中心主页共有8大板块，最左侧包含我的主页、收藏的公司、标签管理、下载管理、浏览记录、成员管理、订单管理和个人设置，中上板块为当前会员权限说明板块；中部板块为公司报告和标签管理，下部为外贸邦的各项增值服务，底部为相关公司推荐，推荐可以采用产品名和客户类型来帮助筛选。在数据中心的最右侧则为邦Line推广和邦Line推荐。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/18.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="35"></a><b>7.2.收藏的公司</b><br/> 
+            （1）创建收藏分类<br/>
+            对于已经收藏的公司可以进行分类管理。点击【新增】，在公司分类管理页面的右上方，点击【创建分类】输入分类名，点击保存就可以为收藏的公司创建新分类。（收藏操作可查看2.6）<br/><br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/19.png?v=01"/><br/><br/>
+
+
+            （2）收藏公司管理<br/>
+            点击进入其中一类，就可以对收藏的公司进行取消关注、重新分类和分类管理等操作。同时该功能还支持公司名称精准搜索。<br/><br/>
+     
+            （3）导出公司联系方式<br/>
+            选择收藏的公司，点击【导出公司】即可导出公司的联系方式。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/20.png?v=01"/><br/><br/>
+
+            （4）邮箱采集和提关单下载<br/>
+            在收藏公司列表页，操作一栏。点击邮件图标即可进行邮件采集，点击下载图标即可设置日期下载客户提关单数据，点击后面的叉号，还可以删除收藏公司。<br/>
+            <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/21.png?v=01"/><br/><br/>
+        </p>
+        <p>
+            <a name="36"></a><b>7.3.标签管理</b><br/> 
+            在数据中心页面，点击【标签管理】。标签管理里分为筛选标签、公司标签、行业标签。在标签管理里可以对各类标签进行创建、修改和删除。点击筛选标签和行业标签的标签名可以直接跳转到相应数据列表。（标签创建可查看2.3）<br/>
+        </p>
+        <p>
+            <a name="37"></a><b>7.4.下载管理</b><br/> 
+            （1）下载提关单数据<br/>
+            进入公司的数据详情页，点击【贸易数据】，筛选时间或其它任一条件，点击导出数据。 <br/><br/>
+
+            （2）下载公司名录<br/>
+            进入公司的数据详情页，点击【贸易伙伴】，筛选时间或其它任一条件，点击导出数据。<br/><br/>
+
+            （3）下载公司贸易<br/>
+            点击【贸易数据】，选择目标贸易国，点击输出【产品描述】或【HS编码】，确认后搜索，点击【导出数据】。<br/><br/>
+
+            （4）下载联系方式<br/>
+            进入【数据中心】，点击【收藏的公司】，进入其中一类，勾选有联系方式的外贸公司，点击【导出公司】，即可完成批量导出外贸公司联系方式。<br/><br/>
+        </p>
+        <p>
+            <a name="38"></a><b>7.5.浏览记录</b><br/> 
+            进入【数据中心】，点击【浏览记录】，我们可以看到浏览过的公司处于解锁状态，该公司数据可以重复查阅，不消耗查阅公司的数量额度。<br/>
+        </p>
+        <p>
+            <a name="39"></a><b>7.6.成员管理</b><br/> 
+            进入数据中心页面，点击【成员管理】，可以对添加的子账号进行权限修改或进行子账户删除。 <br/>
+        </p>
+        <p>
+            <a name="40"></a><b>7.7.订单管理</b><br/> 
+            在数据中心页面，点击【订单管理】，可以看到【订单列表】和【开票信息】的选项，在【开票信息】可以填写发票抬头，在【订单列表】可以申请开票。 <br/>
+        </p>
+        <p>
+            <a name="41"></a><b>7.8.个人设置</b><br/> 
+            在数据中心页面，点击【个人设置】，可以修改个人信息、上传头像、修改密码和查看登录记录等操作。<br/>
+        </p>
+    </div>
+   <br class="clear"/>
+</div>
+<%}else{%>
+    <div class="class-k">
+        <div class="class-product-nav">
+             <div class="pannel-list">
+                 <h3>Product Catalogue</h3>
+                 <div class="pannel-item active">
+                     <div class="item-name">1. Account Management</div>
+                     <ul>
+                         <li class="pannel-child active"><a href="#1">1.1 Register</a></li>
+                         <li class="pannel-child"><a href="#2">1.2 Login</a></li>
+                         <li class="pannel-child"><a href="#3">1.3 Account management</a></li>
+                         <li class="pannel-child"><a href="#4">1.4 Sub account permission allocation</a></li>
+                         <li class="pannel-child"><a href="#5">1.5 Account permission</a></li>
+                     </ul>
+                 </div>
+                 <div class="pannel-item">
+                     <div class="item-name">2. Check trading companies</div>
+                     <ul>
+                         <li class="pannel-child"><a href="#6">2.1 Search mode</a></li>
+                         <li class="pannel-child"><a href="#7">2.2 Company category introduction</a></li>                
+                         <li class="pannel-child"><a href="#8">2.3 Customize company categories</a></li>
+                         <li class="pannel-child"><a href="#9">2.4 Company category details</a></li>
+                     </ul>
+                 </div>
+                 <div class="pannel-item">
+                     <div class="item-name">3. Company List</div>
+                     <ul>
+                         <li class="pannel-child"><a href="#10">3.1 Company list introduction</a></li>
+                         <li class="pannel-child"><a href="#11">3.2 Collect companies</a></li>
+                         <li class="pannel-child"><a href="#12">3.3 Advanced filter + save filter</a></li>
+                     </ul>
+                 </div>
+                 <div class="pannel-item">
+                     <div class="item-name">4. Check the company's trade report</div>
+                     <ul>
+                         <li class="pannel-child"><a href="#13">4.1 Company name column</a></li>
+                         <li class="pannel-child"><a href="#14">4.2 Main products option</a></li>
+                         <li class="pannel-child"><a href="#15">4.3 Trade overview</a></li>
+                         <li class="pannel-child"><a href="#16">4.4 Contact info</a></li>
+                         <li class="pannel-child"><a href="#17">4.5 Shipments</a></li>
+                         <li class="pannel-child"><a href="#18">4.6 Partners</a></li>
+                         <li class="pannel-child"><a href="#19">4.7 HS code</a></li>
+                         <li class="pannel-child"><a href="#20">4.8 Products</a></li>
+                         <li class="pannel-child"><a href="#21">4.9 Trade Area</a></li>
+                         <li class="pannel-child"><a href="#22">4.10 Port</a></li>
+                     </ul>
+                 </div>
+                 <div class="pannel-item">
+                    <div class="item-name">5. Check customs data</div>
+                    <ul>
+                        <li class="pannel-child"><a href="#23">5.1 Multidimensional search</a></li>
+                        <li class="pannel-child"><a href="#24">5.2 Create an industry label</a></li>
+                    </ul>
+                </div>
+                <div class="pannel-item">
+                    <div class="item-name">6. Check industry analysis report</div>
+                    <ul>
+                        <li class="pannel-child"><a href="#25">6.1 Trade data</a></li>
+                        <li class="pannel-child"><a href="#26">6.2 Market analysis</a></li>
+                        <li class="pannel-child"><a href="#27">6.3 Export country</a></li>
+                        <li class="pannel-child"><a href="#28">6.4 Export port</a></li>
+                        <li class="pannel-child"><a href="#29">6.5 Supplier</a></li>
+                        <li class="pannel-child"><a href="#30">6.6 Buyer</a></li>
+                        <li class="pannel-child"><a href="#31">6.7 Import port</a></li>
+                        <li class="pannel-child"><a href="#32">6.8 HS code</a></li>
+                    </ul>
+                </div>
+                <div class="pannel-item">
+                    <div class="item-name">7. Mine</div>
+                    <ul>
+                        <li class="pannel-child"><a href="#33">7.1 Data center</a></li>
+                        <li class="pannel-child"><a href="#34">7.2 Collection company</a></li>
+                        <li class="pannel-child"><a href="#35">7.3 Label management</a></li>
+                        <li class="pannel-child"><a href="#36">7.4 Download management</a></li>
+                        <li class="pannel-child"><a href="#37">7.5 History</a></li>
+                        <li class="pannel-child"><a href="#38">7.6 Member management</a></li>
+                        <li class="pannel-child"><a href="#39">7.7 Order Management</a></li>
+                        <li class="pannel-child"><a href="#40">7.8 Setting</a></li>
+                    </ul>
+                </div>
+             </div>   
+        </div>
+        <div class="help-content class-product-c">
+            <h2>1.1.Account management</h2>
+            <p style="margin-top:0;">
+                 <a name="1"></a><b>1.1.Register</b><br/>
+                 Access en.52wmb.com，Click “Register”on the upper right corner to access the sign up page, input an email and related info to register an account.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/1.png?v=01"/><br/><br/><br/>
+          
+                 <a name="2"></a><b>1.2.Login</b><br/>
+                 If you had registered an account previously, you can click login or select Already have an account, Log in now .<br/><br/>
+          
+                 <a name="3"></a><b>1.3.Account management</b><br/>
+                 Login to your account, enter the [My] page, click [Personal Settings], and improve your personal account information in the settings. If you want to change your password, you can do so in the admin background.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/2.png?v=01"/><br/><br/><br/>
+          
+                <a name="4"></a><b>1.4.Sub-account permission assignmen</b><br/>
+                Access “Mine”，select“Members”, click upper right corner “Member Management”to set the sub-account rights. The rights include data download, value-added service, and trade countries, etc. Notes: the sub-accounts has been the registered accounts, and this funcstion is only for diamond members.<br/>
+     <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/3.png?v=01"/><br/><br/><br/>
+     
+                 <a name="5"></a><b>1.5.Account permission</b><br/>
+                 Access “price” page, select the package you want. The member contains VIP and yellow diamond members，select “buy now”，support Paypal and bank transfer.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/4.png?v=01"/><br/><br/>
+             </p>  
+     
+     
+             <h2 style="margin-top:40px;">2.Check trade companies</h2>
+             <p style="margin-top:5px;">
+                 <a name="6"></a><b>2.1.Search Method</b><br/>
+                 52WMB provides 3 search methods, they are product keywords search, company name search, and HS code search. Each search method meets different user needs.<br/><br/>
+                 For example：If you want to get a large number of customers who import led products，you can search product keyword select trade area to filter our related companies.<br/><br/>
+                 Company name search is for checking the related company info you know name. Can delete LNC, LLC, LTD, etc when inputing. <br/><br/>HS code search is an accurate supplement for product search. For language difference, there may be no result when search same product keywords. But we can use international HS code to search and get a accurate result. 
+              </p>
+              <p>
+                 <a name="7"></a><b>2.2.Company category</b><br/>
+                 Company category contains 2 parts：one is recommended by the platform according to the labels that the users often search, such as import from China, Include contact, etc. The other part is the user-defined search category. According to different customer needs, 52WMB provides you with a custom label screening system. Through company category, you can find accurate customers more conveniently.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/5.png?v=01"/><br/><br/>
+             </p>            
+             <p>
+                 <a name="8"></a><b>2.3.Customize company category settings</b><br/>    
+                 In the shortcut toolbar，click “create categories”to set your category according to your needs. After setting，it will be shown in the advance of the categories. Click “Edit Categories”to modify it. Through company category, we don’t need to set repeatedly, and can use it by one-click search.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/6.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="9"></a><b>2.4.Company Category List</b><br/> 
+                 2.4.1.Smart Match<br/>
+                 Match search keywords with product description on B/Ls and sort them by match.<br/><br/>
+                 
+                 2.4.2.Import from China<br/>
+                 Has Chinese trading partners or these company has transaction records with China.<br/><br/>
+     
+                 2.4.3.Accurate match<br/>
+                 Precise matching mode，Count the transaction volume and proportion of products in recent 2 years.<br/><br/>
+     
+                 2.4.4.Include contact<br/>
+                 The company includes the website and email, which makes it easier to create a sales list.<br/><br/>
+     
+                 2.4.5.Trading volume<br/>
+                 Smart match mode，sort according to the trading volume of relevant products from high to low.<br/><br/>
+     
+                 2.4.6.Trancastion date<br/>
+                 Smart match mode，sort according to the transaction date of relevant products from new to old.
+              </p>
+              
+              
+              <h2 style="margin-top:40px;">3.Company list</h2>
+              <p style="margin-top:5px;">
+                 <a name="10"></a><b>3.1.Company list introduction</b><br/> 
+                 Access the company list page，select the trade area you want. You can also perform secondary filtering through the advanced filtering on the left. For each company, you can see its active value, recommended reason, main product and filter labels. The higher the active value, the more the company meets your screening criteria. The recommended reason specify the number of transactions in the past two years, the latest transaction date and the proportion of relevant products。Help you find customers with more transactions, new transaction date and high transaction frequency.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/7.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="11"></a><b>3.2.Collect companies</b><br/> 
+                 Access company report page and click “Collect” on the right side can collect the target company separately.<br/><br/>In the “shortcut toolbar”on the right side of the company list page，click “Batch collect” button and then select or create a label to collect all companies in this page.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/8.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="12"></a><b>3.3.Advanced filter + Save filter</b><br/> 
+                 In the company list page, after secondary filtering with advanced search, you can click the “Save filter” button and set a label name to save this company category list.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/9.png?v=01"/><br/><br/>
+             </p>
+             
+     
+             <h2 style="margin-top:40px;">4.Check company trade report</h2>
+             <p style="margin-top:5px;">
+                 <a name="13"></a><b>4.1.Company name column</b><br/> 
+                 In the company name column, you can get the company name, area,data update date, and address to help you quickly confirm customer info.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/10.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="14"></a><b>4.2.Main products</b><br/> 
+                 Access company report page，select the related main product label to check related of this product. Understand the product structure of the target company by viewing different product data. <br/><br/>
+                 Click “More”to create self-defined label. Set a label name and then input product keywords or HS code to finish setting.<br/>
+             </p>
+             <p>
+                 <a name="15"></a><b>4.3.trade overview</b><br/> 
+                 Click “Overview”to check its market trend analysis chart in recent one year. At the bottom of the trend chart, you can change and data check by three different dimension. It can help you understand the company’s transaction cycle and business stability.<br/>
+             </p>
+             <p>
+                 <a name="16"></a><b>4.4.Contact info</b><br/> 
+                 Click “Contact”to the company contact info, inlcuding contacts, Tel, Fax, Email, address, website, etc. This function makes it more intuitive and convenient to get the contact information of customers.<br/>
+             </p>
+             <p>
+                 <a name="17"></a><b>4.5.Shipments</b><br/> 
+                 Click “Shipments”to check the company transaction records. Here supports date, product keywords, HS code, etc, search method. Click “details”to check the trade details. Through this information, we can understand its purchasing ability, so as to find the most suitable target customers.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/11.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="18"></a><b>4.6.Partners</b><br/> 
+                 Click “Partners” and filterthem by “Trade degree”. Thus we can get realted partners’ trasansaction record by click company name. When click “details”, we can also view the trade trend chart and details in recent one year. This function can help us determine the priority of follow-up. For customers with large trading volume and stable trading frequency, we can follow up fisrt.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/12.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="19"></a><b>4.7.HS code</b><br/> 
+                 Click “ HS codes” and filter them by “Trade degree”. Here we can understand this company’s newly added and lost products and all transaction details. Click “details” behind the HS code to view the trade trend chart and details of its products in recent one year. This function is used to confirm the product’s HS code in the target country and understand the product range of them.<br/>
+             </p>
+             <p>
+                 <a name="20"></a><b>4.8.Products</b><br/> 
+                 Click products to learn what are the products involved in the company, which products are purchased frequently and in large quantities, and which products have not been re-purchased in one or  several years. By understanding and mastering the customer's business characteristics, we can judge whether the customer meets our development needs.<br/>
+             </p>
+             <p>
+                 <a name="21"></a><b>4.9.Trade area</b><br/> 
+                 Click ”Areas“ to learn about the number and proportion of transactions in each area. Click details behind the area to view the company's trade trend chart and details in recent one year. Through this function, we can the trading characteristics of customers so as to judge the priority of customer follow-up.<br/>
+             </p>
+             <p>
+                 <a name="22"></a><b>4.10.Port statistics</b><br/> 
+                 Clicking “Ports”can obtain all import and export port data of the company and this page support port name search. Click “details” behind the port name to view the port trade trend chart in recent one year and the trade details. Knowing the trading port can help us understand the import-export situation of customers, which is conducive to our later customer development.  <br/>
+     
+     
+     
+             <h2 style="margin-top:40px;">5.Check Customs Data</h2>
+             <p style="margin-top:5px;">
+                 <a name="23"></a><b>5.1.Multidimensional search</b><br/> 
+                 Click “Customs Data”to select one area, enter the main interface. Fill in the filter information such as transaction date and product description in the input box to search for qualified trade data. Click “expand” to filter more dimensions.  Through multi-dimensional filtering, we can more accurately find the industry analysis that meets the requirements.<br/>
+             </p>
+             <p>
+                 <a name="24"></a><b>5.2.Create an industry label</b><br/> 
+                 In shortcut toolbar on the right side，Click “create labels”，fill in the corresponding filtering info and save it for your next filtering.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/13.png?v=01"/><br/><br/>
+             </p>
+     
+             <h2 style="margin-top:40px;">6.View industry analysis report</h2>
+             <p style="margin-top:5px;">
+                 <a name="25"></a><b>6.1.Trade Data</b><br/> 
+                 Click “Trade Data”to see all transaction data under the screening conditions. Click “Details” to view the trade details of the each transactions. <br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/14.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="26"></a><b>6.2.Market Analysis</b><br/> 
+                 Click “Market Analysis”to see the market trade trend of each month within a year. Under the trend table, you can select different dimensions to view the data. At the same time, under the analysis table, you can view the monthly detailed data report of the past year, including the number of transactions, proportion, quantity, number of containers, total price, etc. When you click the corresponding buyer and supplier, you can also see the list of related companies. Through this data, we can understand the trade rule of the target countries, so as to formulate sales strategies more reasonably.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/15.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="27"></a><b>6.3.Trade area</b><br/> 
+                 Click “Trade area”to see the global regional distribution map and the trade data report with countries. The data report includes the number of transactions, proportion, the quantity, the number of containers, the total price, etc. Through this function, you can know the supply proportion of countries, so that you can estimate the market in advance.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/16.png?v=01"/><br/><br/>
+             </p>
+     
+             <p>
+                 <a name="28"></a><b>6.4.Export port</b><br/> 
+                 Click “export port”to see the proportion of each export port and the detailed trade status . You can also perform intelligent sorting or keyword search. By checking the export port, we can help you make a reasonable product transportation valuation.<br/>
+             </p>
+             <p>
+                 <a name="29"></a><b>6.5.Supplier</b><br/> 
+                 Click “Supplier”to see the supplier's transaction proportion chart and detailed trade data. Click the company name to enter its company details page. Through suppliers, we can know who the global competitors are and what their products are like.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/17.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="30"></a><b>6.6.Buyers</b><br/> 
+                 Click “Buyer”to see the purchaser's transaction proportion chart and detailed trade data. Through “Buyer”, we can know which buyers have purchased more target products in the past year and what the purchasing situation is. Understand the leading enterprises and their product requirements through buyers.<br/>
+             </p>
+             <p>
+                 <a name="31"></a><b>6.7.Import port</b><br/> 
+                 Click “Import port”to see the transaction proportion of each import port and the detailed transportation situation. Knowing the unloading port of the target country will help us understand the distribution of procurement and sales in each region and help us make reasonable sales strategies.<br/>
+             </p>
+             <p>
+                 <a name="32"></a><b>6.8.HS code</b><br/> 
+                 Click “HS code”to see the proportion of HS code and the detailed trade data statistics. Through it, understand the customs declaration HS code of the product.<br/>
+             </p>
+     
+     
+             <h2 style="margin-top:40px;">7.Mine</h2>
+             <p style="margin-top:0;">
+                 <a name="33"></a><b>7.1.Data center</b><br/>
+                 Data center contains 8 sections，the left side contains homepage, collection, labels, downloads, history, members, setting and membership. The upper middle section is the current member authority description section. The central part is the company's report and label management.<br/><br/> The lower part is the value-added services，the bottom is recommended companies and it is recommended to use product name and customer type to help filter. On the far right of the data center are the promotion and recommendation of Business-Line.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/18.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="34"></a><b>7.2.Collection</b><br/> 
+                 （1）Create a collection category<br/>
+                 Classification management can be carried out for the collected companies. Click “Add”and click“create a category”at the top right，input catetory name，and click “save”to create new categories for your favorite companies.（operation can be viewed 2.6）<br/><br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/19.png?v=01"/><br/><br/>
+     
+     
+                 （2）Collection management<br/>
+                 Click one category to cancel the follow-up, reclassify and manage the collected companies. At the same time, this function also supports accurate search of company name.<br/><br/>
+          
+                 （3）Export company contact info<br/>
+                 Selected collected companies and click “Export companies”to export the company contact info. <br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/20.png?v=01"/><br/><br/>
+     
+                 （4）Email hunting and B/Ls download<br/>
+                 In the operation column of the favorite company list page, click the mail icon to access email hunting tool, click the download icon to set the date to download the B/L data，and click the following cross to delete the collection company.<br/>
+                 <img src="https://static.52wmb.com/wmb_new/images/czsc_pics/21.png?v=01"/><br/><br/>
+             </p>
+             <p>
+                 <a name="35"></a><b>7.3.Label management</b><br/> 
+                 On the data center page，Click ”Labels“. Label management is divided into filter label, company label and industry label. In label management, you can create, modify and delete various labels. Click the label names to jump directly to the corresponding data list.（Label creation view 2.3）<br/>
+             </p>
+             <p>
+                 <a name="36"></a><b>7.4.Download Management</b><br/> 
+                 （1）Download B/Ls<br/>
+                 Enter the company's data details page，click “shipments”，filter time or any other condition, and click export data. <br/><br/>
+     
+                 （2）Download company directory<br/>
+                 Enter the company's data details page，click “Partners”，filter time or any other condition, and click export data. <br/><br/>
+     
+                 （3）Download customs data<br/>
+                 Click “Customs Data”and select one area，input product description or HS code to search and then click “export data”.<br/><br/>
+     
+                 （4）Download contact info<br/>
+                 Access “Data center” and click “Collection”，enter one category，select the companies that have contact info and click “export companies”<br/><br/>
+             </p>
+             <p>
+                 <a name="37"></a><b>7.5.History</b><br/> 
+                 Access “Data center”and click “History”，then we can see that the viewed companies are unlocked.The data of these companies can be viewed repeatedly without consuming the quantity of the viewing.<br/>
+             </p>
+             <p>
+                 <a name="38"></a><b>7.6.Members management</b><br/> 
+                 Access “Data center”and click “Members”to modify the permissions or delete the sub account. <br/>
+             </p>
+             <p>
+                 <a name="39"></a><b>7.7.Order management</b><br/> 
+                 Access “Data center”and click “Order management”to see the options of order list and invoicing info. <br/>
+             </p>
+             <p>
+                 <a name="40"></a><b>7.8.Setting</b><br/> 
+                 Access “Data center”and click “Members”to modify personal information, upload avatars, modify passwords and view login records.<br/>
+             </p>
+         </div>
+     
+        <br class="clear"/>
+     </div>
+<%}%>
+
+
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangClass/czsc.js?v=<%=VERSION%>"></script>
+</body>
+</html>

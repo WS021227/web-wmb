@@ -1,0 +1,109 @@
+.footer{display:none;}
+* {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  width: 23.4375rem;
+  font-size: 0.9375rem;
+}
+.container .logo {
+  margin-top: 2.75rem;
+  margin-bottom: 3.1563rem;
+}
+.container .logo img {
+  display: block;
+  margin: 0 auto;
+  width: 5.71875rem;
+  height: 5.9063rem;
+}
+.container .from {
+  width: 19.5625rem;
+  margin: 0 auto;
+}
+.container .from .box1,
+.container .from .box3 {
+  width: 19.5938rem;
+  height: 2.7188rem;
+  border-bottom: 0.0625rem solid #DDDDDD;
+  display: flex;
+}
+.container .from .box1 .text,
+.container .from .box3 .text {
+  width: 5.875rem;
+}
+.container .from .box1 .text .lab1,
+.container .from .box3 .text .lab1,
+.container .from .box1 .text .lab3,
+.container .from .box3 .text .lab3 {
+  height: 2.7188rem;
+  line-height: 2.7188rem;
+  margin-left: 0.5rem;
+  font-size: 0.9375rem;
+  color: #333333;
+  font-weight: 600;
+}
+.container .from .box1 .text img,
+.container .from .box3 .text img {
+  width: 0.5rem;
+  height: 0.3125rem;
+  margin-left: 0.3rem;
+}
+.container .from .box1 input,
+.container .from .box3 input {
+  width: 14rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: 0.9375rem;
+  border: none;
+  outline: none;
+  background-color: #f5f5f6;
+  height:2rem;
+  margin-top:0.25rem;
+  font-weight:bold;
+}
+.container .from .box1 .zhtoast,
+.container .from .box3 .zhtoast {
+  width: 5.6rem;
+  height: 1.6rem;
+  position: absolute;
+  left: 16.2rem;
+  top: 14rem;
+  background-color: white;
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+.container .from .box3 {
+  margin-top: 1.125rem;
+}
+.container .now-login {
+  width: 19.5625rem;
+  height: 2.875rem;
+  border: none;
+  border-radius: 1.4375rem;
+  background-color: #0D52AD;
+  font-size:0.9375rem;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.5625rem;
+}
+.container .click-register {
+  color: #999999;
+  font-size: 0.625rem;
+  text-align: center;
+  margin-top: 0.3125rem;
+}
+.container .login {
+  display: block;
+  margin-top: 1.5625rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #999999;
+}
+.container .login a {
+  text-decoration: none;
+  color: #0D52AD;
+}
+.foot-contact{display:none;}

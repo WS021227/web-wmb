@@ -1,0 +1,29 @@
+
+<%var trade= results.trade || {}, _list=trade.list||[],field_title=trade.title||[] %>
+<% if(_list.length > 0){ %>
+<table class="trade-data-list" border="0" cellspacing="0" cellpadding="0"  >
+    <thead>
+    <tr>
+        <%field_title.forEach(function (title){%>
+        <%if(title.is_mark == 0){%>
+            <th><%=title.field_des%></th>
+        <%}%>
+        <%})%>
+        <th><%=translate('report_bill_detail')%></th>
+    </tr>
+    </thead>
+
+    <% _list.forEach(function (item){%>
+        <tr data-billid="<%= raw_bill_encrypt(item.billid || item.bill_id) %>" data-date="<%=item.date%>" onclick="bill_detail(this)">
+            <%field_title.forEach(function(name){ %>
+            <%if(name.is_mark == 0){%>
+                <td><%= item[name.field_title]%></td>
+            <%}%>
+            <% }) %>
+            <td><font>&gt;</font></td>
+        </tr>
+    <%})%>
+</table>
+<%} else{%>
+<div class="not-data"><%- translate('report_no_date') -%></div>
+<%}%>

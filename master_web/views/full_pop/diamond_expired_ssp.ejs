@@ -1,0 +1,77 @@
+<style>
+  .old-user-mail h2{font-size:21.4px;color:#333;margin-bottom:8px;}
+  .old-user-mail p{margin:0;font-size:15.4px;color:#333;line-height:160%;}
+  .old-user-mail p.new-tan-1{padding-bottom:10px;}
+  .old-user-mail p span{color:#999;}
+  .old-user-mail p.new-tan-3 a{display:inline-block;height:42px;line-height:42px;padding:0 25px;border-radius:3px;color:#fff;background:#007FFF;margin-right:10px;} 
+  .old-user-mail p.new-tan-3{margin-top:20px;}
+  .new-tan{text-align:center;}
+  .new-tan h2 b{font-size:30.4px;color:#f30;}
+  .new-tan a{display:inline-block;height:42px;line-height:42px;border-radius:5px;background:#007FFF;color:#fff;font-size:15.4px;padding:0 30px;
+  margin-top:12px;font-weight:bold;}
+  .new-tan p{font-size:15.4px;}
+
+.youhuiquan{height:auto;margin:0 auto;border-radius:5px;text-align:center;box-sizing:border-box;padding:30px 0;}
+.youhuiquan-title h2{margin:0;font-size:22.4px;color:#333;}
+.youhuiquan-title h2 b{font-size:25.4px;border-bottom:2px #dd4b39 solid;color:#dd4b39;}
+.youhuiquan-title p{margin:0;font-size:15.4px;color:#333;padding:10px;}
+
+.youhuiquan-body{width:350px;height:auto;background:#dd4b39;padding:20px;padding-top:12px;margin:20px auto;border-radius:5px;}
+.youhuiquan-body-c{position:relative;padding-left:95px;text-align:left;}
+.youhuiquan-body-c i{display:inline-block;height:70px;width:70px;position:absolute;left:5px;top:17px;}
+.youhuiquan-body-c h3{color:#fff;font-size:36.4px;margin:0;}
+.youhuiquan-body-c h3 span{font-size:16.4px;padding-right:3px;}
+.youhuiquan-body-c h3 font{display:inline-block;border:1px #fff solid;height:20px;line-height:20px;padding:0 8px;font-size:14.4px;font-weight:normal;margin-left:15px;
+vertical-align:middle;}
+.youhuiquan-body-c p{font-size:13.4px;color:#fff;font-weight:bold;margin:0;padding-top:4px;}
+.youhuiquan-foot{text-align:center;}
+.youhuiquan-foot a{display:inline-block;height:42px;line-height:42px;color:#dd4b39;border:1px #dd4b39 solid;font-size:16.4px;width:390px;
+    border-radius:5px;text-decoration:none;font-weight:bold;}
+    .youhuiquan-foot a font{font-family:fangsong;padding-left:5px;}
+.youhuiquan-foot span{display:block;color:#333;font-size:12.4px;padding-top:10px;opacity:0.9;}
+.layui-layer-btn a{height:auto;padding:0;border:none;margin:auto;line-height:100%;}
+.layui-layer-page .layui-layer-btn, .layui-layer-iframe .layui-layer-btn{padding:0;}
+.layui-layer-btn .layui-layer-btn0{color:#007FFF;background:#fff;border:none;padding-bottom:20px;opacity:0.6;}
+</style>
+<div class="old-user-mail">
+  <%if(wglobals.lang == 'cn'){%>
+
+    <div class="youhuiquan">
+        <div class="youhuiquan-title">
+            <h2>【劲爆】天降<b>惊喜券</b>，续黄钻<b>直接</b>抵扣!</h2>
+            <p>使用惊喜券续费黄钻会员年付仅2999元；老用户惊天福利即刻享受吧。</p>
+        </div>
+        <div class="youhuiquan-body">
+            <div class="youhuiquan-body-c">
+                <i><svg t="1667460300433" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2664" width="70" height="70"><path d="M819.2 0H204.8L0 307.2l512 716.8L1024 307.2z m-307.2 804.864L229.888 409.6h125.44L512 628.736 668.672 409.6h125.952z" p-id="2665" fill="#B02D1E"></path></svg></i>
+                <h3><span>￥</span><%=results.amount%><font>惊喜券</font></h3>
+                <p>用于购买黄钻会员直接抵扣，不可与增值服务、其他优惠券叠加使用！</p>
+            </div>
+        </div>
+        <div class="youhuiquan-foot">
+            <a href="javascript:void(0)"  onclick="sp_coupon(this)" data-err="领取失败" data-sus="惊喜券已领，立即使">立即领取惊喜券 →</a>
+            <span>提示：领券后有效期最为7天；活动截止于2022/12/30 23:59</span>
+        </div>
+    </div>
+  <%} else {%>
+
+    <div class="youhuiquan">
+        <div class="youhuiquan-title">
+            <h2>Surprise coupons<br/>Direct <b>deduction</b> for renewal</h2>
+            <p>Renew the yellow diamond member at the price of $399.9, and enjoy it immediately. </p>
+        </div>
+        <div class="youhuiquan-body" style="padding-top:25px;">
+            <div class="youhuiquan-body-c">
+                <i><svg t="1667460300433" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2664" width="70" height="70"><path d="M819.2 0H204.8L0 307.2l512 716.8L1024 307.2z m-307.2 804.864L229.888 409.6h125.44L512 628.736 668.672 409.6h125.952z" p-id="2665" fill="#B02D1E"></path></svg></i>
+                <h3><span>$</span><%=results.amount%><font>Surprise coupons</font></h3>
+                <p>It can only be used to renew a yellow diamond member.</p>
+            </div>
+        </div>
+        <div class="youhuiquan-foot">
+            <a href="javascript:void(0)" onclick="sp_coupon(this)" data-err="Failed to receive" data-sus="Received the surprise coupon, use it now">Get the surprise coupon now →</a>
+            <!--a href="#">惊喜券已领，立即使用<font>></font></a-->
+            <span>Tips: The coupon is valid for 7 days, and the activity will be over at 23:59, Dec 31.</span>
+        </div>
+    </div>
+  <% } %>
+</div>

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%= translate('store_soso_keywords') %>"/>
+    <meta name="description" content="<%= translate('store_soso_description') %>"/>
+    <title><%= translate('store_soso_title') %>-<%= translate('share_text_sitename') %></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/social_media/index.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% console.log(results,"shuju") %>
+    <% let data_bz=results.add_service[0],data_gj=results.add_service[1] %>
+        <div class="email-container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+            <%- include('../layout/header.ejs'); %>
+                <% if(wglobals.lang=="cn" ) { %>
+                    <div class="email-ctk">
+                        <div class="left">
+                            <h2>社媒邮箱采集工具</h2>
+                            <p>30秒! 一键快速，帮您找到目标公司<br/>关键人邮箱和社交账号！</p>
+                            <!--span>标准版:￥<span><%= data_bz.amount_rmb %></span>/年&nbsp;高级版:￥<span><%= data_gj.amount_rmb %></span>/年</span-->
+                        </div>
+                    </div>
+
+                    <div class="email-ys">
+                        <h3>视频操作演示</h3>
+                        <div class="email-sp-box">
+                            <video controls autoplay src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4"></video>
+                        </div>
+                    </div>
+
+                    <div class="email-nr">
+                        <h3>内容介绍</h3>
+                        <div class="nr-box">
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png">
+                                <span class="index">1</span><span>4大深挖渠道，约占据全网流量90%</span>
+                            </h4>
+                            <p>通过公司名称搜索，系统会自动为您推荐来自于以下渠道源的官方网址、公司社交主页，标记渠道源。通过人工智能推荐算法优先推荐目标公司真实官网及雇员社交账号。</p>
+                            <span>全网用户超过20亿+</span>
+                            <img src="https://static.52wmb.com/wmb_img/share/soso_mod_1.png" alt="大深挖渠道，约占据全网流量90%"  style="width:20rem;">
+
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png">
+                                <span class="index">2</span><span>平台授权, 免翻墙一键深挖</span>
+                            </h4>
+                            <p>该工具同时入驻了阿里巴巴国际站、1688市场、阿里外贸服务市场，很快得到大量海内外外贸用户的青睐，迅速成为该领域中的爆款邮箱采集工具。</p>
+                            <span>确保采集到的客户邮箱100%可联系、可激活。</span>
+                            <img src="https://static.52wmb.com/wmb_img/share/soso_mod_2.png" alt="确保采集到的客户邮箱100%可联系、可激活。"  style="width:20rem;">
+
+
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png"><span
+                                    class="index">3</span><span>找到公司公共主页及雇员社交账号</span></h4>
+                            <p>通过公司名搜索，社媒搜搜可以帮助您从领英、facebook、推特等主流社交平台找到目标公司的社交账号；通过对公司主页的深挖可进一步找打公司雇员的个人社交账号。</p>
+                            <span>全网用户超过20亿+</span>
+                            <img src="https://static.52wmb.com/wmb_img/share/soso_mod_3.png" alt="全网用户超过20亿+" style="width:20rem;">
+
+
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">4</span><span>可深挖到完整的联系方式</span></h4>
+                            <p>深挖到公司雇员完整的联系方式包括：雇员姓名、公司职位、邮箱、社交账号；所有深挖数据均来自官方授权渠道、数据真实100%可联系。</p>
+                            <span>确保采集到的客户邮箱100%可联系、可激活。</span>
+                            <img src="https://static.52wmb.com/wmb_img/share/soso_mod_4.png" alt="可深挖到完整的联系方式"  style="width:20rem;">
+                        </div>
+                    </div>
+
+                    <div class="email-bb">
+                        <h3>版本对比</h3>
+                        <div class="bb-box">
+                            <div class="left">
+                                <span class="title">三剑客标准版</span>
+                                <ul>
+                                    <li><span>在线人数</span><span>1人在线</span></li>
+                                    <li><span>有效采集</span><span>每天30家</span></li>
+                                    <li><span>邮箱导出</span><span>每天30家</span></li>
+                                    <li><span>采集方式</span><span>公司名、网址</span></li>
+                                    <li><span>搜索渠道</span><span>综合搜索</span></li>
+                                    <li><span>公司收藏</span><span><img src="<%=
+                                                STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>采集历史</span><span><img src="<%=
+                                                STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                </ul>
+                            </div>
+                            <div class="right left">
+                                <span class="title">三剑客高级版</span>
+                                <ul>
+                                    <li><span>在线人数</span><span>5人在线</span></li>
+                                    <li><span>有效采集</span><span>每天200家</span></li>
+                                    <li><span>邮箱导出</span><span>每天200家</span></li>
+                                    <li><span>采集方式</span><span>公司名<br/>网址、关键字</span></li>
+                                    <li><span>搜索渠道</span><span>综合搜索</span></li>
+                                    <li><span>公司收藏</span><span><img src="<%=
+                                                STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>采集历史</span><span><img src="<%=
+                                                STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-pj">
+                        <h3>用户评价</h3>
+                        <div class="pj-list">
+                            <div class="swiper" id="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://static.52wmb.com/images/userphoto/190_131174714625577382.jpeg"
+                                                    alt="">
+                                                <div>
+                                                    <span>刘先生</span>
+                                                    <span>外贸经理·使用3年</span>
+                                                </div>
+                                            </div>
+                                            <p>大B业务一样适合社交媒体营销。我们比较侧重客户搜索这个功能，因为找到的客户比较准，而且都有办法联系上。我们的邮件回复率能达到5%左右，还不包括通过邮件跟踪锁定的重点客户。
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://static.52wmb.com/images/userphoto/190_1512875627128.jpg"
+                                                    alt="">
+                                                <div>
+                                                    <span>欧阳女士</span>
+                                                    <span>外贸经理·使用4年</span>
+                                                </div>
+                                            </div>
+                                            <p>我们是阿里巴巴国际站的铁杆用户。2015年开始我们开始重视外贸渠道的拓展。社交媒体和贸易数据结合在一起的方法很好，解决了潜在目标客户和联系方式的匹配，快速推动业务的发展。
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://static.52wmb.com/images/userphoto/190_130839184103311815.png"
+                                                    alt="">
+                                                <div>
+                                                    <span>张女士</span>
+                                                    <span>外贸业务员·使用3年</span>
+                                                </div>
+                                            </div>
+                                            <p>我们是一家创业型的贸易公司体量不大。通过工具，找到一些靠近终端的小型采购商，这类客户价格较好，竞争不激烈，量不算大但很适合我们。三年下来我们积累了很多这样的长期客户。
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://static.52wmb.com/images/userphoto/190_130215753372525000.png"
+                                                    alt="">
+                                                <div>
+                                                    <span>Howard</span>
+                                                    <span>区域经理·使用3年</span>
+                                                </div>
+                                            </div>
+                                            <p>我是个SOHO，这个软件不需要独立安装，网页版的便捷性真的很高；一键采集通过外贸邦筛出精准目标公司的邮箱，批量导出的联系人数据配合邮件营销工具，很高效且性价比超高！
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-wd">
+                        <h3>常见问答</h3>
+                        <ul>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">标准版和高级版有什么区别？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt="">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">用产品名怎么采集</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt="">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">可以选择分进分分区域进行采集吗？</span>
+                                </span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">社媒搜搜能采集到什么样的联系方式？</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">社媒搜搜的服务有效期是多长时间？</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">社媒搜搜采集邮箱步骤？</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                        </ul>
+                    </div>
+
+                    <div class="email-zf">
+                       
+                            <% let data_bz_dj=data_bz.buyer_level || {} %>
+                            <% let url = (wglobals.user.vip_level=="yd" || wglobals.user.vip_level=="bd")?"/product?product=4&adds=soso":"/Alipay?bd&social_0"%>
+
+                            <% if(!wglobals.user.encrypt_user_name){ %>
+                                <a href='/Alipay?bd&social_0'><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_rmb %></span></a>
+                            <% } %>
+                            
+                                <%if(data_bz.buyer_level > -1 && data_bz.buyer_level <= data_bz.product_level){%>
+                                    <a href="javascript:void(0)" style="background-color: #ccc;color: #777;border: #ccc;"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_rmb %></a>
+                                <%} else if(data_bz.product_level  > data_bz.buyer_level){%>
+                                    <a href="<%= url %>"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_rmb %></span></a>
+                                <%}%>
+                           
+                      
+
+                        <!-- 钻石用户 -->
+                        <% if(wglobals.user.vip_level && (wglobals.user.vip_level=="yd" || wglobals.user.vip_level=="bd")) { %>
+                           <a href="/product?product=11&adds=soso"><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_rmb %></a>
+                        <% }else{ %>
+                            <a href='/Alipay?bd&social_1'><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_rmb %></span></a>
+                        <% } %>
+
+                    </div>
+
+                    <%} else {%>
+                    
+                        <div class="email-ctk">
+                            <div class="left">
+                                <h2>Email Hunting Tool</h2>
+                                <p>30 Seconds! Find The Key Person's<br/> Email And Social Homepage...</p>
+                            </div>
+                        </div>
+
+                        <div class="email-ys">
+                            <h3>Video operation demonstration</h3>
+                            <div class="email-sp-box">
+                                <video controls autoplay src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/a93b9e545285890801446878831/v.f40.mp4"></video>
+                            </div>
+                        </div>
+
+                        <div class="email-nr">
+                            <h3>Contents introduction</h3>
+                            <div class="nr-box">
+                                <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png"><span
+                                        class="index">1</span><span>4 Collecting Channels, Covers 90% Network Traffic</span></h4>
+                                <p>Search by company name, the system will automatically recommend you with websites and company social homepages and marked channel sources.</p>
+                                <span>Over 2 billion+ users across the network</span>
+                                <img src="<%= STATIC %>images/bangStore/img_1.png" alt="Digging channels deeply...">
+
+                                <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png"><span
+                                        class="index">2</span><span>Platform Authorization, One-click Depth Collection!</span></h4>
+                                <p>This tool has also entered the Alibaba International Station, the 1688 market, and the Ali foreign trade service market.</p>
+                                <span>Ensure that 100% of the captured customer mailboxes are contactable and activatable.</span>
+                                <img src="<%= STATIC %>images/bangStore/img_2.png" alt="Platform authorization, no wall to dig deep with one click">
+
+                                <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png"><span
+                                        class="index">3</span><span>Company Homepages And Employee Social Accounts</span></h4>
+                                <p>this tool will help you collect social accounts from Linkedin, Facebook, Twitter,etc; Depth collect by company homepages, find out employee social accounts.</p>
+                                <img src="<%= STATIC %>images/bangStore/img_3.png" alt="Digging channels deeply, accounting for about 90% of the total network traffic">
+
+                                <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png"><span
+                                        class="index">4</span><span>Depth Collected Complete Contact Information</span></h4>
+                                <p>Depth collected employee's complete contact information, including their name, positions, and social accounts. All data is from officially authorized channels and 100% of them are true.</p>
+                                <img src="<%= STATIC %>mobile/images/bangStore/img_4.png" alt="Dig deep into the full contact details<">
+                            </div>
+                        </div>
+
+                        <div class="email-bb">
+                            <h3>Version comparison</h3>
+                            <div class="bb-box">
+                                <div class="left">
+                                    <span class="title">Social media search standard version</span>
+                                    <ul>
+                                        <li><span>Number of people online</span><span>1 person online</span></li>
+                                        <li><span>Company mailbox collection</span><span>30 a day</span></li>
+                                        <li><span>Mailbox export</span><span>30 a day</span></li>
+                                        <li><span>Mailbox search mode</span><span>Company name, website</span></li>
+                                        <li><span>Search channels</span><span>Comprehensive search</span></li>
+                                        <li><span>Company Collection</span><span><img src="<%=
+                                                    STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                        <li><span>Collect history</span><span><img src="<%=
+                                                    STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    </ul>
+                                </div>
+                                <div class="right left">
+                                    <span class="title">Social media search premium version</span>
+                                    <ul>
+                                        <li><span>Number of people online</span><span>5 people online</span></li>
+                                        <li><span>Company mailbox collection</span><span>200 a day</span></li>
+                                        <li><span>Mailbox export</span><span>200 a day</span></li>
+                                        <li><span>Mailbox search mode</span><span>Company name, website</span></li>
+                                        <li><span>Search channels</span><span>Comprehensive search</span></li>
+                                        <li><span>Company Collection</span><span><img src="<%=
+                                                    STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                        <li><span>Collect history</span><span><img src="<%=
+                                                    STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="email-pj">
+                            <h3>User reviews</h3>
+                            <div class="pj-list">
+                                <div class="swiper" id="swiper">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="pj-box">
+                                                <div>
+                                                    <img src="https://static.52wmb.com/images/userphoto/190_131174714625577382.jpeg" alt="">
+                                                    <div>
+                                                        <span>Mr Liu</span>
+                                                        <span>Manager・2 years of use</span>
+                                                    </div>
+                                                </div>
+                                                <p>Through products, companies or official websites，automatically search the related information from Google, Facebook, LinkedIn, and Twitter. Automatically collect key person's position, emails.</p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="pj-box">
+                                                <div>
+                                                    <img src="https://static.52wmb.com/images/userphoto/190_1512875627128.jpg" alt="">
+                                                    <div>
+                                                        <span>Miss Ouyang</span>
+                                                        <span>Manager・4 years of use</span>
+                                                    </div>
+                                                </div>
+                                                <p>Since 2015, we have begun to attach importance to the expansion of foreign trade channels. The combination of Emal hunting and customs data is a good way to solve the matching of potential target customers and contact methods</p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="pj-box">
+                                                <div>
+                                                    <img src="https://static.52wmb.com/images/userphoto/190_130839184103311815.png" alt="">
+                                                    <div>
+                                                        <span>Miss Zhang</span>
+                                                        <span>Foreign trade manager・3 years of use</span>
+                                                    </div>
+                                                </div>
+                                                <p>We are an entrepreneurial trading company with a small volume. Through this tool, find some small buyers close to the terminal. These customers are at a better price, the competition is not intense, and the amount is not big but suitable for us</p>
+                                            </div>
+                                        </div>
+                                        <div class="swiper-slide">
+                                            <div class="pj-box">
+                                                <div>
+                                                    <img src="https://static.52wmb.com/images/userphoto/190_130215753372525000.png" alt="">
+                                                    <div>
+                                                        <span>Howard</span>
+                                                        <span>Regional Manager・2 years of use</span>
+                                                    </div>
+                                                </div>
+                                                <p>I am SOHO，this tool doesn't need to be installed separately, the web version is really convenient. One-click to collect target companies' email through 52wmb and batch download the contact information. Combined using with EDM tool will be more</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-pagination"></div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="email-wd">
+                            <h3>Listen to card FAQs</h3>
+                            <ul>
+                                <li>
+                                    <span>
+                                        <span class="qq">Q</span>
+                                        <span class="text">At present, trade data from multiple countries can be provided, is it true, and how can the data be updated?</span>
+                                    </span>
+                                    <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt="">
+                                </li>
+                                <li><span><span class="qq">Q</span><span
+                                            class="text">Can a VIP member who has not expired be upgraded to a Yellow Diamond member?</span></span><img
+                                        src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                                <li><span><span class="qq">Q</span><span class="text">Is it possible to provide contracts and invoices?</span></span><img
+                                        src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                                <li><span><span class="qq">Q</span><span
+                                            class="text">What are your payment methods, how do I open a member account and permissions?</span></span><img
+                                        src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                                <li><span><span class="qq">Q</span><span
+                                            class="text">What can this data do for me and what can I find out from the data?</span></span><img
+                                        src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                                <li><span><span class="qq">Q</span><span
+                                            class="text">What are the advantages and differences between you and your trade data peers?</span></span><img
+                                        src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            </ul>
+                        </div>
+    
+                        <div class="email-zf">
+                            
+                                <% let data_bz_dj=data_bz.buyer_level || {} %>
+                                <% console.log(data_bz_dj,"fshuaihdfuashdfuiashfuiagsdfuiafgdsy") %>
+                                <% let url = (wglobals.user.vip_level=="yd" || wglobals.user.vip_level=="bd")?"/product?product=4&adds=soso":"/Alipay?bd&social_0"%>
+    
+                               
+                                    <%if(data_bz.buyer_level > -1 && data_bz.buyer_level <= data_bz.product_level){%>
+                                        <a href="javascript:void(0)" style="background-color: #ccc;color: #777;border: #ccc;"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_usd %></a>
+                                    <%} else if(data_bz.product_level  > data_bz.buyer_level){%>
+                                        <a href="<%= url %>"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_usd %></span></a>
+                                    <%}%>
+                               
+                            
+                            
+    
+                            <!-- 钻石用户 -->
+                            <% if(wglobals.user.vip_level && (wglobals.user.vip_level=="yd" || wglobals.user.vip_level=="bd")) { %>
+                               <a href="/product?product=11&adds=soso"><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_usd %></a>
+                            <% }else{ %>
+                                <a href='/Alipay?bd&social_1'><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_usd %></span></a>
+                            <% } %>
+                        </div>
+                    <%}%>
+                    <%- include('../global/foot_script.ejs'); %>
+        </div>
+
+        <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+        <script src="<%= STATIC %>mobile/javascripts/social_media/index.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

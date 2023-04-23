@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%= translate('industry_meta_keywords') %>"/>
+    <meta name="description" content="<%= translate('industry_meta_description') %>"/>
+    <title><%= translate('industry_meta_title') %>-<%= translate('share_text_sitename') %></title>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com/billsearch" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com/billsearch" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com/billsearch" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com/billsearch" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com/billsearch" />
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%= VERSION %>"/>
+    <link rel="stylesheet" href="<%= STATIC %>css/billsearch/state_update_list.css?v=<%= VERSION %>"/>
+    <% if(wglobals.lang == 'en'){ %><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%= VERSION %>"/><% } %>
+</head>
+<body>
+<% console.log(results.screen,"---") %>
+<% let turkey_ip_area=wglobals.ip_area || "" %>
+<%- include('../global/head.ejs') -%>
+<div id="page-content">
+    <div class="seach-Box">
+        <div class="seach-gongsi mgall-l">
+            <div class="search-gongsi-select">
+                <div class="tab search-tab active"><%= translate('industry_search_title') %></div>
+            </div>
+            <form class="slider-search-form" onsubmit="return false;">
+                <input type="text" value="" autocomplete="off" placeholder="<%= translate('industry_search_des') %>" class="seaech-text" id="customs_country">
+            </form>
+            <div class="search-history mar-l">
+                <% if(wglobals.lang == 'cn'){ %>
+                    热门：
+                    <span class="history-keys">
+                        <a href="/customs-data/united_states" target="_blank">美国</a>,
+                        <a href="/customs-data/russia" target="_blank">俄罗斯</a>,
+                        <a href="/customs-data/pakistan" target="_blank">巴基斯坦</a>,
+                        <a href="/customs-data/ethiopia" target="_blank">埃塞俄比亚</a>
+                    </span>
+                <% }else{ %>
+                    Hot：
+                    <span class="history-keys">
+                        <a href="/customs-data/united_states" target="_blank">United states</a>,
+                        <a href="/customs-data/russia" target="_blank">Russia</a>,
+                        <a href="/customs-data/pakistan" target="_blank">Pakistan</a>,
+                        <a href="/customs-data/ethiopia" target="_blank">Ethiopia</a>
+                    </span>
+                <% } %>
+            </div>
+            <br class="clear">
+        </div>
+    </div>
+    <div class="result-box">
+        <div class="sousou-data-left">
+            <div class="sousou-data mgall-l">
+                <div class="sousou-list">
+                    <div class="sousuo-data-list-box">                        
+                        <ul class="customs-countries-list">
+                            <li class="customs-countries-head">
+                                <span class="trade-barrier"><%= translate('industry_list_country') %></span>
+                                <span class="data-type"><%= translate('industry_list_datatype') %></span>
+                                <span class="freight-count"><%= translate('industry_list_shipments') %></span>
+                                <span class="last-update"><%= translate('industry_list_updates') %></span>
+                                <span class="frequency"><%= translate('industry_list_updates_frequency') %></span>
+                            </li>
+                            <% var update_list = results.data.list || []; %>
+                            <% update_list.forEach(function(item){ %>
+                                <!-- 屏蔽入口 -->
+                                <% console.log(results.screen,results.screen_new,"国家字段") %>
+                                <% if (item.country == results.screen || item.country==results.screen_new ) return true %>
+                                <% if (item.country == 'indonesia' && !verify_real_vip('bd') && !extended_auth('unlock_indonesia_data')) return true %>
+                                <li class="customs-countries-form" data-country="<%= JSON.stringify(item) %>">
+                                    <%if(item.is_new){%><div class="new-country"><% if(wglobals.lang == 'cn'){ %>上新<% }else{ %>new<% } %></div><%}%>
+                                    <a class="customs-countries-box" href="/customs-data/<%= item.country.replace(/\ /g, "_") %>"  target="_blank">
+                                        <% if(wglobals.lang == 'cn'){ %>
+                                        <span class="trade-barrier"><i class="country-img country-<%= item.country.replace(/\ /g, "_") %>"></i><b class="country"><%= item.country_cn %></b></span>
+                                        <% }else{ %>
+                                        <span class="trade-barrier"><i class="country-img country-<%= item.country.replace(/\ /g, "_") %>"></i><b class="country"><%= item.country %></b></span>
+                                        <% } %>
+                                        <span class="data-type"><%= item.str_data_types %></span>
+                                        <span class="freight-count"><%= item.bill_count %></span>
+                                        <span class="last-update"><%= item.new_date %></span>
+                                    </a>
+                                    <a target="_blank" href="/customs-data/<%= item.country.replace(/\ /g, "_") %>?tags=sample"><span class="frequency"><font><%= translate('industry_list_updates_frequency') %></font></span></a>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="suosuo-data-des">
+                    <% if(wglobals.lang == 'cn'){ %>
+                        <h2>进出口数据帮助及说明</h2>
+                        <p>贸易数据模块，为邦友提供了33个贸易国的原始进出口数据查询。因各个国家的提关单详情字段不同，查询的维度也不同，你可以通过《贸易数据核心字段的概况说明》了解可以查询的维度，主要的查询方式主要是供应商名、采购商名、产品描述、HS编码。<br/><br/>需要注意的是我们提供的贸易国数据源中有4个语系，分别是英语系、西班牙语系（南美国家）、越南语、俄罗斯语，建议您通过HS编码或贸易国语系搜索，这样获取到的结果会更多且匹配。<br/><br/>美国数据每周更新一次，最新进口数据已更新至2022年，其他国家数据每月更新二次。通过产品描述或HS编码搜索时，可以自动创建该产品的进出口分析报告；报告内容模块：产品进出口趋势分析图(从交易次数、交易数量、重量、总交易额等维度查阅)、全球采购区域、采供公司排名、进出口港排名、量价分析趋势图。以上所有的行业分析模块都是基于产品、编码搜索的提关单数据。</p>
+                    <% }else{ %>
+                        <h2>Import and export data help and explanations</h2>
+                        <p>
+                            The Trade Data module, which provides Bonuses with raw import and export data queries for 33 trading countries. As the bill of lading details fields are different for each country, the dimensions of the query are also different. You can learn about the dimensions that can be
+                            queried through the Fact Sheet on the Core Fields of Trade Data.<br/><br/> The main queries are mainly supplier name, purchaser name, product description, HS code. (accessed in terms of number of transactions, number of transactions, weight, total transaction value and other
+                            dimensions), global sourcing regions, ranking of sourcing and supplying companies, ranking of import and export ports, and volume and price analysis trend charts. <br/><br/>
+                            All the above industry analysis modules are based on product, code search of bill of lading data.
+                        </p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="soso-data-right">
+            <div class="module-content mar-l">                
+                <div class="collect-box" id="operate_box">
+                    <h2><%=translate('toolbar_name')%><a href="/user/datacenter/home" target="_blank" rel="nofollow"><%=translate('mine_name')%>→</a></h2>
+                    <div class="data-tool data-tool-bill">
+                        <a href="/customs-data/united_states?tags=sample" target="_blank" data-wstats="demo_indusrty_report"><i class="tool-demo"></i><font><%=translate('toolbar_view_sample')%></font></a>
+                    </div>
+                    <ul class="operation-list" id="tool_list">                      
+                    </ul>
+                </div>
+                <% if(wglobals.lang == 'cn'){ %>
+                <div class="bang-classroom" id="bang_classroom">
+                    <h2>邦课堂<a href="/new" target="_blank">更多<font>&gt;</font></a></h2>
+                    <ul class="bang-list">
+                        <li>● <a href="/new/752" target="_blank">如何找到潜力市场，发现潜在机会快速战领市场</a></li>
+                        <li>● <a href="/new/675" target="_blank">海关数据课程：基本认知</a></li>
+                        <li>● <a href="/new/679" target="_blank">小语种国家，通过什么方法找到客户</a></li>
+                    </ul>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../global/foot.ejs') %>
+<script  src="<%= STATIC %>javascripts/billsearch/index.js?v=<%=VERSION%>"></script>
+</body>
+</html>

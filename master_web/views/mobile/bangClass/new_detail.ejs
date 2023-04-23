@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="<%=results.detail.detail.description %>"/>
+    <meta name="keywords" content="<%=results.detail.detail.label%>" />
+    <title><%= results.detail.detail.title%>-<%=translate('share_text_sitename')%></title>
+        <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>"/>
+        <link rel="stylesheet" href="<%= STATIC %>mobile/css/bangClass/new_de.css?v=<%=VERSION%>"/>
+    </head>
+    <body>
+        <% console.log(results," 6678451348652310564106450") %>
+        <% let data_text=results.detail.detail.content,data_xg=results.tutorial_hot_list %>
+        <%- include('../layout/header.ejs'); %>
+        <div class="new-container">            
+            <h2><%= results.detail.detail.title %></h2>
+            <div class="date"><%= results.detail.detail.update_time.substring(0,10) %><%=translate('class_detail_add')%><font>|</font><%= results.detail.detail.view_count %><%=translate('class_detail_views')%><font>|</font><%= results.detail.detail.name %></div>
+            <div class="content" ><%- data_text -%></div>
+            <div class="class-tab-content">
+                <h2><%=translate('class_detail_instresting')%></h2>
+                <% data_xg.forEach((item)=>{ %>
+                    <div class="tab1"  data-id="<%= item.id %>">
+                        <a href="/new/<%= item.id %>"><img src="https://static.52wmb.com/new_images/new_cover/<%= item.cover %>" alt="<%= item.title %>"></a>
+                        <div class="right">
+                            <a href="/new/<%= item.id %>" title="<%= item.title %>"><h3><%= item.title %></h3></a>                            
+                            <p><%= item.description %></p>
+                            <span><%= item.update_time %>&nbsp;|&nbsp;<%= item.view_count %><%= wglobals.lang=="cn"?" 次阅读":" Views" %></span>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+        <%- include('../layout/footer.ejs'); %>
+        <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+        <script src="<%= STATIC %>mobile/javascripts/bangClass/new.js?v=<%=VERSION%>"></script>
+        </body>
+</html>

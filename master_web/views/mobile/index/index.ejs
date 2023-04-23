@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+  <meta name="description" content="<%=translate('home_meta_description')%>" />
+  <title><%=translate('home_meta_title')%></title>
+  <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+  <link rel="stylesheet" href="<%= STATIC %>mobile/css/index/index.css?v=<%=VERSION%>" />
+</head>
+<body>
+  <div class="container" data-img="<%= STATIC %>" data-lang="<%= wglobals.lang %>">
+    <% console.log(results,"首页数据") %>
+    <div class="head">
+      <div class="box1">
+        <div class="box1-1">
+          <% if(wglobals.lang=="cn"){ %><a href="/mall"><img class="vip" src="<%= STATIC %>mobile/images/layout/header/shop_home.png" /></a><%}%>
+          <% if(wglobals.user.id){ %>
+            <a href="/user/datacenter/home"><img class="photo" src="https://static.52wmb.com/images/userphoto/80_<%= wglobals.user.photo %>"></a>
+          <% }else{ %>
+            <a href="/user/datacenter/home"><img class="vip" src="<%= STATIC %>mobile/images/layout/header/me_home.png"/></a>
+          <% } %>
+          <a href="/Alipay"><img src="<%= STATIC %>mobile/images/layout/header/car_home.png"></a>
+        </div>
+      </div>
+
+      <h1><img src="<%= STATIC %>mobile/images/index/index-logo.png" alt="52wmb"/></h1>
+      <div class="box3">
+        <img src="<%= STATIC %>mobile/images/index/index-search.png" alt="<%=translate('search_input_tis_2')%>"/>
+        <div id="search"><%=translate('search_input_tis_2')%></div>        
+      </div>
+      <div class="box4">
+        <div class="box4-1">
+          <a href="/buyer">
+            <img src="<%= STATIC %>mobile/images/index/index-cgshop.png" alt="<%=translate('search_enter_buyer')%>"/>
+            <div class="right">
+              <span><b>1951</b><font class="sallm"><%=translate('share_text_m')%></font></span>
+              <span><%=translate('search_enter_buyer')%></span>
+            </div>
+          </a>
+        </div>
+        <div class="box4-1">
+          <a href="/supplier">
+            <img src="<%= STATIC %>mobile/images/index/index-gy.png" alt="<%=translate('search_enter_supplier')%>"/>
+            <div class="right">
+              <span><b>1518</b><font class="sallm"><%=translate('share_text_m')%></font></span>
+              <span><%=translate('search_enter_supplier')%></span>
+            </div>
+          </a>
+        </div>
+        <div class="box4-1">
+          <a href="/billsearch">
+            <img src="<%= STATIC %>mobile/images/index/index-qq.png" alt="<%=translate('search_enter_datacountry')%>"/>
+            <div class="right">
+              <span><b>33</b><font class="sallm"><%=translate('share_text_ge')%></font></span>
+              <span><%=translate('search_enter_datacountry')%></span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="index-content">
+      <div class="swipers">
+        <div class="index-content-title">
+          <span class="text1"><text><%=translate('home_24_time')%></text></span>
+          <div class="text2">
+            <a class="check-style" href="/buyer"><%=translate('share_text_more')%><font>&gt;</font></a>
+          </div>
+        </div>
+        <div class="context">
+          <div class="swiper" id="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <h3><%=translate('home_hot_comapny')%>
+                  <div class="title-hot-right <%= wglobals.lang=='en'?'title-hot-right-en':''  %>">
+                    <span class="active"><%=translate('home_hot_purchase')%></span>
+                    <span><%=translate('home_hot_supply')%></span>
+                  </div>
+                </h3>
+                <div class="swiper-context">
+                  <div class="corg corg_active">
+                    <% results.search_company_buyer_records.forEach(function(item,index){ %>                      
+                      <%if(index<=4){%>                      
+                          <a href="/buyer/<%= item.id %>" class="swbox" data-id="<%= item.id %>" data-type="<%= item.type %>">
+                            <span class="co co-<%=index+1%>"><%=index+1%></span>
+                            <%=item.name%>
+                          </a> 
+                        <%}%>
+                    <% })%>
+                  </div>
+                  <div class="corg no_corg_active">
+                    <% results.search_company_supply_records.forEach(function(item,index){ %>
+                      <%if(index<=4){%>                        
+                        <a href="/supplier/<%= item.id %>" class="swbox" data-id="<%= item.id %>" data-type="<%= item.type %>">
+                           <span class="co co-<%=index+1%>"><%=index+1%></span>
+                           <%=item.name%>
+                        </a>
+                        <%}%>
+                    <% })%>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <h3><%=translate('home_hot_product')%>
+                  <div class="title-look-right title-hot-right <%= wglobals.lang=='en'?'title-hot-right-en':''  %>">
+                    <span class="active"><%=translate('home_hot_purchase')%></span>
+                    <span><%=translate('home_hot_supply')%></span>
+                  </div>
+                </h3>                
+                <div class="swiper-context1">
+                  <div class="corg1 corg_active">
+                    <% results.search_log_buyer_key.forEach(function(item,index){ %>
+                      <%if(index<=4){%>
+                        <a href='/buy-<%= item.keywords.toLocaleString().replace(new RegExp(' ', 'g'),'_') %>' class="swbox" data-key='<%=item.keywords%>' data-type='0'>
+                           <span class="co co-<%=index+1%>"><%=index+1%></span> 
+                           <%=item.keywords%>
+                        </a>
+                        <%}%>
+                    <% })%>
+                  </div>
+                  <div class="corg1 no_corg_active">
+                    <% results.search_log_supply_key.forEach(function(item,index){ %>
+                      <%if(index<=4){%>                        
+                        <a href='/sup-<%= item.keywords.toLocaleString().replace(new RegExp(' ', 'g'),'_') %>' class="swbox" data-key='<%=item.keywords%>' data-type='1'>
+                          <span class="co co-<%=index+1%>"><%=index+1%></span>
+                          <%=item.keywords%>
+                        </a>
+                        <%}%>
+                      <% })%>
+                  </div>
+                </div>
+              </div>
+
+              <div class="swiper-slide">
+                <h3><%=translate('home_hot_dataupdate')%>
+                  <a href="/billsearch"><span class="title-updata-more"><%=translate('share_text_all')%></span></a>
+                </h3>
+                <div class="swiper-context">
+                  <div class="corg2">
+                    <% results.countries_list.forEach(function(item,index){ %>          
+                        <%if(index<=4){%>                          
+                          <a href='/customs-data/<%= item.country.toLocaleString().replace(new RegExp(' ', 'g'),'_') %>' class="swbox"> 
+                            <span class="co co-<%=index+1%>"><%=index+1%></span> 
+                            <span class="swbox-item" data-country="<%= item.country %>">
+                              <%= wglobals.lang=='cn'?item.country_cn:item.country_en + translate('home_hot_dataupdate_des')%>
+                            </span>
+                          </a>
+                          <%}%>
+                      <% })%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="shop">
+        <div class="index-content-title">
+          <span class="text1"><text><%=translate('store_name')%></text></span>
+          <div class="text2">
+            <div class="text2">
+              <% if(wglobals.lang=="cn"){ %>
+              <a class="check-style" href="/mall"><%=translate('share_text_more')%><font>&gt;</font></a>
+              <% } %>
+            </div>
+          </div>
+        </div>
+        <div class="context">
+          <%if(wglobals.lang=="cn" && results.yuekt){%>           
+            <div class="box-l">
+              <img src="<%= results.yuekt.head %>" />
+              <h3><%=results.yuekt.title%></h3>
+              <p class="text2">
+                <img src="<%= STATIC %>mobile/images/index/index-time.png" />
+                <%= results.yuekt.class_duration %>
+                <img src="<%= STATIC %>mobile/images/index/index-me.png" />
+                <span><%= results.yuekt.class_students %><%= translate("index_rs") %></span>
+              </p>
+              <a href="/yuekt">GO&nbsp;></a>
+            </div>            
+          <%}%>
+            <div class="box-r <%= wglobals.lang=='en'?'box-r-en':'' %>">
+                <% if(wglobals.lang=='cn'){ %>
+                <div class="box-r1">
+                  <h3>客户开发三剑客</h3>
+                  <p>优秀的客户开发解决方案，帮您找到真实的成交客户！</p>
+                  <a href="/san-jian-ke">GO&nbsp;></a>
+                </div>
+                <%}else{%>
+                  <div class="box-r1">
+                    <h3><%= translate('store_product_js') %></h3>
+                    <p><%= translate('store_product_js_des') %></p>
+                    <a href="/amazon">GO&nbsp;></a>
+                  </div>
+                <%}%>
+                <% console.log(results,"656546454") %>
+                <div class="box-r1">
+                  <h3><%= translate('store_product_soso') %></h3>
+                  <p><%=translate('store_product_soso_des')%></p>
+                  <a href="/social-media">GO&nbsp;></a>
+                </div>
+              </div>
+        </div>
+      </div>
+
+      <div class="class">
+        <div class="index-content-title">
+          <span class="text1"><text><%=translate('class_name')%></text></span>
+          <div class="text2">
+            <div class="text2">
+              <a class="check-style" href="/new"><%=translate('share_text_more')%><font>&gt;</font></a>
+            </div>
+          </div>
+        </div>
+        <div class="box">
+          <%results.tutorial_list.forEach((item)=>{%>            
+            <div class="sbox" data-id="<%= item.id %>">
+              <a href="/new/<%= item.id %>"><img src='https://static.52wmb.com/new_images/new_cover/<%=item.cover%>' alt="<%=item.title%>"/></a>
+              <h3><a href="/new/<%= item.id %>" title="<%=item.title%>"><%=item.title%></a></h3>
+              <div class="time">
+                <span><%=item.update_time.replace(new RegExp('-', 'g' ),'/')%></span>
+                <span class="num"><%=item.view_count+translate('share_text_view')%></span>
+              </div>
+            </div>
+         <% })%>
+        </div>
+      </div>
+    </div>   
+    
+    <div class="foot-link">
+      <a href="/help/aboutus" rel="nofollow"><%= translate("help_name") %></a><font>|</font>
+      <a href="/companies" rel="nofollow"><%= translate("solutions_name") %></a><font>|</font>
+      <a href="/new/category-czsc" rel="nofollow"><%= translate("class_name_brochure") %></a><font>|</font>
+      <a href="/category/list" rel="nofollow"><%= translate("solutions_company_topic") %></a>
+    </div>
+    
+  </div>
+  <%- include('../layout/footer.ejs'); %>
+  <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+  <script src="<%= STATIC %>mobile/javascripts/index/index.js?v=<%=VERSION%>"></script>
+</body>
+</html>

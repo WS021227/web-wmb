@@ -1,0 +1,371 @@
+.letter-module {
+    display: block;
+}
+
+.letter-module .letter-topic {
+    display: block;
+    margin-bottom: 20px;
+    line-height: 20px;
+}
+
+.letter-module .letter-topic .title {
+    font-size: 16.4px;
+    font-weight: bold;
+    color: #333;
+}
+
+.letter-module .letter-topic .link {
+    float: right;
+    color: #007aff;
+    font-size: 13.4px;
+}
+
+.letter-module .letter-topic .link::after {
+    content: '>';
+    font-family: SimSun;
+}
+
+.letter-window {
+    position: relative;
+    padding-left: 260px;
+}
+
+.letter-window .letter-people {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background-color: #EDEFF3;
+}
+
+.letter-people .topic {
+    padding: 20px 20px;
+}
+
+.letter-people .topic .title {
+    font-size: 15.4px;
+    color: #666;
+}
+
+.letter-people .topic .search-people {
+    display: block;
+    margin-top: 10px;
+    position: relative;
+}
+
+.search-people .input-text {
+    display: block;
+    width: 100%;
+    height: 35px;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    box-sizing: border-box;
+    padding-right: 40px;
+    padding-left: 20px;
+    margin-right: 0;
+    border: 1px solid #D8DDE7;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+}
+
+.search-people .clear-search {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 13.4px;
+    color: #999;
+    border: none;
+    background-color: transparent;
+    outline: none;
+}
+
+.letter-people .people-list {
+    display: block;
+    height: calc(100% - 106px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.letter-people .people-list::-webkit-scrollbar {
+    display: none;
+}
+#form_upload_image{display:inline-block;height:25px;float:left;}
+.people-list .people-item {
+    display: block;
+    position: relative;
+    padding: 12px 40px 12px 75px;
+    border-bottom: 1px solid #e0e0e0;
+    min-height: 40px;
+    cursor:pointer;
+}
+.people-list .people-item:last-child{border-bottom:none;}
+.people-list .people-item.active{background-color:#fff;}
+.people-list .people-item .head {
+    position: absolute;
+    top:15px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: #eee;
+}
+
+.people-list .people-item .name {
+    font-size: 14.4px;
+    color: #333;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: keep-all;
+    text-transform: capitalize;
+}
+
+.people-list .people-item .sub {
+    font-size: 12.4px;
+    color: #666;
+    margin-top:2px;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-break: keep-all;
+}
+
+.people-list .people-item .count {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    margin-top: -10px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 12.4px;
+    color: #999;
+}
+.people-list .people-item .count.point::after{content:"●";font-size:15.4px;font-family:Arial, Helvetica, sans-serif;color:#007aff;position:absolute;right:-8px;top:-10px;}
+.letter-window .letter-content {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    background-color: #fff;
+    position: relative;
+    border-left:1px #eee solid;
+}
+
+.letter-content .people-info {
+    display: block;
+    padding: 20px 20px;
+}
+
+.people-info .position {
+    padding-left: 90px;
+    min-height: 70px;
+    position: relative;
+}
+
+.people-info .position .head {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 70px;
+    background-color: #eee;
+    border-radius:100px;
+}
+
+.people-info .position .name {
+    font-size: 16.4px;
+    color: #333;
+    font-weight: bold;
+}
+
+.people-info .position .name span {
+    font-weight: normal;
+    font-size:14.4px;
+    color:#999;
+    padding-left:5px;
+}
+
+.people-info .position .sub {
+    font-size: 13.4px;
+    color: #333;
+    margin-top: 5px;
+}
+
+.people-info .position .ip {
+    font-size: 12.4px;
+    color: #999;
+    margin-top: 7px;
+}
+.people-info .position .ip font{padding:5px 0;color:#ccc;}
+.letter-content .letter-list {
+    padding: 0 20px;
+}
+
+.letter-list .scroll-wrapper {
+    background-color: #fafafa;
+    padding: 20px 20px;
+    height: calc(100vh - 571px);
+    min-height: 300px;
+    max-height: 600px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.letter-list .scroll-wrapper::-webkit-scrollbar {
+    /*display: none;*/
+}
+
+.letter-list .letter-item {
+    position: relative;
+    padding-left: 65px;
+    padding-right: 65px;
+    margin-bottom: 20px;
+}
+.letter-list .letter-item.reply{text-align:right;}
+.letter-list .letter-item.time {
+    display: block;
+    width: 100%;
+    text-align:center;
+    margin-top: 20px;
+    padding: 0 0;
+}
+.letter-list .letter-item.time span{display:inline-block;font-size:12.1px;color:#999;background:#eaeaea;padding:2px 7px;border-radius:10px;}
+.letter-list .letter-item .head {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    margin-left: -65px;
+    background-color: #eee;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.letter-list .letter-item .name {
+    display: block;
+    font-size: 13.4px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.letter-list .letter-item .name .time {
+    font-size: 12.4px;
+    color: #999;
+    margin-left: 10px;
+}
+
+.letter-list .letter-item .content {
+    display: inline-block;
+    padding: 15px 15px;
+    background-color: #2DB200;
+    font-size: 14.4px;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    line-height:150%;
+}
+
+.letter-list .letter-item.reply .head {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.letter-list .letter-item.reply .name {
+    text-align: right;
+}
+
+.letter-list .letter-item.reply .content {
+    background-color: #eee;
+    color: #333;
+    text-align:left;
+}
+
+.public-letter {
+    display: block;
+    padding: 20px 20px;
+    border-top: 1px solid #eee;
+    margin-top: 20px;
+}
+
+.public-letter .input-textarea {
+    width: 100%;
+    height:80px;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    outline: none;
+    resize: none;
+    background-color: #F7F8FB;
+    font-family: 微软雅黑;
+    line-height:150%;
+}
+
+.public-letter .exchange {
+    display: block;
+    margin-top:15px;
+    font-size:13.4px;
+    overflow:hidden;
+    height:36px;
+}
+.public-letter .exchange.ps {
+    position: relative;
+    overflow: unset;
+}
+
+.public-letter .exchange .btn {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    margin-right: 20px;
+    height:25px;
+    float:left;
+}
+
+.public-letter .exchange .btn .icon {
+    display: inline-block;
+    margin-right: 7px;
+    width: 25px;
+    height: 25px;
+    float:left;
+}
+
+.public-letter .exchange .btn font{display:inline-block;height:25px;float:left;line-height:25px;}
+
+.public-letter .exchange .btn.submit {
+    float: right;
+    height: 36px;
+    padding: 0 20px;
+    background-color: #007aff;
+    color: #fff;
+    font-size: 13.4px;
+    margin-right: 0;
+}
+
+
+.letter-scroll::-webkit-scrollbar {
+    width:10px;  /*高宽分别对应横竖滚动条的尺寸*/
+    height:1px;
+}
+.letter-scroll::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #ddd;
+    border-radius:10px;
+    cursor:pointer;
+}
+.letter-scroll::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    /*background: #eee;*/
+}

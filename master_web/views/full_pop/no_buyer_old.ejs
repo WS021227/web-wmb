@@ -1,0 +1,31 @@
+<style>
+    .old{padding:35px 50px;}
+    .old h2{font-size:21.4px;color:#333;text-align:center;}
+    .old-content{font-size:15.4px;line-height:150%;text-align:left;padding:15px 0;padding-top:8px;}
+    .old-active{text-align:center;}
+    .old-active span{display:block;font-size:14.4px;margin-bottom:5px;color:#666;}
+    .old-active span font{font-weight:bold;color:#f30;font-size:18.4px;}
+    .old-active a{display:inline-block;height:42px;line-height:42px;color:#fff;padding:0 0;width:200px;background:#007fff;border-radius:3px;}
+</style>
+
+
+<div class="old">
+<%if(wglobals.lang == 'cn'){%>    
+<h2>抱歉，您的登录受限了。</h2>
+<p class="old-content">因数据、服务器、带宽成本的上升，我们调整了您的登陆频率和使用权限。为此，我们将原价99元/1个月的VIP会员价格进行了调整，建议您购买会员并恢复使用。</p>
+<p class="old-active">
+    <span>首次购买价: <font>49.9</font>元/1个月</span>
+    <a href="/Alipay?v=v&m=1&s=old_user_pingbi_login" target="_blank">购买会员</a>
+</p>
+<%}else{%>
+    <h2>Sorry，Your login is limited.</h2>
+    <p class="old-content">Due to the rising cost of data, server, and bandwidth, we adjusted the login frequency and usage rights. To this end, we adjusted the price of VIP (Original: $29.9/1 month), suggest you buy the package and use it again.</p>
+    <p class="old-active">
+        <span>VIP first purchase price: $<font>9.9</font>/1 month</span>
+        <a href="/Alipay?v=v&m=1&s=old_user_pingbi_login" target="_blank">Buy vip now</a>
+    </p>    
+<%}%>    
+</div>
+
+
+

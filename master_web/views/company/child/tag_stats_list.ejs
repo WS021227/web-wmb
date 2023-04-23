@@ -1,0 +1,56 @@
+<% var searchTagsList = results.searchTagsList || [], user = wglobals.user; show_type = translate('share_company_' + results.company_type)  %>
+
+<% if(searchTagsList.length > 0){ %>
+    <div class="sousou-list-head"><b><%= show_type %><%= translate('company_list_categories') %>(<%= searchTagsList.length %>)</b><span><a href="/new/category-czsc#7" target="_blank"><%= translate('company_what_categories') %></a></span></div>
+    <% for(var i = 0;i < searchTagsList.length;i++){ %>
+        <% var item = searchTagsList[i] %>
+    <div class="company-category item-<%=item.tag_id %>-k<% if(!VERIFY_AUTHORITY(item.auth || '')){ %><% } else{ %> mask-open<% } %>">
+        <div class="company-category-des">
+            <div class="company-category-ico item-<%=item.tag_id %>">
+                <div class="company-categoy-text">
+                    <i></i>
+                    <h2><%= item['tag_name_' + wglobals.lang] %></h2>
+                    <p><%= item['tag_des_' + wglobals.lang] %></p>
+                </div>
+            </div>
+        </div>
+        <div class="company-category-list">
+            <div class="company-category-company<% if(!VERIFY_AUTHORITY(item.auth || '')){ %> perms-mask hidden-content<% } %>" data-auth="<%= VERIFY_AUTHORITY(item.auth || '') %>">
+                <h3><%= translate('company_list_example_copmpanies') %></h3>
+                <ul>
+                    <% var company_list = item.company_list|| [] %>
+                    <% company_list.forEach(function (_item){%>
+                    <li>
+                        <a href="/<%= ['buyer', 'supplier'][results.company_type] %>/<%= _item.id %>" class="company-link" data-key="<%=results.search_key%>" target="_blank"><%= _item.name %></a>
+                        <span><%=_item.country%>,<%= keyreplace(translate('company_category_list_des'), ['[@交易]','[@日期]'], [_item.bill_count, _item.last_trade_date]) %></span>
+                    </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <div class="company-category-count">
+            <div class="company-category-more">
+                <div class="company-category-link">
+                    <font><%= translate('company_list_total') %></font>
+                    <b><%=format(item.hits,3,',')  %></b>
+                    <span><%=show_type %></span>
+                    <a href="javascript:void(0)" data-auth="<%= item.auth %>" data-wstats-ext="<%=item.user_id?'':item.tag_id%>" data-wstats="company_search_tag_stats_more"
+                       data-filter="<%= JSON.stringify(item.params) %>"
+                       data-tid="<%= item.tag_id %>"
+                       data-url="<%= url_stringify(item.params, ['key', 'country', 'search_type']) %>"
+                       onclick="build_url(this)">
+                            <% if(!VERIFY_AUTHORITY(item.auth || '')){ %><i class="user-ico"></i><% } %>
+                            <%= translate('share_text_more') %>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <br class="clear"/>
+    </div>
+    <%}%>
+<% }else if(results.screen){ %>
+<div class="not-found"><%= translate('company_list_total') %></div>
+<% } else{ %>
+<div class="not-found"><%= translate('search_list_no_content') %></div>
+<% } %>
+

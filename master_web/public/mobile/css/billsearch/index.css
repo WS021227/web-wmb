@@ -1,0 +1,230 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.container .billsearch-box .header-seach-box {
+  margin-top:4rem;
+  padding: 0.4375rem 0.9375rem;
+  padding-bottom:0;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach {
+  width: 21.5625rem;
+  padding: 0.4375rem 0;
+  background-color: #Fff;
+  border-radius: 0.9375rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach img {
+  display: inline-block;
+  width: 1.125rem;
+  margin-left: 0.9375rem;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach input {
+  width: 11.5rem;
+  height: 1.125rem;
+  outline: none;
+  border: 0;
+  margin-left: 0.625rem;
+  color: #aaa;
+  font-size: 0.75rem;
+  background-color: #fff;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach .search-list {
+  width: 19.3rem;
+  max-height: 12rem;
+  box-shadow: 0 0 0.22rem #ccc;
+  background-color: #fff;
+  position: absolute;
+  top: 2.1rem;
+  left: 1.2rem;
+  z-index: 100;
+  overflow-y: scroll;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach .search-list .new-options {
+  display: block;
+  font-size: 0.75rem;
+  color: #777;
+  padding: 1rem 0.3125rem;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach .search-list .active {
+  background-color: #015EB9;
+  color: white;
+}
+.container .billsearch-box .header-seach-box .billsearch-box-seach .search-list :hover html {
+  overflow-y: hidden;
+}
+.container .billsearch-box .billsearch-box-content {
+  padding: 0.75rem 0;
+  padding-top:0;
+}
+.container .billsearch-box .billsearch-box-content h3 {
+  font-size: 0.9375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin:0 0.9375rem;
+  margin-bottom:0.6rem;
+  margin-top:4.3rem;
+  text-transform:capitalize;
+}
+.container .billsearch-box .billsearch-box-content h3 span {
+  font-size: 0.75rem;
+  color: #777;
+  text-align: right;
+  font-weight: 400 !important;
+}
+.container .billsearch-box .billsearch-box-content .big-box {
+  width: 21.5625rem;
+  margin: 0.75rem auto;
+  margin-top:0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom:0;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box {
+  width: 100%;
+  padding: 0.75rem 0.75rem;
+  border-radius: 0.3125rem;
+  padding: 0.6rem 0.875rem;
+  background-color: #fff;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .l-box p,a {
+  display: block;background:#fff;
+  text-decoration: none;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .l-box :nth-child(1) {
+  font-size: 0.8375rem;
+  color: #333;
+  font-weight: 600;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .l-box :nth-child(2) {
+  font-size: 0.8rem;
+  color: #333;
+  padding:0.2rem 0;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .l-box :nth-child(3) {
+  font-size: 0.625rem;
+  color: #aaa;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box span {
+  width: 2.6875rem;
+  height: 1.8125rem;
+  position: absolute;
+  top: 1.5rem;
+  right:0.875rem;
+  background: url('../../../mobile/images/billsearch/billsearch.jpg?v=20230328') #ddd no-repeat;
+  background-size: 43.75rem 43.75rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-bangladesh {
+  background-position: -29.0625rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-turkey {
+  background-position: -29.0625rem -4.3875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-kazakhstan {
+  background-position: -0.375rem -9.5rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-united-states {
+  background-position: -0.4375rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-pakistan {
+  background-position: -7.625rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-ethiopia {
+  background-position: -25.6875rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-panama {
+  background-position: -7.6875rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-uruguay {
+  background-position: -18.375rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-argentina {
+  background-position: -11.18rem -4.32rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-paraguay {
+  background-position: -11.25rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-russia {
+  background-position: -11.1875rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-vietnam {
+  background-position: -18.4375rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-brazil {
+  background-position: -14.875rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-mexico {
+  background-position: -4rem -4.32rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-peru {
+  background-position: -25.6875rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-india {
+  background-position: -4.0625rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-india-new {
+  background-position: -4.0625rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-philippines {
+  background-position: -18.375rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-chile {
+  background-position: -22.1875rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-costa-rica {
+  background-position: -25.75rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-ecuador {
+  background-position: -0.4375rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-sri-lanka {
+  background-position: -4.0625rem -7rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-colombia {
+  background-position: -0.4375rem -4.375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-england {
+  background-position: -22.125rem -1.6875rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-uzbekistan {
+  background-position: -25.6875rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-venezuela {
+  background-position: -22.125rem -6.9375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-ukraine {
+  background-position: -14.875rem -6.9375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-indonesia {
+  background-position: -22.12rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-taiwan {
+  background-position: -14.875rem -4.375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-bolivia {
+  background-position: -18.38rem -4.375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-honduras {
+  background-position: -4.0625rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-nicaragua {
+  background-position: -7.625rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-el-salvador {
+  background-position: -11.1875rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-guatemala {
+  background-position: -14.875rem -9.4375rem;
+}
+.container .billsearch-box .billsearch-box-content .big-box .s-box .img-south-korea {
+  background-position: -7.6875rem -4.375rem;
+}
+.foot-contact{padding-bottom:4.5rem;}

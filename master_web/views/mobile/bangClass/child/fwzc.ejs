@@ -1,0 +1,15 @@
+<%var tutorial_list = results.tutorial_list || []%>
+<% console.log("fadfdsfnjdsb") %>
+<% if(tutorial_list.length > 0){ %>
+    <% tutorial_list.forEach(function(item){ %>
+        <a href="/new/<%= item.id %>">
+            <li data-id="<%= item.id %>" class="index1">
+                <span><%= item.title %></span>
+                <p><%= item.description %></p>
+                <div><span class="name"><%= item.name %></span><span class="date"><%= item.update_time %><%= wglobals.lang=="cn"?" 发布":" publish" %></span></div>
+            </li>
+        </a>
+    <% }) %>
+<% }else{ %>
+    <span class="no-data" data-id="no-data"><%= translate("class_no_data") %></span>
+<%}%>

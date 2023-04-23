@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/help_center/help.css?v=<%=VERSION%>">
+    <title><%=translate('help_nav_contact')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="help-k">
+        <%- include('./child/help_center_leftmeun.ejs') %>
+        <div class="help-content">
+            <div>                
+                <div style="margin-bottom:30px;">
+                  <iframe width="680" height="450" frameborder="0" src="https://cn.bing.com/maps/embed?h=450&w=680&cp=p5vx3yv3gsnm&lvl=18&typ=d&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no"></iframe>
+                </div>
+                <%if(wglobals.lang == 'cn'){%> 
+                <h2>联系方式</h2>
+                <p>                     
+                    座机：021-64033826 (周一至周五9:00-18:00)<br/>
+                    手机：16621075894 (周一至周日9:00-21:00)<br/>
+                    邮箱：dataservice@52wmb.com<br/>
+                    Q Q：800183629<br/>
+                    地址：虹梅路2007号远中产业园3期1号楼705室<br/>
+                </p>
+                <%}else{%>
+                    <h2>Contact Us</h2>
+                    <p>
+                        Consultant：Mr Li<br/>
+                        Mobile：0086-16621075894<br/>
+                        Email：dataservice@52wmb.com<br/>
+                        Address：Room 705, Building 1, Phase 3, Yuanzhong Industrial Park, No. 2007 Hongmei Road<br/>
+                    </p>    
+                <%}%>    
+            </div>
+        </div>
+        <br class="clear"/>
+    </div>
+
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/index/help_center.js?v=<%=VERSION%>"></script>
+</body>
+</html>

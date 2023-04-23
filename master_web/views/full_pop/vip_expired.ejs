@@ -1,0 +1,178 @@
+<style>
+    .qxlayout-moudle {
+        padding: 0;
+    }
+
+    .old-user-mail {
+        font-family: 微软雅黑;
+        line-height: 160%;
+        font-size: 14.4px;
+        color: #333;
+        background: #fff;
+        text-align: left;
+        padding:25px;
+        padding-top:15px;
+    }
+
+    .old-user-mail h2 {
+        text-align: left;
+        border-bottom: 1px #eee double;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        font-size: 25px;
+    }
+
+    .old-user-mail a {
+        color: #fff;
+        display: inline-block;
+        height:42px;
+        background: #007FFF;
+        padding: 0 55px;
+        line-height:42px;
+        border-radius:5px;
+        font-size: 14.4px;
+        margin-top:20px;
+        font-weight:bold;
+        border-radius:100px;
+    }
+    .old-user-mail a:hover{background: #007FFF;color: #fff;}
+.button-link{text-align: center;}
+    .old-user-mail font {
+        color: #f30;
+    }
+
+    .old-user-mail table {
+        border: 1px #ddd solid;
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    .old-user-mail table td {
+        box-sizing: border-box;
+        border: 1px #ddd solid;
+        padding: 1px 10px;
+        font-size: 13.4px;
+        color: #777;
+    }
+
+    .old-user-mail table td:first-child {
+        text-align: left;
+    }
+
+    .old-user-mail table thead td {
+        background: #f7f7f7;
+    }
+
+    .old-user-mail table tbody font {
+        float: right;
+        font-size: 12px;
+        color: #999;
+    }
+
+    .sjj-k-content-top {
+        text-align:left;
+        text-transform: capitalize;
+        color: #333;
+        line-height: 40px;
+        font-size: 20.4px;
+        font-weight: bold;
+        padding-bottom: 15px;
+    }
+
+    .close-ico {
+        display: inline-block;
+        width: 26px;
+        height: 23px;
+        background-position: -213px -505px;
+        vertical-align: middle;
+    }
+    .old-user-mail-k p b{font-weight:normal;}
+
+</style>
+
+    <div class="old-user-mail">
+        <div class="old-user-mail-k">
+            <% if(wglobals.lang == 'cn'){%>
+            <div class="sjj-k-content-top"><%=['您的VIP将在'+wglobals.user.vip_end_time +'到期','你的账号已过期','会员过期后，每日可查阅2家公司'][expired_type]%></div>
+            <p>
+                <b>尊敬的<%= wglobals.user.contact %>：</b><br/>
+                我们为您续费会员提供了全套优惠券和折扣，您可以选择性价比最高套装续费！
+            </p>            
+            <table>
+                <thead>
+                <tr>
+                    <td width="23%">VIP服务期</td>
+                    <td width="23%">续费折扣</td>
+                    <td width="23%">代金券</td>
+                    <td>续费价格</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1个月</td>
+                    <td>—</td>
+                    <td>5元</td>
+                    <td>94元<font>节省5元</font></td>
+                </tr>
+                <tr>
+                    <td>3个月</td>
+                    <td>8.5折</td>
+                    <td>15元</td>
+                    <td>234元<font>节省63元</font></td>
+                </tr>
+                <tr>
+                    <td>12个月</td>
+                    <td>7.5折</td>
+                    <td>35元</td>
+                    <td>854元<font>节省334元</font></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="button-link">
+                <a target="_blank" href="/user/datacenter/vouchers?s=VIP_xufei_will_end">点这里，领取代金券→</a>                
+            </div>
+            <%} else {
+                wglobals.temp ={title:{1:'Your VIP will expire on '+wglobals.user.vip_end_time +'', 2: 'Your account has expired', 3:'Regular users have access to 3 companies per day'}[expired_type]};
+            %>  
+                <div class="sjj-k-content-top"><%= ['Your VIP will expire on '+wglobals.user.vip_end_time +'', 'Your account has expired','Regular users have access to 3 companies per day'][expired_type] %></div>
+                <p><b>Dear <%= wglobals.user.contact %>：</b><br/>Customized discounts for renewing members，you can choose to renew the most cost-effective package.</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <td width="22%">VIP Period</td>
+                        <td width="22%">Discount</td>
+                        <td width="22%">Voucher</td>
+                        <td>Final price</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1 Month</td>
+                        <td>—</td>
+                        <td>$1.5</td>
+                        <td>$28.4<font>Original $29.9</font></td>
+                    </tr>
+                    <tr>
+                        <td>3 Months</td>
+                        <td>15% off</td>
+                        <td>$4.5</td>
+                        <td>$71.4<font>Original $90</font></td>
+                    </tr>
+                    <tr>
+                        <td>12 Months</td>
+                        <td>25% off</td>
+                        <td>$10.5</td>
+                        <td>$258.4<font>Original $360</font></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="button-link">
+                    <a target="_blank" href="/user/datacenter/vouchers?s=VIP_xufei_will_end">Click, Receive Vouchers →</a>
+                </div>
+            <% } %>
+            </p>
+        </div>
+    </div>

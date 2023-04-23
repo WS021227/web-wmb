@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('store_js_keywords')%>" />
+    <meta name="description" content="<%=translate('store_js_description')%>" />
+    <title><%=translate('store_js_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/index.css?v=<%=VERSION%>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+<style>#top_notice{display:none;}</style>
+<body>
+<%- include('../global/head.ejs') %>
+<%var user=wglobals.user%>
+<%if(wglobals.lang == 'cn'){%>
+<div class="mall-banner">
+    <div class="mall-banner-k">
+        <div class="mall-banner-l">
+            <h1>Jungle Scout亚马逊选品工具</h1>
+            <p>获取亚马逊终端竞品价格、销量，<br/>成就数百万的跨境热销爆款！</p>
+            <div class="mall-banner-button mall-banner-button-js">
+                <% var tips = '提示：钻石会员增值服务，以上2版本有效期12个月',buyer_level=-1 %>
+                <%if(user.id==null){%>
+                    <a href="/login" class="js-trip" id="js_trip"><b>免费体验3天</b><br/>立即申请<span>&gt;</span></a>
+                    <%results.add_service.forEach(function (item){%>
+                    <a target="_blank" href="/login" onclick="return referrer_link(this)"><b><%=item.alias%></b><br/><%=item.amount_rmb%>元/年<font>|</font>购买<span>&gt;</span></a>
+                    <%})%>
+                <%}else{%>
+                    <% var buyer_url = verify_real_vip('bd')?'/product?adds=jungle_scout&product=':'/Alipay?v=yd&ra=' %>
+                    <a href="javascript:void(0);" class="js-trip js-display-none" id="js_trip"><b>免费体验3天</b><br/>立即申请<span>&gt;</span></a>
+                    <%results.add_service.forEach(function (item){%>
+                    <%if(item.buyer_level >-1 && item.buyer_level <= item.product_level){%>
+                        <%
+                            tips = '提示：你已购买"'+ item.name +'"，有效期至 '+ item.expired_time
+                            buyer_level=item.buyer_level
+                        %>
+                    <%}else if(item.product_level  > buyer_level){%>
+                        <% console.log(item,"js购买") %>
+                    <a target="_blank" href="/product?product=<%= item.id %>&adds=<%= item.product_master %>"><b><%=item.alias%></b><br/><%=item.amount_rmb%>元/年<font>|</font>购买<span>&gt;</span></a>
+                    <%}%>
+                    <%})%>
+                <%}%>
+            </div>
+            <div class="mall-banner-tips"><%=tips%></div>
+        </div>
+        <div class="mall-banner-r js-banner"><img src="https://static.52wmb.com/wmb_img/minisite/js_topic.png"/></div>
+        <br class="clear"/>
+    </div>
+</div>
+
+<div class="mall-vedio-all">
+    <div class="mall-c mall-vedio">
+        <div class="mall-vedio-title">
+            <h2>跨境电商选品、运营必备利器！</h2>
+            <p>Jungle Scount丰富的数据验证选品和运营管理功能，已经帮助超过70万卖家成功出海；成就了数百万的热销爆款! 实时获取亚马逊终端产品价格、销量、利润，大数据选品稳操胜券！</p>
+        </div>
+        <div class="mall-vedio-c">
+            <video class="editor" controls autoplay width="100%;">
+                <source src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/488bac10243791581155122919/3byagIx5TVcA.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="mall-success">
+            <div class="use-example">
+                <div class="example-item active">
+                    <div class="head">
+                        <img src="https://www.junglescout.com/wp-content/uploads/2018/10/kevin-thumbnail@2x-100x100.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Kevin Rizer</div>
+                        <div class="translate">首席执行官，创始人</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Kevin Rizer（首席执行官）
+                        </div>
+                        <div class="example-des-sub">
+                            Jungle Scout亚马逊选品运维工具，是我开始所有产品研究的方式，它为我和我的团队节省了每个月无数的时间。老实说，没有它，我不知道我们做了什么！”
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://www.junglescout.com/wp-content/uploads/2018/10/robert-thumbnail@2x-100x100.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Robert Kiyosaki</div>
+                        <div class="translate">创始人</div>
+                        <div class="use-time">使用4年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Robert Kiyosaki（创始人）
+                        </div>
+                        <div class="example-des-sub">
+                            “它是目前好的亚马逊选品运维软件。不仅是选品工具，他向用户介绍了如何在亚马逊上获取成功以及告诉您如何使用Jungle Scout打造亚马逊爆款。
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://www.junglescout.cn/wp-content/uploads/2020/05/WechatIMG67.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Vitor.Fan</div>
+                        <div class="translate">亚马逊站长</div>
+                        <div class="use-time">使用2年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Vitor.Fan（亚马逊站长）
+                        </div>
+                        <div class="example-des-sub">虽然国内的所有数据很多是开放的，但JS是亚马逊唯一官方的认可数据抓取工具。三年的JS铁粉。JS的数据精准度和稳定性都是值得称赞的，它支撑了我做精细化运营的绝大部分数据需求。</div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_155641777493927154037.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Jessie</div>
+                        <div class="translate">个人卖家</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Jessie（个人卖家）
+                        </div>
+                        <div class="example-des-sub">
+                            JS真的做出了一个好产品，很适合我们小卖家，要是早点用上就好了。我用了一周不到的时间，已经发现了一款产品，正在跟供应商商谈。这已经是我做亚马逊卖家一年以来，速度最快的一次了。
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_156023967808528173954.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">曾德威</div>
+                        <div class="translate">百聚汇商学院</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            曾德威（百聚汇商学院）
+                        </div>
+                        <div class="example-des-sub">
+                            它可以帮我快速挖掘和分析关键词数据，快速找到蓝海市场产品，还可以帮我准确地分析和跟踪竞品销售数据，并且提高我运营亚马逊店铺的工作效率。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mall-solution">
+  <div class="mall-solution-item">
+      <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_1.png"/></div>
+      <div class="mall-solution-text mall-right" style="padding-top:40px;">
+          <h2><font>1</font>数据分析、调研市场</h2>
+          <p>分析亚马逊不同站点市场数据，做调研分析，了解竞品数据，发现高需求低竞争的市场，定位产品、了解竞品。</p>
+        </div>
+      <br class="clear"/>
+  </div>
+  <div class="mall-solution-item">
+    <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_2.png" style="margin-right:-15px;"/></div>
+    <div class="mall-solution-text mall-left" style="padding-top:30px;">
+        <h2><font>2</font>亚马逊选品数据库</h2>
+        <p>可以根据筛选条件帮助卖家找到有潜力的细分市场和高需求、低竞争的产品。</p>
+      </div>
+    <br class="clear"/>
+  </div>
+  <div class="mall-solution-item">
+    <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_3.png" style="margin-left:-18px;"/></div>
+    <div class="mall-solution-text mall-right" style="padding-top:80px;">
+        <h2><font>3</font>丰富关键词</h2>
+        <p>通过关键词和ASIN反查，找到高搜索量的产品关键词、出单词等用来丰富自己的产品</p>
+      </div>
+    <br class="clear"/>
+   </div>
+   <div class="mall-solution-item">
+    <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_4.png"/></div>
+    <div class="mall-solution-text mall-left" style="padding-top:50px;">
+        <h2><font>4</font>Chat GPT一键生成listing文案</h2>
+        <p>可以根据当前的产品热门关键词结合自己产品的特点自动生成对应的文案，帮助刚入行的卖家做参考借鉴。</p>
+      </div>
+    <br class="clear"/>
+  </div>
+  <div class="mall-solution-item">
+    <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_5.png" style="margin-left:-18px;"/></div>
+    <div class="mall-solution-text mall-right" style="padding-top:40px;">
+        <h2><font>5</font>高级店铺管理</h2>
+        <p>可以帮助卖家更好的管理店铺库存、利润分析等，自动评论管理可以节省效率，自动向符合条件的订单发送邀评。</p>
+      </div>
+    <br class="clear"/>
+  </div>
+  <div class="mall-solution-item">
+    <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_6.png"/></div>
+    <div class="mall-solution-text mall-left" style="padding-top:50px;">
+        <h2><font>6</font>站外促销</h2>
+        <p>JumpSend是JS旗下的促销网站，做美国、英国的用户可以免费使用站外促销、帮助店铺进行站外引流（<a href="https://www.jumpsend.com" target="_blank">www.jumpsend.com</a>）</p>
+      </div>
+    <br class="clear"/>
+  </div>
+</div>
+
+<div class="mall-bg">
+    <div class="mall-v">
+        <div class="mall-share-title">
+            <h2>版本对比及功能清单</h2>
+            <p>功能简单高效易上手，使用社媒搜搜开发外贸客户效率提升不止10倍</p>
+        </div>
+        <div class="mall-v-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:30%">核心功能清单</th>
+                        <th style="width:35%">插件版</th>
+                        <th style="width:35%">插件+网页版</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>一键获取竞品销量</td>
+                        <td>支持</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>验证选品思路</td>
+                        <td>支持</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>市场竞争程度分析</td>
+                        <td>支持</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>批量邀评</td>
+                        <td>支持</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>缓存模式</td>
+                        <td>支持</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>选品数据库</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>竞品跟踪器</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>潜力市场搜索器</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>关键词功能</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>监控提醒</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>新品助推器</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>店铺销售分析</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>库存管理</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                    <tr>
+                        <td>Listing生成器</td>
+                        <td>—</td>
+                        <td>支持</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="mall-ask">
+    <div class="mall-share-title">
+        <h2>Jungle Scount选品工具常见问答</h2>
+        <p>为您整理了关于该工具用户咨询最多、关注最多的一些问题。</p>
+    </div>
+    <div id="questions">
+        <ul>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>JS的软件支持哪些站点？</h3>
+                <div class="foldContent">
+                    <p>答：Jungle Scout网页版和JS插件支持10个站点：美国、加拿大、墨西哥、印度、英国、法国、西班牙、意大利、德国、日本。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>支持几人同时使用？</h3>
+                <div class="foldContent">
+                    <p>答：当前外贸邦出售JS的不管是插件版还是网页版仅支持单人使用。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>Jungle scount网页版的登陆地址是什么？</h3>
+                <div class="foldContent">
+                    <p>答：中文版登陆地址https://login.junglescout.cn/</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>JS插件如何下载？</h3>
+                <div class="foldContent">
+                    <p>答：方法一： 谷歌插件安装，科学上网后打开链接:  https://bit.ly/3s7ZG4P<br/><br/>
+                        方法二：谷歌插件【免科学上网下载方式】（安装包以后需要手动更新）：
+                            1. 点击安装包链接，下载到到桌面<br/>
+                        2. 谷歌浏览器打开网址chrome://extensions/，右上角开启开发者模式<br/>
+                        3. 移除原插件<br/>
+                        4. 将下载的文档左键按住拖动到浏览器中，即可完成，无需科学上网<br/>
+                        安装包：https://js-extension-package.oss-cn-shenzhen.aliyuncs.com/Jungle-Scout-Extension-v7.3.3.crx<br/>
+                        【安装视频】https://appzntptaqn9581.h5.xiaoeknow.com/v1/course/video/v_6152947de4b0448bf65e1f60?type=2</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>JS插件有没有终身版？Jungle Scout网页版有没有终身版？</h3>
+                <div class="foldContent">
+                    <p>答：从2019年2月1日起，JS插件再也没有终身版了，现在有按月或按年付费的套餐。Jungle Scout网页版也是按年或按月购买的，没有终身版。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>新手卖家，选择JS插件还是Jungle Scout网页版？</h3>
+                <div class="foldContent">
+                    <p>答：无论您是新手卖家，还是经验丰富的大卖，我们都建议您购入插件和网页版的组合套装，这两个工具功能互补，适用于选品的不同阶段。购买套装不仅可以享受更优惠的价格，还使得您的选品和运营决策更有保障。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>我只需要看销量，买哪个产品？</h3>
+                <div class="foldContent">
+                    <p>答：如果您只想了解一个ASIN的预估销量，那么JS插件就能满足您的需求。JS插件依据一级类目的排名，根据JS独家算法来预估销量，精准度在行业内领先。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<%}else{%>
+    <div class="mall-banner">
+        <div class="mall-banner-k">
+            <div class="mall-banner-l">
+                <h1>Jungle Scout Product Choosing tool</h1>
+                <p>Get real-time sales and prices of Amazon's competing products!</p>
+
+                <div class="mall-banner-button mall-banner-button-js">
+                <% var tips = 'Tip: Diamond membership value-added service, above 2 versions valid for 12 months',buyer_level=-1 %>
+                <%if(user.id==null){%>
+                    <a href="/login" class="js-trip" id="js_trip"><b>3 days free trial</b><br/>Apply now<span>&gt;</span></a>
+                    <%results.add_service.forEach(function (item){%>
+                    <a href="/login" onclick="return referrer_link(this)"><b><%=item.alias%></b><br/>$<%=item.amount_usd%><font>|</font>Buy<span>&gt;</span></a>
+                    <%})%>
+                <%}else{%>
+                    <% var buyer_url = verify_real_vip('bd')?'/product?adds=jungle_scout&product=':'/Alipay?v=yd&pg=' %>
+                    <a href="javascript:void(0);" class="js-trip js-display-none" id="js_trip"><b>3 days free trial</b><br/>Apply now<span>&gt;</span></a>
+                    <%results.add_service.forEach(function (item){%>
+                    <%if(item.buyer_level >-1 && item.buyer_level <= item.product_level){%>
+                        <%
+                            tips = 'Tip: You have purchased the "'+ item.name +'",and it is valid until '+ item.expired_time
+                            buyer_level=item.buyer_level
+                        %>
+                    <%}else if(item.product_level  > buyer_level){%>
+                        <% console.log(item,"5645645454") %>
+                    <a href="/product?product=<%= item.id %>&adds=<%= item.product_master %>"><b><%=item.alias%></b><br/>$<%=item.amount_usd%><font>|</font>Buy<span>&gt;</span></a>
+                    <%}%>
+                    <%})%>
+                <%}%>
+                </div>
+                <div class="mall-banner-tips"><%=tips%></div>
+            </div>
+            <div class="mall-banner-r js-en-banner"><img src="https://static.52wmb.com/wmb_img/minisite/js_topic.png"/></div>
+            <br class="clear"/>
+        </div>
+    </div>
+
+    <div class="mall-vedio-all">
+        <div class="mall-c mall-vedio">
+            <div class="mall-vedio-title">
+                <h2>See what Jungle Scout is by video?</h2>
+                <p>Get real-time sales of competing products, developed by a team of US big data experts. The accuracy rate is as high as 90%! Big data selection + operation. It is a must for Amazon sellers! One-stop service to help sellers successfully go to sea!</p>
+            </div>
+            <div class="mall-vedio-c">
+                <video class="editor" controls autoplay width="100%;">
+                    <source src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/b136a1d75285890803684855707/Lnx3xi6Gw74A.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="mall-success">
+                <div class="use-example">
+                    <div class="example-item active">
+                        <div class="head">
+                            <img src="https://www.junglescout.com/wp-content/uploads/2018/10/kevin-thumbnail@2x-100x100.png" alt="">
+                        </div>
+                        <div class="example-info">
+                            <div class="name">Kevin Rizer</div>
+                            <div class="translate">Founder</div>
+                            <div class="use-time">3 years of use</div>
+                        </div>
+                        <div class="example-des">
+                            <div class="example-des-main">Kevin Rizer（Founder）</div>
+                            <div class="example-des-sub">Jungle Scout Amazon product selection operation and maintenance tool is the way I start all product research. It saves my team and me countless hours every month.</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="head">
+                            <img src="https://www.junglescout.com/wp-content/uploads/2018/10/robert-thumbnail@2x-100x100.png" alt="">
+                        </div>
+                        <div class="example-info">
+                            <div class="name">Robert Kiyosaki</div>
+                            <div class="translate">Founder</div>
+                            <div class="use-time">4 years of use</div>
+                        </div>
+                        <div class="example-des">
+                            <div class="example-des-main">Robert Kiyosaki（Founder）</div>
+                            <div class="example-des-sub">It is currently the best Amazon selection operation and maintenance software. As well as the selection tool, he also shows users how to be successful on amazon.</div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="head">
+                            <img src="https://www.junglescout.cn/wp-content/uploads/2020/05/WechatIMG67.png" alt="">
+                        </div>
+                        <div class="example-info">
+                            <div class="name">Vitor.Fan</div>
+                            <div class="translate">Amazon webmaster</div>
+                            <div class="use-time">2 years of use</div>
+                        </div>
+                        <div class="example-des">
+                            <div class="example-des-main">Vitor.Fan（webmaster）</div>
+                            <div class="example-des-sub">Although much of the domestic data is open, JS is Amazon's only officially approved data scraping tool. Three years of JS die-hard fan. </div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="head">
+                            <img src="https://static.52wmb.com/images/userphoto/190_155641777493927154037.jpg" alt="">
+                        </div>
+                        <div class="example-info">
+                            <div class="name">Jessie</div>
+                            <div class="translate">Individual sellers</div>
+                            <div class="use-time">3 years of use</div>
+                        </div>
+                        <div class="example-des">
+                            <div class="example-des-main">
+                                Jessie（Individual sellers）
+                            </div>
+                            <div class="example-des-sub">
+                                JS has really made a good product, which is very suitable for our small sellers, if only used early. I have found a product in less than a week, and I am in talks with the supplier.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="example-item">
+                        <div class="head">
+                            <img src="https://static.52wmb.com/images/userphoto/190_156023967808528173954.jpg" alt="">
+                        </div>
+                        <div class="example-info">
+                            <div class="name">Mr Zeng</div>
+                            <div class="translate">Founder</div>
+                            <div class="use-time">3 years of use</div>
+                        </div>
+                        <div class="example-des">
+                            <div class="example-des-main">
+                                Mr Zeng（Founder）
+                            </div>
+                            <div class="example-des-sub">
+                                It helps me to quickly mine and analyse keyword data, find blue ocean market products quickly, as well as help me to accurately analyse and track competitor sales data.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="mall-solution">
+      <div class="mall-solution-item">
+          <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_1.png"/></div>
+          <div class="mall-solution-text mall-right" style="padding-top:40px;">
+              <h2><font>1</font>Data analysis and market research</h2>
+              <p>Analyze the market data of Amazon's different sites, do research and analysis, understand the data of competitors, discover markets with high demand and low competition, determine products, and understand competitors.</p>
+            </div>
+          <br class="clear"/>
+      </div>
+      <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_2.png" style="margin-right:-15px;"/></div>
+        <div class="mall-solution-text mall-left" style="padding-top:30px;">
+            <h2><font>2</font> Amazon product selection database</h2>
+            <p>It can help sellers find potential market segments and products with high demand and low competition according to the filter conditions.</p>
+          </div>
+        <br class="clear"/>
+      </div>
+      <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_3.png" style="margin-left:-18px;"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:80px;">
+            <h2><font>3</font>Abundant keywords</h2>
+            <p>Through keyword and ASIN reverse search, find product keywords with high search volume to enrich your products.</p>
+          </div>
+        <br class="clear"/>
+       </div>
+       <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_4.png"/></div>
+        <div class="mall-solution-text mall-left" style="padding-top:50px;">
+            <h2><font>4</font> Chat GPT generates listing copy with one click</h2>
+            <p>According to the current popular keywords and the characteristics of their own products, corresponding copywriting can be automatically generated to help sellers who have just entered the industry as a reference.</p>
+          </div>
+        <br class="clear"/>
+      </div>
+      <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_5.png" style="margin-left:-18px;"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:40px;">
+            <h2><font>5</font>Advanced store management</h2>
+            <p>It can help sellers better manage store inventory, profit analysis, etc. Automatic comment management can improve efficiency and automatically send invitations to eligible orders.</p>
+          </div>
+        <br class="clear"/>
+      </div>
+      <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_new/images/channel_imgs/js_new_banner_6.png"/></div>
+        <div class="mall-solution-text mall-left" style="padding-top:50px;">
+            <h2><font>6</font>Off-site promotions</h2>
+            <p>JumpSend is a promotion website under JS. Users in the United States and the United Kingdom can use off-site promotions for free to help stores draw off-site traffic (<a href="http://www.jumpsend.com" target="_blank">www.jumpsend.com</a>)</p>
+          </div>
+        <br class="clear"/>
+      </div>
+    </div>
+
+    <div class="mall-bg">
+        <div class="mall-v">
+            <div class="mall-share-title">
+                <h2>Version comparison and feature list</h2>
+                <p>Gig data product selectio is a winning ticket!</p>
+            </div>
+            <div class="mall-v-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:30%">List of core functions</th>
+                            <th style="width:35%">Plug-in</th>
+                            <th style="width:35%">Plug-in & Web</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>One-click access to competitor sales</td>
+                            <td>Support</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Validate selection ideas</td>
+                            <td>Support</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Analysis of the level of competition in the market</td>
+                            <td>Support</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Wholesale Invitation to Review</td>
+                            <td>Support</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Caching mode</td>
+                            <td>Support</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Selection database</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Competitor Tracker</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Potential Market Finder</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Keyword function</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Monitoring alerts</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>New Product Boosters</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Shop Sales Analysis</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Inventory management</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                        <tr>
+                            <td>Listing Builder</td>
+                            <td>—</td>
+                            <td>Support</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="mall-ask">
+        <div class="mall-share-title">
+            <h2>Amazon Training Courses & Popular Q&A</h2>
+            <p>We have compiled for you some of the most frequently asked questions and concerns about the tool from users.</p>
+        </div>
+        <div id="questions">
+            <ul>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>What sites does JS software support?</h3>
+                    <div class="foldContent">
+                        <p>Answer: The Jungle Scout web version and JS plugin support 10 sites: the United States, Canada, Mexico, India, the United Kingdom, France, Spain, Italy, Japan, and Germany.</p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>How many people are supported simultaneously?</h3>
+                    <div class="foldContent">
+                        <p>Answer: JS plugin only supports 1 person to use at the same time, only 1 person can be online. </p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>How to download JS plugin?</h3>
+                    <div class="foldContent">
+                        <p>Answer: If the plug-in is installed on Google Chrome browser, downloading and installing and initial login requires "Science Internet", but it is not necessary to use it afterwards; for detailed steps to download the plug-in, please click on the link <a href="https://support.junglescout.com/hc/en-us/articles/360008616254-Installing-Uninstalling-or-Reinstalling-Extension" target="_blank" style="color:#06c;">https://support.junglescout.com/hc/en-us/articles/360008616254-Installing-Uninstalling-or-Reinstalling-Extension</a>. If you have any questions about downloading arrangements, you can also contact our customer service for help.</p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>What is the login URL of the Jungle scout web version?</h3>
+                    <div class="foldContent">
+                        <p>Answer:  English version: https://www.junglescout.com/</p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>Is there a lifetime version of the JS plugin? Is there a lifetime version of Jungle Scout web version?</h3>
+                    <div class="foldContent">
+                        <p>Answer: From February 1, 2019, there is no longer a lifetime version of the JS plugin. There are now monthly or yearly paid packages. Jungle Scout web version is also purchased on a yearly or monthly basis, there is no lifetime version.</p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>As for novice seller, choose JS plugin or Jungle Scout web version?</h3>
+                    <div class="foldContent">
+                        <p>Answer: Whether you are a novice seller or an experienced big seller, we recommend that you purchase a combination of plug-in and web version. These two tools have complementary functions and are suitable for different stages of product selection. Not only can you purchase a package to enjoy a more favorable price, but also make your product selection and operation decisions more secure.</p>
+                    </div>
+                </li>
+                <li class="clearfix">
+                    <h3><b class="UI-ask"></b>I only need to look at sales, which product should I buy?<</h3>
+                    <div class="foldContent">
+                        <p>Answer: If you only want to know the estimated sales volume of an ASIN, then the JS plugin can meet your needs. The JS plug-in is ranked according to the first-level category, and the sales volume is estimated according to the JS exclusive algorithm,the accuracy is leading in the industry.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div><%}%>
+
+<%- include('../global/foot.ejs') %>
+<script>
+    let curr_lang_json = {
+        'Repeat_the_addition': {cn: '重复添加', en: 'Repeat the addition'}, 
+        'Please_enter_the_email': {cn: '请输入邮箱', en: 'Please enter email'}, 
+        'Please_enter_the_email_verification_code':{cn: '请输入邮箱验证码', en: 'Please enter the email verification code'}, 
+        'The_email_verification_code_is_invalid': {cn: '邮箱验证码无效', en: 'The email verification code is invalid'}, 
+        'Please_enter_the_mobile_phone_verification_code':{cn: '请输入手机验证码', en: 'Please enter the mobile phone verification code'}, 
+        'Mobile_phone_verification_code_is_invalid':{cn: '手机验证码无效', en: 'Mobile phone verification code is invalid'}, 
+        'Mobile_phone_number_parsing_error':{cn: '手机号解析出错，请联系外贸邦', en: 'Mobile phone number parsing error, please contact foreign trade state'},
+        'Please_fill_in_the_phone_number':{cn: '请输入手机号', en: 'Please enter your mobile phone number'},
+
+        'The_email_address_is_already_registered':{cn: '该邮箱号已经被注册', en: 'The email number has already been registered'},
+        'The_phone_is_already_registered':{cn: '该手机号已经被注册', en: 'The mobile phone number has already been registered'},
+        'The_verification_code_has_been_sent':{cn: '验证码已发送', en: 'The verification code has been sent'},
+        'error':{cn: '错误', en: 'error'},
+
+        'The_email_address_is_in_the_wrong_format':{cn: '邮箱格式错误', en: 'The email address is in the wrong format'},
+        'The_phone_number_is_in_the_wrong_format':{cn: '手机号格式错误', en: 'The phone number is in the wrong format'},
+
+        'products':{cn: '请输入产品', en: 'Please enter a product'},
+        'nick_name':{cn: '请输入你的昵称、姓名', en: 'Please enter your nickname, name'},
+
+       
+        'get_Email_verification_code':{cn: '获取邮箱验证码', en: 'Get email verification code'},
+        
+        'Get_a_phone_verification_code':{cn: '获取手机验证码', en: 'Get a phone verification code'},
+        
+        'Sent':{cn:"已发送",en:"Sent"},
+        'Please_select_the_Company_(Individual)_type':{cn: '请选择公司(个人)类型', en: 'Please select the Company (Individual) type'},
+        'Please_select_the_current_situation_of_cross_border_e_commerce(Individual)_type':{cn: '请选择跨境电商现状', en: 'Please select the current situation of cross-border e-commerce'},
+    }
+    
+// 2023.4 js体验
+$(function(){
+    // 1、判断是否购买过js
+    (function(){
+        $.ajax('/async/add_service', {
+            datatype: 'json',
+            type: 'get',
+            success: function (result) {
+                if(!result.data.account){
+                    $("#js_trip").removeClass("js-display-none")
+                }
+            }
+        })
+    })()
+
+    // 弹窗
+    $("#js_trip").click(function(){
+        show_toast()
+    })
+})
+
+function show_toast(){
+    let $box={}
+        $.ajax('/async/js_trial_toast', {
+            datatype: 'json',
+            type: 'get',
+            data:{
+                phone:wg.user.mobile_phone || "",//脱敏的手机号
+                email:wg.user.user_name || ""//邮箱没有脱敏，直接用邮箱号填写
+            },
+            success: function (result) {
+                $box=result.content || ""
+                let show=result.state || ""
+                layer.closeAll()
+                layer.open({
+                    type: 1,
+                    skin: `${show==0?'layui-layer-experience':'layui-layer-ytj'}`,
+                    scrollbar: false,
+                    title:"",
+                    shadeClose: false, //点击遮罩关闭
+                    maxmin: false,
+                    closeBtn: 1,
+                    content: $box,
+                    success: function (layero, index, that) {
+
+                    }
+                });
+            }
+        })
+}
+
+$(function () {
+    $('.example-item').on({
+        mouseover: function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        }
+    });
+
+    $('.banner-float').addClass('show');
+});
+
+$(function(){
+$("li>h3","#questions").bind("click",function(){
+    var li=$(this).parent();
+    if(li.hasClass("fold")){
+        li.removeClass("fold");
+        $(this).find("b").removeClass("UI-bubble").addClass("UI-ask");
+        //li.find(".foldContent").slideDown();
+    }else{
+        li.addClass("fold");
+        $(this).find("b").removeClass("UI-ask").addClass("UI-bubble");
+        //li.find(".foldContent").slideUp();
+    }
+});
+})
+</script>
+</body>
+</html>

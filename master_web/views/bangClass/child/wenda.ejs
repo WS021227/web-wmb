@@ -1,0 +1,11 @@
+<%var tutorial_list = results.tutorial_list || []%>
+<% console.log("fadfdsfnjdsb") %>
+<% if(tutorial_list.length > 0){ %>
+        <% tutorial_list.forEach(function(item){ %>
+            <li>
+                <h3><a href="/new/<%= item.id %>"><%= item.title.substring(0, 30) %></a></h3>
+                <p>答：<%= item.description.substring(0, wglobals.lang == 'cn'?80:150) %></p>
+                <span><%= item.name %><font>|</font><%= item.view_count %><%= translate('share_text_view') %></span>
+            </li>
+        <% }) %>
+<% } %>

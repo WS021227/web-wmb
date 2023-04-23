@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="no_full_pop" content="yes">
+    <title>Data Festival 2022—The lowest price of the year</title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/minisite/sjj_index.css?v=<%=VERSION%>">
+</head>
+
+<body style="background:#ff8b22;">
+    <%- include('../global/head.ejs') %>
+        <div class="container">
+            <div class="head en">
+                <h1>Data Festival 2022 returns</h1>
+                <h2>Full Set Of Great Vouchers During The <br />Data Period continuously Available.</h2>
+                <div>
+                    <span><span id="day">0</span>D</span>
+                    <span><span id="hour">0</span>H</span>
+                    <span><span id="minite">0</span>M</span>
+                    <span><span id="second">0</span>S</span>
+                </div>
+                <p>Data Festival valid until：12/31/2022 23:59:59</p>
+            </div>
+            <div class="coupon">
+                <% if(wglobals.user.new_user){ %>
+                    <div class="coupon-content display-none" id="new_user_coupon">
+                        <h3>Coupons for diamond users</h3>
+                        <div class="coupon-content-box">
+                            <div class="box-l vs-box display-none box-l1">
+                                <div class="coupon-content-box-left">
+                                    <svg t="1670298254284" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" p-id="2804" width="88" height="90">
+                                        <path
+                                            d="M89.315556 394.808889l184.888888-187.164445a28.444444 28.444444 0 0 1 20.195556-8.533333h435.768889a28.444444 28.444444 0 0 1 20.195555 8.533333l184.888889 187.164445a28.444444 28.444444 0 0 1 1.564445 38.257778l-413.866667 492.657777a14.222222 14.222222 0 0 1-20.053333 1.706667l-1.848889-1.706667L87.751111 433.066667a28.444444 28.444444 0 0 1 1.564445-38.257778z"
+                                            fill="#FFD491" p-id="2805"></path>
+                                        <path d="M512 199.111111L312.888889 412.444444h398.222222L512 199.111111z"
+                                            fill="#FFE7C1" p-id="2806"></path>
+                                        <path
+                                            d="M312.888889 412.444444l199.111111 554.666667 199.111111-554.666667H312.888889z"
+                                            fill="#FFDBA3" p-id="2807"></path>
+                                        <path
+                                            d="M711.111111 412.444444h265.386667L512 967.111111l199.111111-554.666667z"
+                                            fill="#FFA768" p-id="2808"></path>
+                                        <path
+                                            d="M312.888889 412.444444H56.888889l455.111111 554.666667-199.111111-554.666667z"
+                                            fill="#FFA768" p-id="2809"></path>
+                                    </svg>
+                                </div>
+                                <!-- 黄钻优惠券 -->
+                                <div class="coupon-content-box-right ">
+                                    <p><span>$<span class="price">120</span></span>
+                                        <span class="kuang">Coupons for yellow</span>
+                                    </p>
+                                    <p>Used to buy the yellow diamond series. It cannot be used together with other
+                                        coupons.</p>
+                                    <a class="coupon-receive coupon-yd">Get coupons</a>
+                                    <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu_en.png" alt="">
+                                </div>
+                            </div>
+                            <div class="box-l vs-box display-none">
+                                <div class="coupon-content-box-left">
+                                    <svg t="1670298324475" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" p-id="5611" width="100" height="110">
+                                        <path
+                                            d="M718.7 144.3H307.5c-17.6 0-34.2 8.5-44.4 22.9l-141 198.1c-14.9 21-13.1 49.5 4.3 68.5L467.6 805c21.6 23.5 58.6 23.5 80.2 0.1l349.8-379.4c17.6-19.1 19.3-48.1 3.9-69.1l-138.8-190c-10.2-14-26.6-22.3-44-22.3z"
+                                            fill="#5E9EFC" p-id="5612"></path>
+                                        <path
+                                            d="M370 312.9c0-22 18-40 40-40h204c22 0 40 18 40 40s-18 40-40 40H410c-22 0-40-18-40-40z"
+                                            fill="#FFFFFF" p-id="5613"></path>
+                                    </svg>
+                                </div>
+                                <!-- 蓝钻 -->
+                                <div class="coupon-content-box-right">
+                                    <p><span>$<span class="price">45</span></span>
+                                        <span class="kuang">Coupons for blue</span>
+                                    </p>
+                                    <p>Used to buy the blue diamond series. It cannot be used together with other
+                                        coupons.</p>
+                                    <a class="coupon-receive coupon-bd">Get coupons</a>
+                                    <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu_en.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="h3-2">Coupons for VIP users</h3>
+                        <div class="coupon-content-box">
+                            <!-- VIP 3 -->
+                            <div class="vip-box vs-box display-none box-l1">
+                                <p>$<span>20</span></p>
+                                <p>Used to buy 1 year</p>
+                                <a class="coupon-receive coupon-v-12">Get coupons</a>
+                                <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu_en.png" alt="">
+                            </div>
+                            <!-- VIP 9 -->
+                            <div class="vip-box vs-box display-none box-l1">
+                                <p>$<span>9</span></p>
+                                <p>Used to buy 3 months</p>
+                                <a class="coupon-receive coupon-v-3">Get coupons</a>
+                                <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu_en.png" alt="">
+                            </div>
+                            <!-- VIP 20 -->
+                            <div class="vip-box vs-box display-none">
+                                <p>$<span>3</span></p>
+                                <p>Used to buy 1 month</p>
+                                <a class="coupon-receive coupon-v-1">Get coupons</a>
+                                <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu_en.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage> 0){%>
+                        <div class="xf">
+                            <h3>Two for one of yellow diamond renewal benefits</h3>
+                            <div class="boxs">
+                                <div class="box">
+                                    <p>Renew Yellow Diamond $<b>120</b> off</p>
+                                    <p>$120 off automatically and 1 month service extension when renewing Yellow Diamond.</p>
+                                    <a href="/Alipay?v=yd" target="_blank">Renew Yellow Diamond</a>
+                                </div>
+                                <div class="box">
+                                    <p>Free gift Email Hunting tool</p>
+                                    <p>Renew at the previous package price , free gift Email
+                                        Hunting tool (standard).</p>
+                                    <a href="/Alipay?v=yd" target="_blank">Renew Yellow Diamond</a>
+                                </div>
+                            </div>
+                            <h3 style="margin-top:30px;">Renewal benefits of blue diamond</h3>
+                            <div class="boxs">
+                                <div class="box">
+                                    <p>Renew Blue Diamond $<span>45</span> off</p>
+                                    <p>$45 off automatically and 1 month service extension when renewing blue Diamond.
+                                    </p>
+                                    <a href="/Alipay?v=bd" target="_blank">Renew Blue Diamond</a>
+                                </div>
+                                <div class="box" style="line-height:130px;font-size:14.4px;color:#ccc;">No More</div>
+                            </div>
+                          </div>
+                        <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage==0){%>
+                            <div class="xf">
+                                <h3 style="text-align:center;margin-bottom:30px;">You enjoy the price protection policy <br/>And can renew at the lowest price in record</h3>
+                                <div class="boxs">
+                                    <div class="box">
+                                        <p>Only $399.9 Renew Yellow Diamond</p>
+                                        <p>Enjoy the price protection policy and renew at the lowest price in record, save at least $470( Now yellow diamond is $869.9)</p>
+                                        <a href="/Alipay?v=yd" target="_blank">Renew yellow diamond →</a>
+                                    </div>
+                                    <div class="box">
+                                        <p>Only $299.9 Renew Blue Diamond </p>
+                                        <p>Enjoy the price protection policy and renew at the lowest price in record, save at least $240( Now blue diamond is $539.9</p>
+                                        <a href="/Alipay?v=bd" target="_blank">Renew blue diamond →</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+
+             </div>
+
+
+            <div class="explain">
+                <h2>2022 Data Festival of 52wmb：</h2>
+                <p>1、<b>Activity time：</b>2022/12/13 00:00 to 2022/12/31 23:59:59</p>
+                <p>2、<b>About coupons：</b>The coupons cannot be used together with other coupons and they cannot be used after the event expires.</p>
+                <p>3、<b>The final interpretation right of this activity belongs to 52WMB.</b></p>
+            </div>
+        </div>
+
+        <%- include('../global/foot.ejs') %>
+            <script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"> </script>
+            <script src="<%= STATIC %>javascripts/minisite/sjj_index.js?v=<%=VERSION%>"></script>
+
+            <script>
+
+                // 获取优惠券数据
+                function get_coupon_data() {
+                    let $new_user_coupon = $('#new_user_coupon')
+                    if($new_user_coupon.length <= 0) return;
+                    $.ajax('/async/payment/df/coupon', {
+                        datatype: 'text/json',
+                        type: 'get',
+                        success: function (res) {
+                            if (res.state == 0) {
+                                $new_user_coupon.removeClass('display-none')
+                                $.each(res.data.list, function (a, b){
+                                    let fx = b.vip_level == 'v'?`v-${b.vip_duration}`:b.vip_level,
+                                        no_buyer_old = parseInt(wg.user.no_buyer_old || 0)
+                                    if(b.vip_duration == 1 && b.vip_level== 'v' && (no_buyer_old==1 || no_buyer_old==4)) return true
+                                    let $rec = $('.coupon-receive.coupon-' + fx)
+                                    $rec.parents('.vs-box').removeClass('display-none')
+                                    if(b.activity_state != 1) {
+                                        $rec.html('activity is expire')
+                                    }else if(b.id){
+                                        if(b.coupon_state != 1){
+                                            $rec.html('coupon is expire')
+                                        }else {
+                                            $rec.html('Use coupon').attr('href', `/Alipay?v=${b.vip_level}&m=${b.vip_duration}`)
+                                                .attr('target', '_blank')
+
+                                            hav_receive($rec)
+                                        }
+                                    }else {
+                                        $rec.html('Get coupons').attr('onclick', `get_coupon(this)`)
+                                            .data('sid', b.sid).data('v', b.vip_level).data('m', b.vip_duration)
+                                    }
+                                })
+                            }
+                        }
+                    })
+                }
+                get_coupon_data()
+
+                // 领取优惠券
+                function get_coupon(elem) {
+                    let $elem = $(elem), params = $elem.data()
+                    $.ajax('/async/payment/df/coupon', {
+                        data: { setting_id: params.sid },
+                        type: 'post',
+                        datatype: 'text/json',
+                        success: function (res) {
+                            if (res.state == 0) {
+                                $elem.attr('href', `Alipay?v=${params.v}&m=${params.m}`).attr('target', '_blank').html('Use coupons')
+                                hav_receive($elem)
+                            }
+                        }
+                    })
+                }
+                function hav_receive($elem){
+                    $elem.siblings('.lin-img').removeClass('display-none')
+                }
+            </script>
+</body>
+
+</html>

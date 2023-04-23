@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('seo_company_list_keywords')%>" />
+    <meta name="description" content="<%=translate('seo_company_list_description')%>" />
+    <title><%=translate('seo_company_list_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/category_list/index.css?v=<%=VERSION%>" />
+</head>
+<body>
+<%- include('../layout/header.ejs'); %>
+<%var topic_list=results.topic_list.list;%>
+<div class="product-k">
+    <% console.log(results,"公司推荐") %>
+       <div class="product-topic-list">
+           <h1><%=translate('seo_company_list_title')%><span><%=translate('seo_company_list_count')%></span></h1>
+           <ul>
+               <%  var _l = wglobals.lang == 'cn'?70:190 %>
+            <%topic_list.forEach(function(item,index){%>
+                <li>
+                    <a href="/category/<%=item.url%>" target="_blank">
+                       <img src="https://static.52wmb.com/images/company_topic/<%=item.cover%>"/>
+                       <h2><%=item.title%></h2>
+                       <p><%=item.introduction.substring(0, _l)%></p>
+                       <span><%=item.create_time.split(' ')[0]%>&nbsp;|&nbsp;</span><%=item.view%><%=translate('share_text_view')%></span>
+                    </a>
+                  </li>
+                <%})%>
+          </ul>
+       </div>       
+</div>
+<%- include('../layout/footer.ejs') %>
+</body>
+</html>

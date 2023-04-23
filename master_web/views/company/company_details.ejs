@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<% var company_detail = results.company_detail, user=wglobals.user,clear_company_name = (company_detail.name || '').trims('.','left'),
+        show_type = translate('share_company_' + company_detail.type), routes = ['buyer', 'supplier'],name=ucfirst(company_detail.name)
+%>
+<head>
+    <meta charset="utf-8">
+    <meta name="page_mark" content="cdpelv">
+    <meta name="line_route" content="<%=LINE_ROUTE()%>">
+    <meta name="keywords" content="<%=keyreplace(translate('detail_keywords'),['[@公司名]','[@数据类型]'],[clear_company_name,translate('company_data_' + company_detail.type)])%>" />
+    <meta name="description" content="<%=keyreplace(translate('detail_description'),['[@公司名]','[@国家]','[@公司属性]'],[clear_company_name,company_detail['country_'+wglobals.lang],show_type])%>" />
+    <title><%=keyreplace(translate('detail_title'), ['[@公司名]','[@数据类型]'], [ucfirst(clear_company_name),translate('company_data_' + company_detail.type)])%>-<%=translate('share_text_sitename')%></title>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <%if(company_detail.repeat_std_id){%>
+    <link rel="canonical" href="<%=wglobals.host%>/<%= ['buyer','supplier'][company_detail.type] %>/<%= company_detail.repeat_std_id  %>" />
+    <%}%>
+    <% if(wglobals.user.id){%>
+        <link rel="stylesheet" href="<%= STATIC %>stylesheets/dcalendar.picker.css"/>
+        <link rel="stylesheet" href="<%= STATIC %>plugins/datatables/datatables-excel.min.css"/>
+        <meta name="reftoken" content="<%=results.reftoken%>">
+    <%}%>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>css/company/company_detail.css?v=<%=VERSION%>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+<body>
+<div class="buyer-page">
+    <%- include('../global/head.ejs') %>
+    <div id="page-content">
+        <div class="seach-Box">
+            <div class="seach-gongsi  mgall-l">
+                <%
+                delete company_detail.email
+                delete company_detail.fax
+                delete company_detail.tel
+                delete company_detail.web
+                %>
+                <div class="details-head" data-company-details='<%=JSON.stringify(company_detail)%>'>
+                    <h2><%=clear_company_name%></h2>
+                    <span class="briskV"><i class="grade-start star-<%=company_detail.star%>"></i><font class="grade"><%=translate('detail_value')%><%=company_detail.rating%></font></span>
+                    <span class="sources">
+						<%=keyreplace(translate('detail_data_update'),['[@国家]','[@公司属性]','[@日期]'],[company_detail['country_'+wglobals.lang],show_type,company_detail.last_trade_date])%>
+					</span>
+                    <% if(company_detail.address){%><span class="site"><%=translate('detail_address')%>: <%=company_detail.address%></span><%}%>
+                    <span class="button-link">
+                        <a href="javascript:void(0)" id="btn_social_media" class="display-none" data-keywords="<%=clear_company_name%>" data-scene="detail" data-wstats="mailbox_hunting_button"><%=translate('detail_active')%></a>
+                        <%if(wglobals.lang == 'cn'){%><a href="/benchmark" target="_blank" data-wstats="mailbox_spent_button">群发邮件</a><%}%>
+                        <%if(!verify_real_vip('bd')){%><a href="/loft_HD?s=company_detail" target="_blank"><%=translate('detail_detail')%></a><%}%>
+                    </span>
+                </div>
+                <div class="label mar-l">
+                    <% if(company_detail.have_follow){%><span><%=translate('search_list_collections')%></span><%}%>
+                    <% if(company_detail.product_count > 0){%><span><%=translate('search_list_match')%></span><%}%>
+                    <% if(company_detail.has_china){%><span><%=translate('search_list_china')%></span><%}%>
+                    <% if(company_detail.weight>1000){%><span><%=translate('search_list_contact')%></span><%}%>
+                </div>
+                <br class="clear-box"/>
+            </div>
+        </div>
+        <div class="result-box">
+            <div class="sousou-data-left">
+                <div class="sousou-data mgall-l">
+                    <div class="sousou-screen">
+                        <b><%=translate('detail_company_tags')%>：</b>
+                        <p>
+                            <a href="javascript:void(0)" class="active open" data-value="*" data-wstats="main_product_button"><%=translate('share_text_all')%></a>
+                            <% if(results.search_key !=null && results.search_key != '') { %>
+                                <%var _search_key = decodeURIComponent(results.search_key).toClear() %>
+                                <a href="javascript:void(0)" class="req-tag not-verified display-none" data-field="key" data-value="<%= _search_key%>" data-wstats="main_product_button"><i></i><%=_search_key%></a>
+                            <% } %>
+                        </p>
+                        <a class="screen-more display-none"><%=translate('share_text_more')%><font>&gt;</font></a>
+                    </div>
+                    <div class="sousou-list">
+                        <div class="hint display-none" id="report_hint" data-txt="<%=translate('detail_company_tags_tips')%>"><font class="show"></font><span id="blank">×<%=translate('detail_company_tips_nodisply')%></span></div>
+                        <ul class="left-menu" id="left_menu">
+                            <li id="menu_overview" class="active" onclick="left_menu_shift(this)" data-target="#detail_tab_con" data-nv="guest" data-pos="#tab_pane_overview"><a><%=translate('detail_nav_overview')%></a><span>&gt;</span></li>
+                            <%if(company_detail.weight>=1000){%>
+                            <li id="menu_contact" class="left-tab left-v " onclick="tab_contact(this)" data-nv="v" data-target="#detail_tab_con" data-pos="#tab_pane_contact"><a><%=translate('detail_nav_contact')%></a></li>
+                            <%}%>
+                            <% var bill_data=results.bill || {}, bill_count = bill_data.hits||0; console.log(bill_count, 'bill_count') %>
+                            <li id="menu_trade_data"  onclick="tab_trade(this)" class="left-tab left-v  <%= bill_count>0?'':'display-none'%>" data-nv="v" data-target="#detail_tab_con" data-pos="#tab_pane_trade_data">
+                                <a><%=translate('detail_nav_tradedata')%><font class="mu-bill-count"><%=node_thousand(bill_count)%></font></a>
+                            </li>
+                            <% var partner_data = results.partner || {}, pta_count = partner_data.hits || 0 %>
+                            <li id="menu_trade_partner" onclick="tab_partner(this)" class=" left-tab left-b <%= pta_count>0?'':'display-none'%>" data-nv="bd" data-target="#detail_tab_con" data-pos="#tab_pane_partner">
+                                <a><%=translate('detail_nav_partner')%><font class="mu-tpa-count"><%=node_thousand(pta_count)%></font></a>
+                            </li>
+                            <% var hs_count = company_detail.hs_count||0 %>
+                            <li id="menu_hs_code" onclick="tab_hs(this)" class=" left-tab left-b <%= hs_count>0?'':'display-none'%>" data-nv="bd" data-target="#detail_tab_con" data-pos="#tab_pane_hs">
+                                <a><%=translate('detail_nav_hscode')%><font class="mu-hs-count"><%=node_thousand(hs_count)%></font></a>
+                            </li>
+                            <% var product_count = company_detail.product_count||0 %>
+                            <li id="menu_product"  onclick="tab_product(this)"  class=" left-tab left-b <%= product_count>0?'':'display-none'%>" data-nv="bd" data-target="#detail_tab_con" data-pos="#tab_pane_product">
+                                <a><%=translate('detail_nav_product')%><font class="mu-pd-count"><%=product_count>1000?'1000+':product_count%></font></a>
+                            </li>
+                            <% var trade_country = results.trade_country || {}, tc_count = trade_country.hits || 0 %>
+                            <li id="menu_trade_area" onclick="tab_trade_country(this)" class=" left-tab left-b <%= tc_count>0?'':'display-none'%>" data-nv="bd" data-target="#detail_tab_con" data-pos="#tab_pane_trade_country">
+                                <a><%=translate('detail_nav_area')%><font class="mu-ta-count"><%=node_thousand(tc_count)%></font></a>
+                            </li>
+                            <% var port_data=results.port_data || {}, tpo_count = port_data.hits || 0 %>
+                            <li id="menu_trade_port" onclick="tab_port(this)" class=" left-tab left-b <%= tpo_count>0?'':'display-none'%>" data-nv="bd" data-target="#detail_tab_con" data-pos="#tab_pane_port">
+                                <a><%=translate('detail_nav_port')%><font class="mu-tpo-count"><%=node_thousand(tpo_count)%></font></a>
+                            </li>
+                        </ul>
+                        <div class="right-content-box">
+                            <div class="right-content" id="detail_tab_con">
+                                <div id="tab_pane_overview" class="tab-pane detail-tab active">
+                                    <div class="summarize market-trends">
+                                        <div class="heard">
+                                            <h2><%=translate('detail_module_market')%></h2>
+                                            <div class="tab-list tabs">
+                                                <a href="javascript:void(0)" data-target="#trends_echart" data-pos=".emonth" class="active tab"><%=translate('company_trade_month')%></a>
+                                                <font>|</font>
+                                                <a href="javascript:void(0)"  data-target="#trends_echart" data-pos=".eyear" class="tab"><%=translate('company_trade_year')%></a>
+                                            </div>
+                                        </div>
+                                        <div id="trends_echart">
+                                            <div class="tab-pane emonth active">
+                                                <div class="graph show" id="echart_trends_bill_counts"></div>
+                                                <div class="graph" style="height:240px;width:700px;display:none" id="echart_trends_qty"></div>
+                                                <div class="graph" style="height:240px;width:700px;display:none" id="echart_trends_weight"></div>
+                                                <p class="deal-num">
+                                                    <span class="deal active" data-taggle="bill_counts"><%=translate('detail_module_select_transactions')%></span>
+                                                    <span class="deal" data-taggle="qty"><%=translate('detail_module_quantity')%></span>
+                                                    <span class="deal" data-taggle="weight"><%=translate('detail_module_weight')%></span>
+                                                </p>
+                                            </div>
+                                            <div class="tab-pane eyear">
+                                                <div class="graph show" style="height:240px;width:700px;"  id="echart_trends_bill_counts_year"></div>
+                                                <div class="graph" style="height:240px;width:700px;display:none" id="echart_trends_qty_year"></div>
+                                                <div class="graph" style="height:240px;width:700px;display:none" id="echart_trends_weight_year"></div>
+                                                <p class="deal-num">
+                                                    <span class="deal active" data-taggle="bill_counts_year"><%=translate('detail_module_select_transactions')%></span>
+                                                    <span class="deal" data-taggle="qty_year"><%=translate('detail_module_quantity')%></span>
+                                                    <span class="deal" data-taggle="weight_year"><%=translate('detail_module_weight')%></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <p class="describe">
+                                            <%if(wglobals.lang == 'cn'){%>
+                                            <%=clear_company_name%>是一家<%=company_detail['country_'+wglobals.lang]%><%=show_type%>，以下的贸易报告数据来源于贸易数据；该公司的进口数据截止至<%=company_detail.last_trade_date%>共计<%=bill_count%>笔交易。基于这些贸易数据，我们从贸易伙伴、进出口港、采供国、HS编码、联系方式等维度对数据进行统计汇总，这可以帮助您提高使用外贸数据的效率。上图是<%=clear_company_name%>公司近一年的市场趋势分析图，可以从交易数量、重量、价格、交易次数不同维度的趋势来了解当前公司的采供周期和业务稳定性。
+                                            <%}else{%>
+                                            <%=clear_company_name%> is a <%=company_detail['country_'+wglobals.lang]%> <%=show_type%>, the following trade report data is derived from its trade data; the company's import data up to <%=company_detail.last_trade_date%> total <%=bill_count%> transactions. Based on these trade data, we have aggregated the data in terms of trading partners, import and export ports, countries of supply, HS codes, contact details and other dimensions, which will help you to improve the efficiency of using your foreign trade data.<br/><br/> The graph above shows the market trend analysis of <%=clear_company_name%> for the past year, which can be used to understand the current supply cycle and business stability of the company from the trend of different dimensions such as quantity, weight, price and number of transactions.
+                                            <%}%>
+                                        </p>
+                                        <p class="product-describe display-none"></p>
+                                        <ul class="analysis-data-list display-none">
+                                            <li class="analysis-header">
+                                                <span class="year"><%=translate('detail_module_year')%></span>
+                                                <span class="trades"><%=translate('detail_module_transactions')%></span>
+                                                <span class="amount"><%=translate('detail_module_quantity')%></span>
+                                                <span class="weight"><%=translate('detail_module_weight')%></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                   <!-------------contact--------------> 
+                                    <div class="trade-contact summarize display-none" id="company_contact"></div>
+
+                                    <!-------------B/Ls-------------->
+                                    <% if(bill_count > 0){%>
+                                        <div class="summarize bill-box" id="trade_pane">
+                                            <div class="bill-box-title">
+                                                <h2><%=translate('detail_module_bill')%></h2>
+                                                <span class="pages" data-curr="1" data-total="<%=bill_data.list.length%>">
+                                                    <font class="page" data-num="-1">&lt;</font>
+                                                    <font class="page-info">1/<%=bill_data.list.length%></font>
+                                                    <font class="page" data-num="1">&gt;</font>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="detail-tab-content">
+                                                    <div class="bill-list-tips"><%=translate('detail_module_bill_tips')%></div>
+                                                    <div class="perms-mask" data-layer_ext_class="bill">
+                                                        <div id="trade_list">
+                                                            <% var bill_index = 0 %>
+                                                            <%  bill_data.list.forEach(function (bill_detail){%>
+                                                                <ul class="bill-list mask-txt <%= bill_index==0?'':'display-none'%>">
+                                                                    <li>
+                                                                    <span class="bill-list-left">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_date')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.date||'——'%></font>
+                                                                    </span>
+                                                                    <span class="bill-list-right">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_number')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.bill_no||'——'%></font>
+                                                                    </span>
+                                                                    </li>
+                                                                    <li>
+                                                                    <span class="bill-list-left">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_supplier')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.seller||'——'%></font>
+                                                                    </span>
+                                                                    <span class="bill-list-right">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_buyer')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.buyer||'——'%></font>
+                                                                    </span>
+                                                                    </li>
+                                                                    <li>
+                                                                    <span class="bill-list-left">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_export_port')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.seller_port||'——'%></font>
+                                                                    </span>
+                                                                    <span class="bill-list-right">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_import_port')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.buyer_port||'——'%></font>
+                                                                    </span>
+                                                                    </li>
+                                                                    <li>
+                                                                    <span class="bill-list-left">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_export_area')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.seller_country||'——'%></font>
+                                                                    </span>
+                                                                    <span class="bill-list-right">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_import_area')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.buyer_country||'——'%></font>
+                                                                    </span>
+                                                                    </li>
+                                                                    <li>
+                                                                    <span class="bill-list-left">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_quantity')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.weight||'——'%><%= bill_detail.weight_unit || '' %></font>
+                                                                    </span>
+                                                                    <span class="bill-list-right">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_amount')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.amount||'——'%></font>
+                                                                    </span>
+                                                                    </li>
+                                                                    <%
+                                                                        var product = '', descript_label = bill_detail.descript_label || []
+                                                                        if(descript_label.length > 0){
+                                                                            descript_label.forEach(function (a, _){
+                                                                                product += (',' + a.key)
+                                                                            })
+                                                                            product = product.slice(1);
+                                                                        }
+                                                                    %>
+                                                                    <li>
+                                                                    <span class="bill-list-left">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_hscode')%></font>
+                                                                        <font class="bill-list-data"><%=bill_detail.hs|| '' %></font>
+                                                                    </span>
+                                                                        <span class="bill-list-right">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_product_tags')%></font>
+                                                                        <font class="bill-list-data"><%=product||'——'%></font>
+                                                                    </span>
+                                                                    </li>
+                                                                    <li>
+                                                                    <span class="shrink-module" data-length="210">
+                                                                        <font class="bill-list-name"><%=translate('detail_module_bill_product')%></font>
+                                                                        <font class="bill-list-data shrink-txt wmb-cf-action">
+                                                                            <%-(bill_detail.descript?URL_ENCRYPT(bill_detail.descript):'——')-%>
+                                                                        </font>
+                                                                    </span>
+                                                                    </li>
+                                                                </ul>
+                                                            <%bill_index++;})%>
+                                                        </div>
+
+                                                        <%if(bill_count >5){%>
+                                                        <a href="javascript:void(0)" class="detail-tab-more" data-target="#menu_trade_data"><font>+</font><%=translate('share_text_more_all')%></a>
+                                                        <%}%>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <%} else if(results.india_offline == 2 || results.india_offline == 3){%>
+                                            <div id="gs_ind_shield_tips">
+                                                <div class="tidan-sj-india">
+                                                    <p class="tidan-sj-india-des">Data not shown according to local legal policy.</p>
+                                                </div>
+                                            </div>
+                                        <%}%>
+
+                                    <!-------------Partners------------->
+                                    <% if(pta_count >= 2){%>
+                                    <div class="summarize" id="partner_pane">
+                                        <h2><%=translate('detail_module_partners')%></h2>
+                                        <div class="detail-tab-content perms-mask">
+                                            <ul class="sketch-partner">
+                                                <li class="header">
+                                                    <span class="rank"><%=translate('detail_module_partners_rank')%></span>
+                                                    <span class="name"><%=translate('detail_module_partners_name')%></span>
+                                                    <span class="data"><%=translate('detail_module_transactions')%></span>
+                                                    <span class="data"><%=translate('detail_module_percentage')%></span>
+                                                    <span class="details"><%=translate('detail_module_detail')%></span>
+                                                </li>
+                                                <% partner_data.list.forEach(function(partner_item,index){%>
+                                                    <% var ldate = (partner_item.last_trade_date || (partner_item.date||'')).split('T')[0] %>
+                                                    <li class="list-content mask-txt">
+                                                        <span class="rank"><%= index+1%></span>
+                                                        <span class="name">
+															<a class="firm" target="_blank" href="/<%= routes[partner_item.type] %>/<%=partner_item.id %>"><b><%=partner_item.name %></b><% if(partner_item.state==1){%><font><%=translate('detail_module_partners_new')%></font><%}%></a>
+														    <font class="lively"><%=partner_item.country%><%=translate('detail_module_partners_type')[partner_item.type]%>,<%=keyreplace(translate('detail_module_partners_deadline'),['[@结束时间]'],[ldate])%></font>
+														</span>
+                                                        <span class="data"><%=partner_item.bill_count%></span>
+                                                        <span class="data"><%=partner_item.prop%>%</span>
+                                                        <span class="details"><font onclick="trade_record('trade_id_std', '<%=partner_item.id%>', '<%=ldate%>')">&gt;</font></span>
+                                                    </li>
+                                                <%})%>
+                                                <%if(pta_count >5){%><a href="javascript:void(0)" class="detail-tab-more" data-target="#menu_trade_partner"><font>+</font><%=translate('share_text_more_all')%></a><%}%>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <%}%>
+
+                                    <!------------Product-------------->
+                                    <%if(company_detail.product.length>0){%>
+                                    <div class="summarize" id="product_pane">
+                                        <h2><%=translate('detail_module_product')%></h2>
+                                        <div class="detail-tab-content perms-mask">
+                                            <ul class="sheet weight">
+                                                <li class="header">
+                                                    <span class="name"><%=translate('detail_module_product_name')%></span>
+                                                    <span class="data"><%=translate('detail_module_transactions')%></span>
+                                                    <span class="data"><%=translate('detail_module_percentage')%></span>
+                                                    <span class="details"><%=translate('detail_module_detail')%></span>
+                                                </li>
+                                                <% company_detail.product.forEach(function(product_item){%>
+                                                <li class="list-content mask-txt" onclick="trade_record('product', '<%=product_item.value%>', '<%=product_item.last_trade_date.split('T')[0]%>')">
+                                                    <span class="name"><b><%=product_item.value%></b><br /><progress value='<%=product_item.prop%>' max='100'></progress></span>
+                                                    <span class="data"><%=product_item.count%></span>
+                                                    <span class="data"><%=product_item.prop%>%</span>
+                                                    <span class="details"><font>&gt;</font></span>
+                                                </li>
+                                                <%})%>
+                                                <%if(product_count >5){%><a href="javascript:void(0)" class="detail-tab-more" data-target="#menu_product"><font>+</font><%=translate('share_text_more_all')%></a><%}%>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <%}%>
+
+                                    <!-------------Market----------->
+                                    <div class="summarize bazaar display-none" id="analysis_pane"></div>
+
+
+                                    <!-------------HScode-------------->
+                                    <%if(company_detail.hs && company_detail.hs.length >= 2){%>
+                                    <div class="summarize hs-box" id="hs_pane">
+                                        <h2><%=translate('detail_module_hscode')%></h2>
+                                        <div class="detail-tab-content perms-mask">
+                                            <ul class="sheet hs-list">
+                                                <li class="header">
+                                                    <span class="name"><%=translate('detail_module_hscode_name')%></span>
+                                                    <span class="data"><%=translate('detail_module_transactions')%></span>
+                                                    <span class="data"><%=translate('detail_module_percentage')%></span>
+                                                    <span class="details"><%=translate('detail_module_detail')%></span>
+                                                </li>
+                                                <% company_detail.hs.forEach(function(hs_item){
+                                                if(hs_item != null){
+                                                %>
+                                                    <li class="list-content mask-txt" onclick="trade_record('hs', '<%=hs_item.value_hs%>', '<%=hs_item.last_trade_date_hs.split('T')[0]%>')">
+                                                        <span class="name"><b><%= hs_item.value_hs%></b></span>
+                                                        <span class="data"><%= hs_item.count_hs%></span>
+                                                        <span class="data"><%= hs_item.prop_hs%>%</span>
+                                                        <span class="details"><font>&gt;</font></span>
+                                                    </li>
+                                                <%}})%>
+                                                <%if(hs_count >5){%><a href="javascript:void(0)" class="detail-tab-more"data-target="#menu_hs_code"><font>+</font><%=translate('share_text_more_all')%></a><%}%>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <%}%>
+
+                                    <!-------------trade area-------------->
+                                    <input type="hidden" id="country_list" value="<%=JSON.stringify(trade_country.list)%>">
+                                    <%if(tc_count >=2){%>
+                                    <div class="summarize trade-area-box" id="trade_country_pane">
+                                        <h2><%=translate('detail_module_area')%></h2>
+                                        <div class="detail-tab-content perms-mask">
+                                            <ul class="sheet trade-area-list">
+                                                <div class="compass" id="countries" data-countries="<%=JSON.stringify(trade_country.list)%>" ></div>
+                                                <li class="header">
+                                                    <span class="name"><%=translate('detail_module_area_name')%></span>
+                                                    <span class="data"><%=translate('detail_module_transactions')%></span>
+                                                    <span class="data"><%=translate('detail_module_percentage')%></span>
+                                                    <span class="details"><%=translate('detail_module_detail')%></span>
+                                                </li>
+                                                <% trade_country.list.forEach(function(trade_country){%>
+                                                    <li class="list-content mask-txt" onclick="trade_record('trade_country', '<%=trade_country.country%>', '<%=trade_country.last_trade_date%>')">
+                                                        <span class="name"><%= trade_country.country%></span>
+                                                        <span class="data"><%= trade_country.bill_count%></span>
+                                                        <span class="data"><%= trade_country.prop%>%</span>
+                                                        <span class="details"><font>&gt;</font></span>
+                                                    </li>
+                                                <%})%>
+                                                <%if(tc_count >5){%><a href="javascript:void(0)" class="detail-tab-more" data-target="#menu_trade_area"><font>+</font><%=translate('share_text_more_all')%></a><%}%>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <%}%>
+
+                                    <!-------------港口统计-------------->
+                                    <%if(tpo_count >=2){%>
+                                    <div class="summarize port-box" id="port_pane">
+                                        <h2><%=translate('detail_module_port')%></h2>
+                                        <div class="detail-tab-content perms-mask" >
+                                            <ul class="sheet port-list">
+                                                <li class="header">
+                                                    <span class="name"><%=translate('detail_module_port_name')%></span>
+                                                    <span class="data"><%=translate('detail_module_transactions')%></span>
+                                                    <span class="data"><%=translate('detail_module_percentage')%></span>
+                                                    <span class="details"><%=translate('detail_module_detail')%></span>
+                                                </li>
+                                                <% port_data.list.forEach(function(port){%>
+                                                <li class="list-content mask-txt" onclick="trade_record('port', '<%=port.port%>', '<%=port.last_trade_date%>')">
+                                                    <span class="name"><b><%=port.port%></b></span>
+                                                    <span class="data"><%=port.bill_count%></span>
+                                                    <span class="data"><%=port.prop%>%</span>
+                                                    <span class="details"><font>&gt;</font></span>
+                                                </li>
+                                                <%})%>
+                                                <%if(tpo_count >5){%><a href="javascript:void(0)" class="detail-tab-more" data-target="#menu_trade_port"><font>+</font><%=translate('share_text_more_all')%></a><%}%>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <%}%>
+                                    <div class="company-list-des">
+                                        <%if(wglobals.lang == 'cn'){%>
+                                        <%=clear_company_name%>是一家<a href="/<%=['cb', 'cs'][company_detail.type]%>-<%= company_detail.country_en.toLocaleLowerCase().toFix() %>" title="<%=company_detail['country_'+wglobals.lang]%><%=show_type%>" target="_blank"><%=company_detail['country_'+wglobals.lang]%><%=show_type%></a>。当前公司的贸易报告主要包括:市场趋势分析、 联系方式、贸易伙伴、港口统计、贸易区域分析。官方参考联系方式来源于美国原始的提关单数据，包括了邮箱、电话、传真、地址和官方网址。截止<%=company_detail.last_trade_date%>，<%=clear_company_name%>共有<%=bill_count%>笔交易数据，通过产品名、HS编码等维度可以搜索精准的提关单。关注该公司可导出联系方式和提关单数据；如该司有最新交易记录，系统自动通知。<br/><br/>
+                                        我们从<%=clear_company_name %>的<%=bill_count%>笔交易中，汇总该公司所有的贸易伙伴名录。可按照交易量、交易日期、采供国筛选；同时也可查询到贸易双方每一笔交易的产品、数量、价格和贸易频率，这些数据为您提供竞争对手研究、已有客户的维护与监控、目标客户的开发提供了强有力的支撑。同样，以港口或贸易区域作为查询条件的交易记录，可推算出<%=clear_company_name %>在全球的主要采供市场以及份额占比，帮助你深度剖析目标公司市场，科学制定生产营销策略。
+                                        <%}else{%>
+                                        <%=clear_company_name %> is A <a href="/<%=['cb', 'cs'][company_detail.type]%>-<%= company_detail.country_en.toLocaleLowerCase().toFix() %>" title="<%=company_detail['country_'+wglobals.lang]%><%=show_type%>" target="_blank"><%=company_detail['country_'+wglobals.lang]%> <%=show_type%></a>. This Company's Trade Report Mainly Contains Market Analysis, Contact, Trade Partners, Ports Statistics, And Trade Area Analysis. Official Reference Contact Is From <%=company_detail['country_'+wglobals.lang]%> Original Bill Of Ladings, Including Email, Phone, Fax, Address, And Official Website. Till <%=company_detail.last_trade_date%>，<%=clear_company_name %>. A Total Of <%=bill_count%> Transactions. Follow Up The Company, And Then Can Export This Company's Contact And B/Ls. If There Is New Transactions, We Will Also Inform You By The System.<br/><br/>
+                                        We Extract The Trade Partners From <%=clear_company_name %>'S <%=bill_count%> Transctions.These Companies Are Mainly Located In Other,France,Russia .You Can Screen Companies By Transactions, Trade Date, And Trading Area. While You Can Check Product Type, Quantity, Price, And Trade Frequency Of Each Transaction. This Data Will Help You Study Your Competitors, Maintain And Monitor Your Customers, And Develop Target Users. Through Summary Statistics Of Transaction，We Extract This Company's Data Of Import-Export Ports And Trade Area, And Then You Can Check Related Data. It Can Calculate The Main Market And Occupation Of <%=clear_company_name%>. All Around The World. Help You Deeply Analyze The Target Market, And Scientifically Formulate Production And Marketing Strategies.<br/><br/>
+                                        Besides, We Are Trying Our Best To Provide Accurate Target Customers Recommend. Through Big Data, Recommend The Company That Buying Or Supplying The Same Product (Or HS Code) From The <%=company_detail['country_'+wglobals.lang]%>'s <%=show_type%> Company Database. That Including Email And Have Transaction Recently Will Be Pushed. So Suggest You Follow <%=clear_company_name%>, At The Same Time, Mark This Company's Industry And Products, It Will Help You Receive More Accurate Data Push.
+                                        <%}%>
+                                    </div>
+                                </div>
+                                <div id="tab_pane_contact" class="tab-pane detail-tab">
+                                    <div class="trade-contact">
+                                        <h2 class="trade-contact-title"><%=translate('detail_contact')%></h2>
+                                    </div>
+                                </div>
+                                <div id="tab_pane_trade_data" class="tab-pane detail-tab trade-data"></div>
+                                <div id="tab_pane_partner" class="tab-pane detail-tab tab-partner"></div>
+                                <div id="tab_pane_hs" class="tab-pane detail-tab tab-hs"></div>
+                                <div id="tab_pane_trade_country" class="tab-pane detail-tab tab-area"></div>
+                                <div id="tab_pane_port" class="tab-pane detail-tab tab-port"></div>
+                                <div id="tab_pane_product" class="tab-pane detail-tab tab-port"></div>
+                            </div>
+                        </div>
+                        <br class="clear-box"/>
+                    </div>
+                    <div class="not-found display-none"></div>
+                </div>
+            </div>
+
+            <div class="soso-data-right">
+                <div class="module-content mar-l">
+                    <div class="collect-box" id="operate_box">
+                        <h2><%=translate('toolbar_name')%><a href="/user/datacenter/home" target="_blank" rel="nofollow"><%=translate('mine_name')%>→</a></h2>
+                        <%if(wglobals.lang == 'cn'){%><div class="data-tool"><%}else{%><div class="data-tool data-tool-list"><%}%>
+                                <a href="javascript:void(0)" onclick="follow_tab(this)" data-follow="<%=company_detail.is_follow?1:0%>"><i class="tool-follow <%=company_detail.is_follow?'active':''%>"></i><font><%=company_detail.is_follow?translate('toolbar_cancel_collect'):translate('toolbar_collect_company')%></font></a>
+                                <a href="javascript:void(0)" onclick="side_create_customize_tag()"><i class="tool-labels"></i><font><%-translate('toolbar_create_labels')-%></font></a>
+                                <%if(wglobals.lang == 'cn'){%><a href="javascript:void(0)" onclick="side_crawler(this)" data-wstats="mailbox_collect_button"><i class="tool-caiji"></i><font><%=translate('toolbar_email_hunting')%></font></a><%}%>
+                            </div>
+                            <ul class="operation-list" id="tool_list"></ul>
+                        </div>
+                        <% var peers_list = (results.peers || {}).list ||[] %>
+                        <% if(peers_list.length > 0){%>
+                        <div class="referee-box">
+                            <h2><%=translate('detail_module_peer')%></h2>
+                            <ul class="referee-list" id="peers">
+                                <%peers_list.forEach(function (item){%>
+                                <li>
+                                    <a href="/<%=routes[item.type]%>/<%=item.id%>"><h2><%=item.name%></h2></a>
+                                    <span class="grade"><%=item.country%> <%= translate('share_company_' + item.type) %>，<%=translate('detail_value')%><%=item.rating%></span>
+                                </li>
+                                <%})%>
+                            </ul>
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
+<input type="hidden" id="JSONToExcelConvertor_js" value="<%= STATIC %>js/JSONToExcelConvertor.js">
+<input type="hidden" id="wMask_js" value="<%= STATIC %>plugins/mask.js">
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"> </script>
+<script src="<%= STATIC %>javascripts/company/company_details.js?v=<%=VERSION%>"></script>
+<script src="https://static.52wmb.com/web_components/echarts/echarts.min.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>js/world.js"></script>
+<%if(wglobals.user.id){%>
+    <script src="<%= STATIC %>js/dcalendar.picker.js"></script>
+    <script src="<%= STATIC %>plugins/datatables/datatables-excel.min.js"></script>
+<%}%>
+</body>
+</html>

@@ -1,0 +1,28 @@
+body{background:#F7F8FA;}
+
+.company-foot{background:#fafafa;}
+.company-foot-k{background:none;width:940px;margin:0 auto;box-shadow:none;padding-left:0;}
+
+.channel-title{background:#F7F8FA;padding:60px 0;width:100%;padding-bottom:0;}
+.channel-name{text-align: center;margin-bottom:25px;}
+.channel-name h1{font-size:34.4px;color:#333;}
+.channel-name p{font-size:15.4px;color:#888;padding-top:4px;}
+
+.mall-list{width:940px;margin:0 auto;}
+.mall-list li{position:relative;float:left;background:#fff;width:365px;padding:50px 45px;margin-right:30px;margin-bottom:30px;border-radius:3px;box-shadow: 2px 2px 7px 7px rgb(0 0 0 / 1%);text-align:center;}
+.mall-list li:nth-child(2n){margin-right:0;}
+.mall-list li i{display:inline-block;height:65px;width:65px;border-radius:100px;margin-bottom:20px;}
+.mall-list li i.changtingka-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -446px -373px #f5f5f5 no-repeat;}
+.mall-list li i.shemei-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -270px -375px #f5f5f5 no-repeat;}
+.mall-list li i.sanjianke-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -218px -376px #f5f5f5 no-repeat;}
+.mall-list li i.bem-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -324px -376px #f5f5f5 no-repeat;}
+.mall-list li i.js-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -381px -376px #f5f5f5 no-repeat;}
+
+
+.mall-list li h2{font-size:18.4px;color:#333;}
+.mall-list li p{color:#333;line-height:140%;font-size:15.4px;padding-top:8px;padding-bottom:20px;}
+.mall-list li span{display:block;color:#666;font-size:15.4px;}
+.mall-list li span font{color:#333;font-size:18.4px;font-weight:bold;}
+.mall-list li a{display:inline-block;height:36px;line-height:36px;width:120px;border:1px #005FB9 solid;color:#005FB9;text-align:center;margin-top:4px;font-size:14.4px;border-radius:4px;margin-top:5px;}
+.mall-list li:nth-child(6) font{color:#999;line-height:250px;display:block;}
+.mall-list li u{text-decoration: none;position:absolute;left:7px;top:7px;background:#f40;color:#fff;font-size:12.4px;height:24px;line-height:24px;padding:0 8px;}

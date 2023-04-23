@@ -1,0 +1,31 @@
+<div class="foot-contact">
+    <% if(wglobals.lang=="cn" ) { %>
+        <p>&copy; 2010-2023 上海义缘网络科技有限公司 版权所有</p>
+        <p>咨询热线:&nbsp;<b>021-64033826</b>&nbsp;(周一至周五 9:15-18:00)</p>
+    <%} else {%>
+        <p>&copy; 2010-2023 52wmb.com all rights reserved</p>
+        <p>Whatsapp:&nbsp;<b>+8616621075894</b>&nbsp;9:00 Am-18:00 Pm (SGT)</p>       
+    <% } %>    
+</div>
+
+<% console.log(wglobals,results.dc_active,wglobals.nav_active,"1110000000000000000000") %>
+    <% let active=results.dc_active || wglobals.nav_active %>
+        <% let list=[{ name: wglobals.lang=='cn'?'采购商':'Buyer' , path:"/buyer",path_name:"buyer" },{ name:wglobals.lang=='cn'?'供应商':'Supplier', path:"/supplier",path_name:"supplier" },{ name:wglobals.lang=='cn'?'数据':'Trade data',
+            path:"/billsearch",path_name:"customs" },{ name:wglobals.lang=='cn'?'价格':'Price', path:"/loft_HD",path_name:"loft_hd" },{ name:wglobals.lang=='cn'?'邦课堂':'Class',
+            path:"/new",path_name:"class" }] %>
+
+            <div class="footer <%= wglobals.lang=="en"?"footer-en":"" %>">
+                <% list.forEach((item,index)=> { %>
+                    <% if(item.path_name=='store' && wglobals.lang=="en") {%>
+                        <% return %>
+                    <% } %>
+                    <a href="<%= item.path %>">
+                        <span class="img footer-img active<%= index %> <%= active==item.path_name?'active':'' %>"></span>
+                        <span class="<%= active==item.path_name?'text-color':'' %>">
+                            <%= item.name %>
+                        </span>
+                    </a>
+                    <% }); %>
+            </div>
+<%- include('../global/foot_script.ejs'); %>
+            

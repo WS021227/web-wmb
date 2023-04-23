@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangline/bangline_friend.css?v=<%=VERSION%>">
+    <meta name="keywords" content="<%=translate('keywords')%>">
+    <meta name="description" content="<%=translate('bangline_freends_des')%>">
+    <title><%=translate('bangline_friend')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body class="class-bg">
+<%- include('../global/head.ejs') %>
+<% var friend_list=results.friend_list.list%>
+
+<div class="friend">
+    <div class="friend-list">
+        <ul>
+            <% friend_list.forEach(function(item,index){%>
+            <li>
+                <a target="_blank" href="/m<%=item.id%>"><img src="<%=item.photo%>"><span><%=item.contact%></span></a>
+            </li>
+            <%})%>
+
+        </ul>
+        <br class="clear">
+    </div>
+    <div class="reload-more-lable">
+        <a class="reload-more" href="javascript:void(0)" onclick="more_friends(this)"><%=translate('share_text_more_click')%></a>
+    </div>
+
+</div>
+
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangline/friends.js?v=<%=VERSION%>"></script>
+</body>
+</html>

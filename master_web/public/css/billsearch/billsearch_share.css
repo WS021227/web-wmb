@@ -1,0 +1,245 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+
+}
+body{background:#F7F8FA;}
+.clear-box{
+clear: both;
+}
+
+
+.mgall-l {
+    margin-left: 100px;
+}
+
+.mar-l {
+    margin-left: 40px;
+}
+/* 搜索块样式 */
+.seach-Box {
+    padding: 30px 0;
+    background-color: #EAEDF2;
+}
+.seach-gongsi {
+    width: 1340px;
+    overflow: hidden;
+}
+/* 内容块样式 */
+.result-box {
+    display: flex;
+}
+/* 左边内容块 */
+.sousou-data-left {
+    background-color: #FFFFFF;
+    box-shadow: 4px 4px 4px 1px rgb(0 0 0 / 2%);
+}
+.sousou-data-left .sousou-data {
+
+    width: 920px;
+    padding-right: 20px;
+    height: auto;
+    
+}
+/* 右边内容块 */
+.soso-data-right {
+    width: 100%;
+}
+
+.soso-data-right .module-content {
+    overflow: hidden;
+    width: 350px;
+    margin-top: 25px;
+}
+.module-content h2 {
+    font-size: 15.4px;
+    color: #333333;
+    font-weight: bold;
+}
+.module-content h2 span {
+    float: right;
+    font-size: 12.4px;
+    color: #999999;
+}
+.collect-box {
+    background-color: #FFFFFF;
+    padding: 20px;
+}
+.collect-box a {
+    display: block;
+    margin-top: 10px;
+    border-radius: 4px;
+    background-color: #007FFF;
+    width: 310px;
+    font-size: 15.4px;
+    color: #FFFFFF;
+    text-align: center;
+    height: 45px;
+    line-height: 45px;
+}
+.collect-box p {
+    margin-top: 20px;
+    display: block;
+    font-size: 13.4px;
+    color: #666666;
+}
+
+.collect-box p span {
+    font-size: 12.4px;
+    color: #999999;
+    float: right;
+    clear: none;
+}
+.bang-classroom {
+    background-color: #FFFFFF;
+    padding: 20px 20px 5px;
+    margin-top: 20px;
+}
+/* 邦课堂 */
+.bang-list li {
+    font-size: 14.4px;
+    color: #666666;
+    line-height: 40px;
+    border-bottom: 1.5px solid #E5E5E5;
+}
+/* 邦line */
+.bang-line {
+    background-color: #FFFFFF;
+    margin-top: 20px;
+    border-radius: 5px;
+    padding: 20px 20px 0;
+    overflow: hidden;
+}
+.bang-line .bang-line-list {
+    margin-top: 10px;
+}
+.bang-line-list li:last-child {
+    border-bottom: none;
+}
+
+.bang-line-list li {
+    padding: 12px 0;
+    overflow: hidden;
+    border-bottom: 1px solid #E5E5E5;
+}
+.bang-line-list img {
+    width: 40px;
+    height: 40px;
+    background-color: #EAEDF2;
+    float: left;
+}
+.bang-list li:last-child {
+    border-bottom: none;
+}
+.bang-line-list p {
+    margin-left: 15px;
+    display: block;
+    float: left;
+    font-size: 13px;
+    color: #666666;
+}
+
+.bang-line-list p a {
+    display: block;
+}
+
+/*国家切换样式*/
+.screen-state{
+flex: 1;
+}
+.screen-state a{
+    padding: 0px 8px;
+}
+
+/**************************************************侧拉*************************************************************/
+/*模态框*/
+.modal {
+    display: none;
+    /* 默认隐藏 */
+    position: fixed;
+    /* 根据浏览器定位 */
+    z-index: 1;
+    /* 放在顶部 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* 全宽 */
+    height: 100%;
+    /* 全高 */
+    overflow: auto;
+    /* 允许滚动 */
+    background: rgba(0, 0, 0, .6);
+    /* 背景色 */
+}
+
+.box {
+    width: 710px;
+    min-height: 100vh;
+    /* height: 100%; */
+    float: right;
+    display: flex;
+    /* overflow: auto;*/
+}
+
+/*模态框内容*/
+.modal-content {
+    height: auto !important;
+    display: flex;
+    /*采用flexbox布局*/
+    flex-direction: column;
+    /*垂直排列*/
+    position: relative;
+    background-color: #fff;
+    /* margin: 15% auto; */
+    /*距顶部15% 水平居中*/
+    width: 100%;
+    height: 100%;
+    /* animation: topDown 0.4s; */
+    /*自定义动画，从模态框内容上到下出现*/
+}
+
+/* @keyframes topDown {
+        from {
+            right: -100px;
+            opacity: 0
+        }
+
+        to {
+            top: 0;
+            opacity: 1
+        }
+    }  */
+
+/*关闭X 样式*/
+.close {
+    background-color: #333;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 32px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 26px;
+}
+/****************************************************侧拉*******************************************************/
+/***************************************************tab*********************************************************/
+
+
+.tabs .tab {
+    float: left;
+    list-style: none;
+    font-size: 14.4px;
+
+    cursor: pointer;
+}
+
+.tabs .tab.active{border-bottom: 3px solid #007FFF;}
+/* 切换容器的显示样式， 如有其他需求，可覆盖 */
+.tab-pane{display: none!important;padding: 0 20px;}
+.tab-pane.active{display: block!important}
+/***************************************************tab*********************************************************/
+
+.display-none{display: none!important;}
+

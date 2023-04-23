@@ -1,0 +1,68 @@
+<style>
+.circle-tab{padding:5px 30px;padding-top:25px;text-align:center;font-size:14.4px;}
+.tab-list.tabs .tab.active{border-bottom:none;}
+.tab-list.tabs a{margin:0 8px;}
+
+.group-select{text-align:center;padding:35px 30px;padding-bottom:40px;}
+.member-list img{height:45px;width:45px;display:inline-block;margin-left:-10px;margin-right:-10px;border-radius:100px;}
+.group-img img{border-radius:100px;width:90px;height:90px;border:1px #ddd solid;padding:3px;background:#fff;}
+.group-title{font-size:21.4px;font-weight:bold;color:#333;margin-top:10px;margin-bottom:10px;}
+.group-descript{font-size:14.4px;line-height:150%;color:#333;}
+.group-number{margin:10px 0;font-size:15.4px;margin-bottom:20px;}
+.group-number font{padding:0 10px;color:#ccc;font-weight:100;}
+.group-exchange .btn{cursor:pointer;display:inline-block;height:40px;line-height:40px;border-radius:3px;padding:0 45px;background:#005FB9;color:#fff;font-size:14.4px;font-weight:bold;}
+.group-exchange label{display:block;color:#999;font-size:12px;}
+.group-exchange label font{display:inline-block;padding-left:16px;position:relative;padding-top:7px;transform: scale(.8);}
+.group-exchange label font input{height:12px;width:12px;background:#eee;border-radius:100px;position:absolute;left:0;top:9px;}
+</style>
+<div class="circle-tab tab-list tabs">
+    <span><%=translate('bline_popful_select_industry')%>:</span>
+    <% results.list.forEach(function (item, index){ %>
+    <a data-target="#circle_tab_con" data-pos=".circle-tab-<%=index%>" class="tab <%=index == 0?'active': ''%>"><%=item.name%></a>
+    <%})%>
+</div>
+<div class="group-select">        
+    <div class="tab-con" id="circle_tab_con">
+        <% results.list.forEach(function (item, index){ %>
+            <div class="tab-pane <%=index == 0?'active': ''%> circle-tab-<%=index%>">
+                <div class="line-group-item">
+                    <% var users = JSON.parse(item.circle_user_list);
+                    if(users.length > 0){%>
+                    <div class="group-member">
+                        <div class="member-list">                           
+                            <%users.forEach(function (uitem){%>
+                            <a target="_blank" href="<%=LINE_ROUTE()%>/line/<%=uitem.user_id%>"><img src="<%=LINE_IMAGE_PATH%><%=uitem.avatar%>" alt=""></a>
+                            <%})%>
+                        </div>
+                    </div>
+                    <%}%>
+                    <% console.log(item, 'item') %>
+                    <div class="group-title"><%=keyreplace(translate('bline_popful_title_3'), '[@行业]', item.name)%></div>
+                    <div class="group-descript"><%=keyreplace(translate('bline_popful_des_3'), '[@行业]', item.name)%></div>
+                    <div class="group-number"><%=item.view_count%><%=translate('bline_popful_display')%><font>|</font><%=item.user_count%><%=translate('bline_popful_members')%><font>|</font><%=item.topic_count%><%=translate('bline_popful_posts')%></div>
+                    <div class="group-exchange">
+                        <a class="btn" data-gid="<%=item.id%>" data-href="<%=LINE_ROUTE()%>/group-<%=item.id%>" onclick="group_inbound(this)"><%=translate('bline_popful_button_3')%></a>
+                        <label><font><input type="checkbox" checked="checked" name="group_inbound_<%=item.id%>" value="1"><%=translate('bline_popful_click_button')%></font></label>
+                    </div>
+                </div>
+            </div>
+        <%})%>
+    </div>
+</div>
+<script>
+    function group_inbound(elem) {
+        let $this = $(elem), gid = $this.data('gid'),
+            is_inbound = $('input:checkbox[name="group_inbound_' + gid + '"]').prop('checked'),
+            href = $this.data('href')
+        if (!is_inbound) return window.location.href = href
+        $.ajax('/async/line/group/inbound', {
+            data: {group_id: gid},
+            datatype: 'json',
+            type: 'post',
+            success: function (result) {
+                if (result.state != 0) return $.alert('小组入驻失败')
+                window.location.href = href
+            }
+        })
+    }
+</script>

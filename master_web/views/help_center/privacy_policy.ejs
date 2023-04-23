@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/help_center/help.css?v=<%=VERSION%>">
+    <title><%=translate('help_nav_privacy_policy')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="help-k">
+        <%- include('./child/help_center_leftmeun.ejs') %>
+        <div class="help-content">
+            <div>
+                <%if(wglobals.lang == 'cn'){%> 
+                <h1>隐私政策</h1>
+                <p>                    
+                    (1)我们充分理解并尊重用户对其隐私保护的合理期待，我们承诺采取合理方式依法保护您的个人隐私。<br/><br/>
+                    (2)为便于我们为您提供【外贸商务信息咨询服务】及其他相关服务, 您同意：我们可按照本协议规定的方式收集您信息，包括但不限于：头像，发帖，回帖，点赞，点击动作，私信，日志，cookies等；我们对前述信息享有使用权，及不具有直接指向性或特定人身属性数据统计数值分享权。<br/><br/>
+                    (3)除法律或有法律赋予权限的政府部门要求及本协议规定外，未经用户同意，我们不得向第三方公开、透露用户个人信息。<br/><br/>
+                    (4)如果您在注册时选择同意公开或透露，或您与我们及合作单位之间就您的个人信息公开或使用另有约定，同意公开或透露您的个人信息,则我们可以公开或透露您的个人信息。如果您选择公开或透露您的个人信息，您应自行承担因此可能产生的任何风险，我们或合作单位对此不予负责。<br/><br/>
+                    (5)您同意，您亦应严格遵守本协议的收据收集及隐私保护约定。<br/><br/>
+                    (6)为了实现分享和授权功能，我们使用了MobTech的ShareSDK产品，此产品的隐私策略条款，可以参考：http://www.mob.com/about/policy
+                </p>
+                <%}else{%>
+                    <h1>Privacy policy</h1>
+                    <p>                    
+                        (1) We fully understand and respect the reasonable expectations of our users regarding the protection of their privacy and we undertake to take reasonable steps to protect your privacy in accordance with the law.<br/><br/>
+(2) In order for us to provide you with [foreign trade business information consulting services] and other related services, you agree that we may collect information from you in the manner specified in this Agreement, including but not limited to: avatars, posts, replies, likes, clicks, private messages, logs, cookies, etc.; we have the right to use the aforementioned information and statistical values that do not have direct direction or specific personal attributes. The right to share.<br/><br/>
+(3) Except for the requirements of the law or governmental authorities with legal authority and the provisions of this agreement, we shall not disclose or reveal users' personal information to third parties without their consent.<br/><br/>
+(4) We may disclose or reveal your personal information if you choose to consent to such disclosure or reveal at the time of registration, or if you have otherwise agreed with us and our partners to disclose or reveal your personal information. If you choose to disclose or reveal your personal information, you do so at your own risk and we or our partners are not responsible for any risk that may arise as a result.<br/><br/>
+(5) You agree that you shall also comply strictly with the receipt collection and privacy practices of this Agreement.<br/><br/>
+(6) In order to implement the sharing and licensing features, we use MobTech's ShareSDK product, the privacy policy terms of which can be found at.：http://www.mob.com/about/policy
+                    </p>
+                <%}%>
+            </div>
+        </div>
+        <br class="clear"/>
+    </div>
+
+
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/index/help_center.js?v=<%=VERSION%>"></script>
+</body>
+</html>

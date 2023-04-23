@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%= translate('store_soso_keywords') %>"/>
+    <meta name="description" content="<%= translate('store_soso_description') %>"/>
+    <title><%= translate('store_soso_title') %>-<%= translate('share_text_sitename') %></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%= VERSION %>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/index.css?v=<%= VERSION %>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<% var user = wglobals.user %>
+<% if(wglobals.lang == 'cn'){ %>
+<div class="mall-banner">
+    <div class="mall-banner-k">
+        <div class="mall-banner-l">
+            <h1>社媒邮箱采集工具</h1>
+            <p>30秒! 一键快速，帮您找到目标公司关键人邮箱和社交账号！</p>
+            <div class="mall-banner-button">
+                <% var tips = '提示：钻石会员增值服务，以上2版本有效期12个月',buyer_level=-1 %>
+                <% if(user.id == null){ %>
+                    <%results.add_service.forEach(function (item){%>
+                    <a href="/login" onclick="return referrer_link(this)"><%=item.alias%>：<b><%=item.amount_rmb%></b>元/年<font>|</font>购买<span>&gt;</span></a>
+                    <%})%>
+                <% }else{ %>
+                    <% var buyer_url = verify_real_vip('bd')?'/product?adds=soso&product=':'/Alipay?v=yd&ra=' %>
+                    <%results.add_service.forEach(function (item){%>
+                        <%if(item.buyer_level > -1 && item.buyer_level <= item.product_level){%>
+                        <%
+                            tips = '提示：你已购买"'+ item.name +'"，有效期至 '+ item.expired_time
+                            buyer_level=item.buyer_level
+                        %>
+                            <a href="javascript:void(0)"  data-build="0" data-perms="<%=results.perms%>"  id="go_soso">进入社媒系统<span>&gt;</span></a>
+                        <%}else if(item.product_level  > buyer_level){%>
+                            <% console.log(buyer_url,"soso") %>
+                            <a href="<%=buyer_url%><%=item.id%>"><%=item.alias%>：<b><%=item.amount_rmb%></b>元/年<font>|</font>购买<span>&gt;</span></a>
+                        <%}%>
+                    <%})%>
+                <% } %>
+            </div>
+            <div class="mall-banner-tips"><%= tips %></div>
+        </div>
+        <div class="mall-banner-r soso-banner"><img src="https://static.52wmb.com/wmb_img/share/soso_banner_img.png"/></div>
+        <br class="clear"/>
+    </div>
+</div>
+<div class="mall-vedio-all">
+    <div class="mall-c mall-vedio">
+        <div class="mall-vedio-title">
+            <h2>公司邮箱采集视频演示</h2>
+            <p>通过公司名、网址、产品名自动搜索全网主流搜索引擎和社交媒体，一键深挖公司关键人邮箱、职位及社交账号。外贸客户开发过程中，开发效率提升不止10倍。</p>
+        </div>
+        <div class="mall-vedio-c">
+            <video class="editor" controls autoplay width="100%;">
+                <source src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4"
+                        type="video/mp4">
+            </video>
+        </div>
+        <div class="mall-success">
+            <div class="use-example">
+                <div class="example-item active">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_131174714625577382.jpeg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">刘先生</div>
+                        <div class="translate">外贸经理</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            刘先生（外贸经理）
+                        </div>
+                        <div class="example-des-sub">
+                            大B业务一样适合社交媒体营销。我们比较侧重客户搜索这个功能，因为找到的客户比较准，而且都有办法联系上。我们的邮件回复率能达到5%左右，还不包括通过邮件跟踪锁定的重点客户。
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_1512875627128.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">欧阳女士</div>
+                        <div class="translate">外贸经理</div>
+                        <div class="use-time">使用4年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            欧阳女士（外贸经理）
+                        </div>
+                        <div class="example-des-sub">
+                            我们是阿里巴巴国际站的铁杆用户。2015年开始我们开始重视外贸渠道的拓展。社交媒体和贸易数据结合在一起的方法很好，解决了潜在目标客户和联系方式的匹配，快速推动业务的发展。
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_130839184103311815.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">张女士</div>
+                        <div class="translate">外贸业务员</div>
+                        <div class="use-time">使用2年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            张女士（外贸业务员）
+                        </div>
+                        <div class="example-des-sub">
+                            我们是一家创业型的贸易公司体量不大。通过工具，找到一些靠近终端的小型采购商，这类客户价格较好，竞争不激烈，量不算大但很适合我们。三年下来我们积累了很多这样的长期客户。
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_130215753372525000.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Howard</div>
+                        <div class="translate">区域经理</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Howard（区域经理）
+                        </div>
+                        <div class="example-des-sub">
+                            我是个SOHO，这个软件不需要独立安装，网页版的便捷性真的很高；一键采集通过外贸邦筛出精准目标公司的邮箱，批量导出的联系人数据配合邮件营销工具，很高效且性价比超高！
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_156023967808528173954.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">王先生</div>
+                        <div class="translate">销售顾问</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            王先生（销售顾问）
+                        </div>
+                        <div class="example-des-sub">
+                            我们也有做阿里平台，相比以前客户询盘少了些，给员工买了这个软件，回复完询盘后，每天花半小时来做主动开发以作补充。出人意料的是效果非常好，雇员的社交账号信息真的非常重要！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mall-solution">
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_1.png"
+                                                      style="margin-left:-15px;"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:60px;">
+            <h2><font>1</font>4大深挖渠道，约占据全网流量90%。</h2>
+            <p>通过公司名称搜索，系统会自动为您推荐来自于以下渠道源的官方网址、公司社交主页，标记渠道源。通过人工智能推荐算法优先推荐目标公司真实官网及雇员社交账号。</p>
+            <span>全网用户超过20亿+</span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_2.png"
+                                                       style="margin-right:-15px;"/></div>
+        <div class="mall-solution-text mall-left" style="padding-top:60px;">
+            <h2><font>2</font>平台授权, 免翻墙一键深挖！</h2>
+            <p>该工具同时入驻了阿里巴巴国际站、1688市场、阿里外贸服务市场，很快得到大量海内外外贸用户的青睐，迅速成为该领域中的爆款邮箱采集工具。</p>
+            <span>确保采集到的客户邮箱100%可联系、可激活。</span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_3.png"
+                                                      style="margin-left:-18px;"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:60px;">
+            <h2><font>3</font>找到公司公共主页及雇员社交账号</h2>
+            <p>通过公司名搜索，社媒搜搜可以帮助您从领英、facebook、推特等主流社交平台找到目标公司的社交账号；通过对公司主页的深挖可进一步找打公司雇员的个人社交账号。</p>
+            <span>全网用户超过20亿+</span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_4.png"/>
+        </div>
+        <div class="mall-solution-text mall-left" style="padding-top:60px;">
+            <h2><font>4</font>可深挖到完整的联系方式！</h2>
+            <p>深挖到公司雇员完整的联系方式包括：雇员姓名、公司职位、邮箱、社交账号；所有深挖数据均来自官方授权渠道、数据真实100%可联系。</p>
+            <span>确保采集到的客户邮箱100%可联系、可激活。</span>
+        </div>
+        <br class="clear"/>
+    </div>
+</div>
+
+<div class="mall-bg">
+    <div class="mall-v">
+        <div class="mall-share-title">
+            <h2>版本对比及功能清单</h2>
+            <p>功能简单高效易上手，使用社媒搜搜开发外贸客户效率提升不止10倍</p>
+        </div>
+        <div class="mall-v-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>核心功能清单</th>
+                    <th>社媒标搜搜标准版</th>
+                    <th>社媒搜搜高级版</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>在线人数</td>
+                    <td>1人在线使用</td>
+                    <td>持<font>5</font>人同时在线</td>
+                </tr>
+                <tr>
+                    <td>公司邮箱采集</td>
+                    <td>每天有效采集30家</td>
+                    <td>每天有效采集<font>200</font>家</td>
+                </tr>
+                <tr>
+                    <td>邮箱导出</td>
+                    <td>每天30家公司邮箱可导出</td>
+                    <td>每天<font>200</font>家公司可导出</td>
+                </tr>
+                <tr>
+                    <td>邮箱搜索方式</td>
+                    <td>支持公司名、网址</td>
+                    <td>支持公司名、网址、<font>产品关键字</font></td>
+                </tr>
+                <tr>
+                    <td>搜索渠道</td>
+                    <td>综合搜索</td>
+                    <td>综合搜索<br/>Google(地方)、Facebook、Linkedin、Twitter</td>
+                </tr>
+                <tr>
+                    <td>公司收藏</td>
+                    <td>支持</td>
+                    <td>支持</td>
+                </tr>
+                <tr>
+                    <td>采集历史</td>
+                    <td>支持</td>
+                    <td>支持</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="mall-ask">
+    <div class="mall-share-title">
+        <h2>社媒邮箱采集常见问答</h2>
+        <p>为您整理了关于该工具用户咨询最多、关注最多的一些问题。</p>
+    </div>
+    <div id="questions">
+        <ul>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>标准版和高级版有什么区别？</h3>
+                <div class="foldContent">
+                    <p>高级版可以同时5个人使用，每天可以有效深挖200家公司的雇员信息。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>用产品名怎么采集?</h3>
+                <div class="foldContent">
+                    <p>建议每次使用一个核心关键词</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>可以选择分进分分区域进行采集吗？</h3>
+                <div class="foldContent">
+                    <p>可以</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>社媒搜搜能采集到什么样的联系方式？</h3>
+                <div class="foldContent">
+                    <p>可以采集到公司雇员的职位、邮箱信息、以及相关的社媒账号</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>社媒搜搜的服务有效期是多长时间？</h3>
+                <div class="foldContent">
+                    <p>12个月</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>社媒搜搜采集邮箱步骤？</h3>
+                <div class="foldContent">
+                    <p>第一步：通过产品名称、公司名称搜索官网并筛选。第二步：采集确认的公司。第三步：查看采集结果</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<% }else{ %>
+<div class="mall-banner">
+    <div class="mall-banner-k">
+        <div class="mall-banner-l">
+            <h1>Email Hunting Tool</h1>
+            <p>30 Seconds! Find The Key Person's Email And Social Homepage...</p>
+            <div class="mall-banner-button">
+                <% var tips = 'Tip: Diamond membership value-added service, above 2 versions valid for 12 months', buyer_level=-1 %>
+                <% if(user.id == null){ %>
+                    <%results.add_service.forEach(function (item){%>
+                        <a href="/login" onclick="return referrer_link(this)"><%=item.alias%>:$<b><%=item.amount_usd%></b>/year<font>|</font>Buy<span>&gt;</span></a>
+                    <%})%>
+                <% }else{ %>
+                    <% var buyer_url = verify_real_vip('bd')?'/product?adds=soso&product=':'/Alipay?v=yd&ra=' %>
+                    <%results.add_service.forEach(function (item){%>
+                    <%if(item.buyer_level > -1 && item.buyer_level <= item.product_level){%>
+                        <%
+                            tips = 'Tip: You have purchased the "'+ item.name +'", valid until '+ item.expired_time
+                            buyer_level=item.buyer_level
+                        %>
+                        <a href="javascript:void(0)" data-build="0" data-perms="<%=results.perms%>" id="go_soso">Go System<span>&gt;</span></a>
+                    <%}else if(item.product_level  > buyer_level){%>
+                    <a href="<%=buyer_url%><%=item.id%>"><%=item.alias%>：$<b><%= item.amount_usd %></b>/year<font>|</font>Buy<span>&gt;</span></a>
+                    <%}%>
+                    <%})%>
+                <% } %>
+            </div>
+            <div class="mall-banner-tips"><%= tips %></div>
+        </div>
+        <div class="mall-banner-r soso-banner"><img src="https://static.52wmb.com/wmb_img/share/soso_banner_img.png"/></div>
+        <br class="clear"/>
+    </div>
+</div>
+<div class="mall-vedio-all">
+    <div class="mall-c mall-vedio">
+        <div class="mall-vedio-title">
+            <h2>Video Demo, Witness The Miracle</h2>
+            <p>A carefully selected and cost-effective email and social account hunting tool</p>
+        </div>
+        <div class="mall-vedio-c">
+            <video class="editor" controls autoplay width="100%;">
+                <source src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/a93b9e545285890801446878831/v.f40.mp4"
+                        type="video/mp4">
+            </video>
+        </div>
+        <div class="mall-success">
+            <div class="use-example">
+                <div class="example-item active">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_131174714625577382.jpeg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Mr Liu</div>
+                        <div class="translate">Manager</div>
+                        <div class="use-time">used 2 years</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Mr Liu（Manager）
+                        </div>
+                        <div class="example-des-sub">
+                            Through products, companies or official websites，automatically search the related
+                            information from Google, Facebook, LinkedIn, and Twitter. Automatically collect key person's
+                            position, emails.
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_1512875627128.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Miss Ouyang</div>
+                        <div class="translate">Manager</div>
+                        <div class="use-time">used 4 years</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Miss Ouyang（Manager）
+                        </div>
+                        <div class="example-des-sub">
+                            Since 2015, we have begun to attach importance to the expansion of foreign trade channels.
+                            The combination of Emal hunting and customs data is a good way to solve the matching of
+                            potential target customers and contact methods.
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_130839184103311815.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Miss Zhang</div>
+                        <div class="translate">Sales</div>
+                        <div class="use-time">used 2 years</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Miss Zhang（Sales）
+                        </div>
+                        <div class="example-des-sub">We are an entrepreneurial trading company with a small volume.
+                            Through this tool, find some small buyers close to the terminal. These customers are at a
+                            better price, the competition is not intense, and the amount is not big but suitable for us.
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_130215753372525000.png" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Howard</div>
+                        <div class="translate">Regional Manager</div>
+                        <div class="use-time">used 3 years</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Howard（Regional Manager）
+                        </div>
+                        <div class="example-des-sub">
+                            I am SOHO，this tool doesn't need to be installed separately, the web version is really
+                            convenient. One-click to collect target companies' email through 52wmb and batch download
+                            the contact information. Combined using with EDM tool will be more efficient.
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_156023967808528173954.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Mr Wang</div>
+                        <div class="translate">Sales Consultant</div>
+                        <div class="use-time">used 3 years</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Mr Wang（Sales Consultant）
+                        </div>
+                        <div class="example-des-sub">
+                            We also use the Ali platform, but the consultation became less. We bought this tool as a
+                            supplement and take 30 mins every day to actively develop customer after answering the
+                            inquiries, which effect is surprisingly good.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mall-solution">
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left">
+            <img src="https://static.52wmb.com/wmb_img/share/soso_mod_1.png" style="margin-left:-15px;"/>
+        </div>
+        <div class="mall-solution-text mall-right" style="padding-top:60px;">
+            <h2><font>1</font>4 Collecting Channels, Covers 90% Network Traffic</h2>
+            <p>Search by company name, the system will automatically recommend you with websites and company social
+                homepages and marked channel sources.</p>
+            <span>Over 2 billion+ users across the network</span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_2.png"
+                                                       style="margin-right:-15px;"/></div>
+        <div class="mall-solution-text mall-left" style="padding-top:60px;">
+            <h2><font>2</font>Platform Authorization, One-click Depth Collection!</h2>
+            <p>This tool has also entered the Alibaba International Station, the 1688 market, and the Ali foreign trade
+                service market.</p>
+            <span>Ensure that 100% of the captured customer mailboxes are contactable and activatable.</span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_3.png"
+                                                      style="margin-left:-18px;"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:60px;">
+            <h2><font>3</font>Company Homepages And Employee Social Accounts</h2>
+            <p>this tool will help you collect social accounts from Linkedin, Facebook, Twitter,etc; Depth collect by
+                company homepages, find out employee social accounts.</p>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_4.png"/>
+        </div>
+        <div class="mall-solution-text mall-left" style="padding-top:60px;">
+            <h2><font>4</font>Depth Collected Complete Contact Information</h2>
+            <p>Depth collected employee's complete contact information, including their name, positions, and social
+                accounts. All data is from officially authorized channels and 100% of them are true.</p>
+        </div>
+        <br class="clear"/>
+    </div>
+</div>
+
+<div class="mall-bg">
+    <div class="mall-v">
+        <div class="mall-share-title">
+            <h2>Products Feature of E-mail Hunting Tool Premium</h2>
+            <p>Using E-mail Hunting Too to develop foreign trade customers is more than 10 times more efficient</p>
+        </div>
+        <div class="mall-v-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>Rights</th>
+                    <th>Standard</th>
+                    <th>Premium</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Number of users</td>
+                    <td>Only 1 person online</td>
+                    <td><font>5</font> people online at the same time</td>
+                </tr>
+                <tr>
+                    <td>Contacts Collection</td>
+                    <td>Valid collection 30 times per day</td>
+                    <td>Valid collection <font>200</font> times per day</td>
+                </tr>
+                <tr>
+                    <td>Contacts Download</td>
+                    <td>Contacts of 30 companies (Excel)</td>
+                    <td>Contacts of <font>200</font> companies (Excel)</td>
+                </tr>
+                <tr>
+                    <td>Search Method</td>
+                    <td>Company/Domain</td>
+                    <td>Company/Domain/<font>Product</font></td>
+                </tr>
+                <tr>
+                    <td>Search Purchaser</td>
+                    <td>Google、Facebook、Linkedin、Twitter</td>
+                    <td>Google+<font>Local</font>、Facebook、Linkedin、Twitter</td>
+                </tr>
+                <tr>
+                    <td>Corporate Collection</td>
+                    <td>Support</td>
+                    <td>Support</td>
+                </tr>
+                <tr>
+                    <td>Collection History</td>
+                    <td>Support</td>
+                    <td>Support</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="mall-ask">
+    <div class="mall-share-title">
+        <h2>Email Hunting Tool Collection FAQ</h2>
+        <p>We have compiled for you some of the most frequently asked questions and concerns about the tool from
+            users.</p>
+    </div>
+    <div id="questions">
+        <ul>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>What is the difference between the Standard and Premium versions?</h3>
+                <div class="foldContent">
+                    <p>The Premium version can be used by 5 people at the same time and can effectively deep dive into
+                        the employee information of 200 companies per day.</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>How do I collect using a product name?</h3>
+                <div class="foldContent">
+                    <p>It is recommended to use one core keyword search at a time</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>Can I choose to split into sub-regions for collection?</h3>
+                <div class="foldContent">
+                    <p>Yes</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>What kind of contact information can Email Hunting Tool capture?</h3>
+                <div class="foldContent">
+                    <p>Captures job titles, email addresses, and social media accounts of company employees</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>How long is Email Hunting Tool's service valid?</h3>
+                <div class="foldContent">
+                    <p>12 months</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>Email Hunting Tool Capture Email Steps?</h3>
+                <div class="foldContent">
+                    <p>Step 1: Search official websites and filter by product name and company name. Step 2: Collect the
+                        confirmed companies. Step 3: View the collection results</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<% } %>
+
+<%- include('../global/foot.ejs') %>
+<script>
+    $(function () {
+        let $go_soso = $('#go_soso')
+        console.log($go_soso.length, '$go_soso.length')
+        if($go_soso.length > 0) {
+            let perms = $go_soso.data('perms')
+            $go_soso.click(function () {
+                if (!perms) return $.alert(unity_lang('share_child_not_perms'))
+
+                if ($(this).data('build') == '1') return $.alert('跳转链接构建中，请稍后......')
+                if ($(this).data('build')) return $.alert('跳转链接构建失败，请联系外贸邦')
+            })
+            if (perms) {
+                verify_social_media('', '', function (result) {
+                    if (result.state == 0) return $go_soso.attr('href', result.data.url).attr('target', '_blank').removeAttr('data-build')
+                    $('#go_soso').data('build', '2')
+                })
+            }
+        }
+
+        $('.example-item').on({
+            mouseover: function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            }
+        });
+
+        $('.banner-float').addClass('show');
+    });
+
+
+    $(function () {
+        $("li>h3", "#questions").bind("click", function () {
+            var li = $(this).parent();
+            if (li.hasClass("fold")) {
+                li.removeClass("fold");
+                $(this).find("b").removeClass("UI-bubble").addClass("UI-ask");
+                //li.find(".foldContent").slideDown();
+            } else {
+                li.addClass("fold");
+                $(this).find("b").removeClass("UI-ask").addClass("UI-bubble");
+                //li.find(".foldContent").slideUp();
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<style>
+    .group-enter{background:#fff;}
+    .group-enter:hover{background:#fff;}
+</style>
+<div class="group-enter" style="text-align:center;padding:30px 30px;">
+    <% var circle_names = ''%>
+    <% results.list.forEach(function (item){ %>
+        <div class="group-img"><img src="<%=LINE_IMAGE_PATH%><%=item.photo%>"></div>
+    <%circle_names += (',' + item.name)%>
+    <%})%>
+    <h1><%=keyreplace(translate('bline_popful_title_1'), '[@行业]', circle_names.slice(1))%></h1>
+
+
+    <%if(results.list.length > 1){%>
+        <p><%=keyreplace(translate('bline_popful_des_1'), '[@行业]', circle_names.slice(1))%></p>
+        <a href="/user/line/group" class="group-link"><%=translate('bline_popful_button_1')%></a>
+    <%}else{%>
+        <% var group = results.list[0] %>
+        <p><span>圈子成员<br/><b><%=group.user_count%></b></span><span>帖子<br/><b><%=group.topic_count%></b></span><span>访问量<br/><b><%=group.view_count%></b></span></p>
+        <p><%=keyreplace(translate('bline_popful_des_1'), '[@行业]', circle_names.slice(1))%></p>
+        <a href="<%=LINE_ROUTE()%>/group-<%=group.id%>" target="_blank" class="group-link"><%=translate('bline_popful_button_1')%></a>
+    <%}%>
+</div>

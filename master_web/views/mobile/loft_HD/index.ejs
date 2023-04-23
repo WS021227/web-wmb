@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('store_data_keywords')%>" />
+    <meta name="description" content="<%=translate('store_data_description')%>" /></head>
+    <title><%=translate('store_data_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/loft_HD/loft_HD.css?v=<%=VERSION%>" />
+</head>
+<body>
+    <% console.log(results,"xxxxx") %>
+        <div class="container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+            <%- include('../layout/header.ejs'); %>
+            <div class="bj_back_color"></div>
+            <div class="swiper mySwiper swiper-coverflow swiper-3d swiper-initialized swiper-horizontal swiper-pointer-events swiper-watch-progress">
+                <div class="swiper-wrapper" id="swiper-wrapper-925dd9f1ca81cda9" aria-live="polite">
+
+                    <% if(wglobals.lang=='cn') {%>
+                    <!-- vip -->
+                    <div class="swiper-slide" role="group" aria-label="1 / 9"
+                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, -400px) rotateX(0deg) rotateY(200deg) scale(1); z-index: -3;">
+                        <div class="swiper-slide-title"><%= results.v.name %></div>
+                        <li class="swiper-slide-phone">
+                            <%= results.v.descriptions %>
+                        </li>
+                        <li class="swiper-slide-tq">
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_left.png">
+                            <span>专属特权</span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />每天<span>200</span>家公司报告概述查阅</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />每天可查阅不多余<span>200</span>个联系方式</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />可查阅贸易公司的所有交易记录</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />支持钻石账号升级补差价</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>￥<span><%= results.v.amount %></span>/<%= results.v.duration %>月</span>
+                            <a href="/Alipay?<%= wglobals.user.vip_level=="v"?results.v.mark:wglobals.user.vip_level %>">立即购买</a>
+                        </div>
+                    </div>
+                    <!-- 蓝钻 -->
+                    <div class="swiper-slide" role="group" aria-label="2 / 9"
+                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, -400px) rotateX(0deg) rotateY(200deg) scale(1); z-index: -3;">
+                        <div class="swiper-slide-title">
+                            <%= results.bd.name %>
+                        </div>
+                        <li class="swiper-slide-phone">
+                            <%= results.bd.descriptions %>
+                        </li>
+                        <li class="swiper-slide-tq">
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_left.png"><span>专属特权</span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />公司贸易报告无限查阅</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />公司贸易数据模块查阅不限制</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />最多支持1+2子账号功能</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />升级黄钻会员补差价</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>￥<span><%= results.bd.amount %></span>/<%= results.bd.duration %>月</span>
+                            <a href="/Alipay?<%= wglobals.user.vip_level!=='yd'?results.bd.mark:"yd" %>">立即购买</a>
+                        </div>
+                    </div>
+                    <!-- 黄钻 -->
+                    <div class="swiper-slide" role="group" aria-label="3 / 9"
+                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, -300px) rotateX(0deg) rotateY(150deg) scale(1); z-index: -2;">
+                        <div class="swiper-slide-title">
+                            <%= results.yd.name %>
+                        </div>
+                        <li class="swiper-slide-phone">
+                            <%= results.yd.descriptions %>
+                        </li>
+                        <li class="swiper-slide-tq">
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_left.png">
+                            <span>专属特权</span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />支持公司贸易报告无限制查阅</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />支持行业报告创建及查阅</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />支持数据导出、高级筛选、标签创建</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />最多支持1+4子账号功能</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>￥<span><%= results.yd.amount %></span>/<%= results.yd.duration %>月</span>
+                            <a href="/Alipay?<%= results.yd.mark %>">立即购买</a>
+                        </div>
+                    </div>
+                    <!-- 外贸三剑客 -->
+                    <div class="swiper-slide swiper-slide-visible" role="group" aria-label="4 / 9"
+                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, -200px) rotateX(0deg) rotateY(100deg) scale(1); z-index: -1;">
+                        <div class="swiper-slide-title">
+                            <%= results.tsm.name %>
+                        </div>
+                        <li class="swiper-slide-phone">
+                            <%= results.tsm.descriptions %>
+                        </li>
+                        <li class="swiper-slide-tq">
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_left.png">
+                            <span>专属特权</span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />性价比高的客户开发解决方案</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />拥有黄钻会员数据查询权限</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />配有社媒邮箱采集标准版</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />配有BME邮件群发工具标准版</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>￥<span><%= results.tsm.amount %></span>/<%= results.tsm.duration %>月</span>
+                            <a href="/Alipay?<%= results.tsm.mark %>">立即购买</a>
+                        </div>
+                    </div>
+                    <% }else{ %>
+                    <!-- en -->
+                    <!-- vip -->
+                    <div class="swiper-slide" role="group" aria-label="1 / 9"
+                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, -400px) rotateX(0deg) rotateY(200deg) scale(1); z-index: -3;">
+                        <div class="swiper-slide-title">VIP Membership</div>
+                        <li class="swiper-slide-phone">Check contact information and shipments</li>
+                        <li class="swiper-slide-tq"><img src="<%= STATIC %>mobile/images/loft_HD/z_left.png">&nbsp;<span>Exclusive&nbsp;privilege</span>&nbsp;<img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />View <span>200</span> companies' overview every day</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />View no more than 200 companies' contact</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />View all B/Ls of the companies</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Diamond members through price difference</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>$<span><%= results.v.amount %></span>/1Year</span>
+                            <a href="/Alipay?<%= wglobals.user.vip_level!=='v'?results.v.mark:wglobals.user.vip_level%>">Buy&nbsp;now</a>
+                        </div>
+                    </div>
+                    <!-- 蓝钻 -->
+                    <div class="swiper-slide" role="group" aria-label="2 / 9" style="transition-duration: 0ms; transform: translate3d(0px, 0px, -400px) rotateX(0deg) rotateY(200deg) scale(1); z-index: -3;">
+                        <div class="swiper-slide-title">Blue Diamond</div>
+                        <li class="swiper-slide-phone">Unlimited of the company report check</li>
+                        <li class="swiper-slide-tq">
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_left.png">
+                            &nbsp;<span>Exclusive&nbsp;privilege</span>&nbsp;
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Unlimited access to company trade reports</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Company's trade data is not restricted</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Support 1 primary account+2 sub-accounts</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Pay the price difference to upgrade</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>$<span><%= results.bd.amount %></span>/1Year</span>
+                            <a href="/Alipay?<%= wglobals.user.vip_level!=='yd'?results.bd.mark:wglobals.user.vip_level %>">Buy&nbsp;now</a>
+                        </div>
+                    </div>
+                    <!-- 黄钻 -->
+                    <div class="swiper-slide" role="group" aria-label="3 / 9"
+                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, -300px) rotateX(0deg) rotateY(150deg) scale(1); z-index: -2;">
+                        <div class="swiper-slide-title">Yellow Diamond</div>
+                        <li class="swiper-slide-phone">Multi-person collaborative operation</li>
+                        <li class="swiper-slide-tq">
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_left.png">
+                            &nbsp;<span>Exclusive&nbsp;privilege</span>&nbsp;
+                            <img src="<%= STATIC %>mobile/images/loft_HD/z_right.png">
+                        </li>
+                        <ul>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Unlimited access to company trade reports</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Create and View of Industry reports</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Support data export, advanced filtering</li>
+                            <li><img src="<%= STATIC %>mobile/images/loft_HD/yes.png" />Support 1 primary account+4 sub-accounts</li>
+                        </ul>
+                        <div class="swiper-slide-btn">
+                            <span>$<span><%= results.yd.amount %></span>/1Year</span>
+                            <a href="/Alipay?<%= results.yd.mark %>">Buy&nbsp;now</a>
+                        </div>
+                    </div>
+                    <%}%>
+                </div>
+            </div>
+            <% if(wglobals.lang=='cn'){ %>
+            <div class="bj_content">
+                <h2 class="bj_content_title">常见问答</h2>
+                <ul>
+                    <li>
+                        <span>
+                            <span class="qq">Q</span>
+                            <span class="text">目前有多个国家的贸易数据可以提供，是否真实，数据如何更新？</span>
+                        </span>
+                        <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                    </li>
+                    <li>
+                        <span>
+                            <span class="qq">Q</span>
+                            <span class="text">未过期的VIP会员是否可以升级至黄钻会员？</span>
+                        </span>
+                        <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                    </li>
+                    <li>
+                        <span>
+                            <span class="qq">Q</span>
+                            <span class="text">是否可以提供合同和发票？</span>
+                        </span>
+                        <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                    </li>
+                    <li>
+                        <span>
+                            <span class="qq">Q</span>
+                            <span class="text">你们的付款方式有哪些，如何开通会员账号和权限？</span>
+                        </span>
+                        <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                    </li>
+                    <li>
+                        <span>
+                            <span class="qq">Q</span>
+                            <span class="text">这些数据可以帮我做什么、通过数据可以查到哪些内容？</span>
+                        </span>
+                       <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                    </li>
+                    <li>
+                        <span>
+                            <span class="qq">Q</span>
+                            <span class="text">你们跟市面上的贸易数据同行公司有哪些优势和区别？</span>
+                        </span>
+                        <img  src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                    </li>
+                </ul>
+            </div>
+            <% }else{%>
+                <div class="bj_content">
+                    <li class="bj_content_title">Members' Frequently Asked Questions
+                    </li>
+                    <ul>
+                        <li>
+                            <span>
+                                <span class="qq">Q</span>                              
+                                <span class="text">How many countries' trade data are currently available? How is the data updated?</span>
+                            </span>
+                            <img src="<% STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                        </li>
+                        <li>
+                            <span>
+                                <span class="qq">Q</span>
+                                <span class="text">Can I upgrade my unexpired VIP membership to Yellow Diamond membership?</span>
+                            </span>    
+                            <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                        </li>
+                        <li>
+                            <span>
+                                <span class="qq">Q</span>
+                                <span class="text">Is it possible to provide a contract and invoice?</span>
+                            </span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                        </li>
+                        <li>
+                            <span>
+                                <span class="qq">Q</span>
+                                <span class="text">What are your payment options? How do I open a membership account and access?</span>
+                            </span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                        </li>
+                        <li>
+                            <span>
+                                <span class="qq">Q</span>
+                                <span class="text">What can this data do for me and what can I find out through it?</span>
+                            </span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                        </li>
+                        <li>
+                            <span>
+                                <span class="qq">Q</span>
+                                <span class="text">What are the advantages and differences between you and fellow trade data companies in the market?</span>
+                            </span>
+                            <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                        </li>
+                    </ul>
+                </div>
+                
+            <%}%>
+        </div>
+        <%- include('../layout/footer.ejs'); %>
+        <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+        <script src="<%= STATIC %>mobile/javascripts/loft_HD/loft_HD.js?v=<%=VERSION%>"></script>
+</body>
+</html>

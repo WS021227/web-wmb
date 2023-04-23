@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <title><%=translate('mine_history_name')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%=VERSION%>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<%var user= wglobals.user %>
+<!--div class="center-top-share">
+    <div class="center-top-c">
+        <%if(user.photo){%>
+        <img src="https://static.52wmb.com/images/userphoto/80_<%=user.photo%>"/>
+        <%}else{%>
+            <img src="https://static.52wmb.com/images/userphoto/80_member.jpg"/>
+        <%}%>
+        <b><%=user.vip_name%></b>
+        <font class="vip"><%=user.vip_level%></font>
+
+        <span><%if(user.vip_level!=''){%>会员有效期截止<%=user.vip_end_time %><%}%></span>
+        <%if(user.vip_level != ''){%>
+        <a href="/Alipay?v=<%=user.vip_level%>" target="_blank">续费会员</a>
+        <%}else {%>
+            <a href="/Alipay" target="_blank">购买会员</a>
+        <%}%>
+    </div>
+</div-->
+
+<div class="center-k" id="browsing_history">
+    <h2><%=translate('mine_history_name')%></h2>
+    <div class="center-tag-select">
+        <a href="javascript:void(0)" class="active"><%=translate('share_text_all')%></a>
+        <a href="javascript:void(0)" data-status="1"><%=translate('mine_history_unlocked')%></a>
+        <a href="javascript:void(0)" data-status="0"><%=translate('mine_history_locked')%></a>
+    </div>
+    <div class="center-k-content">
+        <div class="center-k-history-box" id="history_all">
+            <div class="conter-k-content-title">
+                <span></span>
+                <div class="year-sort"></div>
+            </div>
+            <ul class="content-company-history head">
+                <li>
+                    <span><%=translate('mine_history_company')%></span>
+                    <span><%=translate('mine_history_status')%></span>
+                    <span><%=translate('mine_history_views')%></span>
+                    <span><%=translate('mine_history_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-company-history body"></ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div class="center-k-history-box" id="history_1">
+            <div class="conter-k-content-title">
+                <span></span>
+                <div class="year-sort"></div>
+            </div>
+            <ul class="content-company-history head">
+                <li>
+                    <span><%=translate('mine_history_company')%></span>
+                    <span><%=translate('mine_history_status')%></span>
+                    <span><%=translate('mine_history_views')%></span>
+                    <span><%=translate('mine_history_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-company-history body"></ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div class="center-k-history-box" id="history_0">
+            <div class="conter-k-content-title">
+                <span></span>
+                <div class="year-sort"></div>
+            </div>
+            <ul class="content-company-history head">
+                <span><%=translate('mine_history_company')%></span>
+                <span><%=translate('mine_history_status')%></span>
+                <span><%=translate('mine_history_views')%></span>
+                <span><%=translate('mine_history_date')%></span>
+                <span><%=translate('mine_list_operation')%></span>
+            </ul>
+            <ul class="content-company-history body"> </ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/browsing_history.js?v=<%=VERSION%>"></script>
+</body>
+</html>

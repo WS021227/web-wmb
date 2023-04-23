@@ -1,0 +1,12 @@
+
+<ul>
+    <% var _list = (results.data || {}).list || [] %>
+    <% if(results.list.length > 0){ %>
+        <% results.list.forEach(function (item){%>
+            <li><label><input type="checkbox" name="tags" value="<%=item.id%>"/><%=item.tag%></label></li>
+        <% }) %>
+    <% }else {%>
+        <p class="collect-company-no-tips"><%=translate('follow_tags_no_content')%><br/><a onclick="add_tags(this)"><%=translate('follow_add')%></a></>
+    <% } %>
+</ul>
+

@@ -1,0 +1,107 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.store-container .store-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100vw;
+  background-color: #fff;
+  padding: 0.625rem 0;
+  text-align: center;
+}
+.store-container .store-header h1 {
+  text-align: center;
+  font-size: 1.0625rem;
+  line-height: 1.5rem;
+  color: #333;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.store-container .store-list {
+  padding: 0.75rem 0.9375rem;
+  padding-bottom:1.2rem;
+  background-color: #f5f5f5;
+  margin-top: 3.0rem;
+}
+.store-container .store-list .sbox {
+  background-color: #fff;
+  padding: 0.625rem 0.625rem;
+  padding-bottom:0.4rem;
+  border-radius: 0.3125rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  position: relative;
+}
+.store-container .store-list .sbox img {
+  width: 7.375rem;
+  height: 7.3125rem;
+}
+.store-container .store-list .sbox .right {
+  margin-left: 0.75rem;
+}
+.store-container .store-list .sbox .right a{text-decoration:none;}
+.store-container .store-list .sbox .right h2 {
+  color: #333;
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+  text-align: left;
+  margin-bottom: 0.3125rem;
+}
+.store-container .store-list .sbox .right p {
+  color: #999;
+  font-size: 0.7rem;
+  line-height: 1.0rem;
+  margin-bottom: 0.9375rem;
+}
+.store-container .store-list .sbox .right > div {
+  display: flex;
+  justify-content: space-between;
+}
+.store-container .store-list .sbox .right > div > span {
+  color: #666;
+  line-height: 1.875rem;
+  font-size:0.65rem;
+}
+.store-container .store-list .sbox .right > div > span :nth-child(1) {
+  font-size:0.8125rem;
+  color: #333;
+  margin-right: 0.125rem;
+}
+.store-container .store-list .sbox .right > div a {
+  font-size: 0.7rem;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.25rem 0.8rem;
+  background: linear-gradient(to right, #015EB9, #70B8FF);
+  border-radius: 0.9375rem;
+  border: 0;
+  line-height:1.35rem;
+}
+.store-container .store-list .sbox .right > span {
+  position: absolute;
+  left: 0.625rem;
+  top: 0.625rem;
+  z-index: 100;
+  padding: 0.25rem 0.6875rem;
+  font-size: 0.625rem;
+  line-height: 0.875rem;
+  color: #fff;
+  background: linear-gradient(to right, #FF892B, #FFD6AC);
+  border-radius: 0.125rem;
+}
+.store-container .store-list :nth-child(5) {
+  margin-bottom: 0;
+}
+.store-container .store-list > span {
+  padding: 1.25rem 0;
+  padding-top:0.8rem;
+  display: block;
+  text-align: center;
+  color: #aaa;
+  font-size: 0.7rem;
+  display:none;
+}
+.foot-contact{padding-bottom:4.5rem;}

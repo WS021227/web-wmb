@@ -1,0 +1,322 @@
+<div id="pop-benchmark">
+    <style type="text/css">
+        ._tips {
+            color: #f30;
+            margin: 10px 0;
+            display: inline-block;
+        }
+
+        #pop-benchmark .content {
+            display: block;
+            border-radius: 5px;
+            max-height: 90%;
+            margin: 0 auto 0;
+            padding: 0 20px;
+            background: #fff;
+            box-sizing: border-box;
+            font-weight: 100;
+        }
+
+        #pop-benchmark .content .title {
+            display: block;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        #pop-benchmark .content .title font {
+            font-size: 18px;
+            color: #999;
+        }
+
+        #pop-benchmark .content .label-moudle {
+            display: inline-block;
+            width: 100%;
+        }
+
+        #pop-benchmark .content .label-moudle .label-list {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+            background: #f7f7f7;
+            padding: 15px 0;
+            padding-left: 38px;
+        }
+
+        #pop-benchmark .content .label-moudle .label-list .letter {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 100;
+            line-height: 150%;
+            background: #FEF8F3;
+            padding: 15px;
+            border-radius: 3px;
+            text-aling: l;
+        }
+
+        #pop-benchmark .content .label-moudle .text-input {
+            font-size: 15px;
+            display: inline-block;
+            width: 350px;
+            height: 34px;
+            border: none;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid #c1c1c1;
+            line-height: 30px;
+            outline: none;
+            padding: 0 7px;
+            margin-top: 8px;
+            border-radius: 3px;
+            color: #3c6DA7;
+        }
+
+        #pop-benchmark .content .label-moudle .check-moudle {
+            display: block;
+            text-align: left;
+            background: #fafafa;
+            padding: 20px 0;
+            padding-left: 65px;
+        }
+
+        #pop-benchmark .content .label-moudle .form-submit {
+            display: block;
+            margin-top: 15px;
+            margin-bottom:20px;
+        }
+
+        #pop-benchmark .content .label-moudle .form-submit .btn {
+            -webkit-appearance: none;
+            border: none;
+            outline: none;
+            display: inline-block;
+            font-size: 15px;
+            color: #fff;
+            height: 38px;
+            line-height: 38px;
+            width:440px;
+            background: #06c;
+            margin: 5px 0 0 0;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #pop-benchmark .content .label-moudle .form-submit .btn:hover {
+            background: #900;
+        }
+
+        #btn_verify_email_yzm {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            padding: 0 20px;
+            background: #999;
+            font-size: 14px;
+            position: absolute;
+            right: 3px;
+            top: 11px;
+        }
+
+        .qxlayout-moudle {
+            padding-bottom: 10px;
+        }
+
+        #btn_verify_email {
+            display: inline-block;
+            height: 38px;
+            width: 366px;
+            line-height: 38px;
+            font-size: 15px;
+            font-weight: bold;
+            background: #06c;
+            color: #fff;
+            text-align: center;
+            border-radius: 3px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <div class="content">
+        <div class="label-moudle">
+            <form name="pop-benchmark-frm" enctype="multipart/form-data" id="pop_benchmark_frm" method="POST">
+            <div class="letter" style="text-align:left;font-size:14px;padding-top:15px;">
+                <%var names = results.names.join('和') %>
+                <input type="hidden" id="adds_names" value="<%=names%>">
+                <b>尊敬的会员：</b><br/>
+                您已经购买了<%= names %>
+                ，请确认以下订单信息，第三方服务商将在48小时内通过邮件为您发送正式的官方账号，为不耽误您的正常使用，我们特地为您分配了临时账号建议截图保存。登录地址可在数据管理中心查阅。
+                <br/><br/>
+                <% if(results.benchmark){ %>
+                <b>BEM临时账号和密码：</b><%= results.benchmark.account %> / <%= results.benchmark.password %> </br>
+                <input type="hidden" id="benchmark" name="benchmark" value="<%= results.benchmark.account %>">
+                <% } if(results.jungle_scout){ %>
+                <b>JS临时账号和密码：</b><%= results.jungle_scout.account %> / <%= results.jungle_scout.password %> </br>
+                    <input type="hidden" id="jungle_scout" name="jungle_scout" value="<%=results.jungle_scout.account%>">
+                <% } %>
+                </br>
+                完善订单信息，将依据已填写信息为您开通正式账号，请正确填写！
+            </div>
+            <font class="_tips"></font>
+            <div class="label-list">
+                    <%if(wglobals.user.user_name){%>
+                    <div>
+                        <input type="text" class="text-input" value="<%=wglobals.user.user_name%>" disabled="disabled" placeholder="填写邮箱账号">
+                    </div>
+                   <%} else {%>
+                    <div><input type="text" value="" id="txt_email" class="text-input" placeholder="填写邮箱账号"></div>
+                    <div id="bind_email_box">
+                        <div style="position:relative;width:366px;">
+                            <input type="text" value="" id="txt_picture_yzm" class="text-input" placeholder="输入右侧图片验证码">
+                            <img class="picture-yzm" id="email_code_img" onclick="change_code(this)"
+                                 style="height:30px;cursor:pointer;position:absolute;right:2px;top:11px;"
+                                 src="data:image/png;base64,{{pagedata.picture}}">
+                        </div>
+                        <div style="position:relative;width:366px;">
+                            <input type="text" value="" id="txt_verify_email_yzm" placeholder="查验邮箱邮件，并填写验证码"
+                                   class="text-input">
+                            <a class="btn-email-yzm" onclick="verify_email_yzm(this)"
+                               id="btn_verify_email_yzm">获取验证码</a>
+                        </div>
+                        <div><a id="btn_verify_email" onclick="verify_email()">邦定邮箱账号信息</a></div>
+                    </div>
+                    <%}%>
+
+                    <div>
+                        <%if(wglobals.user.user_phone && wglobals.user.mobile_phone){%>
+                        <input type="text" class="text-input" value="<%=wglobals.user.mobile_phone%>" disabled="disabled" placeholder="请输入手机号码">
+                        <input type="hidden" name="txt_phone" class="text-input" value="<%=wglobals.user.mobile_phone%>">
+                        <%}else{%>
+                        <input type="text" value="" name="txt_phone" class="text-input" placeholder="请输入手机号码">
+                        <%}%>
+                    </div>
+                    <div><input type="text" value="" name="txt_company_name" class="text-input" placeholder="请输入公司名称">
+                    </div>
+                    <div><input type="text" value="" name="txt_company_address" class="text-input"
+                                placeholder="请输入公司地址"></div>
+            </div>
+            </form>
+
+            <div class="form-submit">
+                <button class="btn" id="submit_btn" onclick="_improve(this)">提交账号开通信息</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var email_timer, _code_img = '#email_code_img',  lading_gif = 'https://static.52wmb.com/wmb_new/images/loading.gif',
+        adds_names = $('#adds_names').val()
+    if($(_code_img).length > 0) {
+        change_code(_code_img)
+    }
+
+
+    function verify_email_yzm(elem) {
+        var $this = $(elem)
+        var email = $('#txt_email').val()
+        if (email === undefined || email === "") return $.alert('请输入邮箱')
+
+        var picture_yzm = $('#txt_picture_yzm').val()
+        if (picture_yzm === undefined || picture_yzm === "") return $.alert('请输入图片验证码')
+
+        $.ajax({
+            url: '/async/account/bind-email/verify-code',
+            type: 'post',
+            data: {'picture_code': picture_yzm, 'email': email},
+            success: function (result) {
+                if (result.state === 0) {
+                    $this.attr("disabled", "disabled").css("background", "#71C280").css("color", "#fff").removeAttr('onclick');
+                    let email_times = 60
+                    email_timer = window.setInterval(function () {
+
+                        if (email_times == 0) {
+                            window.clearInterval(email_timer); //停止计时器
+                            $this.html("重新发送验证码").attr('onclick', 'verify_email_yzm(this)')
+                                .removeAttr("disabled").css("background", "#71C280").css("color", "#fff"); //启用按钮并且修改样式
+                        } else {
+                            email_times--;
+                            $this.html(email_times + "秒再获取");
+                        }
+                    }, 1000); //启动计时器，1秒执行一次
+                    return false
+                }
+                $.alert(result.message)
+            }
+        });
+    }
+
+    function verify_email() {
+        var email = $('#txt_email').val();
+        if (email == null || email === '') return $.alert('请输入邮箱')
+        var code = $('#txt_verify_email_yzm').val();
+        if (code == null || code === '') return $.alert('请输入验证码')
+        $.ajax({
+            url: '/async/account/bind/email',
+            type: 'post',
+            data: {'code': code, 'email': email},
+            success: function (result) {
+                if (result.state == 0) {
+                    window.clearInterval(email_timer); //停止计时器
+                    $('#txt_email').html(data.email).attr('disabled', 'disabled')
+                    $('#bind_email_box').remove()
+                } else {
+                    $.alert(result.message || 'error')
+                }
+            }
+        });
+    }
+
+    var _lock = false
+
+    function _improve(elem) {
+        if (_lock) return false
+
+        _lock = true
+        $(elem).removeAttr('onclick').html('处理中，请稍后...').css({background: "#71C280", color: "#fff"})
+        $('._tips').html('');
+        var $sub_frm = $('body').find('#pop_benchmark_frm')
+        var data = new FormData($sub_frm[0]);
+        $.wajax('/async/bem_js_improve/submit', {
+            data: data,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            success: function (result) {
+                _lock = false;
+                if(result.state == 0){
+                    layer.closeByChild($(elem))
+                    $.alert('正式账号将在一个工作日内，由'+ adds_names +'团队发送至 ' + result.email + '邮箱， 请注意查收邮件。')
+                    return false
+                }
+                $.alert(result.message)
+                $(elem).attr('onclick', '_improve(this)').html('提交账号开通信息').removeAttr('style');
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                _lock = false;
+                $(elem).attr('onclick', '_improve(this)').html('提交账号开通信息').removeAttr('style');
+                $.alert('error')
+            }
+        });
+    }
+
+
+    /*图片验证码*/
+    function change_code(elem) {
+        $(elem).addClass('picture-code').attr('src', lading_gif)
+        $.ajax('/async/picture-code', {
+            datatype: 'text/json',
+            type: 'get',
+            data: {'width': 100, 'height': 33},
+            success: function (result) {
+                if (result.state == 1) {
+                    var data = result.data.base64
+                    $(elem).attr('src', "data:image/png;base64," + data).removeClass('picture-code')
+                }
+            }
+        })
+    }
+</script>

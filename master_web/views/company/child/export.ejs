@@ -1,0 +1,28 @@
+<%if(results.state == 0){%>
+    <% console.log(results, '_html') %>
+    <%if(results.data.day_can_count <= 0){%>
+        <div class="msg"><%=translate('export_over')%></div>
+    <%}else{%>
+    <div class="company-label-head"><h2><%=translate('export_data')%></h2><span class="count-left" data-day-count="<%=results.data.day_can_count%>"><%=translate('export_left')%><%=results.data.day_can_count%></span></div>
+    <div class="trade-download-search">
+        <div class="label-moudle">
+            <div class="form-time-select">
+                <h3><%=translate('export_trade_time')%></h3>
+                <span><input type="text" class="form-control" autocomplete="off" id="download_date_start" placeholder="<%=translate('export_trade_star')%>"></span><font>-</font>
+                <span><input type="text" class="form-control" autocomplete="off" id="download_date_end" placeholder="<%=translate('export_trade_end')%>"></span>
+                <span><a class="get-bill" onclick="get_download_count(this)"><%=translate('export_search')%></a></span>
+            </div>
+            <div class="form-tips"><p><%=translate('export_search_tips')%></p>
+                <p class="download-count display-none"></p>
+                <button class="goum-dclxfs" id="btn_trade_download" disabled="disabled"><%=translate('export_exporting')%></button><br/>
+                <span class="curr-download-count display-none"></span>
+                <span class="download-bill-page-tips display-none"></span>
+            </div>
+        </div>
+    </div>
+    <%}%>
+<%} else if(results.stats == 1001){%>
+    <div class="msg"><%=translate('export_no_export')%></div>
+<%} else {%>
+    <div class="msg"><%=results.message%></div>
+<%}%>

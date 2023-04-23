@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% var search_key = results.search_key, type = results.topic_detail.type, one_reg = /\[(.*?)\]/g, clear_key = results.clear_key,key=ucfirst(clear_key.replace(/(^\s*)|(\s*$)/g,'')); %>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <%if(type == '0'){%>
+    <meta name="keywords" content="<%=  results.topic_detail.keyword %>"/>
+    <meta name="description" content="<%= results.topic_detail.introduction %>"/>
+    <title><%= ucfirst(results.topic_detail.title) %>-<%= translate('share_text_sitename') %></title>
+    <%}else{%>
+    <meta name="keywords" content="<%= translate('seo_detail_keywords').replace(one_reg, clear_key) %>"/>
+    <meta name="description" content="<%= translate('seo_detail_description').replace(one_reg, clear_key) %>"/>        
+    <title><%= translate('seo_detail_title').replace(one_reg,key) %>-<%= translate('share_text_sitename') %></title>
+    <%}%>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/product/product.css?v=<%=VERSION%>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<% var buyer = results.buyer, buyer_hits=buyer?buyer.hits:0, supplier = results.supplier,supplier_hits=supplier?supplier.hits:0; %>
+<div class="product-topic-des">
+    <div class="product-topic-des-k">
+        <% if(type == '0'){ %>
+            <% var title_show = results.topic_detail.title.replace(/-/gm, ' ') %>
+            <img src="https://static.52wmb.com/images/company_topic/<%= results.topic_detail.top_cover %>" alt="<%= title_show %>"/>
+            <h1><%= title_show %></h1>
+            <p><span><%= translate('seo_detail_topic_create') %>：<%=results.topic_detail.update_time%><font>|</font><%= results.topic_detail.view || 0 %><%= translate('share_text_view') %></span><br/><%= results.topic_detail.introduction %></p>
+        <% }else{ %>
+            <img src="<%= STATIC %>/images/data_imgs/company-topic.png" alt="<%= clear_key %>"/>
+            <% if(wglobals.lang == 'cn'){ %>
+                <h1><%= clear_key %>贸易公司排名</h1>
+                <p>基于各贸易国原始贸易数据，我们汇总统计出全球<%= clear_key %>贸易公司名录及其进出口分析报告；目前已收录相关采购商<%= buyer_hits %> 个、供应商<%= supplier_hits %>个，且一直持续收录中。即可查阅全库进出口数据，亦可查阅公司贸易报告的联系方式、全年采供趋势。</p>
+            <% }else{ %>
+                <h1><%= clear_key %> Trading Company Ranking</h1>
+                <p>Based on the raw trade data of each trading country, we have compiled a global directory of <%= clear_key %> trading companies and their import and export analysis reports; <%= buyer_hits %> buyers and <%= supplier_hits %> suppliers have been included so far and are continuously being included. You can access the full database of import and export data, as well as contact information for company trade reports and annual supply and procurement trends.</p>
+            <% } %>
+        <% } %>
+    </div>
+</div>
+
+<div class="product-k">
+    <div class="product-k-l">
+        <div class="product-company-list">
+            <div class="product-company-select" id="product_select">
+                <%if(buyer_hits > 0){%>
+                    <a href="javascript:void(0);" data-target="#product_company_list" class="tab active"><%= translate('seo_detail_buyer_rank') %></a>
+                <%}%>
+                <%if(supplier_hits>0){%>
+                <a href="javascript:void(0);" data-target="#product_company_list" class="tab <%=buyer_hits > 0?'':'active'%>"><%= translate('seo_detail_supplier_rank') %></a>
+                <%}%>
+            </div>
+            <div class="product-company-type" id="product_company_list">
+                <%if(buyer_hits > 0){%>
+                    <div class="active tab-pane">
+                        <ul>
+                            <% buyer.list.forEach(function(item, index){ %>
+                                <li>
+                                    <h3><a href="/buyer/<%= item.id %>" target="_blank"><%= item.name %></a></h3>
+                                    <p class="product-company-1"><%= item.country %><%= translate('company_list_modle_buyer') %><font>|</font><%= item.bill_count %><%= translate('company_list_modle_count') %></p>
+                                    <p class="product-company-2"><i class="comany-share-star star-s-<%= item.star %>"></i><span><%= translate('company_list_modle_rank').replace(one_reg, item.rating) %></span></p>
+                                    <% var has_product = Object.keys(item.product || {}).length > 0; %>
+                                    <% if(has_product){ %>
+                                    <% if(clear_key){ %>
+                                    <p class="product-company-3"><%= translate('company_list_modle_reason') %>:<%= keyreplace(translate('company_list_modle_reason_text'),['[@产品名]','[@交易数]','[@交易日期]','[@产品名]','[@交易比]'],[item.product.value, item.product.count, item.product.last_trade_date,item.product.value,item.product.prop])%> %><!--该公司最近两年采购<%= item.product.value %>的交易共计<%= item.product.count %>笔，最近相关交易日期在<%= item.product.last_trade_date %>；采供 <%= item.product.value %>的交易总数占该公司近两年来交易总量的<%= item.product.prop %>%。--></p>
+                                    <p class="product-company-3"><%= translate('company_list_modle_mainproduct') %>:<span><%= item.product.value_list %></span></p>
+                                    <% }else { %>
+                                    <p class="product-company-3 shrink-module" data-length="210"><%= translate('company_list_modle_product') %>:<span class="shrink-txt"><%= item.descript %></span></p>
+                                    <p class="product-company-3"><%= translate('company_list_modle_mainproduct') %>:<span><%= item.product.value_list %></span></p>
+                                    <% } %>
+                                    <% } else if (item.descript){ %>
+                                    <p class="product-company-3 shrink-module" data-length="210"><%= translate('company_list_modle_product') %>:<span class="shrink-txt"><%= item.descript %></span></p>
+                                    <% } %>
+                                    <p class="product-company-4">
+                                        <% if(item.weight >= 1000) { %>
+                                        <span class="seach-list-span"><%= translate('company_share_tag_contact') %></span>
+                                        <% } %>
+                                        <% if(item.have_follow) { %>
+                                        <span class="seach-list-span"><%= translate('company_share_tag_collections') %></span>
+                                        <% } %>
+                                        <font><%= translate('company_list_modle_update') %><%= item.last_trade_date %></font>
+                                    </p>
+                                    <span class="product-company-number"><%= index+1 %></span>
+                                </li>
+                            <% }) %>
+                        </ul>
+                        <a href="/buy-<%= search_key.replace(/ /g,'_')%>" target="_blank" class="product-list-more"><%= translate('seo_detail_buyer_more').replace('[@产品名]', clear_key) %><font>&gt;</font></a>
+                    </div>
+                <%}%>
+
+                <% if(supplier_hits>0){%>
+                <div class="<%=buyer_hits > 0?'':'active'%> tab-pane">
+                    <ul>
+                        <% supplier.list.forEach(function(item, index){ %>
+                            <li>
+                                <h3><a href="/supplier/<%= item.id %>" target="_blank"><%= item.name %></a></h3>
+                                <p class="product-company-1"><%= item.country %><%= translate('company_list_modle_buyer') %><font>|</font><%= item.bill_count %><%= translate('company_list_modle_count') %></p>
+                                <p class="product-company-2"><i class="comany-share-star star-s-<%= item.star %>"></i><span><%= translate('company_list_modle_rank').replace(one_reg, item.rating) %></span>
+                                </p>
+                                <% var has_product = Object.keys(item.product || {}).length > 0; %>
+                                <% if(has_product){ %>
+                                    <% if(clear_key){ %>                                        
+                                        <p class="product-company-3"><%= translate('company_list_modle_reason') %>:<%= keyreplace(translate('company_list_modle_reason_text'),['[@产品名]','[@交易数]','[@交易日期]','[@产品名]','[@交易比]'],[item.product.value, item.product.count, item.product.last_trade_date,item.product.value,item.product.prop])%> %></p>
+                                        <p class="product-company-3"><%= translate('company_list_modle_mainproduct') %>:<span><%= item.product.value_list %></span></p>
+                                    <% }else { %>
+                                        <p class="product-company-3  shrink-module" data-length="210"><%= translate('company_list_modle_product') %>:<span class="shrink-txt"><%= item.descript %></span></p>
+                                        <p class="product-company-3"><%= translate('company_list_modle_mainproduct') %>:<span><%= item.product.value_list %></span></p>
+                                    <% } %>
+                                <% } else if (item.descript){ %>
+                                    <p class="product-company-3  shrink-module" data-length="210"><%= translate('company_list_modle_product') %>:<span class="shrink-txt"><%= item.descript %></span></p>
+                                <% } %>
+                                <p class="product-company-4">
+                                    <% if(item.weight >= 1000) { %>
+                                        <span class="seach-list-span"><%= translate('company_share_tag_contact') %></span>
+                                    <% } %>
+                                    <% if(item.have_follow) { %>
+                                        <span class="seach-list-span"><%= translate('company_share_tag_collections') %></span>
+                                    <% } %>
+                                    <font><%= translate('company_list_modle_update') %><%= item.last_trade_date %></font>
+                                </p>
+                                <span class="product-company-number"><%= index+1 %></span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                    <a href="/sup-<%=search_key.replace(/ /g,'_') %>" target="_blank" class="product-list-more"><%= translate('seo_detail_supplier_more').replace('[@产品名]', clear_key) %><font>&gt;</font></a>
+                </div>
+                <%}%>
+            </div>
+        </div>
+        <div class="product-company-text">
+            <h2><%= translate('seo_detail_topic_des') %></h2>
+            <% if(type == '0'){ %>
+                <p><%= results.topic_detail.content %></p>
+            <% }else{ %>
+                <p>
+                    <% if(wglobals.lang == 'cn'){ %>
+                        我们向您推荐采供<%= clear_key %>
+                        产品的全球优质贸易公司，这些贸易公司是由外贸网基于原始进出口数据整理汇总并推荐。我们持续为外贸用户提供优质的外贸交易信息服务，至今已经累计陪伴了100万用户奋战在外贸路上，外贸邦网致力于成为性价比好，用户体验好的外贸数据服务平台。<br/><br/>
+                        我们将全球近期有采供相关商品的贸易公司优先推荐，通过列表的展示内容您可以初步了解推荐公司的贸易国、累计的交易次数、交易日期以及采供商品的交易详情。活跃值分数是您筛选优质贸易公司很好的一个参考标准，理论上活跃值分数越高的公司，贸易报告的完整度越高，公司经营越健康。<br/><br/>
+                        公司名称后如有标记“有联系方式”的绿色文字，则说明<%= clear_key %>
+                        采供产品的贸易公司包含联系方式，包括：联系人、邮箱、电话、传真、官方网址、公司地址。我们也提供一款邮箱采集工具，可以帮助您通过公司名称自动采集Google、领英、Facebook等渠道公司关键人的姓名、职位、邮箱和个人社交主页。
+                    <% }else{ %>
+                        We recommend to you high-quality trading companies related to <%= clear_key %> products, which is based
+                        on the compilation and analysis of original import and export data. We are always providing high-quality
+                        transaction information services for foreign trade users. So far, we have served 1 million users. 52WMB
+                        is committed to becoming a trade data service platform with high cost performance and good user
+                        experience.<br/><br/>
+                        We give priority to recommending global companies that have recently traded related products. Through
+                        the contents of the list, you can have a preliminary understanding of the company's trading country, and
+                        transaction date, number and details. Active value score is a good reference for you to select
+                        high-quality trading companies. The higher the active value score of a company, the more complete the
+                        trade report and the healthier the company will be.<br/><br/>
+                        If the company is marked with the green label "include contact", it means this company contains contact
+                        information, including: contact, email, telephone, fax, official web address, company address. We also
+                        provide an email hunting tool that helps you automatically collect the key person's name, job, email,
+                        and personal social page from Google, LinkedIn, Facebook, and other channels through your company
+                        name.<br/><br/>
+                        Click 'More' to view all <%= clear_key %> trading companies. On the new page, we provide additional
+                        features to help you filter the target company, which you can filter through the trade country, number
+                        of transactions, trading area, ports, range of transactions, whether it includes contacts, etc., and
+                        sort the transaction times and the time of the transaction, which will greatly improve the efficiency of
+                        data query and use. On the 52wmb.com you can always find your target company!<br/><br/>
+                    <% } %>
+                </p>
+            <% } %>
+        </div>
+    </div>
+    <% var topic_similar_list = results.topic_similar_list || [], topic_hot_list = results.topic_hot_list || []; %>
+    <% if(topic_similar_list.length > 0 || topic_hot_list.length > 0){ %>
+        <div class="product-k-r">
+            <% if(topic_hot_list.length > 0){ %>
+                <div class="product-jiqiao-hot" data-type="0" id="jiqiao_hot">
+                    <h2><%= translate('seo_detail_hot_topic') %><a href="/category/list"><%= translate('share_text_more') %><font>&gt;</font></a></h2>
+                    <ul>
+                        <% topic_hot_list.forEach(function(item, index){ %>
+                            <li>
+                                <div><img src="https://static.52wmb.com/images/company_topic/<%= item.cover %>"/></div>
+                                <a href="/category/<%= item.url %>"><%= item.title %></a>
+                                <span><%= item.view %><%= translate('share_text_view') %></span>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %>
+            <% if(topic_similar_list.length > 0){ %>
+                <div class="product-jiqiao-related"  data-type="0" id="jiqiao_related">
+                    <h2><%= translate('seo_detail_related_topic') %></h2>
+                    <p>
+                      <% topic_similar_list.forEach(function(item, index){ %>
+                      <li><a href="/category/<%= item.word.replace(/\ /g, '-') %>"><font><%= item.word %></font></a></li>
+                    <% }) %>
+                    </p>
+                </div>
+            <% } %>
+        </div>
+    <% } %>
+    <br class="clear"/>
+</div>
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/seo/seo.js?v=<%=VERSION%>"></script>
+</body>
+</html>

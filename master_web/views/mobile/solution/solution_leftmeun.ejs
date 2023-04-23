@@ -1,0 +1,9 @@
+<% var nav_active = results.solution?results.solution:'';console.log(nav_active,'nav_active')%>
+
+    <div class="help-tab-box">
+        <a href="/companies" class="<%=nav_active=='companies'?"active":"" %>"><%=translate('solutions_company')%></a>
+        <a href="/industry" class="<%=nav_active=='industry'?"active":"" %>"><%=translate('solutions_industry')%></a>
+        <a href="/tradedata" class="<%=nav_active=='tradedata'?"active":"" %>"><%=translate('solutions_data')%></a>
+        <a href="/usergroups" class="<%=nav_active=='usergroups'?"active":"" %>"><%=translate('solutions_usergroups')%></a>
+        <a href="/sucess" class="<%=nav_active=='sucess'?"active":"" %>"><%=translate('solutions_success')%></a>
+    </div>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_message_title')%>-邦Line</title>
+    <%- include('./head.ejs') %>
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/letter.css?v=<%= VERSION %>">
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">
+        <%- include('../../home/admin_tab.ejs') %>
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <!-- 左侧菜单 -->
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <input type="hidden" id="line_avatar" value="<%=LINE_IMAGE_PATH%><%=results.line_user.avatar%>">
+            <input type="hidden" id="line_uname" value="<%=results.line_user.name%>">
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <div class="letter-module">
+                        <div class="letter-topic">
+                            <span class="title"><%=translate('bline_message_to_ta')%></span>
+                            <a class="link line-index" href="javascript:void(0);" target="_blank"></a>
+                        </div>
+                        <div class="letter-window">
+                            <div class="letter-people">
+                                <div class="topic">
+                                    <div class="title"><%=translate('bline_message_list')%>（<font id="letter_count"></font>）</div>
+                                    <div class="search-people">
+                                        <input type="text" class="input-text clear-target" id="letter_search" placeholder="<%=translate('bline_message_search')%>">
+                                        <btton class="clear-search clear-txt" data-efun="letter_clear">&#10005;</btton>
+                                    </div>
+                                </div>
+                                <div class="people-list letter-scroll" id="letter_users">
+                                </div>
+                            </div>
+                            <div class="letter-content">
+                                <div class="people-info"> </div>
+                                <div class="letter-list">
+                                    <div class="scroll-wrapper letter-scroll" id="letter_records">
+                                    </div>
+                                </div>
+                                <div class="public-letter">
+                                    <input type="hidden" id="letter_uid" value="">
+                                    <textarea rows="5" class="input-textarea" id="letter_message" placeholder="<%=translate('bline_message_chat')%>"></textarea>
+                                    <div class="exchange ps">
+                                        <button class="btn" id="qqface">
+                                            <i class="icon"><svg t="1664161340866" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2545" width="25" height="25"><path d="M872.802928 755.99406 872.864326 755.99406 872.864326 755.624646Z" p-id="2546"></path><path d="M807.273469 216.727043c-162.808016-162.836669-427.736874-162.836669-590.544891 0-162.836669 162.806993-162.836669 427.736874 0 590.543867 162.808016 162.837692 427.737898 162.837692 590.544891 0C970.110137 644.462894 970.110137 379.534036 807.273469 216.727043M764.893242 764.92036c-139.444912 139.443889-366.370225 139.414213-505.798764 0-139.459239-139.473565-139.459239-366.354875 0-505.827417 139.428539-139.429563 366.354875-139.460262 505.798764 0C904.336108 398.521482 904.336108 625.476471 764.893242 764.92036" p-id="2547"></path><path d="M381.724423 468.02137c24.783453 0 44.953841-20.169365 44.953841-44.967144 0-24.828478-20.170388-45.027519-44.953841-45.027519-24.842805 0-45.013193 20.199041-45.013193 45.027519C336.71123 447.852004 356.881618 468.02137 381.724423 468.02137" p-id="2548"></path><path d="M640.680243 468.095048c24.812105 0 45.010123-20.213367 45.010123-45.01217 0-24.827455-20.198018-44.99682-45.010123-44.99682-24.785499 0-44.953841 20.169365-44.953841 44.99682C595.726401 447.88168 615.894743 468.095048 640.680243 468.095048" p-id="2549"></path><path d="M642.245901 619.058294l-2.453888 0.798179c-40.310078 18.248619-83.548858 27.5341-128.411625 27.5341-46.343491 0-90.173742-9.375531-130.305765-27.799136l-2.425236-0.741897c-1.508353-0.413416-3.548826-1.003863-6.092765-1.003863-14.757099 0-26.734898 11.977799-26.734898 26.675546 0 6.978948 3.282766 13.988596 8.695033 19.253506l-0.325411 1.62501 6.831592 3.076058c47.911196 21.679765 100.021018 33.095769 150.681838 33.095769 51.608402 0 102.180194-11.120268 150.978597-33.361829 8.575306-4.703115 13.928221-13.721513 13.928221-23.511483C676.611593 627.458615 661.027663 613.290941 642.245901 619.058294" p-id="2550"></path></svg></i>
+                                            <font><%=translate('bline_message_expressions')%></font>
+                                        </button>
+                                        <form id="form_upload_image">
+                                        <label class="btn" for="upload_letter_image">
+                                            <i class="icon"><svg t="1664161496585" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3636" width="23" height="23"><path d="M841.71335 65.290005 182.285626 65.290005c-64.511269 0-116.995621 52.484352-116.995621 116.995621L65.290005 841.71335c0 64.511269 52.484352 116.995621 116.995621 116.995621l659.427724 0c64.511269 0 116.995621-52.484352 116.995621-116.995621L958.708971 182.285626C958.708971 117.774357 906.225643 65.290005 841.71335 65.290005zM182.285626 107.833961l659.427724 0c41.051975 0 74.451666 33.398668 74.451666 74.451666l0 136.557142c-150.09446 5.26184-290.370297 66.084091-396.978337 172.692131-49.960879 49.961902-89.841168 107.331517-118.694309 169.625282-83.496669-70.835302-204.372667-75.376735-292.65841-13.617136L107.833961 182.285626C107.833961 141.232628 141.232628 107.833961 182.285626 107.833961zM107.833961 841.71335 107.833961 702.627618c76.54228-74.311473 198.833511-74.234725 275.272437 0.24457-24.303522 65.298192-37.026288 135.112234-37.026288 206.91149 0 2.223644 0.343831 4.366448 0.977257 6.381337L182.285626 916.165016C141.232628 916.165016 107.833961 882.766348 107.833961 841.71335zM841.71335 916.165016 387.646807 916.165016c0.633427-2.01489 0.977257-4.157693 0.977257-6.381337 0-146.71755 57.053414-284.572244 160.647817-388.166647 98.570993-98.570993 228.166583-154.963351 366.894158-160.204725L916.166039 841.71335C916.165016 882.766348 882.766348 916.165016 841.71335 916.165016z" p-id="3637"></path><path d="M312.397986 413.458683c60.8376 0 110.332874-49.494251 110.332874-110.332874s-49.494251-110.332874-110.332874-110.332874-110.332874 49.494251-110.332874 110.332874S251.559363 413.458683 312.397986 413.458683zM312.397986 235.337913c37.378306 0 67.788919 30.40959 67.788919 67.788919s-30.40959 67.788919-67.788919 67.788919-67.788919-30.40959-67.788919-67.788919S275.018657 235.337913 312.397986 235.337913z" p-id="3638"></path></svg></i>
+                                            <input id="upload_letter_image" name="letter_image" style="display: none" accept="image/png,image/gif,image/jpeg,image/jpg" type="file">
+                                            <font><%=translate('bline_message_photos')%></font>
+                                        </label>
+                                            <input type="hidden" name="user_id" value="">
+                                        </form>
+                                        <button class="btn submit" onclick="send_message(this)"><%=translate('bline_message_publish')%></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= PLUGINS_STATIC %>qqface/jquery-qqface.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/line_letter.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

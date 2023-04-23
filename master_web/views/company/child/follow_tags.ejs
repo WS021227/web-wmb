@@ -1,0 +1,146 @@
+<div class="head">
+    <h2>
+        <%=translate('follow_title')%>
+    </h2>
+    <input type="button" class="tags-save" onclick="follow_company(this)" value="<%=translate('follow_sure')%>">
+    <input type="button" class="tags-add" onclick="add_tags()" value="<%=translate('follow_add')%>">
+</div>
+<div class="content">
+    <span class="total collect-tips" id="tags_total" data-total="<%=results.total%>">
+        <%=translate('follow_tags_count')%>
+            <%=results.total%>
+    </span>
+    <form id="follow_tags_form">
+        <div id="follow_tags">
+            <%- include('./follow_tags_page.ejs') %>
+        </div>
+        <% if(results.has_next){%>
+            <a class="more" data-page="2" data-size="<%=results.size%>" onclick="tags_more(this)">
+                <%=translate('follow_tags_more')%>
+            </a>
+            <%}%>
+    </form>
+</div>
+<script type="application/javascript">
+    curr_lang_json['not_tag_name'] = { cn: '填写标签名称', en: 'Fill in the label name' },
+        curr_lang_json['tags_more'] = { cn: '更多标签', en: 'More tagss' },
+        curr_lang_json['tags_sumbit'] = { cn: '提交中...', en: 'Submitting' },
+        curr_lang_json['tags_on_failure'] = { cn: '关注失败', en: 'Focus on failure' },
+        curr_lang_json['tags_confirmation'] = { cn: '确认', en: 'Confirmation' },
+        curr_lang_json['tags_count'] = { cn: '共计', en: 'Total ' }
+    function add_tags(elem) {
+        var found_tags_content = '<div class="company-tags" id="add_collect_tags"><label>' +
+            '<input type="text" class="tags-text" placeholder="' + unity_lang('not_tag_name') + '"  id="collect_manage_tag_name"/></label>' +
+            '<a class="tagsedit-btn" onclick="new_tag_save(this,0,0)" >' + unity_lang('share_save') + '</a>' +
+            '<a class="tagsedit-btn" onclick="add_tag_elem_del(this)">' + unity_lang('share_clear') + '</a>' +
+            '</div>'
+        $('#follow_tags').prepend(found_tags_content)
+        if (elem) $(elem).parents('li').remove()
+    }
+    /*添加新的分组*/
+    function new_tag_save(elem) {
+
+        var tag_name = $('#collect_manage_tag_name').val()
+        if (!tag_name) return $.alert(unity_lang('not_tag_name'))
+        $.ajax('/async/user_collection/company/follow/tag', {
+            datatype: 'text/json',
+            type: 'post',
+            data: { tag_name: tag_name },
+            success: function (result) {
+                if (result.state == 0) {
+                    reload_tags()
+                    return;
+
+                }
+                $.alert(result.message)
+            }
+        })
+    }
+
+    /*去除分组框*/
+    function add_tag_elem_del(elem) {
+        $(elem).parent().remove();
+    }
+    function reload_tags() {
+        get_tags_list(0, function (result) {
+            $('#follow_tags').html(result.content)
+            $('#tags_total').html(unity_lang('tags_count') + '' + result.total)
+            if (result.has_next) $('.more').html('' + unity_lang('tags_more') + '').attr('onclick', 'tags_more(this)').data('page', 2).data('size', result.size)
+        })
+
+    }
+    function tags_more(elem) {
+        let page = Number($(elem).data('page')), size = Number($(elem).data('size')), start = (page - 1) * size
+        get_tags_list(start, function (result) {
+            $('#follow_tags').append(result.content)
+            if (result.has_next) $('.more').data('page', page + 1)
+        })
+    }
+    function get_tags_list(start, fn) {
+        $.ajax('/async/common/company/follow/tags/page', {
+            datatype: 'text/json',
+            type: 'get',
+            data: { start: start },
+            success: function (result) {
+                if (!result.has_next) $('.more').html('').removeAttr('onclick')
+                fn(result)
+            }
+
+        })
+    }
+    function follow_company(elem) {
+        $(elem).prop('disabled', true).val('' + unity_lang('tags_sumbit') + '')
+        let formdata = new FormData($('#follow_tags_form')[0]), tags_scene = $('#tags_scene').val()
+        console.log(formdata, "1111111")
+        if (tags_scene != '1') {
+            $.ajax('/async/common/company/follow', {
+                data: formdata,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                datatype: 'text/json',
+                success: function (result) {
+                    if (result.state == 0) {
+                        wpull.closeAll()
+                        // 公司列表单独关注
+                        if (tags_scene == '2') {
+                            let company_id = $('#follow_tags_form [name="company_id"]').val()
+                            $('.list-company-like[data-id="' + company_id + '"]').data('follow', '1').find('.like')
+                                .addClass('active').siblings('font').html(unity_lang('company_clear'))
+                            return;
+                        }
+                        // 公司详情关注
+                        let _elem = $('[data-follow]'), total_count = Number($(_elem).find('.count-follow').html())
+                        $(_elem).data('follow', 1).find('.tool-follow')
+                            .addClass('active').siblings('font').html(unity_lang('detail_data_clear'))
+                        $(_elem).find('.count-follow').html(total_count + 1)
+                        return
+                    }
+                    $.alert('' + unity_lang('tags_on_failure') + '')
+                    $(elem).prop('disabled', false).val('' + unity_lang('tags_confirmation') + '')
+                }
+            })
+            return
+        }
+        $.ajax('/async/company/follow/bulk', {
+            data: formdata,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            datatype: 'text/json',
+            success: function (result) {
+                if (result.state == 0) {
+                    $.each(result.data.list, function () {
+                        $('.list-company-like[data-id="' + this + '"]').data('follow', '1').find('.like')
+                            .addClass('active').siblings('font').html(unity_lang('company_clear'))
+                    })
+                    wpull.closeAll()
+                    return false;
+                }
+                $.alert(result.message)
+                $(elem).prop('disabled', false).val('' + unity_lang('tags_confirmation') + '')
+            }
+        })
+    }
+
+</script>

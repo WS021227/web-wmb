@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%=translate('payment_title')%>-<%=translate('share_text_sitename')%>
+    </title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/payment/product.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% console.log(results.add_service_list.list[0],"页面数据") %>
+        <% let product=results.add_service_list.list[0] %>
+            <div class="product-container" data-lang="<%= wglobals.lang %>">
+                <%- include('../layout/header.ejs'); %>
+                    <h1>
+                        <%= translate("search_type_product") %>:
+                        <span>
+                            <%= product.name %>
+                        </span>
+                    </h1>
+                    <div class="zf">
+                        <h2><%= translate("payment_method") %>:</h2>
+                        <div class="btn">
+                            <%if(wglobals.lang=="cn"){%>
+                            <span data-type="zfb" class="active"><img
+                                    src="<%= STATIC %>mobile/images/payment/pay_detail/zhifubao.jpg" />支付宝支付</span>
+                            <span data-type="wx"><img
+                                    src="<%= STATIC %>mobile/images/payment/pay_detail/weixinzhifu.png" />微信支付</span>
+                            <%}%>
+
+                            <%if(wglobals.lang=="en"){%>
+                                <span data-type="pay" class="active"><img src="<%= STATIC %>mobile/images/payment/pay_detail/paypal.png" />Paypal</span>
+                            <%}%>
+                        </div>
+                    </div>
+                    <div class="zfqd">
+                        <h2><%= translate("payment_price_list") %>:</h2>
+                        <span></span>
+                        <div>
+                            <span><%= translate("payment_sum") %>:</span>
+                            <span><%= translate("mine_vouchers_fuhao") %>
+                                  <span><%= product.amount_rmb %></span>
+                            </span>
+                       </div>
+                    </div>
+                    <div class="zf-btn">
+                        <a><%= translate("payment_pay_now") %><%= translate("mine_vouchers_fuhao") %><span><%= product.amount_rmb %></span></a>
+                    </div>
+                    <%- include('../global/foot_script.ejs'); %>
+            </div>
+
+            <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+            <script src="<%= STATIC %>mobile/javascripts/payment/product.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

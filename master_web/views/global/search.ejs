@@ -1,0 +1,26 @@
+<!-- 搜索功能 -->
+<div class="seach-Box">
+    <div class="seach-gongsi mgall-l">
+        <div class="search-gongsi-select">
+            <% var st =  results.search_type || 2, ct = results.company_type || 0 %>
+            <div data-value="2" data-pla="<%=translate('search_input_tis_2')%>" class="search-tab <%=st==2?'active':''%>"><%=translate('search_type_product')%></div>
+            <div data-value="1" data-pla="<%=translate('search_input_tis_1')%>" class="search-tab <%=st==1?'active':''%>"><%=translate('search_type_company')%></div>
+            <div data-value="3" data-pla="<%=translate('search_input_tis_3')%>" data-wstats="hscode_typetab_button" class="search-tab <%=st==3?'active':''%>"><%=translate('search_type_hscode')%></div>
+            <input type="hidden" id="text_search_type" value="<%=st%>">
+        </div>
+        <form class="slider-search-form" onsubmit="return false;">
+            <div class="slider-search-box">
+                <input type="text"  value="<%=((results.search_type==3?results.search_hs:results.search_key) || '').toKey()%>" autocomplete="off" placeholder="<%=translate('search_input_tis_' + st)%>" class="seaech-text open-pop clear-target" id="text_global_search"><i class="clear-txt">×</i>
+            </div>
+            <a class="seachBtn" id="clickSearchbtn" onclick="global_company_search()"><%=translate('search_button_text')%></a>
+        </form>
+        <div id="search_history" class="pop display-none"></div>
+        <div class="search-history mar-l display-none" id="hot_keys"></div>
+        <br class="clear"/>
+    </div>
+</div>    
+<div class="keywords-related display-none" id="search_keyword_related">
+    <div class="keywords-related-c">
+       <span><%=translate('search_hot_record')%></span>
+    </div>
+</div>

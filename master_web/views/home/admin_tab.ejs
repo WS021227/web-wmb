@@ -1,0 +1,11 @@
+
+<!-- 管理内容切换 -->
+<div class="line-admin-tab">
+    <div class="container">
+        <% var _tb = results.admin_tab || 'line' %>
+        <a class="tab-item <%=_tb=='master'?'active':''%>" <%=_tb=='master'?'':'href=/user/datacenter/home'%> ><%=translate('bline_nav_tab_data')%></a>
+        <a class="tab-item line-ms <%=_tb=='line'?'active active-line':''%>" <%=_tb=='line'?'':'href=/user/line/index'%>>
+            <%=translate('bline_nav_tab_line')%><span class="ico-nav point display-none"></span>
+        </a>
+    </div>
+</div>

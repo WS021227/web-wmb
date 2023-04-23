@@ -1,0 +1,329 @@
+.open-line {
+    margin-bottom: 20px;
+    border-radius: 2px;
+    background:#fff;
+}
+
+.open-line-descript {
+    display: block;
+    text-align: center;
+    background:#F2555D;
+    padding:70px 0;
+}
+
+.open-line-descript h1 {
+    font-size: 28.4px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-weight:bold;
+    padding:0 80px;
+}
+
+.open-line-descript .descript {
+    font-size: 14.4px;
+    color: #fff;
+    opacity:0.8;
+    margin-bottom: 20px;
+    line-height:160%;
+    padding:0 80px;
+}
+
+.open-line-descript .btn {
+    display: inline-block;
+    padding:0 100px;
+    height: 50px;
+    line-height:50px;
+    font-size: 17.4px;
+    letter-spacing:0.3px;
+    color: #333;
+    background-color:#fc0;
+    border-radius:100px;
+    font-weight:bold;
+}
+
+.open-line-message{background:#EAEDF2;padding:60px 0;}
+
+
+.line-better-module {display:block;padding:30px;padding-top:0;}
+.line-better-module .better-module-item {padding:0;}
+.line-better-module .better-module-item h2 {
+    font-size:20.4px;
+    color: #333;
+    text-align: center;
+    margin-bottom:15px;
+    margin-top:70px;
+    font-weight:normal;
+}
+.line-better-module .better-module-item .content {
+    display: block;
+}
+
+/* 邦Line特权 */
+.open-line-auth {display: block;}
+.open-line-auth .line-auth-item {
+    display: inline-block;
+    width:283.5px;
+    height: 280px;
+    padding: 35px 20px;
+    background-color: #fbfbfb;
+    text-align: center;
+    margin-right:10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    line-height: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 0 12px rgb(0 0 0 / 1%);
+}
+.open-line-auth .line-auth-item:nth-child(3){margin-right:0;}
+.open-line-auth .line-auth-item .head {
+    display: block;
+    margin: 0 auto;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: #eee;
+}
+
+.open-line-auth .line-auth-item .name {
+    font-size: 17.4px;
+    color: #333;
+    font-weight:bold;
+    padding:10px 0;
+}
+
+.open-line-auth .line-auth-item .descript {
+    font-size: 13.4px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* 已开通邦Line */
+.open-line-person-list {
+    display: block;
+    font-size: 0;
+    margin-right: -20px;
+}
+
+.open-line-person-list .open-line-person-item {
+    display: inline-block;
+    width:284.3px;
+    height: 280px;
+    padding: 35px 20px;
+    background-color: #fbfbfb;
+    text-align: center;
+    margin-right:15px;
+    border-radius:3px;
+    line-height: 20px;
+    box-sizing: border-box;
+    margin-bottom:15px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 1%);
+}
+.open-line-person-list .open-line-person-item:nth-child(3n){margin-right:0;}
+.open-line-person-list .open-line-person-item .head {
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 10px;
+    border-radius:100px;
+    padding:3px;
+    background:#fff;
+    box-shadow: 0 0 12px rgb(0 0 0 / 15%);
+}
+
+.open-line-person-list .open-line-person-item .name {
+    font-size: 17.4px;
+    color: #333;
+    font-weight: bold;
+    height: 20px;
+}
+
+.open-line-person-list .open-line-person-item .position {
+    font-size: 14.4px;
+    color: #666;
+    height: 20px;
+    padding-bottom:8px;
+    max-width: 240px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+
+}
+
+.open-line-person-list .open-line-person-item .sub {
+    font-size: 13.4px;
+    color: #333;
+    height: 20px;
+    text-transform:capitalize;
+}
+
+.open-line-person-list .open-line-person-item .ip {
+    display: block;
+    font-size: 12.4px;
+    color: #999;
+    margin-top: 7px;
+    height: 20px;
+}
+
+.open-line-person-list .open-line-person-item .add-friend {
+    display: block;
+    width: 120px;
+    height: 32px;
+    font-size: 13.4px;
+    color: #007FFF;
+    border: 1px solid #007FFF;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    margin: 20px auto 0;
+    outline: none;
+    background-color: transparent;
+}
+
+/* 推荐的圈子 */
+.open-line-group-list {
+    display: block;
+    margin-right: -20px;
+}
+
+.open-line-group-list .open-line-group-item {
+    display: inline-block;
+    padding: 30px 40px;
+    width: 420px;
+    margin-right:10px;
+    text-align: center;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px #ddd;
+    border: 1px solid #EFEFEF;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+.open-line-group-list .line-group-item {
+    display: inline-block;
+    padding: 30px 30px;
+    width:441px;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius:3px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 1%);
+    background:#fbfbfb;
+}
+.open-line-group-list .line-group-item:nth-child(2){margin-right:0;border-left:1px #f0f0f0 solid;}
+.line-group-item .group-head {
+    display: block;
+    margin: 0 auto;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: #eee;
+    border-left:1px #eee solid;
+}
+
+.line-group-item .group-title {
+    font-size: 17.4px;
+    color: #333;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.line-group-item .group-descript {
+    font-size: 13.4px;
+    color: #333;
+    margin-top:10px;
+    padding:0 15px;
+}
+
+.line-group-item .group-member {
+    font-size: 12.4px;
+    color: #666;
+    margin-top:20px;
+}
+.line-group-item .group-member a{color:#666;}
+.line-group-item .group-member .member-list {
+    display: inline;
+    font-size: 0;
+    vertical-align: middle;
+}
+
+.line-group-item .group-member .member-list .member-head {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    margin-right: -10px;
+}
+
+.line-group-item .group-member .member-list .member-head img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background-color: #ccc;
+}
+
+.line-group-item .group-member .member-list .member-head:last-child {
+    margin-right: 10px;
+}
+
+.line-group-item .group-exchange {
+    display: block;
+    margin-top:25px;
+}
+
+.line-group-item .group-exchange .btn {
+    display: inline-block;
+    height: 34px;
+    line-height: 34px;
+    color: #007FFF;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    border: 1px solid #007FFF;
+    font-size: 13.4px;
+    color: #007FFF;
+    padding: 0 30px;
+    margin: 0 10px;
+    background-color:#fff;
+}
+
+/* 审核状态 */
+.open-line-message {
+    display: block;
+    text-align: center;
+}
+
+.open-line-message .icon {
+    display: block;
+    width: 80px;
+    height:80px;
+    text-align: center;
+    line-height: 115px;
+    margin: 0 auto 0;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.open-line-message .message-main {
+    font-size: 17.4px;
+    color: #333;
+    margin-bottom: 20px;
+    margin-top:10px;
+}
+
+.open-line-message .message-sub {
+    font-size: 14.4px;
+    color: #f30;
+    margin-bottom: 20px;
+}
+
+.open-line-message .btn {
+    display: inline-block;
+    padding:0 100px;
+    border-radius:100px;
+    height: 45px;
+    line-height: 45px;
+    color: #fff;
+    font-size: 15.4px;
+    font-weight:bold;
+    background-color: #007FFF;
+}

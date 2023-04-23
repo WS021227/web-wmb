@@ -1,0 +1,79 @@
+.clear{clear:both;}
+.help-k{width:940px;margin:0 auto;margin-top:60px;}
+.help-nav{width:158px;float:left;}
+.help-nav h1{margin:0;color:#333;font-size:17.4px;margin-bottom:15px;font-weight:normal;font-weight:bold;}
+.help-nav li{line-height:28px;position:relative;margin-bottom:5px;}
+.help-nav li font{font-family:Arial, Helvetica, sans-serif;font-size:14.4px;padding-right:4px;display:inline-block;color:#ccc;}
+.help-nav li i{display:inline-block;height:19px;width:19px;position:absolute;left:0;top:5px;background:#eee;border-radius:100px;}
+.help-nav li.active a{color:#007FFF;}
+.help-nav li.active a font{color:#007FFF;}
+.help-nav li.active::after{content:">";font-family:fangsong;color:#007FFF;float:right;}
+.help-nav li a{color:#333;font-size:14.4px;}
+.help-content{width:680px;float:right;}
+.help-content h1{
+    text-align:center;font-size:25.4px;color:#fff;height:180px;line-height:180px;margin-bottom:30px;border-radius:3px;
+    background: url(https://static.52wmb.com/wmb_img/bill_banner.jpg) no-repeat;
+
+}
+.help-content p{margin-bottom:30px;font-size:15.4px;color:#333;line-height:160%;}
+.help-content h2{font-size:16.4px;color:#333;padding-bottom:8px;}
+.help-img-top{width:680px;margin-bottom:30px;}
+.company-foot{width:100%;height:auto;background:#fafafa;margin-top:20px;}
+.company-foot-k{width:680px;padding:30px 0;position:relative;height:auto;margin:0 auto;box-shadow: none;padding-left:260px;}
+
+
+/*操作手册*/
+.download-category{display:block;height:40px;line-height:40px;background:#EAEDF2;color:#005FB9;text-align:center;font-size:14.4px;margin-bottom:15px;border-radius:5px;font-weight:bold;}
+.class-k{width:940px;margin:0 auto;margin-top:60px;}
+.class-title{height:50px;border-bottom:1px #eee solid;line-height:50px;margin-bottom:20px;}
+.class-title h2{float:left;font-size:16.4px;color:#333;}
+.class-title h2 font{padding-left:5px;font-size:14.4px;color:#999;font-weight:normal;}
+.class-title a{float:right;font-size:13.4px;color:#999;margin-left:15px;}
+.class-title a.active{color:#666;}
+.class-product-nav{float:left;width:158px;}
+.class-product-c{width:680px;float:right;font-size:14.4px;line-height:160%;}
+.class-product-c h2{font-size:17.4px;padding-bottom:10px;}
+.class-product-c b{font-size:14.4px;color:#333;padding-bottom:8px;}
+.class-product-c img{margin-top:15px;width:668px;box-shadow: 0px 0px 8px rgb(0 0 0 / 5%);padding:5px;border:1px #efefef solid;}
+.class-product-c p:nth-child(n+3){margin-top:40px;}
+.pannel-list {width:100%;}
+.pannel-list h3{margin:0;font-size:16.4px;color:#333;margin-bottom:15px;font-weight:normal;}
+.pannel-list .pannel-item {display: block;}
+.pannel-list .pannel-item .item-name {
+    position: relative;
+    display: block;
+    color: #333;
+    font-weight: bold;
+    font-size:14.4px;
+    cursor: pointer;
+    margin-bottom:15px;
+}
+/* 这里是箭头图标建议换成icon */
+.pannel-list .pannel-item .item-name::before {
+    content: '>';
+    position: absolute;
+    top: 50%;
+    right:3px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: -10px;
+    right: 0;
+    font-family: Simsun;
+    color: #000;
+    transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transition: all .3s;
+    -webkit-transition: all .3s;
+}
+.pannel-list .pannel-item ul {height: 0;overflow: hidden;margin-bottom:10px;margin-top:-10px;}
+.pannel-list .pannel-item .pannel-child{font-size:12.4px;color: #666;line-height:180%;}
+.pannel-list .pannel-item a{color:#888;}
+.pannel-list .pannel-item a:hover{color:#005FB9;}
+.pannel-list .pannel-item.active ul {height: auto;}
+.pannel-list .pannel-item.active .item-name::before {transform: rotate(-90deg);-webkit-transform: rotate(-90deg);}
+.load{
+    position: fixed;
+    top: 0px;
+    z-index: 9;
+    padding-top:40px;   
+}

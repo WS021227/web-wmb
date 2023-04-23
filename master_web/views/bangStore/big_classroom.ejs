@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="邦阅大课堂已上线外贸课程9个，月更2个，年度计划上新视频课程<%= results.wmb_bangclass.playback_count %>个。视频涵盖主流B2B、社媒工具、跨境电商、独立站、搜索引擎、外贸数据等课程内容。"/>
+    <meta name="keywords" content="外贸课程,培训,B2B,跨境,SEO,独立站,搜索引擎"/>
+    <title>邦阅大课堂-外贸邦</title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/index.css?v=<%=VERSION%>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<% var user = wglobals.user,live_list = results.wmb_bangclass.playback_list || [],
+        adds = results.add_service || [], adds_item = adds.length>0?adds[0]:{};
+    console.log(adds_item, 'adds_item')
+%>
+<div class="mall-banner">
+    <div class="mall-banner-k">
+        <div class="mall-banner-l">
+            <h1>邦阅大课堂畅听卡</h1>
+            <p>持卡者，所有已上线外贸课程有效期内无限制观看，月上新2个。</p>
+            <%var tips = '提示：服务期内所有上线课程无限次观看';%>
+            <div class="mall-banner-button">
+                <% if(user.id == null){ %>
+                    <a href="/login" target="_blank">99元/半年<font>|</font>购买<span>&gt;</span></a>
+                <% }else if(adds_item.buyer_level > -1){
+                    tips = '提示：您已够买，有效期至 ' + adds_item.expired_time
+                %>
+                    <a href="/product?product=12&adds=yue_kt" target="_blank">专享价：<b><%=adds_item.amount_rmb%></b>元/180天<font>|</font>现在续费<span>&gt;</span></a>
+                <% }else{ %>
+                <a href="/product?product=12&adds=yue_kt" target="_blank">专享价：<b><%=adds_item.amount_rmb%></b>元/180天<font>|</font>立即购买<span>&gt;</span></a>
+                <% } %>
+            </div>
+            <div class="mall-banner-tips"><%=tips%></div>
+        </div>
+        <div class="mall-banner-r"><img src="https://static.52wmb.com/wmb_img/minisite/ketang_banner.png"/></div>
+        <br class="clear"/>
+    </div>
+</div>
+<div class="mall-vedio-all">
+    <div class="mall-c mall-vedio">
+        <div class="mall-vedio-title">
+            <h2>大课堂外贸课程,已上线<%= results.wmb_bangclass.playback_count %>节课</h2>
+            <p>丰富的课程内容，优质的导师资源，新鲜的外贸实战经验，一对一服务充分沟通!</p>
+        </div>
+        <div class="course-list" id="launched">
+            <div class="be-prepared" style="display: block;">
+                <ul id="live_list" data-buyer="<%= adds_item.buyer_level %>">
+                    <% live_list.forEach(function(item, index){ %>
+                    <li>
+                        <div>
+                            <img src="<%= item.head %>" class="course-list-pic"/>
+                            <b class="course-list-name">讲师: <%= item.user_name %></b>
+                            <h3><a href="javascript:void(0);" title="<%=item.title%>"><%= item.title.substring(0,20) %></a></h3>
+                            <p class="course-list-c"><%= item.class_type.replace(/,/g, "") %></p>
+                            <p class="course-list-t">
+                                <span>时长：<%= item.class_duration %></span><font>|</font><span><%= item.class_students %>人学习</span>
+                            </p>
+                            <p class="course-list-l">
+                                <% if(user.id == null){ %>
+                                <a href="javascript:void(0);" onclick="check_details('<%= item.id %>')">课程详情<font>&gt;</font></a>
+                                <% }else{ %>
+                                <% if(adds_item.buyer_level > -1){ %>
+                                <a href="https://www.52by.com/media/<%= item.video_list_id %>" target="_blank">观看视频<font>&gt;</font></a>
+                                <% }else{ %>
+                                <a href="javascript:void(0);"  onclick="check_details('<%= item.id %>')">课程详情<font>&gt;</font></a>
+                                <% } %>
+                                <% } %>
+
+                                
+                            </p>
+                        </div>
+                    </li>
+                    <% }) %>
+                    <br class="clear"/>
+                </ul>                
+            </div>
+            <div class="paging" id="live_paging" data-total="<%= results.wmb_bangclass.playback_count %>" data-per=""></div>
+            <div class="be-prepared" style="display: none;">
+                <ul>
+                    <li>
+                        <div>
+                            <img src="https://static.52by.com/yue/live/163592941615187686029.png"
+                                 class="course-list-pic"/>
+                            <b class="course-list-name">讲师: 蔡同济</b>
+                            <h3><a href="#">洞察亚马逊跨境生意经</a></h3>
+                            <p class="course-list-c">跨境电商平台封号潮，助力转型独立站、建立独立站品牌私域流量、获取...</p>
+                            <p class="course-list-t"><span>时长: 38:15</span><font>|</font><span>89人学习</span></p>
+                            <p class="course-list-l">
+                                <a href="#">观看视频<font>&gt;</font></a>
+                            </p>
+                        </div>
+                    </li>
+                    <br class="clear"/>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="mall-bg">
+    <div class="mall-v">
+        <div class="mall-share-title">
+            <h2>畅听卡会员权益</h2>
+            <p>功能简单高效易上手，使用社媒搜搜开发外贸客户效率提升不止10倍</p>
+        </div>
+        <div class="ketang-gn-list">
+            <ul>
+                <li class="ketang-gn-list-1">
+                    <font>已上线课程无限观看</font><br>
+                    <i></i>
+                </li>
+                <li class="ketang-gn-list-2">
+                    <font>社群答疑</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-3">
+                    <font>服务商对接</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-4">
+                    <font>海外社媒免费开户</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-5">
+                    <font>行业资源</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-6">
+                    <font>公开课课件</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-7">
+                    <font>活动优先参加</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-8">
+                    <font>有效期180天</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-9">
+                    <font>月更2个视频课程</font><br><i></i>
+                </li>
+                <li class="ketang-gn-list-10">
+                    <font>一对一服务</font><br><i></i>
+                </li>
+                <br class="clear">
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="mall-ask">
+    <div class="mall-share-title">
+        <h2>大课堂畅听卡常见问答</h2>
+        <p>为您整理了关于该工具用户咨询最多、关注最多的一些问题。</p>
+    </div>
+    <div id="questions">
+        <ul>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>邦阅大课堂随心听服务是直播还是录播课程？</h3>
+                <div class="foldContent">
+                    <p>随心听服务，是录播视频课程，除了每月2次免费直播课程 的回放权限还有更多名师课程、系列课程等内容可以反复学 习，无限次查阅。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>购买后如何观看随心听课程？</h3>
+                <div class="foldContent">
+                    <p>1.邦阅网官网-大课堂-我的<br/>2.关注公众号（@外贸这点事）点击底部菜单栏。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>随心听有多少课时，每个课时有多少？</h3>
+                <div class="foldContent">
+                    <p>根据每个课程专题的内容，直播课回放60分钟左右，系列 课程每个小节20分钟左右。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>观看随心听课程过程中有疑问怎么办？</h3>
+                <div class="foldContent">
+                    <p>买“随心听服务后”，可以添加小邦（微信ID：bangyue 52）拉您进入专属的用户微信群，与其他学员一起学习。 社群内不定期会有讲师答疑以及会员红包福利等活动。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>邦阅大课堂随心听服务能否退款？</h3>
+                <div class="foldContent">
+                    <p>邦阅大课堂随心听服务为虚拟内容服务，一旦购买无法退 款，请您谅解。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangStore/big_classroom.js?v=<%=VERSION%>"></script>
+<script>
+    var yue_token = ''
+    $(function () {
+
+        $('.example-item').on({
+            mouseover: function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            }
+        });
+
+        $('.banner-float').addClass('show');
+    });
+</script>
+</body>
+</html>

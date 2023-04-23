@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%=results.detail.detail.description %>"/>
+    <meta name="keywords" content="<%=results.detail.detail.label%>" />
+    <title><%= results.detail.detail.title%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangClass/class.css?v=<%=VERSION%>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<% var detail=results.detail; var particulars=detail.detail; %>
+<div class="class-k">
+    <div class="class-k-l class-detail">
+       <div class="class-detatil-c"> 
+         <h1><%= particulars.title%></h1>
+        <span class="class-detail-time"><%=particulars.update_time.split(' ')[0]%><font>|</font><%=particulars.view_count%><%=translate('share_text_view')%><font>|</font><a href="/new/category-<%=particulars.route%>"><%=particulars.name%></a></span>
+        <p> <%- particulars.content -%> </p>
+     </div>
+         <% var category=results.category;%>
+         <div class="class-detail-related">
+            <% var tutorial_hot_list=results.tutorial_hot_list||[];var tutorial_new_list=results.tutorial_new_list||[],
+                    tutorial_hot_tl = wglobals.lang == 'cn'?60:100, tutorial_hot_dl =wglobals.lang == 'cn'?40:60 %>
+            <%if(category=='2'){%>
+                <h2>
+                    <a href="javascript:void(0);" data-sort="1" data-category="<%=category%>" class="active"><%=translate('share_text_new')%></a>
+                    <a href="javascript:void(0);"data-sort="0" data-category="<%=category%>"><%=translate('share_text_hot')%></a>
+                </h2>
+               <ul class="class-jiqiao-list class-detail-bottom"id="tutorial_new_box_2">
+                <%tutorial_new_list.forEach(function(item,index){%>
+                <li>
+                   <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>">
+                   <h3><a href="/new/<%=item.id%>"><%=item.title.substring(0, tutorial_hot_tl)%></a></h3>
+                   <p><%=item.description.substring(0, tutorial_hot_dl)%>...</p>
+                   <span><%=item.update_time%><font>|</font><%=item.view_count%><%=translate('share_text_view')%></span>
+                </li>
+                <%})%>
+               </ul>
+               <ul class="class-jiqiao-list class-detail-bottom" id="tutorial_hot_box_2" style="display: none;">
+                 <%tutorial_hot_list.forEach(function(item,index){%>
+                    <li>
+                        <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>">
+                        <h3><a href="/new/<%=item.id%>"><%=item.title.substring(0, tutorial_hot_tl)%></a></h3>
+                        <p><%=item.description.substring(0, tutorial_hot_dl)%>...</p>
+                        <span><%=item.update_time%><font>|</font><%=item.view_count%><%=translate('share_text_view')%></span>
+                    </li>
+                <%})%>
+               </ul>
+      
+    <%}else if(category=='1'||category=='4'||category=='3'){%>
+        <h2>
+            <a href="javascript:void(0);" data-sort="1" data-category="<%=category%>" class="active"><%=translate('share_text_new')%></a>
+            <a href="javascript:void(0);"data-sort="0" data-category="<%=category%>"><%=translate('share_text_hot')%></a>   
+        </h2>
+        <div class="class-list class-list-gg">
+            <ul id="tutorial_new_box_4">
+                <%tutorial_new_list.forEach(function(item,index){%>
+                <li><font><%=item.update_time%></font><a href="/new/<%=item.id%>"><%=item.title.substring(0, wglobals.lang == 'cn'?60:100)%></a></li>
+                <%})%>   
+           </ul>
+           <ul id="tutorial_hot_box_4" style="display: none;">
+               <%tutorial_hot_list.forEach(function(item,index){%>
+               <li><font><%=item.update_time%></font><a href="/new/<%=item.id%>"><%=item.title.substring(0, wglobals.lang == 'cn'?60:100)%></a></li>
+               <%})%>
+           </ul>
+        </div>
+         <%}else {%>
+            <h2>
+                <a href="javascript:void(0);" data-sort="1" data-category="<%=category%>" class="active"><%=translate('share_text_new')%></a>
+                <a href="javascript:void(0);"data-sort="0" data-category="<%=category%>"><%=translate('share_text_hot')%></a>
+            </h2>
+                        <div class="bang-ke-detail">
+                            <ul id="tutorial_new_box_0">
+                                <%tutorial_new_list.forEach(function(item,index){%>
+                                    <li>
+                                        <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>">
+                                        <h3><a href="/new/<%=item.id%>"><%=item.title.substring(0, tutorial_hot_tl)%></a></h3>
+                                        <span><%=item.update_time%><font>|</font><%=item.view_count%><%=translate('share_text_view')%></span>
+                                    </li>
+                                    <%})%>                            
+                                <br class="clear">
+                            </ul>
+                            <ul id="tutorial_hot_box_0" style="display:none;">
+                                <%tutorial_hot_list.forEach(function(item,index){%>
+                                    <li>
+                                        <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>">
+                                        <h3><a href="/new/<%=item.id%>"><%=item.title.substring(0, tutorial_hot_tl)%></a></h3>
+                                        <span><%=item.update_time%><font>|</font><%=item.view_count%><%=translate('share_text_view')%></span>
+                                    </li>
+                                    <%})%>                            
+                                <br class="clear">
+                            </ul>
+                        </div>
+          <%}%>
+        </div>
+    </div>
+    <div class="class-k-r">
+        <div class="class-jiqiao-hot">
+             <h2><%=translate('class_model_related')%></h2>
+             <ul>
+                <%var related=detail.related.slice(0, 5), related_len = wglobals.lang == 'cn'?40:80 %>
+                 <%related.forEach(function(item,index){%>
+                    <li>
+                     <a href="/new/<%=item.id%>"><font><%=index+1%></font><%=item.title.substring(0, related_len)%></a>
+                      <span><%=particulars.name%><font>●</font><%=translate('share_text_view')%></span>
+                  </li>
+                   <%})%>
+             </ul>
+        </div>
+    </div>
+    <br class="clear"/>
+ </div>
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangClass/detail.js?v=<%=VERSION%>"></script>
+</body>
+</html>

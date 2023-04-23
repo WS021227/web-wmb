@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangClass/class.css?v=<%=VERSION%>">
+    <meta name="source" content="fwzc">
+    <meta name="category" content="3">
+    <title>网站通告-邦课堂-外贸邦</title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<% var tutorial_list = results.tutorial_list||[], tutorial_hot_list = results.tutorial_hot_list || []; %>
+<div class="class-k">
+    <div class="class-k-l class-list class-list-gg">
+        <div class="class-list-title">
+            <h2>网站通告</h2>
+            <div class="class-list-category" id="dropdown_sort">
+                <div class="dropdown-container">
+                    <div class="dropdown-btn" data-value="default">
+                        <font class="show">选择分类</font>
+                        <i></i>
+                    </div>
+                    <ul class="dropdown-menu" style="margin-top: 10px;">
+                        <li class="item active" data-value="1">最新</li>
+                        <li class="item" data-value="2">最热</li>
+                    </ul>
+                </div>
+            </div>
+            <br class="clear"/>
+        </div>
+        <ul id="tutorial_list_box" class="tutorial-list tutorial-list-tt">
+            <%- include('../bangClass/child/fwzc.ejs') %>
+        </ul>
+        <a class="more category-index-more" data-page="2" data-child="0" href="javascript:void(0);" onclick="load_tutorial_list(this)"><%= translate('share_text_more_click') %></a>
+    </div>
+    <div class="class-k-r">
+        <div class="class-jiqiao-hot">
+            <h2>24小时热文</h2>
+            <ul>
+                <% tutorial_hot_list.forEach(function(items, index){ %>
+                <li>
+                    <a href="/new/<%= items.id %>"><font><%= index+1 %></font><%if(wglobals.lang == 'cn'){%><%=items.title.substring(0,20)%><%}else{%><%=items.title.substring(0,40)%><%}%></a>
+                    <span>海关数据<font>●</font><%= items.view_count %>次阅读</span>
+                </li>
+                <% }) %>
+            </ul>
+        </div>
+    </div>
+    <br class="clear"/>
+</div>
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangClass/bangClass.js?v=<%=VERSION%>"></script>
+</body>
+</html>

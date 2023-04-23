@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_related_title')%>-邦Line</title>
+    <%- include('./head.ejs') %>
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/dynamic.css?v=<%= VERSION %>">
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">
+        <%- include('../../home/admin_tab.ejs') %>
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <!-- 左侧菜单 -->
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <!-- 关注的人 -->
+                    <div class="topic">
+                        <div class="line-admin-module my-group">
+                            <div class="line-module-tab my-group-tab">
+                                <div class="tab-item tab myfollow active" data-hav="0" data-tab="myfollow" data-target="#related"><%=translate('bline_related_my_concerns')%></div>
+                                <div class="tab-item tab fans" data-hav="0" data-tab="fans" data-target="#related"><%=translate('bline_related_my_fans')%></div>
+                                <div class="tab-item tab view" data-hav="0" data-tab="view" data-target="#related"><%=translate('bline_related_my_browsed')%></div>
+                                <div class="tab-item tab viewmy" data-hav="0" data-tab="viewmy" data-target="#related"><%=translate('bline_related_viewed_me')%></div>
+                                <div class="tab-item tab message" data-hav="0" data-tab="message" data-target="#related">
+                                    <%=translate('bline_related_news')%><i id="tab_related_msg" class="point display-none"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content" id="related">
+                        <div class="line-supplier-list tab-pane active" >
+                            <div id="line_follow_user_list" class="share-related"></div>
+                            <a href="javascript:void(0)" class="display-none" data-page="1" id="more_follow_list"></a>
+                        </div>
+                        <div class="line-supplier-list tab-pane">
+                            <div id="line_fans_list" class="share-related"></div>
+                            <a href="javascript:void(0)" class="display-none" data-page="1" id="more_fans_list"></a>
+                        </div>
+                        <div class="line-supplier-list tab-pane">
+                            <div id="line_view_list" class="share-related"></div>
+                            <a href="javascript:void(0)" class="display-none" data-page="1" id="more_view_list"></a>
+                        </div>
+                        <div class="line-supplier-list tab-pane">
+                            <div id="line_view_my_list" class="share-related"></div>
+                            <a href="javascript:void(0)" class="display-none" data-page="1" id="more_view_my_list"></a>
+                        </div>
+                        <div class="group-message-list tab-pane">
+                            <div id="line_message_list" class="share-related"></div>
+                            <a href="javascript:void(0)" class="display-none" data-page="1" id="more_message_list"></a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/line_related.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

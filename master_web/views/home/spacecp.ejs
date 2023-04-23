@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <link rel="stylesheet" href="https://static.52wmb.com/upload_avatar/cropper/cropper.min.css">
+    <link rel="stylesheet" href="https://static.52wmb.com/upload_avatar/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="https://static.52wmb.com/wmb_css/user_content/avatar.css">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%= VERSION %>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%= VERSION %>">
+    <meta content="https://static.52wmb.com/wmb_new/" name="static_url">
+    <title><%=translate('mine_userinfo_name')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<% var user = wglobals.user %>
+<div class="center-k" id="spacecp">
+    <h2><%=translate('mine_userinfo_name')%></h2>
+    <div class="center-tag-select">
+        <a href="javascript:void(0)" class="active"><%=translate('mine_userinfo_info')%></a>
+        <a href="javascript:void(0)"><%=translate('mine_userinfo_avatar')%></a>
+        <a href="javascript:void(0)"><%=translate('mine_userinfo_password')%></a>
+        <a href="javascript:void(0)"><%=translate('mine_userinfo_login')%></a>
+    </div>
+    <div class="center-k-content" style="margin-bottom:80px;">
+        <div class="center-user-info  center-k-nom-box">
+            <div class="center-user-info-list">
+                <div class="center-user-info-list-c info-simple" id="edit_user_name">
+                    <div><%=translate('mine_userinfo_nickname')%></div>
+                    <div id="show_contact"><%= wglobals.user.contact %></div>
+                    <div class="operations"><a href="javaScript:void(0);" class="edit-info"><%=translate('share_text_edit')%></a></div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none" id="save_user_name">
+                    <div><%=translate('mine_userinfo_nickname')%></div>
+                    <div>
+                        <fieldset class="fieldset">
+                            <legend><%=translate('mine_userinfo_nickname')%></legend>
+                            <input type="text" class="clear-target" id="txt_general_contact" value="<%= wglobals.user.contact %>">
+                            <i class="clear-txt">×</i>
+                        </fieldset>
+                    </div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);" data-ntips="请输入昵称" data-field="contact" onclick="general_save(this)"><%=translate('share_text_save')%></a>
+                        <a class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+            <div class="center-user-info-list">
+                <div class="center-user-info-list-c info-simple" id="edit_user_mail">
+                    <div><%=translate('mine_userinfo_email')%></div>
+                    <div id="show_email"><%= wglobals.user.user_name?wglobals.user.encrypt_user_name:translate('mine_userinfo_empty') %></div>
+                    <div class="operations">
+                        <%if(wglobals.user.user_name){%>
+                        <a href="javascript:void(0)" class="edit-info" onclick="reload_bind_email()"><%=translate('mine_userinfo_rebind')%></a>
+                        <%}else{%>
+                            <a href="javascript:void(0)" class="edit-info" onclick="bind_new_email()"><%=translate('mine_userinfo_bind')%></a>
+                        <%}%>
+                    </div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none" >
+                    <div><%=translate('mine_userinfo_email')%></div>
+                    <div id="bind_email_center"></div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);"  onclick="bind_email(this)"><%=translate('share_text_save')%></a>
+                        <a class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a></div>
+                    <br class="clear"/>
+                </div>
+            </div>
+
+            <%if(wglobals.lang == 'cn'){%>
+            <div class="center-user-info-list">
+                <div class="center-user-info-list-c info-simple" id="edit_user_phone">
+                    <div>登录手机</div>
+                    <div id="show_phone"><%= wglobals.user.user_phone?wglobals.user.contact_fs:translate('mine_userinfo_empty') %></div>
+                    <div class="operations">
+                        <%if(wglobals.user.user_phone){%>
+                            <a href="javaScript:void(0);" class="edit-info" onclick="reload_bind_phone()" >重新绑定</a>
+                        <%}else{%>
+                            <a href="javaScript:void(0);" class="edit-info" onclick="bind_new_phone()" >绑定</a>
+                        <%}%>
+                    </div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none">
+                    <div>登录手机</div>
+                    <div id="bind_phone_center">
+                    </div>
+                    <div class="operations"><a href="javaScript:void(0);" onclick="bind_phone(this)"><%=translate('share_text_save')%></a> <a
+                                class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a></div>
+                    <br class="clear"/>
+                </div>
+            </div>
+            <%}%>
+
+            <div class="center-user-info-list">
+                <div class="center-user-info-list-c info-simple" id="edit_user_company_name">
+                    <div><%=translate('mine_userinfo_company')%></div>
+                    <div id="show_company_name"><%= wglobals.user.company_name || translate('mine_userinfo_empty') %></div>
+                    <div class="operations"><a href="javaScript:void(0);" class="edit-info"><%=translate('share_text_edit')%></a></div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none">
+                    <div><%=translate('mine_userinfo_company')%></div>
+                    <div>
+                        <fieldset class="fieldset">
+                            <legend><%=translate('mine_userinfo_company')%></legend>
+                            <input type="text" id="txt_general_company_name"  class="clear-target"  value="<%= wglobals.user.company_name || '' %>">
+                            <i class="clear-txt">×</i>
+                        </fieldset>
+                    </div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);" data-ntips="<%=translate('mine_userinfo_company_enter')%>" data-field="company_name"
+                                               onclick="general_save(this)"><%=translate('share_text_save')%></a>
+                        <a class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+            <div class="center-user-info-list">
+                <div class="center-user-info-list-c info-simple">
+                    <div><%=translate('mine_userinfo_product')%></div>
+                    <div id="show_user_type"><%= wglobals.user.user_type_name||translate('mine_userinfo_empty') %></div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);" class="edit-info"><%=translate('share_text_edit')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none" id="save_user_service">
+                    <div><%=translate('mine_userinfo_product')%></div>
+                    <div>
+                        <fieldset class="fieldset">
+                            <legend><%=translate('mine_userinfo_company_property')%></legend>
+                            <div id="company_attributes" style="margin-left:0;padding-left:8px;width:98%;">
+                                <div class="dropdown-btn" data-value="0" style="width:100%;;margin-top:5px;">
+                                    <font><%= wglobals.user.user_type_name||'选择公司属性' %></font>
+                                    <i style="margin-top:8px;"></i>
+                                </div>
+                                <ul class="dropdown-menu" style="margin-top:10px;">
+                                    <li class="item <%= wglobals.user.usertype==1?'active':'' %>" data-value="1"><%=translate('share_nav_buyer')%></li>
+                                    <li class="item <%= wglobals.user.usertype==2?'active':'' %>" data-value="2"><%=translate('share_nav_supplier')%></li>
+                                    <li class="item <%= wglobals.user.usertype==3?'active':'' %>" data-value="3"><%=translate('mine_userinfo_buyer_supplier')%></li>
+                                    <li class="item <%= wglobals.user.usertype==4?'active':'' %>" data-value="4"><%=translate('mine_userinfo_logistics')%></li>
+                                    <li class="item <%= wglobals.user.usertype==5?'active':'' %>" data-value="5"><%=translate('mine_userinfo_service')%></li>
+                                </ul>
+                            </div>
+                            <input type="hidden" id="type_id" data-name="<%= wglobals.user.user_type_name||'' %>" value="<%=wglobals.user.usertype%>">
+                        </fieldset>
+                        <fieldset class="fieldset">
+                            <legend><%=translate('mine_userinfo_product_input')%></legend>
+                            <input value="" type="text" class="clear-target" style="width:220px;" id="product_name">
+                            <i class="clear-txt">×</i>
+                            <a onclick="product_add()"><%=translate('mine_userinfo_product_add')%></a>
+                        </fieldset>
+                        <font class="tips">*<%=translate('mine_userinfo_product_add_tips')%></font>
+                        <span id="product_more"></span>
+                    </div>
+                    <div class="operations"><a href="javaScript:void(0);" onclick="save_user_type(this)"><%=translate('share_text_save')%></a> <a
+                                class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a></div>
+                    <br class="clear"/>
+                </div>
+            </div>
+            <div class="center-user-info-list ">
+                <div class="center-user-info-list-c info-simple" id="edit_user_web">
+                    <div><%=translate('mine_userinfo_company_site')%></div>
+                    <div id="show_website"><%= wglobals.user.website||translate('mine_userinfo_empty') %></div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);" class="edit-info"  onclick="edit_user_web()"><%=translate('share_text_edit')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none">
+                    <div><%=translate('mine_userinfo_company_site')%></div>
+                    <div>
+                        <div id="dw_http_type"></div>
+                        <fieldset class="fieldset">
+                            <legend><%=translate('mine_userinfo_company_site_enter')%></legend>
+                            <input type="text" class="clear-target" id="txt_general_website" value="<%= wglobals.user.website||'' %>">
+                            <i class="clear-txt">×</i>
+                        </fieldset>
+                    </div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);" data-ntips="<%=translate('mine_userinfo_company_site_enter')%>" data-field="website" onclick="general_save(this)"><%=translate('share_text_save')%></a>
+                        <a class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+            <div class="center-user-info-list">
+                <div class="center-user-info-list-c info-simple" id="edit_user_role">
+                    <div><%=translate('mine_userinfo_company_position')%></div>
+                    <div id="show_position"><%= wglobals.user.position||translate('mine_userinfo_empty') %></div>
+                    <div class="operations"><a href="javaScript:void(0);" class="edit-info" onclick="edit_user_role()"><%=translate('share_text_edit')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+                <div class="center-user-info-list-c info-more display-none">
+                    <div><%=translate('mine_userinfo_company_position')%></div>
+                    <div>
+                        <fieldset class="fieldset">
+                            <legend><%=translate('mine_userinfo_company_position')%></legend>
+                            <input id="txt_general_position" class="clear-target" value="<%= wglobals.user.position||'' %>">
+                            <i class="clear-txt">×</i>
+                        </fieldset>
+                    </div>
+                    <div class="operations">
+                        <a href="javaScript:void(0);" data-ntips="<%=translate('mine_userinfo_company_position_enter')%>" data-field="position" onclick="general_save(this)"><%=translate('share_text_save')%></a>
+                        <a class="cancel-edit" href="javascript:void(0)"><%=translate('share_text_clear')%></a>
+                    </div>
+                    <br class="clear"/>
+                </div>
+            </div>
+        </div>
+        <div class="center-user-pic-k center-k-nom-box" id="upload_photo_box">
+            <div id="crop-avatar">
+
+                <div class="avatar-view" data-original-title="" title="">
+                    <img class="user_avatar" src="https://static.52wmb.com/images/userphoto/190_<%=wglobals.user.photo%>"
+                         alt="Logo">
+                </div>
+                <h3><%=translate('mine_userinfo_avatar_text')%></h3>
+                <p><%=translate('mine_userinfo_avatar_tips')%></p>
+            </div>
+
+            <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label"
+                 role="dialog" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div></div>
+                    <div class="modal-content">
+                        <form class="avatar-form" action="/async/photo/upload" enctype="multipart/form-data"
+                              method="post">
+                            <div class="modal-header">
+                                <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                <h4 class="modal-title" id="avatar-modal-label"><%=translate('mine_userinfo_avatar_edit')%></h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="avatar-body">
+                                    <div class="avatar-upload">
+                                        <input class="avatar-src" name="avatar_src" type="hidden">
+                                        <input class="avatar-data" name="crop_data" type="hidden">
+
+                                        <input class="avatar-input" id="avatarInput" name="avatar_file" type="file">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-9">
+                                            <div class="avatar-wrapper"></div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="avatar-preview preview-lg"></div>
+                                            <div class="avatar-preview preview-md"></div>
+                                            <div class="avatar-preview preview-sm"></div>
+                                        </div>
+                                    </div>
+                                    <div style="padding-top:5px;font-size:14px;color:#999;">
+                                        (<%=translate('mine_userinfo_avatar_pic')%>)
+                                    </div>
+                                    <div class="row avatar-btns">
+                                        <div class="col-md-9" style="width:25%;">
+                                            <div class="btn-group">
+                                                <button class="btn" data-method="rotate" data-option="-90" type="button"
+                                                        title="Rotate -90 degrees"><i class="fa fa-undo"></i> <%=translate('mine_userinfo_avatar_left')%>
+                                                </button>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button class="btn" data-method="rotate" data-option="90" type="button"
+                                                        title="Rotate 90 degrees"><i class="fa fa-repeat"></i> <%=translate('mine_userinfo_avatar_right')%>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button class="btn btn-success btn-block avatar-save" type="submit">
+                                                <i class="fa fa-save"></i> <%=translate('mine_userinfo_avatar_save')%>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div></div>
+        </div>
+        <div class="center-pw-edit center-k-nom-box">
+            <ul>
+                <li>
+                    <fieldset class="fieldset">
+                        <legend><%=translate('mine_userinfo_pw_old')%></legend>
+                        <input type="password" class="clear-target" value="" id="old_pwd">
+                        <i class="clear-txt">×</i>
+                    </fieldset>
+                </li>
+                <li>
+                    <fieldset class="fieldset">
+                        <legend><%=translate('mine_userinfo_pw_new')%></legend>
+                        <input type="password" class="clear-target" value="" id="new_pwd">
+                        <i class="clear-txt">×</i>
+                    </fieldset>
+                </li>
+                <li>
+                    <fieldset class="fieldset">
+                        <legend><%=translate('mine_userinfo_pw_new_cofirm')%></legend>
+                        <input type="password" class="clear-target" value="" id="change_new_pwd">
+                        <i class="clear-txt">×</i>
+                    </fieldset>
+                </li>
+                <a href="javascript:void(0)" onclick="edit_passwd()"><%=translate('mine_userinfo_pw_new_save')%></a>
+            </ul>
+        </div>
+        <ul class="content-login-c center-k-nom-box">
+            <li>
+                <span><%=translate('mine_userinfo_login_date')%></span>
+                <span><%=translate('mine_userinfo_login_ip')%></span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/spacecp.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/avatar.js?v=<%=VERSION%>"></script>
+<script src="https://static.52wmb.com/upload_avatar/cropper/cropper.min.js"></script>
+<script src="https://static.52wmb.com/upload_avatar/bootstrap/bootstrap.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.kfkc-container .tg-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+}
+.kfkc-container .tg-header h1 {
+  padding: 0.625rem 0;
+  text-align: center;
+  font-size: 1.0625rem;
+  line-height: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+.kfkc-container .tg-header img {
+  width: 0.75rem;
+  position: absolute;
+  top: 1rem;
+  left: 0.9375rem;
+}
+.kfkc-container .num {
+  margin-top: 3.5rem;
+  padding: 0.625rem 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom:0.1rem;
+}
+.kfkc-container .num :nth-child(1) {
+  color: #333;
+  font-size: 0.8rem;
+}
+.kfkc-container .num .tab span {
+  color: #777;
+  font-size: 0.8rem;
+}
+.kfkc-container .num .tab :nth-child(1) {
+  margin-right: 0.6375rem;
+}
+.kfkc-container .num .tab .active {
+  color: #015EB9;
+}
+.kfkc-container .content {
+  padding: 0.75rem 0.9375rem;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.kfkc-container .content .sbox {
+  width: 10.4375rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0.3125rem;
+  background-color: #fff;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 5%);
+}
+.kfkc-container .content .sbox a {
+  text-decoration: none;
+}
+.kfkc-container .content .sbox a img {
+  border-top-right-radius: 0.3125rem;
+  border-top-left-radius: 5px;
+  display: block;
+  width: 10.4375rem;
+  height: 6rem;
+}
+.kfkc-container .content .sbox a h3 {
+  font-size: 0.8125rem;
+  line-height: 1.2rem;
+  color: #333;
+  padding: 0.625rem 0.6375rem;
+  font-weight:600;
+}
+.kfkc-container .content .sbox span {
+  display: block;
+  font-size: 0.75rem;
+  line-height: 0.8125rem;
+  color: #999;
+  padding-bottom: 0.625rem;
+  transform: scale(0.9);
+  display: flex;
+  justify-content: space-between;
+}
+.kfkc-container > span {
+  display: block;
+  padding-bottom: 0.9375rem;
+  text-align: center;
+  color: #999;
+  font-size: 0.8rem;
+  background-color: #f5f5f5;
+}

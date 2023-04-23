@@ -1,0 +1,140 @@
+<style>
+    .bill-detail-head {padding:15px 20px;background-color:#EAEDF2;}
+    .bill-detail-head h2 {font-size: 17.4px;color: #333333;font-weight: bold;flex: 1;}
+    .bill-detail-head .bill-data{font-size:13.4px;color:#666666;line-height:15px;margin-top:5px;}
+    .label-moudle{padding:20px;}
+    .label-moudle input{height:39px;outline:none;border: none;flex: 1;padding-left: 10px;font-weight: bold;color: #005FB9;}
+    .input-k span{border: 1px solid #DDDDDD;border-radius:3px;padding:5px 0;height:35px;display: flex;margin-bottom:30px;box-shadow: 0 2px 8px rgb(0 0 0 / 3%);}
+    .input-k h2{font-size:14.4px;color:#333;margin-bottom:5px;}
+    .btn-phone-yzm{margin-right:15px;font-size:14.4px;color:#666;line-height:35px;}
+    .input-button a{background:#007FFF;color:#fff;display:block;height:44px;line-height:44px;padding:0 30px;border-radius:3px;text-align: center;}
+    .picture-yzm{filter:grayscale(100%);}
+</style>
+<div class="bill-detail-head">
+    <span class="bill-detail-head-top"><h2>手机号绑定</h2></span>
+    <p class="bill-data">响应国家法规，保障个人账户信息安全、请绑定手机号。</p>
+</div>
+<div class="label-moudle">
+    <font class="_tips"></font>
+    <div class="label-list">
+        <form name="pop_share_bind_phone_frm" enctype="multipart/form-data" id="pop_bind_email_phone_frm" method="POST">
+            <div>
+                <div class="input-k">
+                    <h2>输入手机号</h2>
+                    <span>
+                        <input type="text" id="txt_pull_phone" value="" class="text-input" placeholder="请输入手机号码">
+                    </span>
+                </div>
+                <div id="bind_phone_box">
+                    <div class="input-k">
+                        <h2>输入右侧图片验证码</h2>
+                        <span>
+                            <input type="text" value="" id="txt_pull_phone_picture_code" class="text-input" placeholder="输入右侧图片验证码,点击图片可更改...">
+                            <img class="picture-yzm" onclick="pull_change_code(this)" src="">
+                        </span>
+                        
+                    </div>
+                    <div class="input-k">
+                        <h2>输入短信验证码</h2>
+                        <span>
+                            <input type="text" value="" id="txt_pull_phone_code" placeholder="查验手机短信，并填写验证码" class="text-input" >
+                            <a class="btn-phone-yzm" onclick="pull_send_phone_code(this)">获取验证码</a>
+                        </span>
+                    </div>
+                    <div class="input-button"><a id="btn_verify_phone">立即绑定</a></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="application/javascript">
+    /*图片验证码*/
+    function pull_change_code(elem) {
+        $(elem).addClass('picture-code').attr('src', '<%= STATIC %>images/loading.gif')
+        $.ajax('/async/picture-code', {
+            datatype: 'text/json',
+            type: 'get',
+            data: {'width': 100, 'height': 33},
+            success: function (result) {
+                if (result.state == 1) {
+                    var data = result.data.base64
+                    $(elem).attr('src', "data:image/png;base64," + data).removeClass('picture-code')
+                }
+            }
+        })
+    }
+    pull_change_code('.picture-yzm')
+    /**
+     * 绑定手机时验证码
+     * @returns {boolean}
+     */
+    function pull_send_phone_code(elem) {
+        let $this = $(elem)
+        var phone_picture_code = $("#txt_pull_phone_picture_code").val()
+        var phone = $("#txt_pull_phone").val()
+        var pattern = /^1[0-9]{10}$/;
+        if (!pattern.test(phone)) {
+            $.alert('手机号格式不正确，请重新输入')
+            return false;
+        }
+        $this.html('正在发送......')
+        $.ajax('/async/account/bind-phone/verify-code', {
+            datatype: 'text/json',
+            type: 'post',
+            data: {
+                picture_code: phone_picture_code,
+                phone: phone
+            },
+            success: function (result) {
+                if (result.state == 0) {
+                    let _timer = 60
+                    let email_code_timer = window.setInterval(function () {
+                        if (_timer > 0) {
+                            _timer--;
+                            $this.html(_timer + '秒后获取').removeAttr('onclick').addClass('disabled')
+                        } else {
+                            window.clearInterval(email_code_timer)
+                            $this.html('重新获取验证码').attr('onclick', 'pull_send_phone_code(this)').removeClass('disabled')
+                        }
+                    }, 1000)
+                } else {
+                    $.alert(result.message)
+                    $this.html('重新获取验证码').attr('onclick', 'pull_send_phone_code(this)').removeClass('disabled')
+                }
+            },error: function (e){
+                $.alert('验证码发送失败')
+                $this.html('重新获取验证码').attr('onclick', 'pull_send_phone_code(this)').removeClass('disabled')
+            }
+        })
+    }
+
+    /**
+     * 提交绑定手机
+     */
+    function pull_bind_phone(fn, elem) {
+        var phone = $("#txt_pull_phone").val()
+        if(!phone) return $.alert('请输入手机号')
+        var pattern = /^1[0-9]{10}$/;
+        if (!pattern.test(phone)) return $.alert('手机号格式不正确，请重新输入')
+        var code = $("#txt_pull_phone_code").val()
+        if(!code) return $.alert('请输入验证码')
+        $(elem).html('正在保存,请稍后......').attr('disabled',true).css('pointer-events','none');
+        $.ajax('/async/account/bind/phone', {
+            datatype: 'text/json',
+            type: 'post',
+            data: {code: code, phone:phone},
+            success: function (result) {
+                if (result.state == 0) {
+                    wg.user.user_phone = phone
+                    wg.user.verifi = 1
+                    return fn()
+                }
+
+                $(elem).html('立即绑定').removeAttr('disabled').css('pointer-events','auto');
+                $.alert(result.message)
+            }
+        })
+    }
+
+
+</script>

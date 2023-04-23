@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('home_meta_description')%>" />
+    <title><%= translate('industry_meta_title') %>-<%= translate('share_text_sitename') %></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/billsearch/index.css?v=<%=VERSION%>" />
+</head>
+<body>
+    <% let conutry_list=results.data.list,turkey_ip_area = wglobals.ip_area || '' %>
+        <% console.log(wglobals,"贸易国列表") %>
+            <div class="container">
+                <%- include('../layout/header.ejs'); %>
+                    <div class="billsearch-box">
+                        <div class="billsearch-box-content">
+                            <h3><%= translate("mine_tags_country") %><span><%= keyreplace(translate("follow_tags_count_ws"),['[@国家个数]'],[conutry_list.length]) %></span></h3>
+                            <div class="big-box" data-list="<%= results.data.list %>">
+                                <% conutry_list.forEach(function(item,index){%>
+                                    <% if(turkey_ip_area == 'TR' &&  item.country == 'turkey' ) return true %>
+                                    <% if(turkey_ip_area == 'IN' &&  item.country == 'india' ) return true %>
+                                    <% if(turkey_ip_area == 'IN' &&  item.country == 'india new' ) return true %>
+                                    <div class="s-box" data-country="<%= item.country %>" data-country_en="<%= item.country_en %>" data-country_cn="<%= item.country_cn %>">
+                                         <div class="l-box">
+                                            <a href="customs-data/<%= item.country.replace(" ", "_") %>"><%= wglobals.lang=="cn"?item.country_cn:item.country_en %></a>
+                                            <p>
+                                                <% let str=item.str_data_types %>
+                                                <% if(str.split("").length==4){ %>
+                                                    <%= item.str_data_types %>
+                                                <% }else{ %>
+                                                    <%= item.str_data_types.replace("数据","") %>
+                                                <%}%>
+                                            </p>
+                                            <p><%= translate("company_list_modle_update") %><%= item.new_date %></p>
+                                        </div>
+                                        <a href="customs-data/<%= item.country.replace(" ", "_") %>"><span class="img-<%= item.country.replace(' ','-') %>"></span></a>
+                                    </div>
+                                 <%})%>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <%- include('../layout/footer.ejs'); %>
+<script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>mobile/javascripts/billsearch/index.js?v=<%=VERSION%>"></script>
+</body>
+</html>

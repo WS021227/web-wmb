@@ -1,0 +1,22 @@
+
+<script type="application/javascript">
+    let wg = {user: {extended_auth: {}, user_functional: {}}};
+    try {
+        wg = <%-JSON.stringify(wglobals)%>
+    }catch (e){
+
+    }
+
+    if(!wg.user.extended_auth) wg.user.extended_auth = {}
+    if(!wg.user.user_functional) wg.user.user_functional = {}
+</script>
+<%
+  try{
+      results = results || {}
+  }catch (e){
+      results = {}
+  }
+ %>
+<script src="<%= PROV_URL() %>?v=<%=Date.now()%>"></script>
+<script src="<%= PLUGINS_STATIC %>jquery-<%=results.jq?results.jq:'3.2.1.min'%>.js"></script>
+<script src="<%= STATIC %>javascripts/share.js?v=<%=VERSION%>"> </script>

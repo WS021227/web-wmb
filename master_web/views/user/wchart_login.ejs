@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="<%= STATIC %>css/user/account.css?v=<%=VERSION%>">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="no_full_pop" content="yes">
+    <title>使用微信扫码登录或注册</title>
+</head>
+<body>
+<style>
+    h2{text-align:center;font-size:22px;color:#E98B0C;padding-bottom:15px;font-weight:bold;}
+    .other-method{text-align:center;margin-top:50px;}
+    .other-method a{text-decoration:none;font-size:15px;color:#06c;}
+    .other-method font{padding:0 10px;font-size:12px;color:#999;}
+    .link-btns a{display:inline-block;height:28px;line-height:28px;color:#fff;padding:0 15px;border-radius:3px;background:#06c;font-size:12px;margin-top:10px;}
+    #wxpqrcode{border:1px #e0e0e0 solid;width:240px;margin:0 auto;padding:15px;background:#fafafa;box-shadow: 0 .2525rem .65rem rgba(53,64,80,.075)!important;}
+</style>
+<div id="third_party" style="text-align:center;margin-top:120px;">
+    <h2>微信扫码登录或注册</h2>
+    <div id="qrcode_box">
+        <div id="wxpqrcode" data-url="<%=results.data.url%>"></div>
+    </div>
+    <p style="font-size:16px;letter-spacing:0.4px;line-height:150%;padding-top:20px;">微信扫码关注外贸邦官方公众号登录<br/>"外贸邦网"</p>
+</div>
+<div class="other-method">
+    <a href="/login?wmb_redirect_uri={{ request.args.get('wmb_redirect_uri') }}">账号密码登录</a><font>|</font><a href="/register?wmb_redirect_uri={{ request.args.get('wmb_redirect_uri') }}">注册新账号</a>
+</div>
+
+<!--<a onclick="verify_login()">验证状态</a>-->
+
+<input type="hidden" value="<%=results.domain_name%>" id="domain_name">
+<input type="hidden" value="<%=results.redirect_url%>" id="redirect_url">
+<input type="hidden" value="<%=results.data.wmb_token%>" id="wmb_token">
+<%- include('../global/foot_script.ejs') %>
+<script src="https://static.52wmb.com/wmb_js/jquery.qrcode.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var domain_name = $('#domain_name').val();
+    var wmb_redirect_url = $('#redirect_url').val();
+    var wmb_token = $('#wmb_token').val();
+    var _href = wmb_redirect_url !== "" ? wmb_redirect_url : "/";
+    var curCount = 3; //当前剩余秒数
+    $(function () {
+        var wxpqrcode = $('#wxpqrcode');
+        if (wxpqrcode.length > 0) {
+            wxpqrcode.qrcode({ width: 240, height: 240, text: wxpqrcode.attr("data-url") }).removeAttr("data-url"); //生成二维码
+        } else {
+            wxpqrcode.html('二维码生成失败');
+        }
+        window.setTimeout(verify_login, 1000)
+    });
+
+    function verify_login() {
+        $.ajax({
+            url: "/async/wechat/login/verify",
+            type: "post",
+            datatype: "json",
+            async: true,
+            data: {token: wmb_token},
+            success: function (result) {
+                if (result.state === 1) {
+                    layer.alert(result.message, function () {
+                        window.location.reload()
+                    })
+                    return false
+                }
+                // 暂无登录信息
+                if (result.state == 1100) {
+                    window.setTimeout(verify_login, 5000)
+                    // $.alert('暂无登录信息')
+                    return false
+                }
+                if (result.state == 0) {
+                    $.alert('登录成功，请稍后......')
+                    window.location.href = _href;
+                    return false
+                }
+                // return false
+                var timer = window.setInterval(function (){
+                    if (curCount == 0) {
+                        window.clearInterval(timer)
+                        window.location.href = _href
+                    }
+                    else {
+                        curCount--;
+                        $("#third_party").html('登录失败，' + curCount + '秒后跳转');
+                    }
+                }, 1000); //启动计时器，1秒执行一次
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+*{padding: 0;margin: 0;}
+.solution-title{background: url(https://static.52wmb.com/wmb_img/bill_banner.jpg) no-repeat;padding:1rem;border-radius:5px;}
+.help-k .help-content img{width:100%;}
+.help-bg{font-size:0.8rem;background:#fff;line-height:160%;padding:0.9375rem;border-radius:10px;margin-bottom:1.5rem;}
+.help-bg h2, .help-bg p b{font-size:0.9375rem;font-weight:bold;margin-top:1rem;}
+.foot-contact{padding-bottom:4.5rem;}
+.help-bg-bottom{margin-bottom:1.5rem;}
+.solution-k{
+    width: 90vw;
+    margin: 0 auto;
+    margin-top: 2.75rem;
+    padding-top: 1.25rem;
+}
+.solution-k .solution-content .solution-title h1{font-size: 1rem;text-align:center;color:#fff;}
+.solution-k .solution-content .solution-title>p{
+    font-size: .75rem;
+    padding-top: .2rem;
+    color: #fff;
+    line-height:180%;
+    text-align:center;
+}
+.solution-k .solution-content .solution-des{
+    color: #333;margin-top: .75rem;
+}
+.sucess-user-info{text-align:center;background:#f7f7f7;padding:20px;border-radius:3px;margin-top:20px;margin-bottom:5px;}
+.sucess-user-info img{border-radius:5px;width:150px;}
+
+
+

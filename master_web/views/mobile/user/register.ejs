@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('home_meta_description')%>" />
+    <title>
+        <%=translate('register_title')%>-<%=translate('share_text_sitename')%>
+    </title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/user/register.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% console.log(results,"33333333") %>
+        <div class="container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>" data-version="<%= VERSION %>">
+            <div class="logo">
+                <a href="/"><img src="<%= STATIC %>mobile/images/user/register/logo.png" /></a>
+            </div>
+
+            <div class="from">
+                <div class="box1">
+                    <div class="text">
+                        <span class="lab1" id="pore"></span>
+                        <img src="<%= STATIC %>mobile/images/user/register/down.png" id="select-pore-btn" />
+                        <div class="flag-box" id="flag_box">
+                            <span class="active" data-id="0"></span>
+                            <span data-id="1"></span>
+                        </div>
+                    </div>
+                    <input name="phoneNumber" id="phoneNumber" placeholder="" />
+                    <span class="toast"></span>
+                </div>
+                <div class="box2">
+                    <div class="text">
+                        <span class="lab2"></span>
+                    </div>
+                    <input name="ypassWord" id="ypassWord" placeholder="" />
+                    <button id="get-verificationCode"></button>
+                </div>
+                <div class="box3">
+                    <div class="text">
+                        <span class="lab3"></span>
+
+                    </div>
+                    <input name="passWord" id="passWord" placeholder="" type="password" />
+                </div>
+            </div>
+            <button class="register" id="now-register"></button>
+            <span class="click-register"></span>
+            <span class="login"><span></span><a href="/login"></a></span>
+
+            <%- include('../layout/footer.ejs'); %>
+        </div>
+
+        <!-- jq -->
+        <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+        <script src="<%= STATIC %>mobile/javascripts/user/register/register.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

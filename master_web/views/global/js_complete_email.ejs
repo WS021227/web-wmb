@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>无标题文档</title>
+</head>
+
+<body>
+
+<div style="line-height:160%;font-size:14px;font-family:微软雅黑;width:660px;margin:0 auto;border:1px #ddd solid;padding:20px;border-top:2px #06c solid;">
+  您好：<br/>
+  以下用户已支付，请开通正式账号...<br/><br/>
+
+
+  用户所属 : <%= wglobals.user.country_code=='cn'?'国内':'国外'%>  <br/>
+  购买类型 : <%=['购买', '升级'][results.buyer_type]%> <br/>
+  购买的产品 : Jungle Scout (<%=['插件版', '插件+网页版'][results.authority_type]%>) <br/>
+  临时账号 : <%=results.account%> <br/>
+  邮箱账号 : <%=results.email %> <br/>
+  手&nbsp;&nbsp;机&nbsp;号 : <%=results.phone %> <br/>
+  公司名称 : <%=results.company_name|| '--'%> <br/>
+  公司地址 : <%=results.company_address|| '--'%> <br/>
+  用&nbsp;户 &nbsp;ID :  <%=wglobals.user.id %> <br/>
+  账号到期时间 : <%=results.expired_time%> <br/><br/>
+
+  感谢您，<br/>
+  外贸邦网 敬上<br/>
+  官网：<a href="https://www.52wmb.com" target="_blank">www.52wmb.com</a>
+</div>
+</body>
+</html>

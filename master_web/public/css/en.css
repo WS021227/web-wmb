@@ -1,0 +1,56 @@
+.leftsidebar .leftsidebar-mine ul{background:#fff;border:1px #eee solid;padding:0;box-shadow: 0 0 10px rgb(0 0 0 / 5%);
+    position:absolute;left:0;top:50px;z-index:2;width:230px;transition: all .2s ease-in-out;opacity:0;display:none;}
+.leftsidebar .leftsidebar-mine:hover ul{background:#fff;border:1px #eee solid;padding:0;box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    position:absolute;left:0;top:50px;z-index:2;width:230px;transition: all .2s ease-in-out;opacity:1;display:block;}
+
+
+.bang-mall div:nth-child(2){width:338.5px;}
+.bang-mall div:nth-child(3){width:338.5px;}
+.bang-mall div:nth-child(2) i {background-position:-273px -380px;}
+.bang-mall div:nth-child(3) i {background-position:-383px -378px}
+.help-nav li a{font-weight:normal;}
+.class-category div{width:423.5px;}
+.class-category div:nth-child(2){margin-right:0;}
+.use-example .example-item{height:320px;}
+
+.loft-hd-content ul li span:nth-child(1){width:185px;}
+.loft-hd-content ul li span{width:191.5px;}
+.loft-hd-content ul li span:nth-child(4){border-right:none;}
+.loft-hd-content ul li:nth-child(1) span{height:150px;}
+.user-c-left{border-right:none;margin-left:180px;}
+
+.center-tab-mall li span{line-height:120%;}
+.content-company-history li span:nth-child(3){padding-right:4%;}
+.content-company-history li span:nth-child(5){width:8.4%;}
+.filtrate li{width:155px;}
+.bang-list li{line-height:140%;padding:10px 0;}
+
+.mail-collect .gather{width:100%;}
+.member-price-select li{width:275px;}
+.member-type-tab ul li font{padding:0 30px;}
+.collect-supplier-list thead tr th{font-size:12.4px;}
+.report-box .report-tab a{padding:0 10px;margin:0 3px;}
+.adds-dd .dropdown-menu{width:300px;top:30px;}
+.seach-list-span{margin-left:-5px;}
+.group-content span{margin-top:0;}
+.data-tool-list a{flex:0.47;}
+.data-tool-list.data-tool-list-category a{flex:0.31;}
+.sousou-screen p a{margin-right:12px;}
+.tabs .tab{font-size:13.4px;}
+.company-category-re ul li b{font-size:13.4px;}
+.company-category-item .tab-list.tabs .tab{font-size:13.4px;}
+.sousou-screen,.company-category-name,.company-category-create{font-size:13.4px;}
+
+
+.right-web-fixed .ty-fixed{background:#E98B0C;}
+.right-web-fixed .wx-fixed{background:#2AAE67;}
+.right-web-fixed .fb-fixed{background:#06c;}
+.right-web-fixed .top-fixed{background:#007FFF;position:relative;}
+.right-web-fixed a font{color:#fff;opacity:0.9;}
+.leftsidebar div span.course{width:130px;}
+.sjj-right-c{font-size:13.5px;}
+
+.report-box .report-tab a{font-size:13.4px;}
+.member-order-list li.df2022-credit-show::after{content:"Valid Until 12/31/2022 23:59:59";}
+.js_experience_upload>a{left:350px;}
+.jungle_scout_experience_box>span{font-size:13.4px;}

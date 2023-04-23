@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangClass/class.css?v=<%=VERSION%>">
+    <meta name="source" content="kfkc">
+    <meta name="category" content="82">
+    <title>海关数据开发课程-邦课堂-外贸邦</title>
+</head>
+<body class="class-bg">
+<%- include('../global/head.ejs') %>
+<% var tutorial_list=results.tutorial_list || []%>
+<%if(tutorial_list.length >0){%>
+<div class="class-k">
+   <div class="class-title">
+       <h2>数据开发课程系列<font>共计<%=tutorial_list[0].total_count%>讲</font></h2>
+       <div id="bang_class">
+           <a href="#" data-sort="1" class="active">最新</a>
+           <a href="#" data-sort="0" >最热</a>
+       </div>
+       <br class="clear"/>
+   </div>
+   <div class="bang-ke">
+        <ul id="bang_class_list" class="tutorial-list">
+            <%- include('../bangClass/child/kfkc.ejs') %>
+        </ul>
+        <br class="clear"/>
+       <%if(results.has_next){%>
+           <a href="javascript:void(0);" class="more category-index-more" data-page="2" data-child="0" onclick="load_tutorial_list(this)" ><%= translate('share_text_more') %></a>
+       <%}%>
+    </div> 
+</div>
+<%}%>
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangClass/bangClass.js?v=<%=VERSION%>"></script>
+</body>
+</html>

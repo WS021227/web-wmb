@@ -1,0 +1,213 @@
+<style type="text/css">
+    .clear {clear: both;}
+    .qxlayout-moudle {padding-bottom: 10px;}
+    #box-warnInfo {
+        background: #fff;
+        border-radius: 5px;
+    }
+    .guide-content {padding:35px 50px;}
+    .guide-content .guide-topic {text-align: center;}
+    .guide-content .guide-topic h2 {
+        font-size: 22px;
+        color: #333;
+        font-weight: bold;
+    }
+    .guide-content .guide-topic p {
+        font-size: 15px;
+        color: #444;
+        padding: 13px 0;
+        line-height: 150%;
+    }
+    .guide-content .guide-submit {
+        width: 100%;
+        margin-top: 10px;
+        text-align: center;
+    }
+    .guide-btn {
+        margin-bottom: 6px;
+        border: none;
+        outline: none;
+        height: 44px;
+        line-height: 44px;
+        padding:0 40px;
+        margin:0 5px;
+        font-size: 15px;
+        text-align: center;
+        background: #3B8CFF;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        color: #fff;
+        font-weight: bold;
+    }
+    .guide-btn-open {
+        margin-bottom: 6px;
+        border: none;
+        outline: none;
+        height: 42px;
+        line-height: 42px;
+        width:200px;
+        margin:0 5px;
+        font-size: 15px;
+        text-align: center;
+        background: #fff;
+        border:1px #3B8CFF solid;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        color: #3B8CFF;
+        font-weight: bold;
+    }
+    .guide-btn font {
+        margin-left: 5px;
+        font-family: SimSun;
+    }
+    .btn-disabled font {
+        font-family: 微软雅黑;
+    }
+
+    .btn-disabled {
+        background: #ccc;
+        color: #999;
+        cursor: no-drop;
+    }
+    .guide-vedio {margin: 0 40px;}
+    .guide-channel {padding: 0;}
+    .guide-channel ul li {
+        height: auto;
+        border-bottom: 1px #eee solid;
+        padding: 20px 0;
+    }
+    .guide-channel ul li:last-child {border-bottom: none;}
+    .guide-channel ul li div {float: left;}
+    .guide-channel ul li a {
+        float: right;
+        height: 30px;
+        width: 70px;
+        line-height: 30px;
+        text-align: center;
+        border-radius: 100px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+    .guide-channel ul li a.buyer {
+        border: 1px #06c solid;
+        color: #06c;
+    }
+    .guide-channel ul li a.supplier {
+        border: 1px #06c solid;
+        color: #06c;
+    }
+    .guide-channel ul li a.trade {
+        border: 1px #06c solid;
+        color: #06c;
+    }
+    .guide-channel ul li a.nr {
+        cursor: no-drop;
+        border: 1px #999 solid;
+        color: #999;
+    }
+    .guide-channel ul li a font {
+        font-family: fangsong;
+        padding-left: 5px;
+    }
+    .guide-channel-img {
+        width: 50px;
+        height: 50px;
+        background: #06c;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .guide-channel-img img {
+        width: 36px;
+        height: 36px;
+        margin-top: 6px;
+    }
+    .guide-channel-title {
+        text-align: left;
+        margin-left: 20px;
+        width: 380px;
+    }
+    .guide-channel-title h3 {
+        font-weight: normal;
+        font-size: 16px;
+        font-weight: bold;
+        padding-top: 3px;
+        color: #666;
+    }
+    .guide-channel-title p {
+        font-size: 12px;
+        color: #666;
+        padding-top: 4px;
+        font-weight: 100;
+        line-height: 160%;
+    }
+</style>
+<div id="experience_pop">
+    <div class="guide-content">
+        <%if(wglobals.lang == 'cn'){%>
+        <div class="guide-topic">
+            <h2>钻石会员体验之旅即将开始...</h2>
+            <p style="text-align:left;">开通体验后，您的账号将拥有黄钻权限。此次体验我们将采用“自主体验”和“远程演示”双模式，任何疑问请致电：021-64033826。祝您玩的开心^_^！</p>
+            <a class="guide-btn btn-disabled" id="btn_experience_start">现在，开始在线体验<font>3s</font></a>
+            <% if((wglobals.user.user_functional||{}).exp_rt != 1){ %><a class="guide-btn-open" onclick="experience_start_to_remote()">申请远程演示</a><%}%>
+            <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding:0 100px;padding-top:10px;">谨慎开通：自主体验仅一次机会，请确保有充足时间体验。</p>
+        </div>
+        <%}else{%>
+        <div class="guide-topic">
+            <h2>Diamond Member Experience Is To Begin</h2>
+            <p style="text-align:left;">After confirming the activation experience, your account will be upgraded to a yellow diamond member. The account will have the highest authority for all data query and function use of the foreign trade state network. Any questions, contact us, whatsapp:+8616621075894.Happy experience ^ _ ^!</p>
+            <a class="guide-btn btn-disabled" id="btn_experience_start">Now open the experience<font>3s</font></a>
+            <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding:0 100px;">Be cautious: Just one chance, please make sure you have enough time to experience it.</p>
+        </div>
+        <%}%>    
+    </div>
+</div>
+<script type="application/javascript">
+    $(function (){
+        experience_pop_back()
+    })
+    // 体验弹窗 -开启体验倒计时弹窗
+    function experience_pop_back() {
+        var objInterval, count = 0, end_count = 3,
+            btn_experience_start = document.querySelector('#btn_experience_start')
+        objInterval = window.setInterval(function () {
+            count++;
+            if (count >= end_count) {
+                btn_experience_start.classList.remove("btn-disabled");
+                btn_experience_start.innerHTML = '<%=translate('pop_experience')%>'
+                btn_experience_start.setAttribute('onclick', 'start_experience(this)')
+                window.clearInterval(objInterval)
+            } else {
+                btn_experience_start.innerHTML = '<%=translate('pop_experience')%><font>' + (end_count - count) + 's</font>'
+            }
+        }, 1000)
+    }
+    function start_experience(elem) {
+        $.ajax("/async/experience/start", {
+            datatype: 'text/html',
+            type: 'get',
+            success: function (result) {
+                layer.closeByChild($(elem))
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim',
+                    area: ['600px', '500px'], // 配置长高
+                    shadeClose: false, //点击遮罩关闭
+                    maxmin: false,
+                    closeBtn: 1,
+                    content: result,
+                    title: 'Tips'
+                })
+            }
+        });
+    }
+    function experience_start_to_remote(){
+        experience_remote()
+        // 关闭体验
+        // close_experience(function () {
+        //     experience_remote()
+        // })
+    }
+</script>
+

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="三剑客,邮箱采集,邮件群发,Benchmark,社媒搜搜"/>
+    <meta name="description" content="通过客户开发三剑客，您可以快速创建精准的潜在目标客户名录及联系方式清单。用它亦可直接与这些目标用户进行互动，建立信任和贸易关系！而且性价比超高..."/>
+</head>
+<title>外贸三剑客，优秀的客户开发解决方案-外贸邦</title>
+<link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%= VERSION %>">
+<link rel="stylesheet" href="<%= STATIC %>css/bangStore/index.css?v=<%= VERSION %>">
+<body>
+<%- include('../global/head.ejs') %>
+<% var user = wglobals.user, vipMarkLevel = {'': 0, 'v': 1, 'bd': 2, 'yd': 3};console.log(user, 'results') %>
+<div class="mall-banner">
+    <div class="mall-banner-k">
+        <div class="mall-banner-l">
+            <h1>客户开发三剑客</h1>
+            <p>优秀的客户开发整体解决方案，帮您找到真实的成交客户！</p>
+            <div class="mall-banner-button">
+                <% if(user.id == null){ %>
+                    <a href="/login">标准版：登陆后查看价格<span>&gt;</span></a>
+                    <a href="/login">高级版：登陆后查看价格<span>&gt;</span></a>
+                <% }else{ %>
+                <% if(verify_real_vip('v')){ %>
+                <a href="/Alipay?v=tsm&s=san_jian_ke&pg=4|6">标准版：<b>5986</b>元/年<font>|</font>购买<span>&gt;</span></a>
+                <a href="/Alipay?v=tsm&s=san_jian_ke&pg=6|11">高级版：<b>6786</b>元/年<font>|</font>购买<span>&gt;</span></a>
+                <% }else if(verify_real_vip('bd')){ %>
+                <a href="/Alipay?v=tsm&s=san_jian_ke&pg=4|6">标准版：<b>5986</b>元/年<font>|</font>购买<span>&gt;</span></a>
+                <a href="/Alipay?v=tsm&s=san_jian_ke&pg=6|11">高级版：<b>6786</b>元/年<font>|</font>购买<span>&gt;</span></a>
+                <% }else if(user.new_user){ %>
+                    <a href="/Alipay?v=tsm&s=san_jian_ke&ra=4|6">标准版：<b>6686</b>元/年<font>|</font>购买<span>&gt;</span></a>
+                    <a href="/Alipay?v=tsm&s=san_jian_ke&pg=6|11">高级版：<b>7486</b>元/年<font>|</font>购买<span>&gt;</span></a>
+                <% } %>
+                <% } %>
+            </div>
+            <% if(user.id == null){ %>
+                <div class="mall-banner-tips">提示：套装包含黄钻、社媒邮箱采集、BEM邮件群发服务期均为12个月</div>
+            <% }else { %>
+            <% if(verify_real_vip('bd') && !user.new_user){ %>
+                <div class="mall-banner-tips">提示：套装包含黄钻、社媒邮箱采集、BEM邮件群发服务期大于10个月</div>
+            <% }else if(user.new_user){ %>
+                <div class="mall-banner-tips">提示：套装包含黄钻、社媒邮箱采集、BEM邮件群发服务期小于2个月</div>
+            <% }else{ %>
+                <div class="mall-banner-tips">提示：套装包含黄钻、社媒邮箱采集、BEM邮件群发服务期均为12个月</div>
+            <% } %>
+            <% } %>
+        </div>
+        <div class="mall-banner-r sanjianke-banner"><img src="https://static.52wmb.com/wmb_img/share/person_pic.png"/></div>
+        <br class="clear"/>
+    </div>
+</div>
+<div class="mall-vedio-all">
+    <div class="mall-c mall-vedio">
+        <div class="mall-vedio-title">
+            <h2>三剑客，客户开发操作演示</h2>
+            <p>通过公司名、网址、产品名自动搜索全网主流搜索引擎和社交媒体，一键深挖公司关键人邮箱、职位及社交账号。外贸客户开发过程中，开发效率提升不止10倍。</p>
+        </div>
+        <div class="mall-vedio-c">
+            <video class="editor" controls autoplay width="100%;">
+                <source src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/25885b0a387702301113825099/sSTig7stBTQA.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="mall-success">
+            <div class="use-example">
+                <div class="example-item active">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_130194497507187500.jpg" alt="Judy">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Judy</div>
+                        <div class="translate">业务经理</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Judy（业务经理）
+                        </div>
+                        <div class="example-des-sub">
+                            我们对于数据的应用，不止是看看而已，而是非常深入地了解和挖掘。”确实，目前，外贸大数据产品在外贸企业中已经是很普及的营销工具了<br/>
+                            <a href="/sucess#a" target="_blank">查看成功故事→</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_130468373656223995.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">冯经理</div>
+                        <div class="translate">外贸经理</div>
+                        <div class="use-time">使用4年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            冯经理（外贸经理）
+                        </div>
+                        <div class="example-des-sub">
+                            通过平时与客户经理的沟通、直播的交流，我们能感受到外贸邦切实的在为用户服务。这也是我一直向客户朋友推荐的原因。<br/>
+                            <a href="/sucess#b" target="_blank">查看成功故事→</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_1553862696202207288.jpg" alt="">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">Mila</div>
+                        <div class="translate">外贸经理</div>
+                        <div class="use-time">使用2年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            Mila（外贸经理）
+                        </div>
+                        <div class="example-des-sub">海关数据;主动分析客户青睐的市场;主动分析客户的采购习惯等等，然后才能更好地主动地跟客户有效地沟通。<br/><a
+                                    href="/sucess#c" target="_blank">查看成功故事→</a></div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_1489807671490.jpg" alt="徐先生">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">徐先生</div>
+                        <div class="translate">SOHO</div>
+                        <div class="use-time">使用2年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            徐先生（SOHO）
+                        </div>
+                        <div class="example-des-sub">
+                            机缘巧合下就用了外贸邦，经过简单的学习就开始挖掘客户，搜索客户的联系方式，向潜在客户发邮件，然后……就找到了美国这家大客户。<br/><a href="/sucess#d"
+                                                                                                  target="_blank">查看成功故事→</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="example-item">
+                    <div class="head">
+                        <img src="https://static.52wmb.com/images/userphoto/190_162684311304162216467.jpeg" alt="辛总">
+                    </div>
+                    <div class="example-info">
+                        <div class="name">辛总</div>
+                        <div class="translate">销售总监</div>
+                        <div class="use-time">使用3年</div>
+                    </div>
+                    <div class="example-des">
+                        <div class="example-des-main">
+                            辛总（销售总监）
+                        </div>
+                        <div class="example-des-sub">
+                            我们百分之五十以上的客户都是从外贸邦数据平台开发到的。” 而这样的开发成果，既来自外贸邦海量优质数据和精准定位分析，也源于我们对...“<br/><a href="/sucess#e"
+                                                                                                        target="_blank">查看成功故事→</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="mall-solution">
+    <p class="mall-solution-tips">提示：外贸三剑客套装包含了以下三款产品！</p>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="<%= STATIC %>images/channel_imgs/sanjianke_data_banner.png" style="margin-left:-15px;box-shadow:0px 0px 10px rgb(0 0 0 / 6%);"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:60px;">
+            <h2><font>1</font>外贸邦黄钻会员<b>(单价5699元/年)</b></h2>
+            <p>数据会员最高权限，支持公司搜索和高级筛选功能，可无限制查阅公司贸易报告、行业分析报告；支持联系方式、公司名录、贸易数据的导出。</p>
+            <span><a href="/loft_HD" target="_blank">查看黄钻权限 →</a></span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-right"><img src="https://static.52wmb.com/wmb_img/share/soso_mod_2.png" style="margin-right:-15px;"/></div>
+        <div class="mall-solution-text mall-left" style="padding-top:60px;">
+            <h2><font>2</font>社媒搜搜邮件箱采集<b>(单价999元起/年)</b></h2>
+            <p>免翻墙！通过公司名称、官网、产品名称自动搜索Google, Facebook等渠道，采集到企业雇员清单列表。包括了雇员的姓名、职位、邮箱以及社交账号。</p>
+            <span><a href="/social-media" target="_blank">查看产品介绍 →</a></span>
+        </div>
+        <br class="clear"/>
+    </div>
+    <div class="mall-solution-item">
+        <div class="mall-solution-img mall-left"><img src="https://static.52wmb.com/wmb_img/share/bme_show_2.png" style="margin-left:-18px;box-shadow:0px 0px 10px rgb(0 0 0 / 6%);"/></div>
+        <div class="mall-solution-text mall-right" style="padding-top:60px;">
+            <h2><font>3</font>BME邮件群发工具<b>(单价1288元/年)</b></h2>
+            <p>无限量邮件群发！赠送10GB图片存储+1000组邮箱有效性验证。可设置独立的收发件人邮件，1000收件人邮件直发平台、隐私、个人信息安全有保障。</p>
+            <span><a href="/benchmark" target="_blank">查看产品介绍 →</a></span>
+        </div>
+        <br class="clear"/>
+    </div>
+</div>
+
+<div class="mall-bg">
+    <div class="mall-v">
+        <div class="mall-share-title">
+            <h2>外贸三剑客版本对比</h2>
+            <p>功能简单高效易上手，使用社媒搜搜开发外贸客户效率提升不止10倍</p>
+        </div>
+        <div class="mall-v-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>包含服务</th>
+                    <th>三剑客标准版</th>
+                    <th>三剑客高级版</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>数据会员</td>
+                    <td>黄钻会员</td>
+                    <td>黄钻会员</td>
+                </tr>
+                <tr>
+                    <td>邮件营销</td>
+                    <td>BME邮件群发</td>
+                    <td>BME邮件群发</td>
+                </tr>
+                <tr>
+                    <td>邮箱采集</td>
+                    <td>社媒邮箱采集标注版</td>
+                    <td>社媒邮箱采集<font>高级版</font>版</td>
+                </tr>
+                <tr>
+                    <td>数据更新</td>
+                    <td>周更</td>
+                    <td>周更</td>
+                </tr>
+                <tr>
+                    <td>售后服务</td>
+                    <td>分配专属数据顾问</td>
+                    <td>分配专属数据顾问</td>
+                </tr>
+                <tr>
+                    <td>数据下载</td>
+                    <td>支持</td>
+                    <td>支持</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="mall-ask">
+    <div class="mall-share-title">
+        <h2>社媒邮箱采集常见问答</h2>
+        <p>为您整理了关于该工具用户咨询最多、关注最多的一些问题。</p>
+    </div>
+    <div id="questions">
+        <ul>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>三剑客套餐和黄钻有什么区别？</h3>
+                <div class="foldContent">
+                    <p>答：三剑客套装不仅包含了黄钻会员，还包含了社媒邮箱采集工具、Benchmark邮件群发工具，三款产品。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>三剑客标准版和高级版之间有什么区别？</h3>
+                <div class="foldContent">
+                    <p>答：三剑客高级版套装中的“社媒邮箱采集”是高级版，<a href="/social-media" target="_blank">查看社媒标准版和高级版差别→</a></p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>三剑客套餐和其他套餐比有什么优势？</h3>
+                <div class="foldContent">
+                    <p>答：三剑客套装是一套客户开发的解决方案，从寻找潜在目标客户开始，确认目标后采集公司中高层，雇员的邮箱；最后是通过benchmark邮箱营销与客户建立联系。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>购买套装后，是否有售后的专属客服和业务培训？</h3>
+                <div class="foldContent">
+                    <p>答：购买套装后，我们将为您分配一名专属的数据顾问。同时我们还提供每月2次的视频直播培训课程。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>套装的服务期分别是多少？</h3>
+                <div class="foldContent">
+                    <p>答：黄钻会员、社媒搜搜邮箱采集、Benchmark邮件群发的服务期均为12个月。</p>
+                </div>
+            </li>
+            <li class="clearfix">
+                <h3><b class="UI-ask"></b>如何开通外贸三剑客套装</h3>
+                <div class="foldContent">
+                    <p>答：1、可以在线选择三剑客套装直接购买，账号实时开通。2、银行转账水单提交至客服后，一个工作日内开通三剑客套装。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<%- include('../global/foot.ejs') %>
+<script>
+    $(function () {
+
+        $('.example-item').on({
+            mouseover: function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            }
+        });
+
+        $('.banner-float').addClass('show');
+    });
+
+
+    $(function () {
+        $("li>h3", "#questions").bind("click", function () {
+            var li = $(this).parent();
+            if (li.hasClass("fold")) {
+                li.removeClass("fold");
+                $(this).find("b").removeClass("UI-bubble").addClass("UI-ask");
+                //li.find(".foldContent").slideDown();
+            } else {
+                li.addClass("fold");
+                $(this).find("b").removeClass("UI-ask").addClass("UI-bubble");
+                //li.find(".foldContent").slideUp();
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

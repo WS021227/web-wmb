@@ -1,0 +1,45 @@
+<% console.log(results,"tgd_data999999999999999999999999999999999999999999999") %>
+    <%let t_data=results.trade.list[0]%>
+        <%let tab_data=results.trade.list.slice(0,20) %>
+        <% console.log(tab_data,"tgd_data6666666666666666666666666666666666666666666666666666666666666666666") %>
+            <!-- 首页提关单数据 -->
+            <div>
+        
+                <div class="data-text">
+                    <p><span><%= translate("company_details_date") %></span><span>
+                            <%= t_data.date.toLocaleString().replace(new RegExp('-', 'g'),'/') %>
+                        </span></p>
+                    <p><span><%= translate("share_nav_supplier") %></span><span>
+                            <%= t_data.seller==null || "" ? '---' : t_data.seller %>
+                        </span></p>
+                    <p><span><%= translate("share_nav_buyer") %></span><span>
+                            <%= t_data.buyer==null || "" ? '---' : t_data.buyer %>
+                        </span></p>
+                    <p>
+                        <span class="left">
+                            <span><%= translate("detail_module_bill_product") %></span>
+                            <span class="miaoshu-text" id="miaoshu-text">
+                                <%= t_data.descript==null || "" ? '---' : t_data.descript %>
+                            </span>
+                        </span>
+                       
+                        <span class="miaoshu-more" id="miaoshu-more"><%= translate("report_search_more") %></span>
+                    </p>
+
+                    <p><span><%= translate("detail_module_quantity") %></span><span>
+                            <%= t_data.amount==null || "" ? '---' : t_data.amount %>
+                        </span></p>
+                </div>
+
+                <!-- tab 海关数据数据 -->
+                <div class="box2">
+                    <% console.log(tab_data,"详情数据333333333333333333333333333") %>
+                    <% tab_data.forEach(function(item,index){%>
+                        <p>
+                            <span><%= item.date %></span>
+                            <span><%= item.descript %></span>
+                            <span><img data-id="<%= raw_bill_encrypt(item.billid || item.bill_id) %>" data-date="<%= item.date  %>" src="<%= STATIC %>mobile/images/company/company_details/right_jiantou.png?v=<%=VERSION%>" /></span>
+                        </p>
+                        <%})%>
+                </div>
+            </div>

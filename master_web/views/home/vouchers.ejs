@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%=VERSION%>">
+    <title><%=translate('mine_tags_vouchers')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<% var coupon_list=results.coupon_list[0]%>
+<%console.log(coupon_list)%>
+<div class="center-k" id="vouchers" >
+    <h2><%=translate('mine_tags_vouchers')%></h2>
+    <div class="vouchers-list">
+       <div class="date-title">
+
+           <p><%=translate('mine_user_date')%><%=coupon_list[0].coupon_expire%><a href="/alipay" target="_blank"><%=translate('mine_vouchers_buy')%></a></p>
+       </div>
+
+        <ul>
+           <%if(coupon_list.length>0){%>
+            <%coupon_list.forEach(function(item,index){%>
+                <li>
+                    <div class="voucher-box <%=item.receive==true?'active':''%>">
+                        <div class="left-box">
+                            <p><%=translate('mine_vouchers_fuhao')%><span><%=item.amount%></span><%=translate('mine_vouchers_rmb')%></p>
+                            <p><%=item.des%></p>
+                        </div>
+                        <div class="right-box">
+                            <% if(!item.state){ %>
+                                <a>Expired</a>
+                            <% } else if(item.receive){ %>
+                            <a target="_blank" href="/Alipay?v=<%=item.flag%>&m=<%=item.duration%>"><%=translate('mine_vouchers_received')%></a>
+                            <%} else {%>
+                                <a data-id="<%=item.id%>" data-flag="<%=item.flag%>" data-m="<%=item.duration%>" onclick="get_voucher(this)"><%=translate('mine_vouchers_get')%></a>
+                             <%}%>
+                        </div>
+                    </div>
+                </li>
+            <%})%>
+          <%}%>
+        </ul>
+    </div>
+</div>
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/vouchers.js?v=<%=VERSION%>"></script>
+</body>
+</html>

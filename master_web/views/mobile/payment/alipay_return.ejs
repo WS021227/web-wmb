@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支付回调页面</title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/payment/alipay_return.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% var data=results.data||{}, pay_data=data.payment_data || {}; %>
+        <% console.log(data,pay_data,"支付状态") %>
+            <div class="wxzf-container">
+                <%- include('../layout/header.ejs'); %>
+                    <h1>支付中心</h1>
+
+                    <div class="zf zf-fh">
+                        <span>支付状态返回中...</span>
+                    </div>
+
+                    <div class="zf zf-cg display-none">
+                        <span>支付成功</span>
+                        <a href="/">返回首页</a>
+                    </div>
+
+                    <input type="hidden" id="order_no" value="<%=results.order_no%>">
+            </div>
+
+            <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+            <script src="<%= STATIC %>javascripts/payment/payment_after.js?v=<%=VERSION%>"></script>
+
+            <script>
+                let order_no = $('#order_no').val()
+                function verification_order() {
+                    unity_verification_order(order_no, function (result) {
+                        console.log(result,"查询支付状态")
+                        let state = result.state, data = result.data;
+                        // 支付成功
+                        if (state == 0) {
+                            $('.zf-fh').addClass('display-none')
+                            $('.zf-cg').removeClass('display-none');
+                        } else if (state === 10000) {  // 订单未支付成功
+                            count = 10
+                            window.setTimeout(verification_order, 1000)
+                        } else if (state === 10001) {
+                            $('.zf-fh').addClass('display-none')
+                            $('.zf-cg').removeClass('display-none');
+                            // 单次支付限额，请分次支付
+                            order_no = data.order_no
+                            $('.zf-cg').html(`
+                            <span style="font-size:1rem;text-align:center;">微信单次支付限制额度<br>本次支付成功<br>您还需支付￥${data.remain_amount}</span>
+                            <a href="javascript:void(0)" onclick="child_payment()" >继续支付</a>
+                            `)
+                        } else {
+                            $('body').html(result.message)
+                        }
+                    })
+                }
+                verification_order()
+
+                function child_payment() {
+                    $.ajax({
+                        url: '/payment/child/weixin',
+                        type: "post",
+                        datatype: "json",
+                        async: true,
+                        data: { 'order_no': order_no },
+                        success: function (result) {
+                            if (result.state === 0) {
+                                window.location.href = result.data.integration.wx_url
+                                return;
+                            }
+                            alert(result.message)
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        }
+                    })
+                }
+            </script>
+</body>
+
+</html>

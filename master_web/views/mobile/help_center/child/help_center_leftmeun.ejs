@@ -1,0 +1,11 @@
+<% console.log(results,"tab") %>
+<% let active_tab=results.help_center %>
+    <div class="help-tab-box" id="help_tab_box">
+        <a href="/help/aboutus" class="<%= active_tab=="aboutus"?"active":"" %>"><%=translate('help_nav_aboutus')%></a>
+        <a href="/help/contactus" class="<%= active_tab=="contactus"?"active":"" %>"><%=translate('help_nav_contact')%></a>
+        <% if(wglobals.lang=="cn") {%><a href="/help/joboffers" class="<%= active_tab=="joboffers"?"active":"" %>">招聘信息</a><% } %>
+        <a href="/help/price" class="<%= active_tab=="price"?"active":"" %>"><%=translate('help_nav_ad')%></a>        
+        <a href="/help/user_agreement" class="<%= active_tab=="user_agreement"?"active":"" %>"><%=translate('help_nav_user_agreement')%></a>
+        <a href="/help/privacy_policy" class="<%= active_tab=="privacy_policy"?"active":"" %>"><%=translate('help_nav_privacy_policy')%></a>
+    </div>
+

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('home_meta_description')%>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('mine_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/home/home.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% var user_data=results.user.data %>
+    <div class="home-container" data-lang="<%= wglobals.lang %>">
+        <div class="home-head">
+            <%- include('../layout/header.ejs'); %>
+            <div class="contentbox">
+                <img src="https://static.52wmb.com/images/userphoto/80_<%= user_data.photo %>" alt="">
+                <div>
+                    <span>
+                        <%= user_data.contact %>
+                            <span class="<%= user_data.vip_level==''?" pt":(user_data.vip_level=="v"
+                                ?"vip":(user_data.vip_level=="bd" ?"bd":(user_data.vip_level=="yd"
+                                ?"yd":"error"))) %>">
+                                <% if(user_data.vip_level=='yd' ){ %>
+                                    <img src="<%= STATIC %>mobile/images/home/icon_vip.png" alt="">
+                                    <% } %>
+                                        <span class="text">
+                                            <%=user_data.vip_name%>
+                                        </span>
+                            </span>
+                    </span>
+                    <span>
+                    <%if(user_data.vip_level!=''){%>
+                        <%=translate('mine_user_expiry_date')%><%=user_data.vip_end_time.substr(0,10) %>
+                        <a href="/Alipay?<%=user_data.vip_level%>"><%=translate('mine_user_renew')%></a>
+                    <%} else {%>
+                        <%=translate('mine_user_recommend')%>
+                        <a href="/Alipay"><%=translate('mine_user_buy')%></a>
+                    <%}%>
+                   </span>
+                    <span><%=translate('mine_user_id')%>：&nbsp;<%= user_data.id %></span>
+                </div>
+                <a href="javascript:void(0)" onclick="logout()"><%= translate("share_nav_logout") %></a>
+            </div>
+            <div class="list">
+                <div>
+                    <img src="<%= STATIC %>mobile/images/home/icon_liulan.png" onclick="sc_company('ll_company')">
+                    <span><%=translate('mine_nav_history')%></span>
+                </div>
+                <div>
+                    <img src="<%= STATIC %>mobile/images/home/icon_shoucang(1).png" onclick="sc_company('sc_company')" />
+                    <span><%=translate('mine_nav_collected')%></span>
+                </div>
+                <div>
+                    <img src="<%= STATIC %>mobile/images/home/icon_biaoqian.png"  onclick="sc_company('tag_company')">
+                    <span><%=translate('mine_nav_tag')%></span>
+                </div>
+                <div style="opacity:0.3;">
+                    <img src="<%= STATIC %>mobile/images/home/icon_xiazai.png" onclick="sc_company()">
+                    <span><%=translate('mine_nav_download')%></span>
+                </div>
+                <div style="opacity:0.3;">
+                    <img src="<%= STATIC %>mobile/images/home/icon_chengyuan.png" onclick="sc_company()">
+                    <span><%= translate("mine_nav_member") %></span>
+                </div>
+            </div>
+        </div>
+        <% if(wglobals.lang=="cn"){ %>
+        <div class="home-ziyuan">
+            <h3>外贸资源</h3>
+            <ul>
+                <li>
+                    <h3>Whatsapp和Tiktok安装包</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/1wjNlBlIZqxNFjDKNHyiDiA?pwd=5wmb">下载</a>
+                </li>
+                <li>
+                    <h3>13大类常用外贸英语话术集锦</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/19WkH8BHiHv46luIIp9l-lA?pwd=5wmb">下载</a>
+                </li>
+                <li>
+                    <h3>125-130届广交会客户资料</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/16PQ5KGOK37PX4XGo8oC4yg?pwd=5wmb">下载</a>
+                </li>
+                <li>
+                    <h3>2023全球节日速查表+贺卡模板</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/1kH0CVOPRGfEh93C2hTfHWw?pwd=5wmb">下载</a>
+                </li>
+             </ul>
+        </div>
+        <%}%>
+
+
+        <div class="home-content">
+            <div class="home-qx">
+                <h3>
+                    <span><%= translate("mine_permission") %></span>
+                    <div>
+                        <a href="/loft_HD">
+                            <span><%= translate("mine_permission_table1") %></span>
+                        </a>
+                    </div>
+                </h3>
+                <div class="qx-content">
+                    <div class="topbox">
+                        <div>
+                            <span class="qx qx1"></span>
+                            <span><%=translate('mine_permission_filter')%></span>
+                        </div>
+                        <div>
+                            <span class="qx qx2"></span>
+                            <span><%=translate('mine_permission_company_reports')%></span>
+                        </div>
+                        <div>
+                            <span class="qx qx3"></span>
+                            <span><%=translate('mine_permission_contact')%></span>
+                        </div>
+                        <div>
+                            <span class="qx qx4"></span>
+                            <span><%=translate('mine_permission_industry_reports')%></span>
+                        </div>
+                    </div>
+
+                    <div class="bottombox">
+                        <div>
+                            <span class="qx qx5"></span>
+                            <span><%=translate('mine_permission_tags')%></span>
+                        </div>
+                        <div>
+                            <span class="qx qx6"></span>
+                            <span><%=translate('mine_permission_export')%></span>
+                        </div>
+                        <div>
+                            <span class="qx qx7"></span>
+                            <span><%=translate('mine_permission_account')%></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="home-data">
+                <h3><%= translate("home_data_hz") %></h3>
+                <div class="data-content">
+                    <div class="data-content-left <%= wglobals.lang=="en"?"data-content-left-en":"" %>">
+                        <h4><%=translate('mine_permission_company_reports')%></h4>
+                        <div class="data-content-left-content">
+                            <div onclick="to_hist()">
+                                <span id="view_num">0</span>
+                                <span><%= translate("home_data_ls") %></span>
+                            </div>
+                            <div class="right" onclick="to_follow()">
+                                <span id="coll_num">0</span>
+                                <span><%= translate("home_data_follow") %></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-content-left <%= wglobals.lang=="en"?"data-content-left-en":"" %>">
+                        <h4><%=translate('mine_nav_tag')%></h4>
+                        <div class="data-content-left-content">
+                            <div>
+                                <span id="tag_sel_num">0</span>
+                                <span class="tag_sel_num1"><%= translate("search_button_text") %></span>
+                            </div>
+                            <div class="center" onclick="to_bq(0)" id="tag_sel_num2">
+                                <span id="tag_com_num">0</span>
+                                <span><%= translate("home_data_gs") %></span>
+                            </div>
+                            <div class="right" onclick="to_bq(1)" id="tag_sel_num3">
+                                <span id="tag_hy_num">0</span>
+                                <span><%= translate("home_data_hy") %></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-company">
+                <h3>
+                    <%=translate('mine_company_recommendation')%>
+                    <div id="home_company_flag">
+                        <span><%= translate("share_nav_buyer") %></span>
+                        <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt="">
+                    </div>
+                </h3>
+                <div class="select-box">
+                    <span data-type="refrigerated%20showcase" class="active" data-flag="/buyer"><%= translate("share_nav_buyer") %></span>
+                    <span data-type="monopotassium%20phosphate" data-flag="/supplier"><%= translate("share_nav_supplier") %></span>
+                </div>
+
+                <!-- 推荐公司列表 -->
+                <div class="company-list">
+                    <!-- js渲染 -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- tab 弹窗 -->
+        <div class="box-more">
+            <div class="box-more-head">
+                <img src="<%= STATIC %>mobile/images/layout/header/backbtn-left.png" alt=""
+                    onclick="back_page()">
+                <div class="box-more-head-num">
+                    <div id="title_name"></div><span class="sum">()</span>
+                </div>
+                <span class="box-more-head-bj"></span>
+            </div>
+            <span class="select-tag"><span></span><img
+                    src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" alt="">
+            </span>
+            <div class="select-tag-box">
+                <span class="active"></span>
+                <span></span>
+            </div>
+            <div class="box-more-content">
+
+                <div class="select-all">
+
+                    <span>
+                        <input type="checkbox">
+                        <span></span>
+                    </span>
+
+                    <div>
+                        <button class="sc-company-btn" onclick="follow_companys()"></button>
+                        <button onclick="del_sc_company()"></button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <%- include('../layout/footer.ejs'); %>
+    </div>
+    <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+    <script src="<%= STATIC %>mobile/javascripts/home/home.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

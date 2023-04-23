@@ -1,0 +1,80 @@
+<style>
+    .india-pb-tips {
+        padding: 20px 50px;
+        text-align: left;
+        font-size: 15.4px;
+    }
+
+    .india-pb-tips p {
+        text-align: left;
+    }
+
+    .india-pb-tips b {
+        font-weight: 16.4px;
+    }
+
+    .close-layout {
+        font-size: 13.4px;
+        color: #999;
+    }
+
+    .close-layout i {
+        display: none;
+    }
+
+    .qxlayout-moudle .close-layout {
+        top: 15px;
+        right: 15px;
+    }
+
+    .india-pb-tips a {
+        font-weight: bold;
+        padding: 0 40px;
+        text-align: center;
+        width: 470px;
+        height: 48px;
+        line-height: 48px;
+        margin-top: 20px;
+        background: #06c;
+        font-size: 14.4px;
+        display: inline-block;
+        color: #fff;
+        border-radius: 8px;
+    }
+
+    .india-pb-tips font {
+        display: block;
+        font-size: 13.4px;
+        color: #666;
+        text-align: center;
+        padding-top: 10px;
+    }
+</style>
+<div id="pop_iuc">
+    <div class="india-pb-tips">
+        <p>
+            <b>Dear Subscriber</b>,<br/>We are sorry to inform you that according to the latest India local law and
+            policy, the Indian database and company searching service have to be shut down as of today.<br/><br/>
+            We are sorry for the inconvenience. As a compensation, we offer a 3-month extension of your current
+            membership for free.
+        </p>
+        <a onclick="add_iuc(this)">Please Click here to confirm the compensation.</a>
+        <font>If you have any question or inquiry, please email to dataservice@52wmb.com or whatsapp +86 16621075894 for
+            further information.</font>
+    </div>
+    <script type="application/javascript">
+        //  添加印度用户补偿数据
+        function add_iuc(elem) {
+            $.ajax('/async/iuc/add', {
+                type: 'get',
+                cache: false,
+                datatype: "text/json",
+                success: function (result) {
+                    if (result.state == 0) return  layer.closeByChild($(elem))
+                    $.alert(result.message)
+                }
+            })
+
+        }
+    </script>
+</div>

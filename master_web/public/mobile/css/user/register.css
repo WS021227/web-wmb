@@ -1,0 +1,157 @@
+.footer{display:none;}
+* {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  width: 23.4375rem;
+  font-size: 0.9375rem;
+}
+.container .logo {
+  margin-top: 2.75rem;
+  margin-bottom: 3.1563rem;
+}
+.container .logo img {
+  display: block;
+  width: 5.71875rem;
+  margin: 0 auto;
+}
+.container .from {
+  display: block;
+  width: 19.5625rem;
+  margin: 0 auto;
+  margin-top: -0.625rem;
+}
+.container .from .box1,
+.container .from .box2,
+.container .from .box3 {
+  width: 19.5938rem;
+  border-bottom: 0.0625rem solid #DDDDDD;
+  display: flex;
+  align-items: center;
+}
+.container .from .box1 .text,
+.container .from .box2 .text,
+.container .from .box3 .text {
+  width: 5.2813rem;
+}
+.container .from .box1 .text .lab1,
+.container .from .box2 .text .lab1,
+.container .from .box3 .text .lab1,
+.container .from .box1 .text .lab2,
+.container .from .box2 .text .lab2,
+.container .from .box3 .text .lab2,
+.container .from .box1 .text .lab3,
+.container .from .box2 .text .lab3,
+.container .from .box3 .text .lab3 {
+  line-height: 2.7188rem;
+   font-size: 0.9375rem;
+  color: #333333;
+  font-weight: 600;
+}
+#phoneNumber,#passWord{width:15rem;}
+.container .from .box1 .text img,
+.container .from .box2 .text img,
+.container .from .box3 .text img {
+  width: 0.5rem;
+  height: 0.3125rem;
+  margin-left: 0.25rem;
+}
+.container .from .box1 .text .flag-box,
+.container .from .box2 .text .flag-box,
+.container .from .box3 .text .flag-box {
+  width: 5.2rem;
+  padding: 0.625rem 0;
+  border-radius: 0.25rem;
+  position: absolute;
+  left: 2rem;
+  top: 13.75rem;
+  z-index: 10;
+  box-shadow: 0 0 0.75rem #999;
+  background-color: white;
+  display: none;
+}
+.container .from .box1 .text .flag-box span,
+.container .from .box2 .text .flag-box span,
+.container .from .box3 .text .flag-box span {
+  display: block;
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+  font-weight: 600;
+}
+.container .from .box1 .text .flag-box :nth-child(1),
+.container .from .box2 .text .flag-box :nth-child(1),
+.container .from .box3 .text .flag-box :nth-child(1) {
+  margin-bottom: 0.625rem;
+}
+.container .from .box1 .text .flag-box .active,
+.container .from .box2 .text .flag-box .active,
+.container .from .box3 .text .flag-box .active {
+  color: #0D52AD;
+}
+.container .from .box1 input,
+.container .from .box2 input,
+.container .from .box3 input {
+  border: none;
+  color: #333;
+  outline: none;
+  font-size: 0.9375rem;
+  height:2rem;
+  margin-top:0.25rem;
+  background:#f5f5f6;
+  font-weight:bold;
+}
+.container .from .box1 button,
+.container .from .box2 button,
+.container .from .box3 button {
+  padding: 0 0.5313rem;
+  height: 1.875rem;
+  min-width: 5.2769rem;
+  background-color: #0D52AD;
+  border-radius: 0.1875rem;
+  border: none;
+  color: white;
+  font-size: 0.8rem;
+  position: absolute;
+  z-index: 10;
+  left: 16.1rem;
+  margin-top:0.2rem;
+}
+.container .from .box2,
+.container .from .box3 {
+  margin-top: 21.5px;
+}
+.container .register {
+  width: 19.5625rem;
+  line-height: 2.625rem;
+  border: none;
+  border-radius: 1.4375rem;
+  background-color: #0D52AD;
+  font-size: 0.9375rem;
+  color: #fff;
+  font-weight:bold;
+  display: block;
+  margin: 0 auto;
+  margin-top: 1.5625rem;
+}
+.container .click-register {
+  width: 100%;
+  display: block;
+  color: #999999;
+  font-size: 0.65rem;
+  text-align: center;
+  margin-top: 0.3125rem;
+}
+.container .login {
+  display: block;
+  font-size: 0.8rem;
+  margin-top: 1.3125rem;
+  color: #999999;
+  text-align: center;
+}
+.container .login a {
+  color: #0D52AD;
+  text-decoration: none;
+}
+.foot-contact{display:none;}

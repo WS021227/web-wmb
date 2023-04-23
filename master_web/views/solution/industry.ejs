@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="<%=translate('solutions_industry_keywords')%>" />
+    <meta name="description" content="<%=translate('solutions_industry_description')%>" />
+    <title><%=translate('solutions_industry_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/solution/solution.css?v=<%=VERSION%>">     
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="solution-k">
+        <%- include('./solution_leftmeun.ejs') %>
+        <div class="solution-content">
+            <%if(wglobals.lang == 'cn'){%>
+            <div class="solution-title industry">
+                 <h1>从行业报告中获得</h1>
+                 <p>基于21亿条原始进出口数据，深度剖析行业目标市场，科学制定生产营销策略。</p>
+            </div>
+            <div class="solution-des"> 
+                <h2>32贸易国数据源</h2>               
+                <p>支持在线查询和批量下载，原始贸易数据均采购于贸易国当地政府商务部门，数据真实可靠、更新稳定，目前网站数据每月更新两次。</p>
+                
+                <h2>行业报告标签</h2>
+                <p>提供多维度核心字段联合搜索功能，支持产品和HS编码多产品输入，以保证行业分析报告数据更加准确性。搜索内容可保存并生成标签。</p>
+            
+                <h2>进出口趋势分析</h2>
+                <p>提供交易次数、重量、数量易总价四个维度的市场趋势分析图及报表数据，帮助您洞悉市场不同时间段内数据变化，科学制定生产营销策略。</p>
+            
+                <h2>贸易国排名</h2>
+                <p>按照交易次数、数量、重量、交易占比、箱量查询全球贸易国名录、汇总统计数据，分析产品供应国分布，掌握所在国别的整体产品竞争力。</p>
+            
+                <h2>进出口港排名</h2>
+                <p>包含了进出口港名称、排名、港口统计数据。搜索功能可快速帮你找到目标港口。分析启运港/抵达港/海外装货港等分布情况，优化物流体系。</p>
+
+                <h2>采供公司排名</h2>
+                <p>全面掌握目标市场的现有的优质进出口商及新增进出口商，快速匹配到适合开发的客户群体。点击公司名可查阅当前公司完整的贸易报告..</p> 
+            </div>
+            <%}else{%>
+                <div class="solution-title industry">
+                    <h1>From the industry reports</h1>
+                    <p>Based on 2.1 billion pieces of raw import and export data, we provide in-depth analysis of the industry's target markets and scientifically develop production and marketing strategies.</p>
+               </div>
+               <div class="solution-des"> 
+                   <h2>32 Trading country data sources</h2>               
+                   <p>Support online query and batch download, the original trade data are sourced from the local government commercial department of the trading country, the data is real and reliable, stable update, the current website data is updated twice a month.</p>
+                   
+                   <h2>Industry Report Tags</h2>
+                   <p>Provides a multi-dimensional core field joint search function and supports product and HS code multi-product input to ensure more accurate data for industry analysis reports. Search content can be saved and tags generated.</p>
+               
+                   <h2>Analysis of import and export trends</h2>
+                   <p>Provides market trend analysis charts and reports in four dimensions: number of transactions, weight, quantity and total price, helping you to understand the changes in the market over time and to formulate production and marketing strategies.</p>
+               
+                   <h2>Ranking of trading countries</h2>
+                   <p>Search the global trade country list by number of transactions, quantity, weight, trade share and case volume, summarise statistical data, analyse the distribution of product supply countries and grasp the overall product competitiveness of the countries in which they are located.</p>
+               
+                   <h2>Import/Export Port Rankings</h2>
+                   <p>Contains import and export port names, rankings and port statistics. Search function quickly helps you find your target ports. Analysis of the distribution of ports of departure/arrival/overseas loading ports etc. to optimise the logistics system.</p>
+   
+                   <h2>Ranking of supply companies</h2>
+                   <p>Get a comprehensive overview of existing and new quality importers and exporters in your target market and quickly match them with the right customer base to develop. Click on the company name to access the full trade report of the current company...</p> 
+               </div>                 
+            <%}%>     
+        </div>
+        <br class="clear"/>
+    </div>
+
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/index/solution.js?v=<%=VERSION%>"></script>
+</body>
+</html>

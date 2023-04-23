@@ -1,0 +1,38 @@
+<style>
+    .emp-content{padding:20px 40px;color:#333;text-align:center;}
+    .emp-content h1{font-size:14.4px;color:#666;font-weight:normal;padding-bottom:10px;}
+    .emp-content div{position:relative;}
+    .emp-content h2{font-weight:500;font-size:16.4px;font-weight:bold;text-transform: capitalize;line-height:120%;margin-bottom:5px;}
+    .emp-content p{font-size:14.4px;padding-bottom:2px;color:#333;}
+    .emp-content p a{display:inline-block;height:30px;line-height:30px;border-radius:100px;background:#fff;color:#007FFF;border:1px #007FFF solid;width:145px;margin-top:8px;}
+    .kf-ewm{width:130px;border:1px #eee solid;padding:2px;margin-top:10px;box-shadow: 0px 0px 8px rgb(0 0 0 / 6%);}
+    .kf-tx{border-radius:100px;width:45px;}
+</style>
+
+<%if(wglobals.lang == 'cn'){%>
+<div class="emp-content">    
+    <div>
+        <img src="<%= results.photo %>" class="kf-tx"/>
+        <h2 class="user-kefu-1"><%= results.name %> (<%=results.descript %>)</h2>
+        <p class="user-kefu-2"><b>手机号码：<%=results.phone %></b></p>
+        <p>邀请您扫码添加微信好友，为您提供更好的咨询、答疑服务...</p> 
+        <p><a href="http://wpa.qq.com/msgrd?v=3&uin=<%=results.qq%>&site=qq&menu=yes" target="_blank">在线咨询</a></p> 
+        <img src="<%= results.wechat_qr_code %>" class="kf-ewm" style="padding:7px;"/><br/>        
+    </div>
+</div>
+<%}%>
+
+
+<%if(wglobals.lang == 'en'){%>
+    <div class="emp-content">    
+        <div>
+            <img src="<%= results.photo %>" class="kf-tx"/>
+            <h2 class="user-kefu-1">Ariel.Wu (<%=results.descript %>)</h2>            
+            <p class="user-kefu-2"><b>Phone: +8616621075894</b></p>
+            <p>Hi, this is your exclusive customer service, you can save her WhatsApp number for a convenient consult.</p>         
+            <a href="https://api.whatsapp.com/send?phone=+8616621075894&text=Hello">
+                <img src="https://static.52wmb.com/wmb_new/images/whatsapp_ewm.jpg" class="kf-ewm">
+            </a>    
+        </div>
+    </div>
+    <%}%>

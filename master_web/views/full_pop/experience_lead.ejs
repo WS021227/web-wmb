@@ -1,0 +1,70 @@
+<style>
+    .clear{clear: both;}
+    .tiyan-title{margin-bottom:30px;}
+    .tiyan-title h2{font-size:20.4px;font-weight:bold;margin-bottom:8px;}
+    .tiyan-title p{font-size:15.4px;color:#333;line-height:150%;}
+    .tiyan-list h3{font-size:14.4px;color:#555;font-weight:bold;}
+    .tiyan-list h3 font{display:inline-block;height:20px;width:20px;border:1px #999 solid;border-radius:100px;margin-right:4px;}
+    .tiyan-list li{float:left;text-align:center;}
+    .tiyan-list li:nth-child(2){margin:0 38px;}
+    .tiyan-list img{width:auto;height:auto;margin:8px 0;box-shadow:3px 3px 8px rgb(0 0 0 / 7%);border:1px #eee solid;}
+    .tiyan-list .tiyan-list-link{transition: all .2s ease-in-out;display:block;margin:0 auto;border:2px #E98B0C solid;color:#E98B0C;font-size:14.4px;height:30px;line-height:28px;border-radius:100px;width:100px;}
+    .tiyan-list .tiyan-list-link:hover{background:#E98B0C;color:#fff;transition: all .2s ease-in-out;}
+    .tiyan-list .tiyan-list-have{transition: all .2s ease-in-out;display:block;margin:0 auto;background:#fafafa;border:2px #999 solid;color:#999;font-size:14.4px;height:30px;line-height:28px;border-radius:100px;width:100px;}
+</style>
+
+<div style="padding:35px 50px;">
+    <% if(wglobals.lang == 'cn'){ %>
+    <div class="tiyan-title">
+        <h2>黄钻会员已被激活</h2>
+        <p>以下三类页面是全站的核心页面，我们建议您通过“下一步”的引导，充分了解这类页面的重点内容和功能，以提升试用的效率。</p>
+    </div>
+    <div class="tiyan-list">
+        <ul>
+            <li>
+                <h3><font>1</font>公司搜索</h3>
+                <img src="<%= STATIC %>images/tiyan_1.png"/>
+                <a class="tiyan-list-link" href="/buy-led_light?st=2" target="_blank">浏览 →</a>
+            </li>
+            <li>
+                <h3><font>2</font>公司报告</h3>
+                <img src="<%= STATIC %>images/tiyan_2.png"/>
+                <a class="tiyan-list-link" href="/buyer/2687951" target="_blank">浏览 →</a>
+            </li>
+            <li>
+                <h3><font>3</font>行业报告</h3>
+                <img src="<%= STATIC %>images/tiyan_3.png"/>
+                <a class="tiyan-list-link" href="/customs-data/united_states" target="_blank">浏览 →</a>
+            </li>
+            <br class="clear">
+        </ul>
+    </div>
+    <%}else{%>
+    <div class="tiyan-title">
+        <h2>Yellow Diamond Member Has Been Activated</h2>
+        <p>The following 3 pages are the core pages, so suggest you follow the "next step" guidance to learn the important content and functions clearly and improve the efficiency of the trial.</p>
+    </div>
+    <div class="tiyan-list">
+        <ul>
+            <li>
+                <h3><font>1</font>Search</h3>
+                <img src="<%= STATIC %>images/tiyan_1.png"/>
+                <a class="tiyan-list-link" href="/buy-led_light?st=2" target="_blank">View →</a>
+            </li>
+            <li>
+                <h3><font>2</font>Company</h3>
+                <img src="<%= STATIC %>images/tiyan_2.png"/>
+                <a class="tiyan-list-link" href="/buyer/2687951" target="_blank">View →</a>
+            </li>
+            <li>
+                <h3><font>3</font>Product</h3>
+                <img src="<%= STATIC %>images/tiyan_3.png"/>
+                <a class="tiyan-list-link" href="/customs-data/united_states" target="_blank">View →</a>
+            </li>
+            <br class="clear">
+        </ul>
+    </div>
+    <%}%>
+</div>
+
+

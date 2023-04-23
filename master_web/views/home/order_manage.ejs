@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%=VERSION%>">
+    <title>开票管理-外贸邦</title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<%var user= wglobals.user %>
+<div class="center-k" id="order_manage">
+    <h2>开票管理</h2>
+    <div class="center-tag-select" >
+        <a href="javascript:void(0)" class="tab active" data-target="#tab_order">订单列表</a>
+        <a href="javascript:void(0)" class="tab" data-target="#tab_order">开票信息</a>
+    </div>
+    <div class="center-k-content" id="tab_order">
+        <div class="tab-pane active center-k-order-box" id="order_list">
+            <div class="conter-k-content-title">
+                <span ><input type="checkbox" id="checkall" /> 全选<font id="selected">(已选0个)</font></span>
+                <span onclick="make_invoice()"  class="make-invoice display-none">+开票</span>
+            </div>
+            <ul class="content-order-list head">
+                <li>
+                    <span style="padding-left:0;padding-right:22px;">购买套装</span>
+                    <span>价格</span>
+                    <span>开票状态</span>
+                    <span>订单日期</span>
+                </li>
+            </ul>
+            <ul class="content-order-list body"></ul>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+
+        <div class="tab-pane center-k-order-box" id="invoice_list">
+            <div class="conter-k-content-title">
+                <span class="total-info"></span>
+                <span onclick="add_firm()">+添加企业</span>
+            </div>
+            <ul class="content-order-c head">
+                <li>
+                    <span>发票抬头</span>
+                    <span>发票类型</span>
+                    <span>公司纳税凭证号</span>
+                    <span>操作</span>
+                </li>
+            </ul>
+            <ul class="content-order-c body"></ul>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/order_manage.js?v=<%=VERSION%>"></script>
+</body>
+</html>

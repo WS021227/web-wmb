@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="line_route" content="<%=LINE_ROUTE()%>">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="gcompany_type" content="0">
+        <meta name="google-site-verification" content="1oebXosQRod3PZbODMjLL0l_TDuuC9_aJEjG6NVVlKo" />
+        <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+        <meta name="description" content="<%=translate('home_meta_description')%>" />      
+        <title><%=translate('home_meta_title')%></title>
+        <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com" />
+        <link rel="alternate" hreflang="en" href="https://en.52wmb.com" />
+        <link rel="alternate" hreflang="ru" href="https://en.52wmb.com" />
+        <link rel="alternate" hreflang="es" href="https://en.52wmb.com" />
+        <link rel="alternate" hreflang="vi" href="https://en.52wmb.com" />
+        <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+        <link rel="stylesheet" href="<%= STATIC %>css/web_index.css?v=<%=VERSION%>">
+        <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+    </head>
+<body>
+
+<%      var _user = wglobals.user || {},
+        user_functional=_user.user_functional || {},
+        _is_df=wglobals.lang=='cn' && user_functional.df_dec ?wglobals.dff:wglobals.is_df
+
+%>
+    <% if(_is_df && _user.id && (_user.new_user || _user.diamond_renew_user || (wglobals.lang=='cn' && user_functional.df_dec ))){   %>
+    <div id="df_head"></div>
+    <%}%>
+<% var user=wglobals.user; %>
+    <div class="default-bg">
+        <div class="default-nav">
+            <div class="default-nav-left">
+                <a href="/user/datacenter/home" target="_blank" rel="nofllow"><%=translate('share_nav_mine')%></a>
+                <a href="/buyer" target="_blank"><%=translate('share_nav_buyer')%></a>
+                <a href="/supplier" target="_blank"><%=translate('share_nav_supplier')%></a>
+                <a href="/billsearch" target="_blank"><%=translate('share_nav_tradedata')%></a>
+                <%if(wglobals.lang == 'cn'){%><a href="customs-data-course" target="_blank">开发课程</a><%}%>
+                <a href="/loft_HD" target="_blank"><%=translate('share_nav_price')%></a>
+            </div>
+            <div class="default-nav-right">
+                <a href="/"><%=translate('share_nav_home')%></a>
+                <a href="https://line.52wmb.com" target="_blank"><%=translate('share_nav_bangline')%></a>
+                <%if(wglobals.lang == 'cn'){%><a href="/mall" target="_blank"><%=translate('share_nav_store')%></a><%}%>
+                <a href="/new" target="_blank"><%=translate('share_nav_class')%></a>
+                <%if(wglobals.lang == 'cn'){%><a href="/weixin" target="_blank">移动端</a><%}%>
+                <%if(wglobals.lang == 'cn'){%><a href="https://en.52wmb.com">EN</a><%}else{%><a href="https://www.52wmb.com">中文</a><%}%>
+                <%- include('../global/head_login_status.ejs') %>
+            </div>
+            <br class="clear"/>
+        </div>
+        <div class="default-search">
+            <h1><img src="<%= STATIC %>images/default_logo.png" alt="外贸邦，海关数据查询平台"/></h1>
+            <div class="default-search-c">
+                <div class="defautl-search-tab">
+                    <a href="javascript:void(0);" data-value="2" data-pla="<%=translate('search_input_tis_2')%>" class="active tab search-tab"><%=translate('search_type_product')%><span></span></a>
+                    <a href="javascript:void(0);" data-value="1" data-pla="<%=translate('search_input_tis_1')%>" class="tab search-tab"><%=translate('search_type_company')%><span></span></a>
+                    <a href="javascript:void(0);" data-value="3" data-pla="<%=translate('search_input_tis_3')%>" data-wstats="hscode_typetab_button" class="tab search-tab"><%=translate('search_type_hscode')%><span></span></a>
+                    <input type="hidden" id="text_search_type" value="2">
+                </div>
+                <div class="default-search-form" id="default_search_form">
+                    <div id="dw_company_type" class="dropdown-container default-select">
+                        <div class="dropdown-btn">
+                            <font class="show"><%=translate('share_company_0')%></font><i></i>
+                        </div>
+                        <ul class="dropdown-menu">
+                            <li class="item active" data-value="0"><%=translate('share_company_0')%></li>
+                            <li class="item " data-value="1"><%=translate('share_company_1')%></li>
+                        </ul>
+                    </div>
+                    <input type="text" autocomplete="off" placeholder="<%=translate('search_input_tis_2')%>" id="text_global_search" data-noauto="1">
+                    <a onclick="global_company_search()"><%=translate('search_button_text')%></a>
+                    <br class="clear"/>
+                </div>
+            </div>
+            <div class="default-search-chanel">
+                <ul>
+                    <a href="/buyer" target="_blank">
+                        <li class="default-search-chanel-1"> 
+                            <span><b>1345</b><font><%=translate('share_text_m')%></font><br/><%=translate('search_enter_buyer')%></span>
+                            <span>&gt;</span>
+                            <i></i>
+                        </li>
+                    </a>
+                    <a href="/supplier" target="_blank"> 
+                        <li class="default-search-chanel-2"> 
+                            <span><b>1175</b><font><%=translate('share_text_m')%></font><br/><%=translate('search_enter_supplier')%></span>
+                            <span>&gt;</span>
+                            <i></i>
+                        </li>
+                    </a>
+                    <a href="/billsearch" target="_blank">
+                        <li class="default-search-chanel-3">  
+                            <span><b>34</b><font><%=translate('share_text_ge')%></font><br/><%=translate('search_enter_datacountry')%></span>
+                            <span>&gt;</span>
+                            <i></i>
+                        </li>
+                    </a>
+                    <br class="clear"/>
+                </ul>
+            </div>
+            <div class="default-search-link">
+                <font><%=translate('search_tips')%>:</font>
+                <a href="/new/category-czsc" target="_blank">《<%=translate('class_name_brochure')%>》 </a>
+                <%if(wglobals.lang == 'cn'){%>                   
+                <a href="customs-data-course" target="_blank">《数据开发课程》</a>
+                <%}%>
+                <a href="/new/category-wenda" target="_blank">《<%=translate('class_name_ask')%>》</a>
+            </div>
+        </div>
+    </div>
+    <div class="hot-hours default-title">
+        <h2><%=translate('home_24_time')%><a href="/buyer" target="_blank"><%=translate('share_text_more')%><font>&gt;</font></a></h2>
+        <% var search_company_buyer_records= results.search_company_buyer_records,search_company_supply_records=results.search_company_supply_records %>
+        <%if(search_company_buyer_records.length>0 || search_company_supply_records.length>0){%>
+        <div>
+            <h3><%=translate('home_hot_comapny')%>
+                <span id="hot_search_company">
+                    <%if(search_company_buyer_records.length>0 ){%>
+                    <a href="javascript:void(0);" data-type="0" class="active"><%=translate('home_hot_purchase')%></a>
+                    <%}%>
+                    <%if(search_company_supply_records.length>0 ){%>
+                    <a href="javascript:void(0);" data-type="1" class="<%=search_company_buyer_records.length>0?'':'active'%>>"><%=translate('home_hot_supply')%></a>
+                    <%}%>
+                </span>
+            </h3>
+            <%if(search_company_buyer_records.length>0 ){%>
+            <ul id="search_company_buyer" style="display: block;">
+                <%search_company_buyer_records.forEach(function(item,index){%>
+                    <li><span><%=index+1%></span><a href="/buyer/<%=item.id%>" target="_blank"><%=ucfirst(item.name)%></a></li>
+                <%})%>
+            </ul>
+            <%}%>
+            <%if(search_company_supply_records.length>0){%>
+            <ul id="search_company_supply" style="display: none;"> 
+                <%search_company_supply_records.forEach(function(item,index){%>
+                    <li><span><%=index+1%></span><a href="/supplier/<%=item.id%>" target="_blank"><%=ucfirst(item.name)%></a></li>
+                <%})%>
+            </ul>
+            <%}%>
+        </div>
+        <%}%>
+        <% var search_log_buyer_key= results.search_log_buyer_key, search_log_supply_key=results.search_log_supply_key;%>
+        <%if(search_log_buyer_key.length>0 || search_log_supply_key.length>0){%>
+        <div id="user_attention">           
+            <h3>
+                <%=translate('home_hot_product')%>
+                <span id="user_attention_title">
+                    <%if(search_log_buyer_key.length>0){%>
+                    <a href="javascript:void(0);" data-type="0" class="active"><%=translate('home_hot_purchase')%></a>
+                    <%}%>
+                    <%if(search_log_supply_key.length>0){%>
+                    <a href="javascript:void(0);" data-type="1" class="<%= search_log_buyer_key.length>0?'':'active' %>"><%=translate('home_hot_supply')%></a>
+                    <%}%>
+                </span>
+            </h3>        
+            <%if(search_log_buyer_key.length > 0){%>
+                <ul id="search_log_list_0" style="display:block;">
+                    <%search_log_buyer_key.forEach(function(item,index){%>
+                        <li><span><%=index+1%></span><a href="/buy-<%=item.keywords.replace(/ /g,'_')%>" target="_blank"><%=ucfirst(item.keywords)%></a></li>
+                    <%})%>
+                </ul>
+            <%}%>
+                <% if(search_log_supply_key.length>0){%>
+                <ul id="search_log_list_1" style="display: none;">
+                    <%search_log_supply_key.forEach(function(item,index){%>
+                        <li><span><%=index+1%></span><a href="/sup-<%=item.keywords.replace(/ /g,'_')%>" target="_blank"><%=ucfirst(item.keywords)%></a></li>
+                    <%})%>
+                </ul>
+            <%}%>
+        </div>
+        <%}%>
+        <%var countries_list = results.countries_list || [];%>
+        <%if(countries_list.length > 0){%>
+        <div>
+            <h3><%=translate('home_hot_dataupdate')%><span><a href="/billsearch" target="_blank"><%=translate('share_text_all')%></a></span></h3>
+            <ul>
+                <%countries_list.forEach(function(item,index){%>
+                   <%if(wglobals.lang == 'cn'){%> 
+                    <li><span><%=index+1%></span><a href="/customs-data/<%=item.country.toFix()%>" target="_blank"><%=item.country_cn%><%=translate('home_hot_dataupdate_des')%></a></li>
+                    <%}else{%>
+                    <li><span><%=index+1%></span><a href="/customs-data/<%=item.country.toFix()%>" target="_blank"><%=ucfirst(item.country)%><%=translate('home_hot_dataupdate_des')%></a></li>
+                    <%}%>                  
+                <%})%>
+            </ul>
+        </div>
+        <%}%>
+        <br class="clear"/>
+    </div>  
+    
+    <div class="bangline default-title">
+        <h2><%=translate('home_bline_name')%><a href="<%=LINE_ROUTE()%>" target="_blank"><%=translate('home_bline_website')%><font>&gt;</font></a></h2>
+        <%if(results.line_group.length > 0){%>
+        <div class="bangline-qun">
+            <% results.line_group.forEach(function (item){%>
+            <div class="bangline-qun-k">
+                <h3><%=item.name %><%=translate('home_bline_industry_circle')%></h3>
+                <p>
+                    <%if(item.circle_user_list){%>
+                    <span><%=translate('home_bline_members')%>:</span>
+                        <% item.circle_user_list.forEach(function (u){%>
+                    <img src="https://static.52wmb.com/bangline/upload/images/<%=u.avatar%>"/>
+                        <%}) %>
+                    <a href="<%=LINE_ROUTE()%>/group-<%=item.id%>/member" target="_blank"><%=translate('home_bline_all')%></a>
+                    <font>|</font>
+                    <%}%>
+                    <span><%=translate('home_bline_posts')%>：<%=item.topic_count%></span>
+                </p>
+                <p><%=item.introduction.slice(0, 150) %>...</p>
+                <a href="<%=LINE_ROUTE()%>/group-<%=item.id%>" target="_blank" class="bangline-enter"><%=translate('home_bline_enter')%><font>></font></a>
+            </div>
+            <%}) %>
+        </div>
+        <%}%>
+        <% if(results.line_users.length > 0){ %>
+        <div class="bangline-members">
+            <ul>
+                <% results.line_users.forEach(function (item){ %>
+                <li>
+                    <a href="<%=LINE_ROUTE()%>/line/<%=item.user_id%>" target="_blank">
+                        <img src="https://static.52wmb.com/bangline/upload/images/<%=item.avatar%>"/>
+                        <h3><%=item.name%></h3>
+                        <span><%=item.promote_cnt%><%=translate('bline_share_display')%><font>|</font><%=item.post_cnt%><%=translate('bline_share_post')%></span>
+                        <span>(<%=item.position%>)</span>
+                        <span><%=item.company_name%></span>
+                        <span><%=translate('home_bline_attribution')%>：<%=POS_SHOW(item)%></span>
+                    </a>
+                </li>
+                <%})%>
+            </ul>
+        </div>
+        <%}%>
+    </div>
+
+    <div class="bang-mall default-title">
+        <h2><%=translate('store_name')%><a href="/mall" target="_blank"><%=translate('share_text_more')%><font>&gt;</font></a></h2>        
+        <%if(wglobals.lang == 'cn'){%>
+        <%if(results.yuekt){%>
+        <div>
+            <h3>[邦阅大课]<%=results.yuekt.title%></h3>
+            <p><%= results.yuekt.class_type.replace(/,/g, "") %><br/>讲师: <%= results.yuekt.user_name %><span>|</span>课程时长: <%= results.yuekt.class_duration %></p>
+            <img src="<%= results.yuekt.head %>"/>
+            <a href="/yuekt" target="_blank">详情<font>&gt;</font></a>
+        </div>
+        <%}%>
+        <div>
+            <h3>客户开发三剑客</h3>
+            <p>优秀的客户开发解决方案，帮您找到真实的成交客户！</p>
+            <i></i>
+            <a href="/san-jian-ke" target="_blank">详情<font>&gt;</font></a>
+        </div>
+        <div>
+            <h3>BEM邮件群发工具</h3>
+            <p>群发到达率到达率高达90%，无限量邮件群发！代发平台。</p>
+            <i></i>
+            <a href="/benchmark" target="_blank">详情<font>&gt;</font></a>
+        </div>
+        <%}%>
+        <div>
+            <h3><%=translate('store_product_soso')%></h3>
+            <p><%=translate('store_product_soso_des')%></p>
+            <i></i>
+            <a href="/social-media" target="_blank"><%=translate('share_text_detail')%><font>&gt;</font></a>
+        </div>       
+        <div>
+            <h3><%=translate('store_product_js')%></h3>
+            <p><%=translate('store_product_js_des')%></p>
+            <i></i>
+            <a href="/amazon" target="_blank"><%=translate('share_text_detail')%><font>&gt;</font></a>
+        </div>        
+        <br class="clear"/>
+    </div>
+
+    <%var tutorial_list=results.tutorial_list;
+    if(tutorial_list.length>0){%>
+    <div class="bang-ke default-title">
+        <h2><%=translate('class_name')%><a href="/new" target="_blank"><%=translate('share_text_more')%><font>&gt;</font></a></h2>
+        <ul>
+            <%tutorial_list.forEach(function(item,index){%>
+                <li>
+                    <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>"/>
+                    <h3><a href="/new/<%=item.id%>"><%=(item.title || '').substring(0, wglobals.lang == 'cn'?78:58)%></a></h3>
+                    <span><font><%=item.update_time.split(' ')[0]%></font><font><%=item.view_count%><%=translate('share_text_view')%></font></span>
+                </li>
+                <%})%>            
+            <br class="clear"/>
+        </ul>
+    </div>
+    <%}%>        
+    <div class="default-foot">
+        <div class="default-foot-content">
+            <div class="default-foot-left">
+                <div id="tab_menu">
+                    <a href="javascript:void(0);" data-tab="tab0" class="active"><%=translate('home_foot_sitemap')%></a>
+                    <%if(wglobals.lang == 'cn'){%> <a href="javascript:void(0);" data-tab="tab1"><%=translate('home_foot_link')%></a><%}%>
+                </div>
+                <div id="tab_menu_list">
+                    <ul style="display: block;">
+                        <li>
+                            <b><%=translate('help_name')%></b>
+                            <a href="/help/aboutus"><%=translate('help_nav_aboutus')%></a>
+                            <a href="/help/contactus"><%=translate('help_nav_contact')%></a>
+                            <%if(wglobals.lang == 'cn'){%>                            
+                            <a href="/help/joboffers">招聘信息</a>
+                            <%}%>
+                            <a href="/help/user_agreement"><%=translate('help_nav_user_agreement')%></a>                            
+                            <a href="/help/privacy_policy"><%=translate('help_nav_privacy_policy')%></a>
+                            <a href="/help/price"><%=translate('help_nav_ad')%></a>
+                        </li>
+                        <li>
+                            <b><%=translate('solutions_name')%></b>
+                            <a href="/companies" target="_blank"><%=translate('solutions_company')%></a>
+                            <a href="/industry" target="_blank"><%=translate('solutions_industry')%></a>                       
+                            <a href="/tradedata" target="_blank"><%=translate('solutions_data')%></a>
+                            <a href="/usergroups" target="_blank"><%=translate('solutions_usergroups')%></a>
+                            <a href="/sucess" target="_blank"><%=translate('solutions_success')%></a>
+                            <a href="/category/list" target="_blank"><%=translate('solutions_company_topic')%></a>
+                        </li>
+                        <li>
+                            <b><%=translate('service_name')%></b>
+                            <a href="/new/category-czsc" target="_blank"><%=translate('class_name_brochure')%></a>
+                            <a href="/new/category-sjsm" target="_blank"><%=translate('class_name_encyclopedia')%></a>
+                            <%if(wglobals.lang == 'cn'){%><a href="/new/category-kfkc" target="_blank">数据开发课程</a>
+                            <a href="/new/category-wenda" target="_blank"><%=translate('class_name_ask')%></a>
+                            <a href="/new/category-fwzc" target="_blank"><%=translate('class_name_notice')%></a><%}%>
+                            <a href="/category/list/new" target="_blank"><%=translate('company_product_list')%></a>
+                        </li>
+                        <li>
+                            <b><%=translate('home_foot_link')%></b>
+                            <%if(wglobals.lang == 'cn'){%>
+                            <a href="https://www.52by.com" target="_blank">邦阅网</a>
+                            <a href="https://supplier.alibaba.com/" target="_blank">外贸圈</a>
+                            <a href="http://www.globalimporter.net/">跨国采购</a>
+                            <a href="https://shuidi.cn/">水滴信用</a>
+                            <a href="https://line.52wmb.com">邦Line</a>
+                            <a href="javascript:void(0);">更多<font>&gt;</font></a>
+                            <%}%>
+                            <%if(wglobals.lang == 'en'){%>
+                                <a href="https://en.china.cn/" target="_blank">China Suppliers</a>
+                                <a href="https://www.molbase.com/" target="_blank">chemical suppliers</a>
+                                <a href="https://www.guidechem.com/" target="_blank">chemical b2b</a>
+                                <a href="https://www.21food.com/" target="_blank">food b2b</a>
+                            <%}%>
+                        </li>
+                        <br class="clear"/>
+                    </ul>
+                    <ul style="display:none;">
+                        <li>
+                            <a href="http://waimaoquan.alibaba.com/" class="moudle-a" target="_blank">外贸圈</a>  
+                            <a href="https://yaozh.com/" class="moudle-a" target="_blank">药智网</a>
+                            <a href="https://www.cnwallb.com/" class="moudle-a" target="_blank">墙布</a>
+                        </li>
+                        <li>
+                            <a href="http://shuidi.cn" class="moudle-a" target="_blank">水滴信用</a>
+                            <a href="https://www.phbang.cn/" class="moudle-a" target="_blank">中国排行</a>                       
+                            <a href="https://www.jcz001.com/" class="moudle-a" target="_blank">集成灶</a>
+                        </li>
+                        <li> 
+                            <a href="http://www.globalimporter.net/" class="moudle-a" target="_blank">跨国采购</a>
+                            <a href="https://www.xhd.cn/" class="moudle-a" target="_blank">新航道雅思</a>
+                            <a href="http://www.czvv.com/" class="moudle-a" target="_blank">传众网</a>
+                        </li>
+                        <li> 
+                            <a href="http://www.912688.com/" class="moudle-a" target="_blank">搜好货</a> 
+                            <a href="https://www.ic37.com/" class="moudle-a" target="_blank">ic37网</a> 
+                            <a href="http://www.91beijian.com/" class="moudle-a" target="_blank">MRO</a>
+                        </li>
+                        <li> 
+                            <a href="http://fuwu.huangye88.com/" class="moudle-a" target="_blank">商务服务网</a>
+                            <a href="https://www.hcggzy.cn/" class="moudle-a" target="_blank">跨境达人</a>
+                            <a href="http://www.china-nengyuan.com/" class="moudle-a" target="_blank">新能源</a>
+                        </li>
+                        <li> 
+                            <a href="http://www.juda.cn/" class="moudle-a" target="_blank">锂电池</a> 
+                            <a href="http://www.tx7878.cn/" class="moudle-a" target="_blank">压力变送器</a> 
+                            <a href="http://www.tx7878.cn/" class="moudle-a" target="_blank">压力变送器</a> 
+                        </li>
+                        <li>
+                            <a href="http://www.ynshangji.com/" class="moudle-a" target="_blank">云商网</a> 
+                            <a href="http://www.jszhaobiao.com/" class="moudle-a" target="_blank">建设招标网</a>
+                            
+                        </li>
+                        <li>
+                            <a href="https://www.ctoy.com.cn/" class="moudle-a" target="_blank">中外玩具网</a>
+                            <a href="https://www.pvc123.com/" class="moudle-a" target="_blank">环球塑化</a>                             
+                        </li>
+                        <br class="clear"/>
+                    </ul>
+                </div>                
+            </div>
+            <div class="default-foot-right">
+                <div>
+                    <%if(wglobals.lang == 'cn'){%>
+                    <span>咨询热线: </span>
+                    <span>021-64033826</span>
+                    <span>周一至周五 9:15-18:00</span>
+                    <span><img src="https://static.52wmb.com/wmb_img/share/ewm_wmb.png"/></span>
+                    <span>外贸邦移动端</span>
+                    <%}%>
+                    <%if(wglobals.lang == 'en'){%>
+                    <span>Whatsapp: </span>
+                    <span>+8616621075894</span>
+                    <span>9:00 Am-18:00 Pm (SGT)</span>
+                    <span><img src="<%= STATIC %>images/whatsapp_ewm.jpg"/></span>
+                    <span>QR Code</span>
+                    <%}%>
+                </div>
+            </div>
+            <br class="clear"/>
+        </div>
+        <div class="default-foot-bottom">
+            <%if(wglobals.lang == 'cn'){%>&copy;2010-<%=new Date().getFullYear()%> 上海义缘网络科技有限公司 版权所有<font>|</font><a target="_blank" href="https://beian.miit.gov.cn/">沪ICP备16029834号-2</a><font>|</font><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402001557">沪公网安备 31010402001557号</a><%}%>
+            <%if(wglobals.lang == 'en'){%>&copy;2010-<%=new Date().getFullYear()%> 52wmb.com all rights reserved<font>|</font><a target="_blank" href="https://beian.miit.gov.cn/">沪ICP备16029834号-2</a><font>|</font><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402001557">沪公网安备 31010402001557号</a><%}%>
+        </div>
+    </div> 
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/index/index.js?v=<%=VERSION%>"></script>
+</body>
+</html>

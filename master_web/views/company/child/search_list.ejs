@@ -1,0 +1,39 @@
+<% var search_data = results.search_data ;%>
+<% if(search_data && search_data.list && search_data.list.length > 0){ %>
+<% search_data.list.forEach(function(item){%>
+<li>
+  <% var company_name=item.name.trims('.','left'), has_jz = false %>
+    <h2><a href="/<%= ['buyer','supplier'][item.type] %>/<%=item.id%>" title="<%=company_name%>" class="company-link" data-key="<%= results.search_type=='2'?results.search_key:results.search_hs %>" target="_blank"><%= company_name %></a>
+        <% if(item.is_view) { %><span class="seach-list-span-view"><%=translate('company_viewed')%></span><% } %>
+    </h2>
+    <span class="list-company-like" onclick="likeTap(this)" data-follow="<%= item.is_follow?1:0 %>" data-id="<%=item.id%>"><i class="like <%=item.is_follow?'active':''%>"></i><font><%=item.is_follow?translate('detail_active_cancel'):translate('detail_active_collect')%></font></span>
+    <p class="seach-list-p1"><%=item.country%>  <%=translate('search_list_company').replace('[@公司属性]',['buyer', 'supplier'][item.type])%><font>|</font><%=item.bill_count%><%=translate('search_list_transactions')%></p>
+    <p class="seach-list-p2"><i class="comany-share-star star-<%=item.star%>"></i><span><%=translate('search_list_value').replace('[@活跃值]',item.rating)%></span></p>
+<%if(results.search_type == '3'){%>
+    <%if(item.hs){%>
+        <p class="seach-list-p3"><b><%=translate('search_list_reason')%>:</b> <%=keyreplace(translate('company_list_modle_reason_hs'), ['[@两年交易数]','[@编码]','[@交易数]','[@交易日期]', '[@交易比]'], [item.two_year_bill, item.hs.value, item.hs.count,item.hs.last_trade_date,item.hs.prop])%></p>
+    <%}%>
+<%}else{%>
+    <% var has_product = Object.keys(item.product|| {}).length > 0 %>
+    <% if(has_product){ %>
+        <%if(results.search_type == 2 && results.search_key && results.search_key != '*'){%>
+        <p class="seach-list-p3"><b><%=translate('search_list_reason')%>:</b> <%=keyreplace(translate('search_list_reason_tips'), ['[@两年交易数]','[@产品]','[@总量]','[@日期]', '[@占比]'], [item.two_year_bill,item.product.value, item.product.count,item.product.last_trade_date,item.product.prop])%></p>
+        <% has_jz = true } %>
+        <p class="seach-list-p4"><b><%=translate('search_list_main_products')%>:</b> <span><%= item.product.value_list %></span></p>
+    <%}%>
+    <%if(item.descript && results.search_type != '3'){%>
+    <p class="seach-list-p3 shrink-module" data-length="150"><b><%=translate('search_list_product')%>:</b> <span class="shrink-txt"><%= company_descript_clear(item.descript) %></span></p>
+    <%}%>
+<%}%>
+    <p class="seach-list-p5">
+        <% if(item.weight >= 1000) { %><span class="contact seach-list-span"><%=translate('search_list_contact')%></span><% } %>
+        <% if(item.have_follow) { %><span class="collections seach-list-span"><%=translate('search_list_collections')%></span><% } %>
+        <% if(has_jz) { %><span class="yellow seach-list-span"><%=translate('search_list_match')%></span></span><% } %>
+        <% if(item.company_type == 4) { %><span class="yellow seach-list-span">货代</span></span><% } %>
+        <span class="search-list-date"><%=translate('search_list_data_update')%><%=item.last_trade_date%></span>
+    </p>
+</li>
+<%}) %>
+<% }else{%>
+<div class="not-found"><%=translate('company_list_nocontent')%></div>
+<% } %>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <title><%=translate('mine_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%= VERSION %>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%= VERSION %>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%= VERSION %>"><%}%>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<%var user= wglobals.user %>
+<div class="center-home-k">
+     
+        <!--新注册，24小时内显示,已被隐藏-->
+        <% var rd = (new Date() - new Date(wglobals.user.create_time)) / 1000 / 60 / 60;  %>
+        <% if(rd < 24) { %>
+            <div class="new-register-tips display-none mine-news-c">
+                <%if(wglobals.lang == 'cn'){%>
+                <h2 class="mine-news-c-title">
+                    <i><svg t="1666172512691" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10395" width="22" height="22"><path d="M946.7 465.6c0 187.7-162.4 339.9-362.8 339.9-71.9 0-386.4-23.3-386.4-23.3S284 715.8 315 693.7c-58.3-60.3-93.9-140.3-93.9-228.1 0-187.7 162.4-339.9 362.8-339.9s362.8 152.2 362.8 339.9z" fill="#FFE4B3" p-id="10396"></path><path d="M550.4 799.9c-71.7 0-374.8-22.3-387.7-23.3-6.9-0.5-12.8-5.2-14.8-11.9s0.3-13.8 5.8-18.1c3.1-2.3 65.8-50.4 102.7-77.7-55.4-63.6-85.6-143-85.6-225.6 0-48.3 10.1-95.1 30-139.2 19.2-42.5 46.6-80.6 81.6-113.4 34.9-32.7 75.4-58.3 120.6-76.2 46.7-18.5 96.3-27.9 147.4-27.9s100.7 9.4 147.4 27.9c45.2 17.9 85.7 43.5 120.6 76.2 34.9 32.7 62.4 70.9 81.6 113.4 19.9 44.1 30 90.9 30 139.2s-10.1 95.1-30 139.2c-19.2 42.5-46.6 80.6-81.6 113.4-34.9 32.7-75.4 58.3-120.6 76.2-46.7 18.4-96.3 27.8-147.4 27.8z m-341.2-53.5c89.1 6.4 286.8 20 341.2 20 190.8 0 346.1-145 346.1-323.1S741.2 120.2 550.4 120.2s-346.1 145-346.1 323.1c0 80.2 31.7 157.1 89.2 216.5 3.4 3.5 5.1 8.3 4.6 13.2s-3 9.3-6.9 12.1c-17.8 12.6-54.4 40.3-82 61.3z" fill="#EFA716" p-id="10397"></path><path d="M370.1 429.4m-44.4 0a44.4 44.4 0 1 0 88.8 0 44.4 44.4 0 1 0-88.8 0Z" fill="#EFA716" p-id="10398"></path><path d="M548.6 429.4m-44.4 0a44.4 44.4 0 1 0 88.8 0 44.4 44.4 0 1 0-88.8 0Z" fill="#EFA716" p-id="10399"></path><path d="M727.2 429.4m-44.4 0a44.4 44.4 0 1 0 88.8 0 44.4 44.4 0 1 0-88.8 0Z" fill="#EFA716" p-id="10400"></path></svg></i>
+                    恭喜！您已成为外贸邦大家庭的一员啦,建议你...
+                    <!--font>×关闭这期</font-->
+                </h2>
+                <ul>
+                    <li>
+                        <i></i>
+                        <h2>使用10元代金券</h2>
+                        <p class="des">感谢您注册外贸邦，赠送您一张10元优惠券购买VIP时使用，自动抵扣！注册后24小时内有效。</p>
+                        <a class="button" href="/Alipay?v=v&m=1" target="_blank">使用优惠券</a>
+                        <font class="close">×</font>
+                    </li>
+                    <li>
+                        <i></i>
+                        <h2>观看平台《操作手册》</h2>
+                        <p class="des">在使用网站之前，建议查阅外贸邦的《平台操作手册》，这可以让您快速掌握使用技巧。</p>
+                        <a class="button" href="/new/category-czsc" target="_blank">查看操作手册</a>
+                        <font class="close">×</font>
+                    </li>
+                    <li>
+                        <i></i>
+                        <h2>学习官荐《数据开发》课程</h2>
+                        <p class="des">官方精心筹划制作，市面上最最系统的海关数据客户开发课程，共计32课时，已上线26节。</p>
+                        <a class="button" href="/customs-data-course" target="_blank">免费试学课程</a>
+                        <font class="close">×</font>
+                    </li>
+                </ul>
+                <%}else{%>
+                    <h2 class="mine-news-c-title">
+                        <i><svg t="1666172512691" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="10395" width="22" height="22"><path d="M946.7 465.6c0 187.7-162.4 339.9-362.8 339.9-71.9 0-386.4-23.3-386.4-23.3S284 715.8 315 693.7c-58.3-60.3-93.9-140.3-93.9-228.1 0-187.7 162.4-339.9 362.8-339.9s362.8 152.2 362.8 339.9z" fill="#FFE4B3" p-id="10396"></path><path d="M550.4 799.9c-71.7 0-374.8-22.3-387.7-23.3-6.9-0.5-12.8-5.2-14.8-11.9s0.3-13.8 5.8-18.1c3.1-2.3 65.8-50.4 102.7-77.7-55.4-63.6-85.6-143-85.6-225.6 0-48.3 10.1-95.1 30-139.2 19.2-42.5 46.6-80.6 81.6-113.4 34.9-32.7 75.4-58.3 120.6-76.2 46.7-18.5 96.3-27.9 147.4-27.9s100.7 9.4 147.4 27.9c45.2 17.9 85.7 43.5 120.6 76.2 34.9 32.7 62.4 70.9 81.6 113.4 19.9 44.1 30 90.9 30 139.2s-10.1 95.1-30 139.2c-19.2 42.5-46.6 80.6-81.6 113.4-34.9 32.7-75.4 58.3-120.6 76.2-46.7 18.4-96.3 27.8-147.4 27.8z m-341.2-53.5c89.1 6.4 286.8 20 341.2 20 190.8 0 346.1-145 346.1-323.1S741.2 120.2 550.4 120.2s-346.1 145-346.1 323.1c0 80.2 31.7 157.1 89.2 216.5 3.4 3.5 5.1 8.3 4.6 13.2s-3 9.3-6.9 12.1c-17.8 12.6-54.4 40.3-82 61.3z" fill="#EFA716" p-id="10397"></path><path d="M370.1 429.4m-44.4 0a44.4 44.4 0 1 0 88.8 0 44.4 44.4 0 1 0-88.8 0Z" fill="#EFA716" p-id="10398"></path><path d="M548.6 429.4m-44.4 0a44.4 44.4 0 1 0 88.8 0 44.4 44.4 0 1 0-88.8 0Z" fill="#EFA716" p-id="10399"></path><path d="M727.2 429.4m-44.4 0a44.4 44.4 0 1 0 88.8 0 44.4 44.4 0 1 0-88.8 0Z" fill="#EFA716" p-id="10400"></path></svg></i>
+                        Congratulations! You have become a member of the big family of 52WMB. I suggest you...
+                    </h2>
+                    <ul>
+                        <li>
+                            <i></i>
+                            <h2>Use a $5 coupon</h2>
+                            <p class="des">Thanks for registering, you will be given a $5 USD coupon for purchasing a VIP, which will be automatically deducted! Valid for 24 hours after registration.</p>
+                            <a class="button" href="/Alipay" target="_blank">To use the coupon</a>
+                            <font class="close">×</font>
+                        </li>
+                        <li>
+                            <i></i>
+                            <h2>Watch the Operation Manual</h2>
+                            <p class="des">Before using the website, recommend you to view the Platform Operation Manua, which can help you quickly master the skills.</p>
+                            <a class="button" href="/new/category-czsc" target="_blank">View the operation manual</a>
+                            <font class="close">×</font>
+                        </li>
+                    </ul>
+                <%}%>
+            </div>
+    
+
+         
+        <!--div class="new-register-tips display-none">
+            <%if(wglobals.lang == 'cn'){%>
+            <h2>恭喜！您已注册成功...<span class="close">不再显示</span></h2>
+            <div>
+                <p>很高兴您成为外贸邦用户的一员，在外贸邦您可以通过外贸大数据找到并开发到外贸用户、分析研究贸易市场、结交国内外好友。如果您是第一次使用外贸邦，建议您在使用平台之前阅读以下内容...</p>
+                <p style="padding-top:10px;">
+                    <font>●</font><a href="/new/category-czsc" target="_blank">平台操作手册→</a><br/>
+                    <font>●</font><a href="/loft_HD" target="_blank">了解会员等级权限→</a><br/>
+                    <% if (results.redirectUrl){ %>
+                    <font>●</font><a href="<%= encodeURIComponent(results.redirectUrl) %>" target="_blank">返回上一页→</a>
+                    <%}%>
+                </p>
+                <i><svg t="1649337520070" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5426" width="130" height="130"><path d="M218.8 545.7L91 673.5v0.2c-4.2 4.2-4.2 11 0 15.2 4.2 4.2 11 4.2 15.2 0l127.8-128c4.2-4.2 4.2-11 0-15.2-4.2-4.2-11-4.2-15.2 0zM520.3 287.1c-134.4 0-243.4 109-243.4 243.4s109 243.4 243.4 243.4 243.4-109 243.4-243.4c0-64.6-25.6-126.5-71.3-172.2-45.6-45.6-107.5-71.2-172.1-71.2z" fill="#F47265" p-id="5427"></path><path d="M667 475.5l0.4-0.5-169.2 175.5c-3.7 4-9.9 4.1-13.9 0.4l-0.4-0.4-100.3-104.2c-4-4.2-4-10.7 0-14.9l31.5-32.5c3.7-4 10.1-4.1 14-0.4l0.4 0.4 61.3 63.9 130.3-134.9c3.7-4 9.9-4.1 13.9-0.4l0.4 0.4 31.5 32.7c4 4.1 4 10.7 0.1 14.9z" fill="#FE4B58" p-id="5428"></path><path d="M108.3 540.3L33.6 581l66.7 24.9 8-65.6z m0 0" fill="#3894FC" p-id="5429"></path><path d="M768.7 221.5c-6.2 0-12.2 2.5-16.6 6.9-4.4 4.4-6.9 10.4-6.9 16.7 0 13.1 10.5 23.6 23.6 23.6 13.1 0 23.6-10.5 23.6-23.6-0.3-13-10.8-23.6-23.7-23.6z m0 0" fill="#F47265" p-id="5430"></path><path d="M347.6 786c-6.8 0-12.2 5.5-12.2 12.2 0 4.9 3 9.5 7.5 11.4 4.6 1.9 9.8 0.8 13.4-2.6 3.5-3.5 4.6-8.7 2.6-13.4-1.9-4.6-6.3-7.6-11.3-7.6z m0 0" fill="#3894FC" p-id="5431"></path><path d="M292.3 310.8l36.9 15.1-14.7-35.2 15.5-39.9-40 15.5-35.1-14.5 15 36.5-14.3 36.5 36.7-14z m0 0" fill="#FFB800" p-id="5432"></path><path d="M863.8 735.3L826 719.9l16.1 39.3-15.1 39.2 39.2-15.1 39.3 16.1-15.3-37.7 16.4-42.6-42.8 16.2z m0 0" fill="#F47265" p-id="5433"></path><path d="M825.1 558.4l130.6-130.6c3.5-4 3.5-9.8 0-13.8-3.8-3.7-9.9-3.7-13.8 0L811.3 544.6c-3.5 3.9-3.5 9.8 0 13.8 3.8 3.7 9.9 3.7 13.8 0z m0 0" fill="#3894FC" p-id="5434"></path><path d="M1002.1 424c-3.8-3.7-9.9-3.7-13.8 0L792.6 619.7c-3.5 3.9-3.5 9.8 0 13.8 3.8 3.7 9.9 3.7 13.8 0l195.8-195.8c3.4-3.9 3.4-9.8-0.1-13.7z m0 0" fill="#FFC94C" p-id="5435"></path><path d="M635.4 427.9l-0.4-0.4c-4-3.7-10.2-3.6-13.9 0.4L490.7 562.8 429.4 499l-0.4-0.4c-3.9-3.7-10.2-3.6-14 0.4l-31.5 32.5c-4 4.2-4 10.7 0 14.9l100.3 104.2 0.4 0.4c4 3.7 10.2 3.6 13.9-0.4l169-175.4-0.4 0.5c4-4.2 4-10.8 0-14.9l-31.3-32.9z m0 0" fill="#FFFFFF" p-id="5436"></path></svg></i>
+            </div>
+            <%}else{%>
+            <h2>Congratulations! You have been successfully registered...<span>Not showing</span></h2>
+            <div>
+                <p>We are glad to have you as one of our users. In 52WMB you can find and develop foreign trade users, analyse and research the trade market and make friends at home and abroad through foreign trade data. If this is your first time using 52WMB, we recommend that you read the following before using the platform...</p>
+                <p style="padding-top:10px;">
+                    <font>●</font><a href="/new/category-czsc" target="_blank">Platform Operation Manual →</a><br/>
+                    <font>●</font><a href="/loft_HD" target="_blank">Learn about membership level privileges →</a><br/>
+                    <% if (results.redirectUrl){ %>
+                        <font>●</font><a href="<%= encodeURIComponent(results.redirectUrl) %>" target="_blank">Return to previous page →</a>
+                    <%}%>
+                </p>
+                <i style="top:15px;"><svg t="1649337520070" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5426" width="130" height="130"><path d="M218.8 545.7L91 673.5v0.2c-4.2 4.2-4.2 11 0 15.2 4.2 4.2 11 4.2 15.2 0l127.8-128c4.2-4.2 4.2-11 0-15.2-4.2-4.2-11-4.2-15.2 0zM520.3 287.1c-134.4 0-243.4 109-243.4 243.4s109 243.4 243.4 243.4 243.4-109 243.4-243.4c0-64.6-25.6-126.5-71.3-172.2-45.6-45.6-107.5-71.2-172.1-71.2z" fill="#F47265" p-id="5427"></path><path d="M667 475.5l0.4-0.5-169.2 175.5c-3.7 4-9.9 4.1-13.9 0.4l-0.4-0.4-100.3-104.2c-4-4.2-4-10.7 0-14.9l31.5-32.5c3.7-4 10.1-4.1 14-0.4l0.4 0.4 61.3 63.9 130.3-134.9c3.7-4 9.9-4.1 13.9-0.4l0.4 0.4 31.5 32.7c4 4.1 4 10.7 0.1 14.9z" fill="#FE4B58" p-id="5428"></path><path d="M108.3 540.3L33.6 581l66.7 24.9 8-65.6z m0 0" fill="#3894FC" p-id="5429"></path><path d="M768.7 221.5c-6.2 0-12.2 2.5-16.6 6.9-4.4 4.4-6.9 10.4-6.9 16.7 0 13.1 10.5 23.6 23.6 23.6 13.1 0 23.6-10.5 23.6-23.6-0.3-13-10.8-23.6-23.7-23.6z m0 0" fill="#F47265" p-id="5430"></path><path d="M347.6 786c-6.8 0-12.2 5.5-12.2 12.2 0 4.9 3 9.5 7.5 11.4 4.6 1.9 9.8 0.8 13.4-2.6 3.5-3.5 4.6-8.7 2.6-13.4-1.9-4.6-6.3-7.6-11.3-7.6z m0 0" fill="#3894FC" p-id="5431"></path><path d="M292.3 310.8l36.9 15.1-14.7-35.2 15.5-39.9-40 15.5-35.1-14.5 15 36.5-14.3 36.5 36.7-14z m0 0" fill="#FFB800" p-id="5432"></path><path d="M863.8 735.3L826 719.9l16.1 39.3-15.1 39.2 39.2-15.1 39.3 16.1-15.3-37.7 16.4-42.6-42.8 16.2z m0 0" fill="#F47265" p-id="5433"></path><path d="M825.1 558.4l130.6-130.6c3.5-4 3.5-9.8 0-13.8-3.8-3.7-9.9-3.7-13.8 0L811.3 544.6c-3.5 3.9-3.5 9.8 0 13.8 3.8 3.7 9.9 3.7 13.8 0z m0 0" fill="#3894FC" p-id="5434"></path><path d="M1002.1 424c-3.8-3.7-9.9-3.7-13.8 0L792.6 619.7c-3.5 3.9-3.5 9.8 0 13.8 3.8 3.7 9.9 3.7 13.8 0l195.8-195.8c3.4-3.9 3.4-9.8-0.1-13.7z m0 0" fill="#FFC94C" p-id="5435"></path><path d="M635.4 427.9l-0.4-0.4c-4-3.7-10.2-3.6-13.9 0.4L490.7 562.8 429.4 499l-0.4-0.4c-3.9-3.7-10.2-3.6-14 0.4l-31.5 32.5c-4 4.2-4 10.7 0 14.9l100.3 104.2 0.4 0.4c4 3.7 10.2 3.6 13.9-0.4l169-175.4-0.4 0.5c4-4.2 4-10.8 0-14.9l-31.3-32.9z m0 0" fill="#FFFFFF" p-id="5436"></path></svg></i>
+            </div>
+            <%}%>
+        </div-->
+        
+        <% } if (results.redirectUrl){ %>
+            <a class="home-go-back" href="<%= decodeURIComponent(results.redirectUrl) %>" target="_blank"><%= wglobals.lang=='cn'?'返回上一页→':'Return to previous page →' %></a>
+        <% } %>
+        
+        <div class="center-home-left">  
+        <% if(wglobals.user.id) {%>
+            <%if(wglobals.lang == 'cn'){%>
+                <div class="daketang" id="daketang" style="display: none;">
+                    <i><svg t="1681806062087" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11791" width="60" height="60"><path d="M827.0848 613.4272c12.3904-33.0752 43.008-53.8624 76.1856-55.3984 13.7728-0.6144 25.7536-9.6768 30.5664-22.6304l14.336-38.4c24.32-64.9728-8.6528-137.3696-73.6256-161.6384L356.0448 141.3632c-64.9728-24.32-137.3696 8.6528-161.6384 73.6256L88.2688 498.688c-24.32 64.9728 8.6528 137.3696 73.6256 161.6384l518.5024 193.9968c64.9728 24.32 137.3696-8.6528 161.6384-73.6256l14.336-38.4c4.8128-12.9024 1.7408-27.5968-8.192-37.12-24.0128-22.8864-33.4336-58.7264-21.0944-91.7504z" fill="#FFD05C" p-id="11792"></path><path d="M856.064 600.9344c0-37.4272 22.6816-69.4784 55.04-83.3024 13.4144-5.7344 21.9648-19.2 21.9648-33.792v-43.4176c0-73.5232-59.5968-133.12-133.12-133.12H213.1456c-73.5232 0-133.12 59.5968-133.12 133.12v321.024c0 73.5232 59.5968 133.12 133.12 133.12h586.752c73.5232 0 133.12-59.5968 133.12-133.12v-43.4176c0-14.592-8.4992-28.0576-21.9648-33.792-32.3584-13.824-54.9888-45.8752-54.9888-83.3024z" fill="#FFD05C" p-id="11793"></path><path d="M889.7536 342.272c-4.864-2.6112-9.9328-4.9152-15.2064-6.912l-74.9568-28.0576H213.1456c-20.9408 0-40.704 4.864-58.3168 13.4656l-66.56 177.92c-24.32 64.9728 8.6528 137.3696 73.6256 161.6384l518.5024 193.9968c64.9728 24.32 137.3696-8.6528 161.6384-73.6256l14.3872-38.4c4.8128-12.9024 1.7408-27.5968-8.192-37.12-24.0128-22.9376-33.4336-58.7264-21.0944-91.8016 6.7072-17.9712 18.8928-32.3072 33.8944-41.9328a90.6752 90.6752 0 0 1 50.0736-53.8112c13.4144-5.7344 21.9648-19.2 21.9648-33.792v-43.4176c-0.0512-38.8608-16.7424-73.8304-43.3152-98.1504z" fill="#FCA235" p-id="11794"></path><path d="M517.7856 599.2448c22.6304 0 40.96-18.3296 40.96-40.96s-18.3296-40.96-40.96-40.96h-34.2528l29.5936-46.2848c12.1856-19.0464 6.6048-44.3904-12.4928-56.576a40.9344 40.9344 0 0 0-56.576 12.4928l-32 50.1248-35.6352-51.4048a40.99072 40.99072 0 0 0-56.9856-10.3424c-18.5856 12.9024-23.2448 38.4-10.3424 56.9856l31.232 45.0048h-31.232c-22.6304 0-40.96 18.3296-40.96 40.96s18.3296 40.96 40.96 40.96h63.3856v28.9792H309.0944c-22.6304 0-40.96 18.3296-40.96 40.96s18.3296 40.96 40.96 40.96h63.3856v21.76c0 22.6304 18.3296 40.96 40.96 40.96s40.96-18.3296 40.96-40.96v-21.76h63.3856c22.6304 0 40.96-18.3296 40.96-40.96s-18.3296-40.96-40.96-40.96H454.4v-28.9792h63.3856zM698.0096 415.0272c-22.6304 0-40.96 18.3296-40.96 40.96v83.6608c0 22.6304 18.3296 40.96 40.96 40.96s40.96-18.3296 40.96-40.96V455.9872c0-22.5792-18.3296-40.96-40.96-40.96zM698.0096 622.1312c-22.6304 0-40.96 18.3296-40.96 40.96v83.6608c0 22.6304 18.3296 40.96 40.96 40.96s40.96-18.3296 40.96-40.96v-83.6608c0-22.6304-18.3296-40.96-40.96-40.96z" fill="#F7F8F8" p-id="11795"></path></svg></i>
+                    <p>您已购买《邦阅大课堂畅听卡》，请使用优惠码<b style="color:#f90;">&nbsp;<span id="big_class_redemption_code"></span>&nbsp;</b>免费兑换...<br/>兑换地址：<a href="https://www.52by.com/live/vip" target="_blank">https://www.52by.com/live/vip</a>（需重新注册/登陆）<br><span id="end_time"></span></p>
+                    <a href="javascript:void(0);" id="daketang_close">× 我已兑换</a>
+                </div>
+            <% } %>   
+        <% } %> 
+
+         <div class="center-h-tabel permission display-none">
+             <!--h2><%=translate('mine_permission')%><a href="/loft_HD"><%=translate('mine_permission_table')%><font>&gt;</font></a></h2-->
+             <div class="center-home-info">
+                <img src="https://static.52wmb.com/images/userphoto/80_<%=user.photo?user.photo:'member.jpg'%>"/>
+                <h2><%=user.contact%><font class="vip"><%=user.vip_name%></font></h2>
+                <span>            
+                    <%if(user.vip_level!=''){%>
+                        <%=translate('mine_user_expiry_date')%><%=user.vip_end_time %>&nbsp;&nbsp;               
+                        <a href="/Alipay?v=<%=user.vip_level%>" target="_blank"><%=translate('mine_user_renew')%></a>
+                    <%}else {%>
+                        <%=translate('mine_user_recommend')%>&nbsp; &nbsp; 
+                        <a href="/Alipay" target="_blank"><%=translate('mine_user_buy')%></a>
+                    <%}%>
+                        <font>|</font>
+                        <a href="/loft_HD" target="_blank"><%=translate('mine_permission_table')%></a>
+                </span>
+                <span><%=translate('mine_user_id')%>：<%=user.id%></span>
+            </div>
+
+             <table cellspacing="0" cellpadding="0" id="">
+                 <thead>
+                     <tr>
+                         <td><%=translate('mine_permission_filter')%></td>
+                         <td><%=translate('mine_permission_company_reports')%></td>
+                         <td><%=translate('mine_permission_contact')%></td>
+                         <td><%=translate('mine_permission_industry_reports')%></td>
+                         <td><%=translate('mine_permission_tags')%></td>
+                         <td><%=translate('mine_permission_export')%></td>
+                         <td><%=translate('mine_permission_account')%></td>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr>
+                     </tr>
+                 </tbody>
+             </table>    
+         </div> 
+         <div class="center-h-tabel-half">
+             <div class="left" id="report_stats">
+                 <h2><%=translate('mine_permission_company_reports')%></h2>
+                 <ul></ul>
+             </div>
+             <div class="right" id="tags_stats">
+                 <h2><%=translate('mine_nav_tag')%></h2>
+                 <ul></ul>
+             </div>
+             <br class="clear"/>
+         </div>   
+
+         <div class="center-h-tabel center-tab-notice display-none">
+            <h2><%=translate('mine_model_announcement')%><a href="/new"><%=translate('share_text_more')%></a></h2>
+            <div id="tutorial_list"></div>
+         </div>  
+         
+         <%if(wglobals.lang == 'cn'){%>
+         <div class="center-h-tabel center-ziyuan">
+             <h2>外贸资源</h2>
+             <ul>
+                <li>
+                    <h3>Whatsapp和Tiktok安装包</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/1wjNlBlIZqxNFjDKNHyiDiA?pwd=5wmb" target="_blank">下载</a>
+                </li>
+                <li>
+                    <h3>13大类常用外贸英语话术集锦</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/19WkH8BHiHv46luIIp9l-lA?pwd=5wmb" target="_blank">下载</a>
+                </li>
+                <li>
+                    <h3>125-130届广交会客户资料</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/16PQ5KGOK37PX4XGo8oC4yg?pwd=5wmb" target="_blank">下载</a>
+                </li>
+                <li>
+                    <h3>2023全球节日速查表+贺卡模板</h3>
+                    <p>提取码：5wmb</p>
+                    <a href="https://pan.baidu.com/s/1kH0CVOPRGfEh93C2hTfHWw?pwd=5wmb" target="_blank">下载</a>
+                </li>
+             </ul>
+         </div>
+         <%}%>
+
+         <div class="center-h-tabel center-tab-mall display-none">
+            <h2><%=translate('share_nav_store')%></h2>
+            <ul id="added_list"></ul>
+         </div> 
+         
+         <div class="center-h-tabel center-tab-company display-none">
+            <div class="center-tab-title">
+                <h2><%=translate('mine_company_recommendation')%></h2>
+                <div id="company_type" class="dropdown-container">
+                    <div class="dropdown-btn" data-value="0">
+                        <font><%=translate('share_nav_buyer')%></font>
+                        <i></i>
+                    </div>
+                    <ul class="dropdown-menu" style="margin-top:10px;" >
+                        <li class="item" data-value="0"><%=translate('share_nav_buyer')%></li>
+                        <li class="item" data-value="1"><%=translate('share_nav_supplier')%></li>
+                    </ul>
+                </div>
+                <div id="search_keys" class="dropdown-container">
+                    <div class="dropdown-btn" data-value="*" >
+                        <font><%=translate('search_type_product')%></font><i></i>
+                    </div>
+                    <ul class="dropdown-menu" style="margin-top:10px;"></ul>
+                </div>
+                <br class="clear"/>
+            </div> 
+            <ul id="search_list"></ul>
+            <div class="center-tab-company-more" id="more_company"><a target="_blank" href="javascript:void(0);"><%=translate('share_text_more')%></a></div>
+         </div>   
+    </div>
+    <div class="center-home-right">
+
+        <!--客服模块先注释div class="center-h-tabel center-emp-guess display-none">
+        <h2><%=translate('mine_customer_service')%></h2>
+            <div id="emp_cs"></div>
+        </div-->
+
+
+
+        <div id="bang_line_data"></div>
+        <div class="center-h-tabel center-line-guess">
+            <h2><%=translate('mine_bangline_recommend')%><a href="https://line.52wmb.com/members" target="_blank"><%=translate('share_text_more')%></a></h2>
+            <ul id="bang_line_list"></ul>
+        </div>
+    </div>
+    <br class="clear"/>
+</div>
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/home.js?v=<%=VERSION%>"></script>
+</body>
+</html>

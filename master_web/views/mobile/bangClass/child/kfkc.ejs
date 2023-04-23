@@ -1,0 +1,17 @@
+<% console.log(results," 000009999999") %>
+<% var tutorial_list=results.tutorial_list || []%>
+
+
+<%tutorial_list.forEach(function(item){%>
+<div class="sbox">
+    
+        <a href="/new/<%=item.id%>">
+            <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>" alt="<%=item.title%>"/>
+        </a>
+        <a href="/new/<%=item.id%>">
+            <h3><%=item.title%></h3>
+        </a>
+        <span><span><%=item.update_time%><%= translate("bline_message_publish") %></span><span><%=item.view_count%>人学习</span></span>
+   
+</div>
+<%})%>

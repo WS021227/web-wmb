@@ -1,0 +1,286 @@
+.data-title{width:1330px;margin-left:100px;position:relative;text-align:left;}
+/*分辨率
+@media screen and (max-width:1600px)
+{
+    .company-foot-left{padding-left:30px;}
+    .data-title{width:1330px;margin-left:30px;position:relative;text-align:left;}
+    
+ }
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+.not-data{font-size:13.4px;color:#999;padding-bottom:30px;}
+.notice{width:1240px;}
+.seach-Box{padding:15px 0;}
+.data-title h1{font-size:22.4px;color:#fff;font-weight:normal;font-weight:bold;margin-top:-3px;}
+.data-title p{font-size:14.4px;color:#fff;padding-top:6px;}
+.data-title a{
+    display: inline-block;
+    color: #999999;
+    font-size: 12.4px;
+    line-height: 28px;
+    background-color: #FFFFFF;
+    padding: 0px 20px;
+    height: 28px;
+    border: 1px solid #EBEBEB;
+    border-radius: 100px; 
+}
+
+
+.slider-search-form .seaech-text {
+    padding: 0 15px;
+    width: 100%;
+    height: 45px;
+    font-size: 14px;
+    border: none;    
+}
+
+
+.sousou-screen {
+    width: 100%;
+    height: 70px;
+    border-bottom: 2px solid #C7CFDC;
+    display: flex;
+    line-height: 70px;
+    color: #666666;
+    font-size: 14.4px;
+}
+
+.sousou-screen a {
+    color: #666666;
+    font-size: 14.4px;
+}
+.sousou-screen ul {
+    flex: 1;
+    display: flex;
+}
+
+.sousou-screen ul li {
+    padding: 0 8px;
+}
+
+.sousou-list {
+    padding: 30px 0;
+    padding-top:10px;
+}
+
+.sousou-list .sousou-list-head {
+    display: block;
+    color: #666666;
+    font-size: 14.4px;
+
+}
+
+.sousou-list .sousou-list-head span {
+    float: right;
+    clear: none;
+}
+
+.default-box {
+    /* width: 880px; */
+    padding: 30px 20px;
+    display: flex;
+    background-color: #FAFAFA;
+    border-radius: 3px;
+    margin-top: 20px;
+}
+
+.default-left {
+    width: 180px;
+    padding: 10px 20px;
+    text-align: center;
+    line-height: 23px;
+    color: #666666;
+    border-right: 1px solid #DDDDDD;
+    margin: 5px 0;
+}
+
+.default-left h2 {
+    font-size: 16.4px;
+    color: #333333;
+    font-weight: bold;
+    line-height: 24px;
+}
+
+.default-left p {
+    font-size: 13.4px;
+    line-height: 19px;
+}
+
+.default-left .amount {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 21.4px;
+    color: #333333;
+    line-height: 27px;
+}
+
+.default-left .amount span {
+    font-size: 13.4px;
+    line-height: 17px;
+    display: block;
+}
+
+.default-centre {
+    width: 500px;
+    padding-left: 40px;
+
+}
+
+.default-centre b {
+    margin: 8px 0;
+    font-size: 18.4px;
+    color: #444444;
+
+    line-height: 22px;
+}
+
+.default-centre .catg span {
+    font-size: 13.4px;
+    color: #666666;
+    line-height: 16px;
+}
+
+.default-centre .active {
+    margin: 8px 0;
+    font-size: 12.4px;
+    color: #999999;
+    line-height: 14.3px;
+}
+
+.default-centre .synopsis {
+    font-size: 13.4px;
+    color: #666666;
+    line-height: 20px;
+    min-height: 45px;
+}
+
+.default-centre .label {
+    margin-top: 15px;
+}
+
+.default-centre .label span {
+    display: inline-block;
+    color: #999999;
+    font-size: 12.4px;
+    line-height: 28px;
+    background-color: #FFFFFF;
+    padding: 0px 10px;
+    height: 28px;
+    border: 1px solid #EBEBEB;
+}
+
+.default-right {
+    padding: 40px 20px 0px 20px;
+}
+
+.default-right .btn {
+    width: 78px;
+    height: 78px;
+    border-radius: 50px;
+    background-color: #EAEDF2;
+    text-align: center;
+}
+
+.default-right .btn .user-ico {
+    display: inline-block;
+    width: 19px;
+    height: 21px;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+
+.default-right .btn p {
+    vertical-align: middle;
+}
+.customs-countries-list li{
+    display: flex;   
+    padding: 15px 0;
+    font-size: 14.4px;
+    color:#666666;
+    line-height: 30px;
+    position:relative;
+    background:#fff;
+    margin-bottom:10px;
+    border-radius:5px;
+}
+.customs-countries-list li:first-child{border-radius:0;}
+.customs-countries-list li:first-child:hover{background:none;}
+.customs-countries-list li:nth-child(2){background:#FFFCF9;}
+.customs-countries-list li:nth-child(3){background:#FFFCF9;}
+.customs-countries-box{
+    display: flex;
+    font-size: 14.4px;
+    color:#333;
+}
+.suosuo-data-des{margin-bottom:30px;}
+.suosuo-data-des h2{font-size:12.4px;color:#888;padding-bottom:4px;}
+.suosuo-data-des p{font-size:12.4px;color:#888;line-height:160%;}
+
+.customs-countries-box:hover .trade-barrier .country{color:#007FFF;}
+.trade-barrier .country{
+    color: #333;
+    line-height: 30px;
+    font-size: 15.4px;
+    margin-left: 10px;
+    margin-top: 5px;
+    text-transform: capitalize;
+}
+.trade-barrier {width:272px;display:inline-block;margin-left:15px;}
+.data-type {width:247px;display:inline-block;}
+.freight-count{width:143px;display:inline-block;}
+.last-update{width:133px;display:inline-block;}
+.frequency{width:70px;display:inline-block;text-align:center;}
+.frequency font{display:inline-block;height:24px;line-height:24px;padding:0 10px;border:1px #005FB9 solid;border-radius:100px;color:#005FB9;font-size:12.4px;}
+.frequency:hover font{background:#007FFF;color:#fff;border:1px #007FFF solid;}
+.customs-countries-list li.customs-countries-head{border-bottom:2px solid #C7CFDC;padding-top:0;background:none;}
+.country-img{
+    width: 46px;
+    height: 31px;
+    float:left;
+    background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230327) no-repeat;
+    box-shadow: 2px 2px 7px rgb(0 0 0 / 3%);
+}
+.customs-countries-list li .new-country{position:absolute;left:-25px;height:100%;top:0;background:#2AAE67;text-align:center;line-height:190%;
+    color:#fff;font-size:12.4px;writing-mode: tb-rl;border-radius:4px 0 0 4px;}
+.country-uzbekistan{background-position:-411px -336px;}
+.country-united_states{background-position:-7px -202px;}
+.country-pakistan{background-position:-121px -202px;}
+.country-india{background-position:-63px -202px;}
+.country-india_new{background-position:-63px -202px;}
+.country-kazakhstan{background-position:-7px -336px;}
+.country-panama{background-position:-122px -293px;}
+.country-uruguay{background-position:-295px -293px;}
+.country-vietnam{background-position:-295px -202px;}
+.country-ethiopia{background-position:-411px -294px;}
+.country-sri_lanka{background-position:-64px -293px;}
+.country-brazil{background-position:-237px -202px;}
+.country-paraguay{background-position:-180px -293px;}
+.country-russia{background-position:-179px -202px;}
+.country-peru{background-position:-411px -202px;}
+.country-mexico{background-position:-64px -248px;}
+.country-argentina{background-position:-179px -248px;}
+.country-chile{background-position:-354px -248px;}
+.country-philippines{background-position:-294px -336px;}
+.country-costa_rica{background-position:-411px -248px;}
+.country-ecuador{background-position:-7px -293px;}
+.country-colombia{background-position:-7px -248px;}
+.country-ukraine{background-position:-238px -293px;}
+.country-england{background-position:-354px -202px;}
+.country-venezuela{background-position:-354px -293px;}
+.country-indonesia{background-position:-354px -336px;}
+.country-bolivia{background-position:-294px -248px;}
+.country-taiwan{background-position:-238px -248px;}
+.country-honduras{background-position:-64px -336px;}
+.country-nicaragua{background-position:-121px -336px;}
+.country-el_salvador{background-position:-179px -336px;}
+.country-guatemala{background-position:-238px -336px;}
+.country-south_korea{background-position:-122px -248px;}
+.country-bangladesh{background-position:-464px -203px;}
+.country-turkey{background-position:-464px -248px;}
+

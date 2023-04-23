@@ -1,0 +1,100 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.wwc-order-container h1 {
+  font-size: 0.75rem;
+  color: #777;
+  padding: 0.9375rem 0.9375rem;
+  margin-top: 2.75rem;
+}
+.wwc-order-container .box {
+  width: 84vw;
+  margin: 0 auto;
+  padding: 0rem 0.9375rem;
+  padding-bottom: 1.25rem;
+  box-shadow: 0 0 0.3125rem #ccc;
+  background-color: #fff;
+}
+.wwc-order-container .box ul {
+  list-style: none;
+  font-size: 0.875rem;
+  color: #333;
+  font-weight: 600;
+}
+.wwc-order-container .box ul li {
+  padding: 0.625rem 0;
+}
+.wwc-order-container .box ul li :nth-child(1) {
+  display: inline-block;
+  width: 6.25rem;
+  text-align: left;
+}
+.wwc-order-container .box ul li :nth-child(2) {
+  display: inline-block;
+  text-align: center;
+  width: 10rem;
+  margin-left: 0.625rem;
+  font-weight: 400 !important;
+}
+.wwc-order-container .box ul > :nth-child(1) {
+  display: flex;
+  align-items: center;
+}
+.wwc-order-container .box ul > :last-child {
+  border-bottom: 1px solid #ccc;
+}
+.wwc-order-container .box .zf {
+  padding-bottom: 0.625rem;
+  border-bottom: 0.0625rem solid #ccc;
+}
+.wwc-order-container .box .zf h2 {
+  padding: 0.625rem 0;
+  font-size: 0.875rem;
+  color: #333;
+}
+.wwc-order-container .box .zf > p span {
+  text-align: center;
+  display: inline-block;
+  padding: 5px 0.625rem;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.3125rem;
+  margin-right: 0.625rem;
+  font-size: 0.75rem;
+}
+.wwc-order-container .box .zf > p span img {
+  margin-right: 0.3125rem;
+}
+.wwc-order-container .box .zf > p .active {
+  border: 1px solid #015EB9;
+  box-shadow: 0 0 0.2rem #999;
+  color: #015EB9;
+  background-color: rgba(13, 82, 173, 0.05);
+  font-weight: bold;
+}
+.wwc-order-container .box .zf-dd {
+  color: #333;
+}
+.wwc-order-container .box .zf-dd h2 {
+  padding: 0.625rem 0;
+  font-size: 0.875rem;
+}
+.wwc-order-container .box .zf-dd .zf-je span {
+  font-size: 0.75rem !important;
+}
+.wwc-order-container .box .zf-dd .zf-zf {
+  color: #333;
+  font-weight: 600;
+  margin-top: 0.625rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.wwc-order-container .box .zf-dd .zf-zf a {
+  font-size: 0.875rem;
+  text-decoration: none;
+  color: #fff;
+  background-color: #015EB9;
+  padding: 0.3125rem 0.625rem;
+  border-radius: 0.3125rem;
+}

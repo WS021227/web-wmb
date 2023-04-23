@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="no_full_pop" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_setup_title')%>-邦Line</title>
+    <%- include('./head.ejs') %>
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/edit.css?v=<%= VERSION %>">
+</head>
+<style>
+    .right-web-fixed{display:none;}
+</style>
+<% if (!results.data.is_audit && wglobals.user.bang_line){%>
+<%}else{%>
+    <style>
+        .line-admin-content{margin-left:-50px;}
+        @media screen and (max-width:1600px)
+        {
+            .line-admin-content{margin-left:-170px;}
+        }
+    </style>
+<%}%>
+<body>
+<%- include('../../global/head.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">
+        <%- include('../../home/admin_tab.ejs') %>
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <!-- 左侧菜单 -->
+            <% if (!results.data.is_audit && wglobals.user.bang_line){%>
+                <%- include('./menu.ejs') %>
+            <%}%>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <div class="setting-title"><%=translate('bline_setup_title')%></div>
+                    <% var isone_save = 0 %>
+                    <% if (results.data.is_audit){
+                        isone_save = 1;
+                    %>
+
+                        <div class="bl-shenhe-ing">
+                            <h2><%=translate('bline_check_title')%></h2>
+                            <i><svg t="1669106348134" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6043" width="78" height="78"><path d="M445.44 952.32H209.92c-73.216 0-133.12-59.904-133.12-133.12V204.8c0-73.216 59.904-133.12 133.12-133.12h517.12c73.216 0 133.12 59.904 133.12 133.12v215.04c0 16.896-13.824 30.72-30.72 30.72s-30.72-13.824-30.72-30.72V204.8c0-39.424-32.256-71.68-71.68-71.68H209.92c-39.424 0-71.68 32.256-71.68 71.68v614.4c0 39.424 32.256 71.68 71.68 71.68h235.52c16.896 0 30.72 13.824 30.72 30.72s-13.824 30.72-30.72 30.72z" fill="#A32A1F" p-id="6044"></path><path d="M721.92 947.2c-126.976 0-230.4-103.424-230.4-230.4s103.424-230.4 230.4-230.4 230.4 103.424 230.4 230.4-103.424 230.4-230.4 230.4z m0-399.36c-93.184 0-168.96 75.776-168.96 168.96s75.776 168.96 168.96 168.96 168.96-75.776 168.96-168.96-75.776-168.96-168.96-168.96z" fill="#E09527" p-id="6045"></path><path d="M655.36 307.2H276.48c-16.896 0-30.72-13.824-30.72-30.72s13.824-30.72 30.72-30.72h378.88c16.896 0 30.72 13.824 30.72 30.72s-13.824 30.72-30.72 30.72zM430.08 460.8H276.48c-16.896 0-30.72-13.824-30.72-30.72s13.824-30.72 30.72-30.72h153.6c16.896 0 30.72 13.824 30.72 30.72s-13.824 30.72-30.72 30.72zM430.08 614.4H276.48c-16.896 0-30.72-13.824-30.72-30.72s13.824-30.72 30.72-30.72h153.6c16.896 0 30.72 13.824 30.72 30.72s-13.824 30.72-30.72 30.72z" fill="#A32A1F" p-id="6046"></path><path d="M693.248 813.568c-7.68 0-15.872-3.072-21.504-9.216l-65.024-65.024c-11.776-11.776-11.776-31.232 0-43.52 11.776-11.776 31.232-11.776 43.52 0l43.52 43.52 101.376-99.84c12.288-11.776 31.744-11.776 43.52 0 11.776 12.288 11.776 31.744 0 43.52l-122.88 121.344c-7.168 6.144-14.848 9.216-22.528 9.216z" fill="#E09527" p-id="6047"></path></svg></i>
+                            <p><%=translate('bline_check_des')%></p>
+                            <a href="<%=translate('bline_check_link_site_url')%>" target="_blank"><%=translate('bline_check_link_site')%></a>
+                            <a href="<%=translate('bline_check_link_how_url')%>" target="_blank"><%=translate('bline_check_link_how')%></a>
+                        </div>
+                    <%} else if (results.data.status == 2){
+                        isone_save = 1;
+                    %>
+                    <div class="bl-shenhe-ing bl-shenhe-no">
+                        <h2><%=translate('bline_error_title')%></h2>
+                        <i><svg t="1669105862938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12718" width="80" height="80"><path d="M512.8 512m-423 0a423 423 0 1 0 846 0 423 423 0 1 0-846 0Z" fill="#FF7575" p-id="12719"></path><path d="M481.3 590.7c5.3 15.8 15.8 26.2 31.5 26.2 15.8 0 26.2-10.5 31.5-26.2l21-288.7c0-31.5-26.2-52.5-52.5-52.5-31.5 0-52.5 26.2-52.5 57.8l21 283.4z m31.5 78.8c-31.5 0-52.5 21-52.5 52.5s21 52.5 52.5 52.5 52.5-21 52.5-52.5-21-52.5-52.5-52.5z m0 0" fill="#FFFFFF" p-id="12720"></path></svg></i>
+                        <p><%=translate('bline_error_reason')%><%=results.data.extend_msg%></p>
+                    </div>
+                    <% }else if(!wglobals.user.bang_line){%>
+                        <div class="setting-liucheng"><!--待审核、审核未通过、已通过不显示这个模块-->
+                            <div class="step-tab active"><span>1</span><%=translate('bline_open_lc_1')%><font>&gt;</font></div>
+                            <div class="step-tab step-tab-2"><span>2</span><%=translate('bline_open_lc_2')%><font>&gt;</font></div>
+                            <div><span>3</span><%=translate('bline_open_lc_3')%></div>
+                        </div>
+                    <%}%>
+                    <input type="hidden" id="isone_save" value="<%= isone_save%>">
+                    <div class="step-2 display-none">
+                    <form id="form_topic_image_upload">
+                        <input type="file" name="topic_image_file" hidden id="file_topic_image">
+                    </form>
+                    <form id="product_topic_form">
+                        <input type="hidden" name="images" value="">
+                        <div class="bl-shenhe-product">
+                            <h2><%=translate('bline_product_title')%></h2>
+                            <div class="des">● <%=translate('bline_product_title_tips')%></div>
+                            <div class="text"><textarea class="reply-text" name="contents" placeholder="<%=translate('bline_product_title_tips')%>"></textarea></div>
+                            <div class="pic">
+                                <h2><%=translate('bline_product_pic')%></h2>
+                                <div class="des"><a href="javascript:void(0)" class="topic-image-upload">+<%=translate('bline_product_pic_add')%></a>(<%=translate('bline_product_pic_tips')%>)</div>
+                                <div class="pic-list display-none" id="product_topic_pics">
+                                </div>
+                            </div>
+                            <div class="button"><a href="javascript:void(0)" onclick="product_topic_add()"><%=translate('bline_product_button')%></a></div>
+                        </div>
+                    </form>
+                    </div>
+
+                    <!-- 主页设置 -->
+                    <div class="line-setting step-1">
+                        <div class="setting-content">
+                            <form id="form_info">
+                                <div class="content-left">
+                                    <div class="setting-module">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_setup_cover_image')%></span>
+                                            <div class="upload-tip">
+                                                <font>●</font> <%=translate('bline_setup_cover_image_tips_1')%><br/>
+                                                <font>●</font> <%=translate('bline_setup_cover_image_tips_2')%>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="upload-pic banner">
+                                                <% var cover = results.data.cover|| 'cover_default.jpg' %>
+                                                <label>
+                                                    <div class="pic-show">
+                                                        <img  class="upload-image img-cover"
+                                                              data-layw="1200px"
+                                                              data-layh="550px"
+                                                              data-laytitle="<%=translate('bline_setup_cover_image')%>"
+                                                              data-clipah="400"
+                                                              data-clipwidth="940"
+                                                              data-clipheight="280"
+                                                              data-filename="cover"
+                                                              data-aindex="0"
+                                                              src="<%=LINE_IMAGE_PATH%><%=cover %>"
+                                                              alt="">
+                                                        <input type="hidden" name="cover" data-tips="<%=translate('bline_setup_cover_image')%>" value="<%=cover%>">
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <span class="upload-img-tips"><%=translate('bline_setup_cover_image_edit')%></span>
+                                        </div>
+                                    </div>
+                                    <div class="setting-module">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_setup_person_info')%></span>
+                                        </div>
+                                        <div class="content">
+                                            <div class="setting-editor">
+                                                <div class="setting-label flex">
+                                                    <div class="setting-label">
+                                                        <div class="label-name"><%=translate('bline_setup_name')%></div>
+                                                        <div class="label-content">
+                                                            <input type="text" name="name" data-tips="<%=translate('bline_setup_name_enter')%>" value="<%=results.data.name|| ''%>" class="label-text" placeholder="<%=translate('bline_setup_name_enter')%>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="setting-label">
+                                                        <div class="label-name"><%=translate('bline_setup_nationality')%></div>
+                                                        <div class="label-content">
+                                                            <select class="label-select" name="country_id" id="country_list" data-tips="<%=translate('bline_setup_nationality_select')%>">
+                                                                <option value="0"><%=translate('bline_setup_nationality_select')%></option>
+                                                            </select>
+                                                            <input type="hidden" id="init_country_id" value="<%= results.data.country_id %>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="setting-label">
+                                                    <div class="setting-label">
+                                                        <div class="label-name"><%=translate('bline_setup_position')%></div>
+                                                        <div class="label-content">
+                                                            <input type="text" name="position" data-tips="<%=translate('bline_setup_position_enter')%>" value="<%= results.data.position%>" class="label-text" placeholder="<%=translate('bline_setup_position_enter')%>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="setting-module">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_setup_avatar')%></span>
+                                            <span class="upload-pic-feed">
+                                            <font>●</font> <%=translate('bline_setup_avatar_tips_1')%><br/>
+                                            <font>●</font> <%=translate('bline_setup_avatar_tips_2')%>
+                                        </span>
+
+                                        </div>
+                                        <div class="content">
+                                            <div class="upload-pic head">
+                                                <% var show_avatar = results.data.avatar? (LINE_IMAGE_PATH + results.data.avatar) :'https://static.52wmb.com/bangline/images/web_imgs/edit_touxiang.png'%>
+                                                <label>
+                                                    <div class="pic-show">
+                                                        <img class="upload-image img-avatar"
+                                                             data-layw="500px"
+                                                             data-layh="550px"
+                                                             data-laytitle="<%=translate('bline_setup_avatar')%>"
+                                                             data-clipah="400"
+                                                             data-clipwidth="200"
+                                                             data-clipheight="200"
+                                                             data-filename="avatar"
+                                                             data-aindex="0"
+                                                             src="<%=show_avatar%>"
+                                                             alt="">
+                                                        <input type="hidden" name="avatar" data-tips="<%=translate('bline_setup_avatar')%>" value="<%=results.data.avatar%>">
+                                                    </div>
+                                                </label>
+                                            </div>
+                                            <div class="upload-pic-other-size">
+                                                <img class="size-1 img-avatar" src="<%=show_avatar%>" alt="">
+                                                <img class="size-2 img-avatar" src="<%=show_avatar%>" alt="">
+                                            </div>
+                                            <span class="upload-img-tips"><%=translate('bline_setup_cover_image_edit')%></span>
+                                        </div>
+                                    </div>
+                                    <div class="setting-module">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_setup_company_info')%></span>
+                                        </div>
+                                        <div class="content">
+                                            <div class="setting-editor">
+                                                <div class="setting-label flex">
+                                                    <div class="setting-label">
+                                                        <div class="label-name"><%=translate('bline_setup_company_name')%></div>
+                                                        <div class="label-content">
+                                                            <input type="text" data-tips="<%=translate('bline_setup_company_name_enter')%>" name="company_name" value="<%=results.data.company_name|| ''%>" class="label-text" placeholder="<%=translate('bline_setup_company_name_enter')%>">
+                                                        </div>
+                                                    </div>
+                                                    <div class="setting-label">
+                                                        <div class="label-name"><%=translate('bline_setup_company_website')%></div>
+                                                        <div class="label-content">
+                                                            <input type="text" data-tips="<%=translate('bline_setup_company_website_enter')%>" name="company_site" value="<%= results.data.company_site%>" class="label-text" placeholder="<%=translate('bline_setup_company_website_enter')%>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="setting-label">
+                                                    <div class="label-name"><%=translate('bline_setup_company_profile')%></div>
+                                                    <div class="label-content">
+                                                        <textarea class="label-textarea" data-tips="<%=translate('bline_setup_company_profile_enter')%>" name="company_introduction"  rows="4"><%= results.data.company_introduction||''%></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="setting-label">
+                                                    <div class="label-name"><%=translate('bline_setup_company_logo')%></div>
+                                                    <span class="upload-pic-feed"><font>●</font> <%=translate('bline_setup_company_logo_tips')%></span>
+                                                    <div class="label-content">
+                                                        <div class="upload-pic logo">
+                                                            <% var company_show_logo = results.data.company_cover?(LINE_IMAGE_PATH + results.data.company_cover):'https://static.52wmb.com/bangline/images/web_imgs/edit_company.png'%>
+                                                            <label>
+                                                                <div class="pic-show">
+
+                                                                    <img  class="upload-image img-company_cover"
+                                                                          data-layw="500px"
+                                                                          data-layh="550px"
+                                                                          data-laytitle="<%=translate('bline_setup_company_logo')%>"
+                                                                          data-clipah="400"
+                                                                          data-clipwidth="300"
+                                                                          data-clipheight="200"
+                                                                          data-filename="company_cover"
+                                                                          data-aindex="0"
+                                                                          src="<%=company_show_logo%>"
+                                                                          alt="">
+                                                                    <input type="hidden" data-tips="<%=translate('bline_setup_company_logo')%>" name="company_cover" value="<%=results.data.company_cover%>">
+                                                                </div>
+                                                            </label>
+                                                        </div>
+                                                        <span class="upload-img-tips"><%=translate('bline_setup_cover_image_edit')%></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="setting-module">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_setup_company_attributes')%></span>
+                                            <div class="setting-label">
+                                                <div class="setting-tip">
+                                                    <font>●</font> <%=translate('bline_setup_company_attributes_tips_1')%><br />
+                                                    <font>●</font> <%=translate('bline_setup_company_attributes_tips_2')%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="content">
+                                            <div class="setting-editor">
+                                                <div class="setting-label">
+                                                    <div class="label-name"><%=translate('bline_setup_company_properties')%></div>
+                                                    <div class="label-content">
+                                                        <select class="label-select" name="company_type" data-tips="<%=translate('bline_setup_company_attributes')%>" id="company_types">
+                                                            <option  value="0"><%=translate('bline_setup_company_properties_enter')%></option>
+                                                        </select>
+                                                    </div>
+                                                    <input type="hidden" id="init_company_type" value="<%=results.data.company_type || 0%>">
+                                                </div>
+                                                <div class="setting-label">
+                                                    <div class="label-name"><%=translate('bline_setup_company_collected_supplied')%></div>
+                                                    <div class="label-content">
+                                                        <div class="purchase-info">
+                                                            <% var not_bs = results.data.company_type == 4 || results.data.company_type == 5  %>
+                                                            <% var products = '' %>
+                                                            <% results.data.products.forEach(function (item){
+                                                                products += (',' + item)
+                                                            })
+                                                            products=products.slice(1)
+                                                            %>
+                                                            <div class="purchase-edit">
+                                                                <input type="text" value="<%=not_bs?products: ''%>" id="input_product" class="input-text <%=not_bs?'': 'bs'%>" placeholder="<%=translate('bline_setup_company_collected_supplied_enter')%>">
+                                                                <a class="btn <%=not_bs?"display-none": ''%>" id="btn_add_product" onclick="add_product()"><%=translate('bline_setup_company_collected_supplied_add')%></a>
+                                                            </div>
+                                                            <div class="purchase-list <%=not_bs?"display-none": ''%>">
+                                                                <%if(results.data.products && !not_bs){%>
+                                                                    <%  results.data.products.forEach(function (item){ %>
+                                                                    <div class="purchase-item">
+                                                                        <span class="purchase"><%=item%></span>
+                                                                        <span class="del product-del" data-val="<%=item%>">&#10005;</span>
+                                                                    </div>
+                                                                <%})}%>
+                                                            </div>
+                                                            <input type="hidden" id="old_products" value="<%=products%>">
+                                                            <input type="hidden" data-tips="<%=translate('bline_setup_company_collected_supplied_add_one')%>" name="products" value="<%=products%>">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="content-right">
+                                <div class="setting-module">
+                                    <div class="topic">
+                                        <span class="title"><%=translate('bline_setup_instructions')%>：</span>
+                                    </div>
+                                    <div class="content">
+                                        <div class="setting-tip-right">
+                                            1、<%=translate('bline_setup_instructions_tips_1')%><br/>
+                                            2、<%=translate('bline_setup_instructions_tips_2')%><br/>
+                                            3、<%=translate('bline_setup_instructions_tips_3')%>
+                                            <br />
+                                            <br />
+                                            <%=translate('bline_setup_instructions_tips_4')%>
+                                            <br />
+                                            <%if(wglobals.lang == 'cn'){%>Q Q：1994653505<br />微信：yhj18838024800<br />手机：18838024800<%}%>
+                                            <%if(wglobals.lang == 'en'){%>Whatsapp：+8616621075894<%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="setting-module">
+                                    <% if (results.data.is_audit){%>
+                                    <button disabled="disabled" class="save-btn ds"><%=translate('bline_setup_review')%></button>
+                                    <%}else{%>
+                                    <button class="save-btn" onclick="save_info(this)"><%=translate('bline_setup_save')%></button>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% results.jq = '2.1.3.min' %>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= PLUGINS_STATIC %>photoClip/iscroll-zoom.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%= PLUGINS_STATIC %>photoClip/hammer.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%= PLUGINS_STATIC %>photoClip/lrz.all.bundle.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%= PLUGINS_STATIC %>photoClip/jquery.photoClip.min.js?v=<%=VERSION%>" type="text/javascript" charset="utf-8"></script>
+<!--<script src="<%= STATIC %>plugins/photoClip/jquery.photoClip.js" type="text/javascript" charset="utf-8"></script>-->
+<!--<script src="https://static.52wmb.com/bangline/plugins/photoClip/jquery.photoClip.min.js" type="text/javascript" charset="utf-8"></script>-->
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/line_edit.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

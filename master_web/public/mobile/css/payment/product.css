@@ -1,0 +1,99 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.product-container h1 {
+  font-size: 0.875rem;
+  color: #777;
+  padding: 0.625rem 0.625rem;
+  background-color: #fff;
+  width: 21.5625rem;
+  border-radius: 0.3125rem;
+  margin: 0 auto;
+  margin-top: 3.75rem;
+}
+.product-container h1 span {
+  display: block;
+  color: #333;
+  padding-top: 0.625rem;
+}
+.product-container .zf {
+  width: 21.5625rem;
+  background-color: white;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0.625rem;
+  margin: 0 auto;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+.product-container .zf h2 {
+  font-size: 0.875rem;
+  color: #777;
+}
+.product-container .zf .btn {
+  margin-top: 0.625rem;
+}
+.product-container .zf .btn span {
+  display: inline-block;
+  padding: 0.5rem 0.625rem;
+}
+.product-container .zf .btn span img {
+  display: inline-block;
+  width: 0.8125rem;
+  margin-right: 0.125rem;
+}
+.product-container .zf .btn :nth-child(2) {
+  margin-left: 0.625rem;
+}
+.product-container .zf .btn .active {
+  border: 0.0313rem solid #015EB9;
+  background-color: #F2F9FF;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+}
+.product-container .zfqd {
+  width: 21.5625rem;
+  background-color: white;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0.625rem;
+  margin: 0 auto;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+.product-container .zfqd h2 {
+  font-size: 0.875rem;
+  color: #777;
+}
+.product-container .zfqd > :nth-child(2) {
+  display: block;
+  color: #333;
+  padding: 0.625rem 0;
+}
+.product-container .zfqd > :nth-child(3) {
+  color: #333;
+  padding-top: 0.625rem;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size:0.875rem;
+}
+.product-container .zf-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0.6rem 2rem;
+  background-color: white;
+  width: 100vw;
+}
+.product-container .zf-btn a {
+  display: block;
+  padding: 0.625rem 0;
+  font-size:0.8rem;
+  font-weight:bold;
+  color:#fff;
+  text-align: center;
+  background-image: linear-gradient(to right, #015EB9, #70B8FF);
+  border-radius: 1.5625rem;
+}

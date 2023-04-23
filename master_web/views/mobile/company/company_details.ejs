@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<% var company_detail = results.company_detail, user=wglobals.user,clear_company_name = (company_detail.name || '').trims('.','left'), show_type = translate('share_company_' + company_detail.type), routes = ['buyer', 'supplier'],name=ucfirst(company_detail.name) %>
+<head>
+    <meta charset="utf-8">
+    <meta name="page_mark" content="cdpelv">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="line_route" content="<%=LINE_ROUTE()%>">
+    <meta name="keywords" content="<%=keyreplace(translate('detail_keywords'),['[@公司名]','[@数据类型]'],[clear_company_name,translate('company_data_' + company_detail.type)])%>" />
+    <meta name="description" content="<%=keyreplace(translate('detail_description'),['[@公司名]','[@国家]','[@公司属性]'],[clear_company_name,company_detail['country_'+wglobals.lang],show_type])%>" />
+    <title><%=keyreplace(translate('detail_title'), ['[@公司名]','[@数据类型]'], [ucfirst(clear_company_name),translate('company_data_' + company_detail.type)])%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/company_list/company_details.css?v=<%=VERSION%>" />
+    <% if(wglobals.user.id){%><meta name="reftoken" content="<%=results.reftoken%>"><%}%>
+</head>
+<body>
+    <% let company_data=results.company_detail,trade_his=results.bill.list[0]||[],partner_data=results.partner.list,peers_data=results.peers.list,port_data=results.port_data.list,trade_country=results.trade_country.list,hs=results.company_detail.hs,product=results.company_detail.product,reftoken=results.reftoken %>
+            <%- include('../layout/header.ejs'); %>
+                <div class="container company-details-container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+                    <div class="company">
+                        <div class="titlt">
+                            <h1><%= company_data.name %></h1>
+                            <div class="follow">
+                                <div data-id="<%= company_data.id %>">
+                                    <% if(company_data.is_follow===false) { %>
+                                        <img src="<%= STATIC %>mobile/images/company/company_list/follow_false_w.png" id="shoucang" data-id="<%= company_data.id %>" />
+                                        <% } %>
+                                    <% if(company_data.is_follow===true) { %>
+                                        <img src="<%= STATIC %>mobile/images/company/company_list/follow_true.png" id="quxiao" data-id="<%= company_data.id %>" />
+                                     <% } %>
+                                     <span><%= translate("detail_active_collect") %></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="start">
+                            <span class="img star_width_<%= company_data.star %>" id="star-img" alt=""></span>
+                            <span><%= keyreplace(translate("company_list_star_text"),['[@分数]'],[company_data.rating]) %></span>
+                        </div>
+                        <div class="date"><%=keyreplace(translate('detail_data_update'),['[@国家]','[@公司属性]','[@日期]'],[company_data['country_'+wglobals.lang],show_type,company_data.last_trade_date.replace(new RegExp('-', 'g' ),'/')])%></div>
+                        <% if(company_data.address!==null){ %>
+                            <div class="address">
+                                <span class="a1"><%= translate("detail_address") %>:&nbsp;<%= company_data.address %></span>
+                                <span class="more">[<%= translate("report_search_more") %>]</span>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <div class="box2">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="sbox active" data-num=0>
+                                        <span class="img1"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_overview')%></span>
+                                            <span><%= translate("detail_module_market_des") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% if(company_data.weight>=1000) {%>
+                                    <div class="swiper-slide">
+                                        <div class="sbox" data-num=1>                                           
+                                            <span class="img2"></span>
+                                            <div class="text">
+                                                <span><%=translate('detail_nav_contact')%></span>
+                                                <span><%= translate("detail_module_contact_des") %></span>
+                                                <% if(wglobals.user.vip_level=="" ||!wglobals.user.encrypt_user_name){ %>
+                                                    <i id="sbox_img"></i>
+                                                <%}%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <%}%>
+
+                                <!-- data -->
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=2>
+                                        <span class="img3"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_tradedata')%></span>
+                                            <span><%= translate("detail_module_bill_des") %></span>
+                                            <% if(wglobals.user.vip_level=="" ||!wglobals.user.encrypt_user_name){ %>
+                                            <i id="sbox_img"></i>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <% if(results.partner.hits!==0){ %>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=3>                                                    
+                                        <span class="img4"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_partner')%></span>
+                                            <span><%= translate("detail_module_partner_des") %></span>
+                                            <% if(wglobals.user.vip_level=="" || wglobals.user.vip_level=="v" ||!wglobals.user.encrypt_user_name){%>
+                                            <i id="sbox_img"></i>
+                                                <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+
+                                <!-- hs -->
+                                <% if(results.company_detail.hs_count!==0){ %>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=4>                                                            
+                                        <span class="img5"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_hscode')%></span>
+                                            <span><%= translate("detail_module_hscoe_des") %></span>
+                                            <% if(wglobals.user.vip_level=="" ||wglobals.user.vip_level=="v" ||!wglobals.user.encrypt_user_name){%>
+                                            <i id="sbox_img"></i>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+
+                                <!-- product -->
+                                <% if(results.company_detail.product_count!==0){%>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=5>
+                                        <span class="img6"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_product')%></span>
+                                            <span><%= translate("detail_module_partner_des") %></span>
+                                            <% if(wglobals.user.vip_level=="" ||wglobals.user.vip_level=="v"||!wglobals.user.encrypt_user_name){%>
+                                            <i id="sbox_img"></i>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+
+                                <!-- area -->
+                                <% if(results.trade_country.hits!==0){ %>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=6>                                                                            
+                                        <span class="img7"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_area')%></span>
+                                            <span><%= translate("detail_module_area_des") %></span>
+                                            <% if(wglobals.user.vip_level=="" ||wglobals.user.vip_level=="v" ||!wglobals.user.encrypt_user_name){%>
+                                            <i id="sbox_img"></i>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+
+                                <!-- port -->
+                                <% if(results.port_data.hits!==0){ %>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=7>                                                                                    
+                                        <span class="img8"></span>
+                                        <div class="text">
+                                            <span><%=translate('detail_nav_port')%></span>
+                                            <span><%= translate("detail_module_port_des") %></span>
+                                            <% if(wglobals.user.vip_level==""||wglobals.user.vip_level=="v"||!wglobals.user.encrypt_user_name){%>
+                                            <i id="sbox_img"></i>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </div>
+                                <%}%>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- home -->
+                    <div class="tab-options tab-active">
+                        <h2 class="title">
+                            <span><%=translate('detail_module_market_des')%></span>
+                            <div class="title-box">
+                                <span class="trade-option active"><%= translate("company_details_jys") %></span>
+                                <span class="trade-option"><%= translate("detail_module_quantity") %></span>
+                                <span class="trade-option"><%= translate("detail_module_weight") %></span>
+                            </div>
+                        </h2>
+
+                        <!-- table -->
+                        <div class="ws-table" data-id="<%= company_data.id %>" data-companytype="<%= company_data.type %>" data-endtime="<%= company_data.last_trade_date %>" data-starttime="<%= company_data.year_trade_date %>" data-country="<%= company_data.country_en %>" data-reftoken="<%= reftoken %>">
+                            <div class="table-box"><div id="main"></div></div>
+                            <div class="table-text">
+                                <p><%if(wglobals.lang == 'cn'){%><%=clear_company_name%>是一家<%=company_data['country_'+wglobals.lang]%><%=show_type%>，以下的贸易报告数据来源于贸易数据；该公司的进口数据截止至<%=company_data.last_trade_date%>共计<%=bill_count%>笔交易。基于这些贸易数据，我们从贸易伙伴、进出口港、采供国、HS编码、联系方式等维度对数据进行统计汇总，这可以帮助您提高使用外贸数据的效率。上图是<%=clear_company_name%>公司近一年的市场趋势分析图，可以从交易数量、重量、价格、交易次数不同维度的趋势来了解当前公司的采供周期和业务稳定性。<%}else{%><%=clear_company_name%> is a <%=company_data['country_'+wglobals.lang]%> <%=show_type%>, the following trade report data is derived from its trade data; the company's import data up to <%=company_data.last_trade_date%> total <%=bill_count%> transactions. Based on these trade data, we have aggregated the data in terms of trading partners, import and export ports, countries of supply, HS codes, contact details and other dimensions, which will help you to improve the efficiency of using your foreign trade data.<br/><br/> The graph above shows the market trend analysis of <%=clear_company_name%> for the past year, which can be used to understand the current supply cycle and business stability of the company from the trend of different dimensions such as quantity, weight, price and number of transactions.<%}%></p>                                   
+                            </div>
+                        </div>
+
+                            <h2 class="title"><span><%=translate('detail_nav_overview')%></span></h2>                            
+                            <!-- moudle -->
+                            <div class="look">
+                                <div class="swiper1">
+                                    <div class="swiper-wrapper">
+                                        <% if(partner_data.length!==0){ %>
+                                            <div class="swiper-slide">
+                                                <div class="look-box">
+                                                    <h3><%=translate('detail_nav_partner')%><span data-id=3 id="index_more2"><%= translate("share_text_more") %></span></h3>
+                                                    <% partner_data.forEach((item,index)=>{ %>
+                                                        <% console.log(item,"贸易概述列表") %>                                                        
+                                                        <p class="look-box-item1" data-id="<%= item.id %>">
+                                                            <span class="index index-<%= index %>"><%= index+1 %></span>
+
+                                                            <% if(!wglobals.user.encrypt_user_name){ %>                                                                <!-- 未登录 -->
+                                                                <a href="/<%= item.type==0?"buyer":"supplier" %>/<%= item.id %>" onclick="login_toast();return false;"><span class="name"><%= item.name?item.name:"-" %></span></a>
+                                                            <% }else{ %>
+                                                                    <% if(wglobals.user.user_functional.mv==""){ %>
+                                                                        <a href="/<%= item.type==0?"buyer":"supplier" %>/<%= item.id %>"><span class="name" onclick="buy_toast();return false;"><%= item.name?item.name:"-" %></span></a>
+                                                                    <% }else{ %>
+                                                                        <a href="/<%= item.type==0?"buyer":"supplier" %>/<%= item.id %>"><span class="name"><%= item.name?item.name:"-" %></span></a>
+                                                                    <% } %>
+                                                            <% } %>                                                           
+                                                            <span class="to_xq" data-id="<%= item.id %>"></span>
+                                                        </p>                                                        
+                                                    <% }) %>
+                                                </div>
+                                            </div>
+                                        <%}%>                                        
+
+                                        <% if(hs.length!==0){ %>
+                                        <div class="swiper-slide">
+                                            <div class="look-box">
+                                                <h3><%=translate('detail_nav_hscode')%><span data-id=4 id="index_more3"><%= translate("share_text_more") %></span></h3>
+                                                <% hs.forEach((item,index)=>{ %>
+                                                    <a href="javascript:void(0)">
+                                                    <p class="look-box-item" data-id="<%= item.value_hs %>">
+                                                        <span class="index index-<%= index %>"><%= index+1 %></span>
+                                                        <span class="name"><%= item.value_hs?item.value_hs:"-" %></span>
+                                                        <span data-id="<%= item.value_hs %>"></span>
+                                                    </p>
+                                                    </a>
+                                                <% }) %>
+                                            </div>
+                                        </div>
+                                        <%}%>
+
+                                        <%if(product.length!==0){%>
+                                        <div class="swiper-slide">
+                                            <div class="look-box">
+                                                <h3><%=translate('detail_nav_product')%><span data-id=5 id="index_more7"><%= translate("share_text_more") %></span></h3>
+                                                <% product.forEach((item,index)=>{ %>
+                                                    <a href="javascript:void(0)">
+                                                    <p class="look-box-item" data-id="<%= item.value.toLocaleString().replace(new RegExp(' ', 'g'),'%20') %>">
+                                                        <span class="index index-<%= index %>"><%= index+1 %></span>
+                                                        <span class="name"><%= item.value?item.value:'-'%></span>
+                                                        <% console.log(item,"pppppppp")%>
+                                                        <span data-id="<%= item.value.toLocaleString().replace(new RegExp(' ', 'g'),'%20') %>"></span>
+                                                    </p>
+                                                </a>
+                                                <% }) %>
+                                            </div>
+                                        </div>
+                                        <%}%>
+
+                                        <% if(trade_country.length!==0){ %>
+                                        <div class="swiper-slide">
+                                            <div class="look-box">
+                                                <h3><%=translate('detail_nav_area')%><span data-id=6 id="index_more5"><%= translate("share_text_more") %></span></h3>
+                                                <% trade_country.forEach((item,index)=>{ %>
+                                                    <a href="javascript:void(0)">
+                                                    <p class="look-box-item" data-id="<%= item.country.toLocaleString().replace(new RegExp(' ', 'g'),'%20') %>">
+                                                        <span class="index index-<%= index %>"><%= index+1 %></span>
+                                                        <span class="name"><%= item.country?item.country:"-" %></span>
+                                                        <span data-id="<%= item.country.toLocaleString().replace(new RegExp(' ', 'g'),'%20') %>"></span>
+                                                    </p>
+                                                </a>
+                                                    <% }) %>
+                                            </div>
+                                        </div>
+                                        <%} %>
+
+                                        <% if(port_data.length!==0){ %>
+                                        <div class="swiper-slide">
+                                            <div class="look-box">
+                                                <h3><%=translate('detail_nav_port')%><span data-id=7 id="index_more6"><%= translate("share_text_more") %></span></h3>
+                                                <% port_data.forEach((item,index)=>{ %>
+                                                <a href="javascript:void(0)">
+                                                    <p class="look-box-item" data-id="<%= item.port.toLocaleString().replace(new RegExp(' ', 'g'),'%20') %>">
+                                                        <span class="index index-<%= index %>"><%= index+1 %></span>
+                                                        <span class="name"><%= item.port?item.port:"-" %></span>
+                                                        <span data-id="<%= item.port.toLocaleString().replace(new RegExp(' ', 'g'),'%20') %>"></span>
+                                                    </p>
+                                                </a>
+                                                <% }) %>
+                                            </div>
+                                        </div>
+                                        <%}%>
+                                    </div>
+                                </div>
+                            </div>
+                            <% var bill_data=results.bill || {}, bill_count = bill_data.hits||0; console.log(bill_count, 'bill_count') %>
+                            <% if(results.bill.list[0]) {%>
+                            <h2 class="title">
+                                <span><%=translate('detail_nav_tradedata')%></span>
+                                <div class="title-box1" id="my_jl" data-id=2>
+                                    <span><%= translate("detail_tab_share_total") %><%= company_data.bill_count.toLocaleString().replace(new RegExp(',', 'g'),',') %><%= translate("company_details_b") %></span>
+                                </div>
+                            </h2>
+
+                            <div class="book">
+                                <p>
+                                    <span class="name"><%= translate("export_trade_time") %></span>
+                                    <span class=""><%= trade_his.date==null?"---":trade_his.date%></span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("share_companies_1") %></span>
+                                    <span><%= trade_his.seller==null?"---":trade_his.seller%></span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("share_companies_0") %></span>
+                                    <span><%= trade_his.buyer==null?"---":trade_his.buyer%></span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("bline_product_title_ws") %></span>
+                                    <span class="text-content">
+                                        <span class="text"><%= trade_his.descript==null?"---":trade_his.descript%></span>
+                                        <span class="text-more">[<%= translate("report_search_more") %>]</span>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("company_details_jys") %></span>
+                                    <span><%= trade_his.weight_text==null?"---":trade_his.weight_text%></span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("detail_module_weight") %></span>
+                                    <span><%= trade_his.weight==null?"---":trade_his.weight%></span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("detail_module_bill_amount") %></span>
+                                    <span><%= trade_his.amount==null?"---":trade_his.amount%></span>
+                                </p>
+                                <p>
+                                    <span class="name"><%= translate("detail_module_bill_import_area_ws") %></span>
+                                    <span><%= trade_his.buyer_country==null?"---":trade_his.buyer_country%></span>
+                                </p>
+                            </div>
+                            <%}%>
+
+                            <h2 class="title">
+                                <span><%=translate('detail_module_peer')%></span>
+                                <div class="title-box1"></div>
+                            </h2>
+                            <% peers_data.forEach(item=>{ %>
+                                <% console.log(item,"789789789789789789789") %>
+                                <div class="t-company">
+                                    <a class="t-company-title" href="<%= item.type==0?'/buyer/'+item.id:'/supplier/'+item.id %>"><%= item.name %></a>
+                                    <div class="start">
+                                        <span class="img star_width_<%= item.star %>" id="star-img" src=""></span>
+                                        <span><%= keyreplace(translate("company_list_star_text"),['[@分数]'],[item.rating]) %></span>
+                                    </div>
+                                    <div class="country-name"><span><%= item.country %><%= item.type==0? translate("share_nav_buyer") : translate("share_nav_supplier") %></span></div>
+                                </div>
+                            <% }) %>
+                    </div>
+
+
+                    <% if(wglobals.user.id){ %>
+                    <div class="tab-options" id="lxfs" data-a1="<%= company_data.contact==null?"---":company_data.contact%>" data-a2="<%= company_data.tel==null?"---":company_data.tel%>" data-a3="<%= company_data.fax==null?"---":company_data.fax%>" data-a4="<%= company_data.address==null?"---":company_data.address%>" data-a5="<%= company_data.email==null?"---":company_data.email%>" data-a6="<%= company_data.web==null?"---":company_data.web%>">
+                        <h2 class="title">
+                            <span class="tab-title"><%=translate('detail_nav_contact')%></span>
+                            <div class="title-box1"><span><a href="/social-media"><%= translate("store_product_soso") %></a></span></div>
+                        </h2>
+                        <div class="book"></div>
+                    </div>
+
+                     <div class="tab-options" data-id=2>
+                        <h2 class="title">
+                            <span class="tab-title"><%= translate("share_nav_tradedata") %><span class="data-data"></span></span>
+                            <div class="title-box1">
+                                <span class="data_option"><%= translate("export_exporting") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                
+                            </div>
+                        </h2>
+                        <div class="data-content">
+                            <div class="data-content-title">
+                                <span><%= translate("company_details_date") %></span>
+                                <span><%= translate("detail_module_transactions") %></span>
+                                <span><%= translate("detail_module_detail") %></span>
+                            </div>
+                        </div>
+                        <div class="data-up-box">
+                            <div class="data-s-box"></div>
+                        </div>
+                    </div>
+
+                    <div class="tab-options" data-id=2>
+                        <h2 class="title">
+                            <span class="tab-title"><%=translate('detail_nav_partner')%><span class="trade-friend">(0)</span></span>
+                            <div class="title-box1">
+                                <span class="friend_option"><%= translate("export_exporting") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                <span class="friend_option"><%= translate("detail_tab_share_trade_depth") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" />
+                            </div>
+                        </h2>
+                        <div class="friend-content">
+                            <div class="friend-content-title">
+                                <span><%= translate("mine_download_directory") %></span>
+                                <span><%= translate("report_bill_detail") %></span>
+                            </div>
+                        </div>
+                        <div class="up-box">
+                            <div class="s-box">
+                                <li data-id="s" class="suoyou active"><%= translate("detail_tab_share_no_conditions") %></li>
+                                <li data-id="y"><%= translate("detail_tab_share_no_last_year") %></li>
+                                <li data-id="p"><%= translate("detail_tab_share_already") %></li>
+                                <li data-id="n"><%= translate("detail_tab_share_new_add") %></li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-options" data-id=4>
+                        <h2 class="title">
+                            <span class="tab-title"><%= translate("company_search_hs") %><span class="trade-hs">(0)</span></span>
+                            <div class="title-box1">
+                                <span class="hs_option"><%= translate("export_exporting") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                <span class="hs_option"><%= translate("detail_tab_share_trade_depth") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" />
+                            </div>
+                        </h2>
+                        <div class="hs-content">
+                            <div class="hs-content-title">
+                                <span><%= translate("search_type_hscode") %></span>
+                                <span><%= translate("detail_module_transactions") %></span>
+                                <span><%= translate("detail_module_detail") %></span>
+                            </div>
+                        </div>  
+                        <div class="hs-up-box">
+                            <div class="hs-s-box">
+                                <li data-id="s" class="suoyou active"><%= translate("detail_tab_share_no_conditions") %></li>
+                                <li data-id="y"><%= translate("detail_tab_share_no_last_year") %></li>
+                                <li data-id="p"><%= translate("detail_tab_share_already") %></li>
+                                <li data-id="n"><%= translate("detail_tab_share_new_add") %></li>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-options" data-id=5>
+                        <h2 class="title">
+                            <span class="tab-title"><%= translate("detail_module_product") %><span class="trade-cg">(0)</span></span>
+                            <div class="title-box1">
+                                <span class="cg_option"><%= translate("export_exporting") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                <span class="cg_option"><%= translate("detail_tab_share_trade_depth") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" />
+                            </div>
+                        </h2>
+                        <div class="cg-content">
+                            <div class="cg-content-title">
+                                <span><%= translate("detail_module_product_name") %></span>
+                                <span><%= translate("company_details_jys") %></span>
+                                <span><%= translate("share_text_detail") %></span>
+                            </div>
+                        </div>
+                        <div class="cg-up-box">
+                            <div class="cg-s-box">
+                                <li data-id="s" class="suoyou active"><%= translate("detail_tab_share_no_conditions") %></li>
+                                <li data-id="y"><%= translate("detail_tab_share_no_last_year") %></li>
+                                <li data-id="p"><%= translate("detail_tab_share_already") %></li>
+                                <li data-id="n"><%= translate("detail_tab_share_new_add") %></li>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="tab-options" data-id=6>
+                        <h2 class="title">
+                            <span class="tab-title"><%= translate("detail_nav_area") %><span class="trade-qy">(0)</span></span>
+                            <div class="title-box1">
+                                <span class="qy_option"><%= translate("export_exporting") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                <span class="qy_option"><%= translate("detail_tab_share_trade_depth") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" />
+                            </div>
+                        </h2>
+                        <div class="qy-content">
+                            <div class="qy-content-title">
+                                <span><%= translate("detail_module_area_name") %></span>
+                                <span><%= translate("company_details_jys") %></span>
+                                <span><%= translate("share_text_detail") %></span>
+                            </div>
+                        </div>
+                        <div class="qy-up-box">
+                            <div class="qy-s-box">
+                                <li data-id="s" class="suoyou active"><%= translate("detail_tab_share_no_conditions") %></li>
+                                <li data-id="y"><%= translate("detail_tab_share_no_last_year") %></li>
+                                <li data-id="p"><%= translate("detail_tab_share_already") %></li>
+                                <li data-id="n"><%= translate("detail_tab_share_new_add") %></li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-options" data-id=6>
+                        <h2 class="title">
+                            <span class="tab-title"><%= translate("detail_module_bill_trade_port") %><span class="trade-gk">(0)</span></span>
+                            <div class="title-box1">
+                                <span class="gk_option"><%= translate("export_exporting") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                <span class="gk_option"><%= translate("detail_tab_share_trade_depth") %></span>
+                                <img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" />
+                            </div>
+                        </h2>
+                        <div class="gk-content">
+                            <div class="gk-content-title">
+                                <span><%= translate("detail_module_bill_trade_port") %></span>
+                                <span><%= translate("company_details_jys") %></span>
+                                <span><%= translate("share_text_detail") %></span>
+                            </div>
+                        </div>
+                        <div class="gk-up-box">
+                            <div class="gk-s-box">
+                                <li data-id="s" class="suoyou active"><%= translate("detail_tab_share_no_conditions") %></li>
+                                <li data-id="y"><%= translate("detail_tab_share_no_last_year") %></li>
+                                <li data-id="p"><%= translate("detail_tab_share_already") %></li>
+                                <li data-id="n"><%= translate("detail_tab_share_new_add") %></li>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="jy-detail-page">
+                        <h2><span><span><%= translate("company_details_xq") %></span><span class="jy-detail-page-num">(0)</span></span>
+                            <img id="xq_del" src="<%= STATIC %>mobile/images/company/company_list/del_btn.png">
+                        </h2>
+                        <div class="jy-detail-page-time-box"></div>
+                        <div class="jy-detail-page-huo">
+                            <h3><span><%= translate("company_details_data") %></span></h3>
+                            <p class="xq-page-li"><span><%= translate("company_details_date") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("share_nav_buyer") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("share_nav_supplier") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_bill_product") %></span><span class="xq-page-date xq-page-date-more <%= wglobals.lang=="en"?"xq-page-date-more-en":"" %>"></span><span class="more">[<%= translate("report_search_more") %>]</span></p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_weight") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("company_details_jys") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_bill_amount") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_bill_import_area_ws") %></span><span class="xq-page-date"></span></p>
+                        </div>
+                        <div class="jy-detail-page-product">
+                            <h3><span><%= translate("company_details_hyxx") %></span></h3>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ycd") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cyr") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_mdd") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cdm") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_mdd") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ckg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_mdg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ycg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cyrdm") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cgsqc") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_hc") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_jkg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ysfs") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cm") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                        </div>
+                        <p class="q-h"><span><%= translate("company_details_syt") %></span><span class="q-h-idx">1</span><span class="active"><%= translate("company_details_xyt") %></span></p>
+                        <p class="no-info"><%= translate("report_no_date") %></p>
+                    </div>
+                <% } %>
+<%- include('../layout/footer.ejs'); %>
+<script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>mobile/javascripts/company_list/company_details.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>mobile/javascripts/echart-4.js"></script>
+</body>
+</html>

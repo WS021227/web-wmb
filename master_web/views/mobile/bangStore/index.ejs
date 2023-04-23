@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/bangStore/index.css?v=<%=VERSION%>" />
+    <title>邦商城-外贸邦</title>
+</head>
+
+<body>
+<% console.log(wglobals.lang,"语言") %>
+<% let lang_list={p_cn:"1",p_en:"one"} %>
+
+    <div class="store-container" data-img="<%= STATIC %>">
+        <%- include('../layout/header.ejs'); %>
+        <div class="store-list">
+            <div class="sbox">
+                <div class="left">
+                    <img class="changtingka-ico" src="<%= STATIC %>mobile/images/bangStore/image1.png"></img>
+                </div>
+                <div class="right">
+                    <a href="/yuekt">
+                    <h2>邦阅大课堂课程畅听卡</h2>
+                    <p>持卡者，所有已上线课程有效期内无限制观看，已上线87个，月上新2个。免费参加直播课。</p>
+                    </a>
+                    <div>
+                        <span><span>￥99</span>/6个月</span>
+                        <a href="/yuekt">了解详情</a>
+                    </div>
+                </div>
+            </div>
+            <div class="sbox">
+                <div class="left">
+                    <img class="shemei-ico" src="<%= STATIC %>mobile/images/bangStore/image2.png"></img>
+                </div>
+                <div class="right">
+                    <a href="/social-media">
+                    <h2>社媒邮箱采集软件</h2>
+                    <p>一键深挖公司关键人邮箱、职位及社交账号。外贸客户开发过程中，开发效率提升不止10倍。</p>
+                    </a>
+                    <div>
+                        <span><span>￥999</span>起/年</span>
+                        <a href="/social-media">了解详情</a>
+                    </div>                    
+                    <span>钻石服务</span>
+                </div>
+            </div>
+            <div class="sbox">
+                <div class="left">
+                    <img class="sanjianke-ico" src="<%= STATIC %>mobile/images/bangStore/image3.png"></img>
+                </div>
+                <div class="right">
+                    <a href="/san-jian-ke">
+                    <h2>外贸客户开发三剑客</h2>
+                    <p>我们郑重向您推荐：优秀的外贸客户开发整体解决方案，帮您找到真实的成交客户。</p>
+                    </a>
+                    <div>
+                        <span><span>￥6686</span>起/年</span>
+                        <a href="/san-jian-ke">了解详情</a>
+                    </div>                    
+                </div>
+            </div>
+            <div class="sbox">
+                <div class="left">
+                <img class="bem-ico" src="<%= STATIC %>mobile/images/bangStore/image4.png"></img>
+            </div>
+                <div class="right">
+                <a href="/benchmark">    
+                <h2>BEM邮件群发软件</h2>
+                <p>群发到达率到达率高达90%，无限量邮件群发！代发平台，独立设置收发件人邮箱。</p>
+                </a>
+                <div>
+                    <span><span>￥1288</span>起/年</span>
+                    <a href="/benchmark">了解详情</a>
+                </div>                
+                <span>钻石服务</span>
+            </div>
+            </div>
+            <div class="sbox">
+                <div class="left">
+                    <img class="js-ico" src="<%= STATIC %>mobile/images/bangStore/image5.png"></img>
+                </div>
+                <div class="right">
+                    <a href="/amazon">
+                    <h2>Jungle Scount亚马逊选品</h2>
+                    <p>使用Jungle Scout可以帮助您调研竞品在亚马逊跨境电商平台的高额利润！</p>
+                    </a>
+                    <div>
+                        <span><span>￥1379</span>起/年</span>
+                        <a href="/amazon">了解详情</a>
+                    </div>                    
+                <span>钻石服务</span>
+            </div>
+            </div>
+            <span>-&nbsp;敬请期待&nbsp;-</span>
+        </div>
+    </div>
+
+    <%- include('../layout/footer.ejs'); %>
+    <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

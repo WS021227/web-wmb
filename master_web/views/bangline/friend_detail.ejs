@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="keywords" content="<%= results.user_info.user_info.contact%>,<%=translate('bangline_freends_detail_keywords')%>" />
+    <meta name="description" content="<%=translate('bangline_freends_detail_des').replace('[@用户名]',results.user_info.user_info.contact)%>" />
+    <title><%=results.user_info.user_info.contact%><%=translate('bangline_freends_detail_title')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangline/bangline_friend.css?v=<%=VERSION%>">
+</head>
+<body class="class-bg">
+
+<%- include('../global/head.ejs') %>
+<%var friend_detail=results.user_info.list,user_info=results.user_info.user_info%>
+<div class="friend-detail">
+    <div class="bangyou-left-box">
+        <div class="bangyou-right-moudle bangyou-view" >
+            <h2 class="bangyou-right-title"><%=translate('bangline_recently_browsed')%></h2>
+            <ul>
+                <% friend_detail.forEach(function(item,index){%>
+                <%console.log(item,'item')%>
+                <li>
+                    <div class="view-label">
+                        <div class="view-title-moudle">
+                            <a href="/<%=['buyer','supplier'][item.type]%>/<%=item.company_id%>" class="view-title" target="_blank" > <%=item.company_name%></a>
+                        </div>
+                    </div>
+                    <div class="view-math-moudle">
+                        <span class="view-country"><%=item.country%> <%=[translate('detail_module_bill_supplier'),translate('detail_module_bill_buyer')][item.type] %></span>
+                        <span class="view-math"><%=item.total_count%> <%=translate('bangline_transport')%></sppan>
+                        <span class="view-time"><%=translate('bangline_latest_date')%><%=item.view_time%></span>
+                    </div>
+                    <span class="view-math-zindex"><%=translate('bangline_times')%><%=item.view_count%></span>
+                </li>
+                <%})%>
+            </ul>
+        </div>
+
+    </div>
+    <div class="bangyou-right-box">
+        <div  class="bangyou-info">
+           <span class="bangyou-info-pic">
+               <img src="<%=user_info.photo%>">
+           </span>
+            <div class="bangyou-name-moudle">
+                <span class="bangyou-info-name"><%=user_info.contact%></span><span class="bangyou-info-leval"><i class="bg-ico zuan-<%=user_info.vip_level%>"></i></span>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../global/foot.ejs') %>
+
+
+
+</body>
+</html>

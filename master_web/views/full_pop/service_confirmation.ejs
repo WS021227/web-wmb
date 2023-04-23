@@ -1,0 +1,227 @@
+<div id="pop_sc">
+    <style type="text/css">
+        .qxlayout-moudle .rightL-ac {
+            padding: 0;
+        }
+
+        #pop_sc {
+            text-align: left;
+            padding: 0 20px;
+            font-size: 13.4px;
+        }
+
+        #pop_sc h2 {
+            padding-bottom: 15px;
+            font-size: 18.5px;
+            font-weight: bold;
+            text-align: center;
+            padding-top:20px;
+        }
+
+        #pop_sc p {
+            padding: 7px 0;
+            padding-right: 15px;
+            line-height: 150%;
+        }
+
+        #pop_sc p b {
+            font-size: 14.4px;
+        }
+
+        .service-content table {
+            margin: 8px 0;
+        }
+
+        .service-content table td {
+            border: 1px #ccc solid;
+            padding: 8px 8px;
+            color: #444;
+            background: #fafafa;
+            letter-spacing: 0.3px;
+            font-size: 13.4px;
+        }
+
+        .service-content {
+            max-height: 450px;
+            overflow-y: auto;
+            padding: 15px;
+            border-radius: 4px;
+            }
+
+        .service-content-save {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .service-content-save a {
+            font-size: 14.4px;
+            font-weight: bold;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 4px;
+            background: #06c;
+            color: #fff;
+            width: 280px;
+            text-align: center;
+        }
+
+        .service-content-save a.disabled {
+            background: #a5a7a7;
+        }
+    </style>
+    <h2>上海义缘网络科技有限公司服务确认单</h2>
+    <div class="service-content">
+        <p>
+            服务提供方：<u style="font-weight:bold;">上海义缘网络科技有限公司</u>（以下简称“义缘”、“外贸邦”）<br/>
+            用户：<u style="font-weight:bold;"> <%= wglobals.user.contact %></u>
+        </p>
+        <p>义缘作为网络平台经营者，为各类外贸企业提供拥有丰富的国际贸易资讯，本着平等、自愿、信任、互惠互利的原则，为各类外贸企业注册用户（以下简称“用户”）提供如下服务： </p>
+        <p><b>1. 服务内容与价格：</b></p>
+        <table>
+            <tr>
+                <td style="width:25%;"><b>会员等级</b></td>
+                <td style="width:25%;"><%= results.str_vip_level %></td>
+                <td style="width:25%;"><b>服务时间</b></td>
+                <% let zs = results.sum_duration - 12 %>
+                <td style="width:25%;">12个月<%= zs?('赠送' + zs):'' %> </td>
+            </tr>
+            <tr>
+                <td><b>服务定价</b></td>
+                <td>￥<%= results.vip_amount %>元</td>
+                <td><b>本次优惠价</b></td>
+                <td>￥<%= results.offer_amount || 0 %>元</td>
+            </tr>
+            <tr>
+                <td colspan="4" style="line-height:140%;">
+                    <b>海关数据会员服务：</b><br/>
+                    <% if(equal_real_vip('v')){ %>
+                        支持公司名称和产品关键词搜索<br/>
+                        公司报告查询数量（每天200个）<br/>
+                        官方自带联系方式查阅（每天不超过200个）<br/>
+                        市场趋势分析图（可查全部）<br/>
+                        公司贸易数据查阅（可查全部）<br/>
+                        贸易伙伴名录及交易（每家公司不超过5条）<br/>
+                        进出口港名录及统计（每家公司不超过5条）<br/>
+                        采供区域分析（每家公司不超过5条）<br/>
+                        仅支持一人在线使用
+                    <% } else if(equal_real_vip('bd')){ %>
+                        支持公司名称和产品关键词搜索<br/>
+                        公司报告查询数量（无限量）<br/>
+                        官方自带联系方式查阅（无限量）<br/>
+                        市场趋势分析图（可查全部）<br/>
+                        公司贸易数据查阅（可查全部）<br/>
+                        贸易伙伴名录及交易（可查全部）<br/>
+                        进出口港名录及统计（可查全部）<br/>
+                        采供区域分析（可查全部）<br/>
+                        支持三人同时在线使用
+                    <% } else if(equal_real_vip('yd')){ %>
+                        外贸公司贸易报告：<br/>
+                        支持公司名称、产品关键词和HS编码搜索；<br/>
+                        支持联系方式筛选、采购国/供应国筛选、交易时间筛选等筛选方式<br/>
+                        公司报告查询数量（无限量）<br/>
+                        官方自带联系方式查阅（无限量）<br/>
+                        市场趋势分析图（可查全部）<br/>
+                        公司贸易数据查阅（可查全部）<br/>
+                        贸易伙伴名录及交易（可查全部）<br/>
+                        进出口港名录及统计（可查全部）<br/>
+                        采供区域分析（可查全部）<br/><br/>
+                        贸易数据内容版块（可查全部）<br/><br/>
+                        数据导出功能及限量：<br/>
+                        联系方式导出：单次上限200条、单日上限1000条、服务期间上限50,000条<br/>
+                        公司提单导出：单次上限500条、单日上限2000条、服务期间上限100,000条<br/>
+                        原始提单导出：单次上限500条、单日上限5000条、服务期间上限100,000条<br/><br/>
+                        同时支持5人在线使用
+                    <% } %>
+                </td>
+            </tr>
+            <% if(results.soso_amount){ %>
+                <tr>
+                    <td colspan="4">
+                        <% var so_d = {};so_d[1] = '社媒搜搜标准版';so_d[1] = '社媒搜搜高级版' %>
+                        <b><%= so_d[results.soso_level] %>：</b><br/>
+                        原价：￥<%= results.soso_amount %>元/年<br/>
+                        本次优惠价：￥<%= results.soso_offer %>元/年（服务期12个月）<br/>
+                        服务提供方：上海二文信息科技有限公司
+                    </td>
+                </tr>
+            <% } if(results.bem_amount){ %>
+            <tr>
+                <td colspan="4">
+                    <b>BME邮件邮件群发：</b><br/>
+                    原价：￥<%= results.bem_amount %>元/年<br/>
+                    本次优惠价：￥<%= results.bem_offer %>元/年（服务期12个月）<br/>
+                    服务提供方：广州宽达网络科技有限公司
+                </td>
+            </tr>
+            <% } if(results.js_amount){ %>
+                <tr>
+                    <td colspan="4">
+                        <% var js_d = {};js_d[0] = 'JS亚马逊选品插件版';js_d[1] = 'S亚马逊选品插件+网页版' %>
+                        <b><%= js_d[results.js_level] %>：</b><br/>
+                        原价：￥<%= results.js_actual_amount %>元/年<br/>
+                        本次优惠价：￥<%= results.js_amount %>元/年（服务期12个月）<br/>
+                        服务提供方：桨歌(深圳)科技有限公司
+                    </td>
+                </tr>
+            <% } %>
+            <tr>
+                <td><b>原价合计</b></td>
+                <td><b>￥<%= results.total_ori_amount %>元</b></td>
+                <td><b>优惠价合计</b><br/>(最终支付价)</td>
+                <td><b>￥<%= results.total_amount %>元</b></td>
+            </tr>
+        </table>
+        <p><b>2.用户最终确认的服务内容为第1条约定的<%= results.str_vip_level %>。</b></p>
+        <p>
+            <b>3. 用户发生如下行为时服务终止</b><br/>
+            (1)用户违规使用数据，故意泄露数据、二次销售数据、倒卖数据等商业行为，利用采集软件不正当抓取数据。<br/>
+            (2)用户因上述行为导致服务终止后，不得请求退还未使用的服务费用，并承担
+            万元的违约金，违约金无法弥补由此给外贸邦造成的所有损失（包括但不限于实际损失、外贸邦对第三方的赔偿、罚金、因维护权益支出的律师费、诉讼费等合理费用）的，应由用户承担补充赔偿责任。<br/>
+            (3)本服务终止后，服务项下的有关知识产权及保密的义务在服务终止后继续有效。<br/>
+        </p>
+        <p><b>4.退款规则</b><br/>自本确认单生成之日起超过90天的，用户不得要求退款。在90天内，无论用户以何种原因要求退款的，均应与外贸邦协商沟通，最高退款限额不超过已支付费用的30%。</p>
+        <p><b>5.服务与支持</b><br/>“外贸邦”服务由义缘为用户提供工作日8小时在线/电话客服，第三方增值服务由服务提供方负责售后服务与技术支持。</p>
+        <p><b>6.争议解决</b><br/>因本服务产生或引起的争议，由双方友好协商解决，协商不成的，应向服务提供方注册地人民法院起诉。第三方增值服务相关后续服务支持与争议由用户与第三方服务提供方自行解决，与外贸邦无关。
+        </p>
+        <p><b>服务提供方：</b><br/>
+            <u>上海义缘网络科技有限公司</u><br/>
+            日期：<%= results.date_time %>
+            <br/><br/>
+            <b>用户：</b><br/>
+            <u><%= wglobals.user.contact %></u><br>
+            日期：<%= results.date_time %>
+        </p>
+    </div>
+    <div class="service-content-save"><a href="javascript:void(0)" id="btn_pop_sc" disabled="disabled" class="disabled">已阅读并确认</a>
+    </div>
+
+    <script type="application/javascript">
+        $(function () {
+            let $btn_pop_sc = $(btn_pop_sc), times = 5, timer = window.setInterval(function () {
+                if (times > 0) {
+                    $btn_pop_sc.html(times + '秒后确认服务订单')
+                    times--;
+                } else {
+                    $btn_pop_sc.html('已阅读并确认订单').removeClass('disabled').removeAttr('disabled')
+                    window.clearInterval(timer)
+                }
+            }, 1000)
+            $btn_pop_sc.click(function () {
+                $btn_pop_sc.html('正在提交，请稍后......').addClass('disabled').prop('disabled', true)
+                $.wajax('/async/sc/submit', {
+                    type: 'post',
+                    cache: false,
+                    datatype: "text/json",
+                    success: function (result) {
+                        if (result.state == 0) {
+                            let lay_index = $btn_pop_sc.parents('.layui-layer').attr('times')
+                            layer.close(lay_index)
+                        }
+                    }
+                })
+
+            })
+        })
+    </script>
+</div>

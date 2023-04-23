@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/help_center/help.css?v=<%=VERSION%>">
+    <title>网站协议-外贸邦</title>
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="help-k">
+        <%- include('./child/help_center_leftmeun.ejs') %>
+        <div class="help-content">
+            <div>
+                <%if(wglobals.lang == 'cn'){%>
+                <h1>网站协议</h1>
+                <p>
+                    <b class="help-weight">第一节服务 第一条本协议效力</b>
+                    <br />
+                    感谢您使用外贸邦网站（www.52wmb.com）并注册成为本网站用户。在您成为本网站用户及使用本网站各项功能前，应仔细阅读并完全同意本注册协议各项内容，承诺遵守本注册协议。本协议及您在使用本网站服务过程中同意的其他文件，将对您及本网站主办者产生法律约束力，您及本网站主办者将依照本协议及该等文件享有相应权利、履行相应义务。<br /><br />
+                    
+                    
+                    <b>第二条网站及主办者</b><br />
+                    本协议所称本网站，是指由上海义缘网络科技有限公司主办的外贸邦网站（www.52wmb.com）。上海义缘网络科技有限公司注册于上海市徐汇区，是一家致力于为客户【提供外贸商务信息服务及市场信息咨询与调查服务】的有限责任公司。在下文中，凡提及“我们”，均指本网站及上海义缘网络科技有限公司。
+                    <br /><br />
+                    
+                    <b class="help-weight">第三条我们的服务内容</b><br />
+                    我们主要为您提供下述三个板块服务：<br />
+                    
+                    (1)外贸邦找公司<br />
+                    找公司是外贸邦网最为核心的应用之一。通过智能引擎算法，将近5年的数亿条贸易提单数据进行统计、分类、分析得出了外贸公司的贸易黄页信息；大大的降低了用户对贸易数据分析的时间成本，提升外贸邦注册用户（以下亦称“邦友”）开发客户的效率。
+                    贸易数据不仅是发现潜在目标客户的利器，更是行业市场分析、维护客户忠诚度、监控竞争对手的数据支撑。
+                    公司黄页内容板块：公司基本属性：行业、国家、地址、联系方式；贸易伙伴及其交易记录；货物港口及交易记录；该公司2007年至今的每一笔提单数据。
+                    找公司数据优势：采购商数据源来自于5个国家的进口数据：美国、英国、韩国、印度、巴基斯坦及对应的全球供应商出口数据；外贸邦的数据保持每月更新一次，以同步实时交易时间。<br /><br />
+                    
+                    (2)外贸邦小组<br />
+                    外贸邦有出口交流、外贸SOHO、外贸英语、疑难杂症、物流、B2B、展会等领域的100多个小组。邦友在小组参与最新鲜的外贸相关话题讨论、分享、咨询，与邦友们分享贸易中的经验与知识；外贸邦的小组是一部正在编撰中的外贸百科全书。在未来我们根据业务的需求，定制小组为邦友提供更多外贸相关的配套服务。<br /><br />
+                    
+                    (3)外贸邦邦友<br />
+                    在外贸邦有100多万各个行业的全球外贸用户。他们当中一些人是采购商、供应商、物流货代以及一些外贸相关的服务商们；您可以加您感兴趣的邦友成为您的好友，拓展外贸人脉，您也可以通过发送私信的方式和邦友在线沟通供求、咨询、聊天交友。<br /><br />
+                    
+                    
+                    
+                    <b class="help-weight">第四条注册</b><br />
+                    您必须同意本协议，承诺遵守本网站其他规则的规定，并根据本网站的要求设置用户名、密码，并填写相关信息，注册为本网站会员，才能享受我们通过本网站为您提供的服务。您注册为本网站会员，即被视为您已阅读本协议全部内容、完全同意本协议之全部内容并保证遵守本协议及本网站其他规则的规定。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第五条本协议的调整</b><br />
+                    您注册后，我们可能会调整本协议内容，并在本网站公布调整后的协议版本，如果您不同意调整后的协议内容，您应立即停止使用本网站服务并通知我们。如果您在本协议调整后继续使用本网站服务，视为您已阅读调整后的协议全部内容、完全同意调整后协议之全部内容并保证遵守调整后的协议及本网站其他规则的规定。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第六条退出</b><br />
+                    如果您因不同意调整后的协议内容而终止使用本网站及我们为您提供的其他服务，我们将不对您做出任何赔偿或补偿，但在您终止我们服务之前的您和我们双方的行为仍然有效，您和我们均应就该等行为承担法律责任。
+                    <br />
+                    <br />
+                    
+                    
+                    <b class="help-weight">第二节您的一般权利和义务</b><br /><br />
+                    
+                    <b class="help-weight">第七条会员资格</b><br />
+                    您必须是具备完全民事行为能力的自然人、法人或能够独立承担民事责任的其他组织，方可注册为本网站会员，否则我们将有权随时取消您的会员资格。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第八条信息和资料</b><br />
+                    为便于我们为您提供更及时、全面的服务，您向本网站提供的信息与资料应全部真实、合法、有效、完整。您应该按照本网站的要求，填写您的真实姓名、联系方式、邮箱地址及公司名称、所处行业等信息。若您在相关资料实际变更时及时更新有关注册资料。如果您通过本网站向我们提供的信息，存在不真实、不合法、无效、或不完整等情形的，因此造成的不利后果由您自行承担，我们对此不承担任何责任。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第九条账号与密码</b><br />
+                    您应妥善保管您在本网站开通的账号与密码，以及在第三方支付机构开设的账户及密码，不得向他人批露，亦不得允许他人使用您的账号、账户与密码登录本网站或第三方支付机构网站。您在外贸邦注册为会员后，相关账户将可【申请】内部使用权，如分享给集团公司。但不得用于外部分享，若因您的账号、账户与密码泄露或您允许他人使用您的账号、账户与密码登录本网站或第三方支付机构网站所造成的不利后果，由您自行承担，我们对此将不承担任何责任。【如我们有合理的理由相信，您的账号或账户存在擅自允许他人使用的情况，我们将有权暂时停止您账号、账户的使用，直至您的合理解释被我们采纳后方恢复相关账号、账户的使用权限。】如您发现您的账号、或账户存在未经授权使用的情况或密码泄露的情况，应立即通知本网站以便我们采取安全措施。
+                    <br />
+                    <br />
+                    
+                    
+                    <b class="help-weight">第十条积分使用规则</b><br />
+                    (1)您同意本协议，即表明您同意根据本协议使用本网站提供的各种无偿或有偿的服务。<br />
+                    (2)本网站向您提供部分服务时将向您收取费用，费用将以积分或其他可能的方式体现，我们将在网站上公布具体有偿服务的清单及收费标准，我们有权根据我们的政策对本网站的部分服务设置有偿提供的方式。<br />
+                    (3)您可以通过本网站或第三方支付机构的网站对账户进行充值。若因为第三方支付机构的网站原因造成任何损失的，您应自行与第三方支付机构网站协商解决，我们不承担任何责任。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第十一条网站的使用</b><br />
+                    (1)您须为您使用本网站的行为负责，包括您导入、上传、传送、下载任何内容以及由此产生的任何后果，均应由您自行承担。我们不对因用户行为而导致的损失承担责任。您应对导入、上传、传送、下载内容自行加以判断，并承担因使用内容而引起的所有风险。<br />
+                    (2)用户须对在通过本网站所上传送信息的真实性、合法性、无害性、有效性等负责，与用户所传播的信息相关的任何法律责任，由用户自行承担，与我们无关。您通过本网站记录或上传或下载或传送的任何内容并不反映我们的观点或政策，我们对此不承担责任。<br />
+                    (3)您不得利用本软件制作、上传、复制、传送如下内容：<br />
+                    a)反对宪法所确定的基本原则的；<br />
+                    b)危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；<br />
+                    c)损害国家荣誉和利益的；<br />
+                    d)煽动民族仇恨、民族歧视，破坏民族团结的；<br />
+                    e)破坏国家宗教政策，宣扬邪教和封建迷信的；<br />
+                    f)散布谣言，扰乱社会秩序，破坏社会稳定的；<br />
+                    g)散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；<br />
+                    h)侮辱或者诽谤他人，侵害他人合法权益的；<br />
+                    i)法律、行政法规禁止的其他内容。<br />
+                    (4)本网站提供的服务中可能包含广告，您同意，在使用本网站过程中可显示我们和第三方供应商、合作伙伴提供的广告。您因就第三方提供的服务、产品与第三方产生争议的，由用户与第三方自行解决，我们不承担责任。<br />
+                    (5)我们对相关板块的信息更新与实际情况可能存在时间差，相关数据或信息仅供您参考，若您据此作出决策的，相关数据不应构成您作出决策的决定性依据。
+                    <br /><br />
+                    
+                    <b class="help-weight">第十二条遵守法律和规定</b><br />
+                    您在使用本网站及享受我们提供的服务时，必须遵守国家法律法规和本网站的全部规定以及各种社会公共利益或公共道德。如您违反法律或本网站的规定，由此导致的不利后果的发生，您须独立承担。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第十三条诚信义务</b><br />
+                    您必须诚信谨慎地使用本网站，不得以任何方式破坏本网站，不得侵入本网站数据库，不得通过本网站违法了解或掌握他人信息。
+                    <br />
+                    <br />
+                    
+                    <b class="help-weight">第三节我们的一般权利和义务</b><br /><br />
+                    
+                    
+                    <b class="help-weight">第十四条遵守法律与约定</b><br />
+                    我们将遵守中华人民共和国法律、法规规定，遵守您和我们之间的达成的约定，履行我们的义务，行使我们的权利。<br />
+                    法律法规发生变化的，我们将遵守届时有效的法律法规。
+                    <br />
+                    <br />
+                    
+                    
+                    <b class="help-weight">第十五条诚实信用原则</b><br />
+                    我们在向您 <p>
+                        <font class="help-weight">隐私政策</font><br />
+   (1)我们充分理解并尊重用户对其隐私保护的合理期待，我们承诺采取合理方式依法保护您的个人隐私。<br />
+   (2)为便于我们为您提供【外贸商务信息咨询服务】及其他相关服务, 您同意：我们可按照本协议规定的方式收集您信息，包括但不限于：头像，发帖，回帖，点赞，点击动作，私信，日志，cookies等；我们对前述信息享有使用权，及不具有直接指向性或特定人身属性数据统计数值分享权。<br />
+   (3)除法律或有法律赋予权限的政府部门要求及本协议规定外，未经用户同意，我们不得向第三方公开、透露用户个人信息。<br />
+   (4)如果您在注册时选择同意公开或透露，或您与我们及合作单位之间就您的个人信息公开或使用另有约定，同意公开或透露您的个人信息,则我们可以公开或透露您的个人信息。如果您选择公开或透露您的个人信息，您应自行承担因此可能产生的任何风险，我们或合作单位对此不予负责。<br />
+   (5)您同意，您亦应严格遵守本协议的收据收集及隐私保护约定。<br />
+   (6)为了实现分享和授权功能，我们使用了MobTech的ShareSDK产品，此产品的隐私策略条款，可以参考：<a href="http://www.mob.com/about/policy" target="_blank" rel="nofollow">http://www.mob.com/about/policy</a>
+                     </p>
+                     <%}else{%>
+                        <h1>User agreement</h1>
+                        <p>
+                            <b>Section One Service </b><br /><br />
+                            <b>1.Legal effect </b><br />
+                            Welcome to www.52wmb.com! 
+                            Your use of www.52wmb.com (“services” or “our services”) is subject to these Terms. Please (or Users) read carefully and fully the terms of this Agreement. This Terms of Service and other documents consented during your use will create rights and liabilities on you and our website sponsor. 
+                            <br />
+                            <br />
+                            
+                            <b>2.Website and its sponsor </b><br />
+                            The website hereunder refers to www.52wmb.com sponsored by Shanghai Top Ease Limited Liability registered in Xuhui District, Shanghai, dedicating to provide foreign trade business information service, marketing consultancy and research services. 
+                            <br />
+                            <br />
+                            
+                            <b>3.Our Services</b><br />
+                            Our services consist principally of the following three aspects:
+                            <br />
+                            <br />
+                            
+                            
+                            (1)Find Company<br />
+                            Find Company is the ultimate core application of our website. We have invented an intelligent search engine algorithm to sift through billions of bills of ladings from customs houses for nearly five years, and have collected, assorted and analyzed all the obtained data. The result is yellow pages of the foreign trade companies presented in our website, which greatly reduces the time our users spend on analyzing customs data and magically improves their efficiency in finding new customers.<br />
+                            Trading data is not only a powerful weapon for finding potential customers, but also an excellent foundation for industry market analysis, maintenance of customer loyalty and monitoring of competitors.<br />
+                            Columns in our yellow pages of foreign trade companies: basics (including industry, country, address, contact information); trading partners and record of transactions; port used and records; data in every bill of lading since year 2007.<br />
+                            Advantages of our Find Company data collection: purchaser data are based on importation data from 5 countries, namely USA, UK, Korea, India and Pakistan, and corresponding exportation data of global suppliers; Find Company data are updated every month to keep up with real time transactions. 
+                            <br /><br />
+                            
+                            (2)Groups<br />
+                            We have set up over a hundred groups in different aspects of foreign trade, including export communications, foreign trade SOHO, English language in foreign trade, special or difficult problems, logistics, B2B, expositions etc. Users may join different groups to explore or discuss the latest headlines about foreign trade, or share their own knowledge and experiences. These groups are virtually an on-going encyclopedia of foreign trade. If necessary, we will create more groups for our users in the future to provide even more diversified foreign trade related assistance.
+                            <br /><br />
+                            
+                            (3)Friends<br />
+                            We have already had more than one million users from all over the world. Among them are purchasers, suppliers, forwarding agencies and other foreign trade related service providers from various industries. You may add users of your interest as friends to expand your connections in the foreign trade business, and you may PM your friends for online business communications, consultations, or simply chatting.
+                            <br />
+                            <br />
+                            
+                            
+                            <b>4.Registration </b><br />
+                            You are agreeing to be bound by the rules of our website. You need to create an account and password, and fill in relevant information before you become the member of our website and enjoy our service. Your registration is deemed to be your consensus to all terms of our websites. 
+                            <br />
+                            <br />
+                            
+                            <b>5.Variation </b><br />
+                            The content of our Terms of Service may vary after your registration. If you disagree with updated Terms of Service, you shall stop using our services and inform us immediately. Your continuing use of our services is deemed to be your consensus to our updated Terms of Services. 
+                            <br />
+                            <br />
+                            
+                            
+                            <b>6.Termination  </b><br />
+                            If you disagree with updated Terms of Service, you are free to terminate our services. We will not indemnify or compensate you. You shall undertake legal responsibilities for your behaviors and actions before your termination. 
+                            <br />
+                            <br />
+                            
+                            <b>Section Two General rights and obligations  </b><br /><br />
+                            
+                            <b>7.Qualification </b><br />
+                            You shall be a natural person or legal person with full capacity for civil conduct or an organization which undertake civil liabilities independently. Otherwise, we reserve the right to cancel your membership. 
+                            <br />
+                            <br />
+                            
+                            <b>8.Information  </b><br />
+                            You shall provide us with authentic, legal, effective and complete information for better service. You shall fill in your name, contact number, email-address, company name, and occupation in accordance with requirements of our website. If there exists any unauthentic, unlawful, ineffective or incomplete information, you shall undertake the negative consequence thereby and we will not assume any responsibilities thereunder. 
+                            <br />
+                            <br />
+                            
+                            <b>9.Account and Password </b><br />
+                            You shall keep properly the account and password for our website as well as account and password registered in third-party website. You shall not disclose the aforementioned information and allow others using your account or password or third-party payment website. You are allowed to share your account with group company for internal use. You shall undertake liabilities if you disclose your account or password improperly and we will not assume responsibilities for that. [if you allow others using your account or password improperly, we have the right to suspend your account or password until you provide us with a reasonable explanation, which enable us to recover your right to use.] If you discover any unauthorized use or disclosure, you shall immediately inform us to take safety measures. 
+                            <br />
+                            <br />
+                            
+                            <b>10.Rules for credit </b><br />
+                            (1)Your consensus to this agreement means you agree to use all free or paid service.<br />
+                            (2)We charge on certain services by credit or other mode. We will publish a list of paid services and relevant charging standards. We reserve the right to establish paid service on our websites according to our policies.<br />
+                            (3)You can recharge your account through our websites or third-party payment websites. If there is any lose caused by third-party payment websites, you shall negotiate with them and we will not undertake any liabilities thereunder.<br />
+                            
+                            <b>11.User’s codes of conduct </b><br />
+                            (1)You shall be responsible for your conduct, including import, upload, transmit and download any content and legal consequences thereby. We will not undertake any liabilities. You shall judge by yourself the content contained through importation, uploading, transmission and downloading and all risks resulting from them.<br />
+                            (2)Users shall be solely responsible for the authenticity, lawfulness, and effectiveness of the uploaded information. We will not assume responsibilities for any information recorded, uploaded or downloaded by you as it does not reflect our views or policies.<br />
+                            (3)You may not produce, reproduce, disseminate or broadcast information including but not limits to: <br />
+                            1)opposes the fundamental principles determined in the Constitution;<br />
+                            2)compromises State security, divulges State secrets, subverts State power or damages national unity;<br />
+                            3)harms the dignity or interests of the State;<br />
+                            4)incites ethnic hatred or racial discrimination or damages inter-ethnic unity;<br />
+                            5)sabotages State religious policy or propagates heretical teachings or feudal superstitions;<br />
+                            6)disseminates rumours, disturbs social order or disrupts social stability;<br />
+                            7)propagates obscenity, pornography, gambling, violence, murder or fear or incites the commission of crimes;<br />
+                            8)insults or slanders a third party or infringes upon the lawful rights and interests of a third party; or<br />
+                            9)is otherwise prohibited by laws or administrative regulations.<br /><br />
+                            
+                            (4)There may be certain advertisements provided by partners and third-party suppliers during your use. You shall handle the  disputes arising from services or products by third-party and we will not assume responsibilities.  <br />
+                            (5)There may be time line between the updated information and actual situations. The relevant data and information is for your reference which cannot be the deciding basis for your determination.<br />
+                            <br /><br />
+                            
+                            <b>12.Compliance with laws and regulations </b><br />
+                            You shall comply with laws and regulations of PRC and rules of our websites and public morals during your use of our services. If you violate the regulations and rules, you shall be solely responsible for all negative consequences. <br />
+                            <br />
+                            
+                            <b>13.Honesty  </b><br />
+                            You shall be honest and prudent when you use our websites. Any damage to website or invasion to data base or illegal knowledge of information is prohibited. 
+                            <br /><br />
+                            
+                            <b>Section Three Our General Rights and Obligations</b><br /><br />
+                            
+                            <b>14.Compliance with Law and Covenants</b><br />
+                            We commit to comply with the laws, rules and regulations of the People’s Republic of China as well as the covenants agreed upon between you and us, to meet our obligations and exercise our rights.<br />
+                            In the event of any changes in laws and regulations, we commit to comply with all then in effect laws and regulations.
+                            <br /><br />
+                            
+                            <b>15.Good Faith</b><br />
+                            We commit to act in good faith while offering our services to you.
+                            <br /><br />
+                            
+                            <b>16.Technology and Maintenance</b><br />
+                            We undertake to maintain an up and running website based on available technologies, and to make efforts to improve our technologies. We will repair all system failures that affect our web services in a timely fashion; however, we may neither be held liable nor compensate for your losses, if any, either financially or emotionally, arising from the down time caused by any system failure. We reserve our right to temporarily suspend our web services or any portion thereof for reasons of maintenance, upgrade, or other similar purposes without giving prior notice.
+                            <br /><br />
+                            
+                            <b>17.Reply</b><br />
+                            During your subscription to our website, if you report any problems with regard to the website, we will reply in available forms in a timely fashion.
+                            <br /><br />
+                            
+                            <b>18.Personal Information and Privacy</b><br />
+                            (1)We fully understand and respect your reasonable expectation of privacy. We undertake to take all reasonable measures to protect your privacy according to law.<br />
+                            (2)For the purpose of our foreign trade business information service and other relevant services, you hereby agree that we may collect your personal information, including without limitation, avatar, posts, likes, clicks, PMs, logs, cookies etc.; we have the right to use and share such information within the scope of law.<br />
+                            (3)We may not disclose personal information to any third party without consent of our users, unless it is so required by law or government agencies whose authority is legally vested by law, or it is explicitly stipulated herein.<br />
+                            (4)If you choose to agree to disclose your personal information in the signup process, or a separate agreement between you and us (including our partners) in respect of the disclosure or use of your personal information shows your consent, we may elect to disclose such personal information. Under such circumstances, you are to deal with all risks that may arise on your own, whereas we or our partners may not be held liable.<br />
+                            (5)You agree to strictly comply with all stipulations in respect of personal information and privacy prescribed in this agreement.<br /><br />
+                            
+                            
+                            
+                            <b>19.Censorship</b><br />
+                            During your subscription to our website, if you post any information that is illegal, harmful or potentially harmful to our operation of the website, in addition to removal of such information without notice, we have the right to restrict your access to the website or suspend our services without any compensations, and you will be held responsible for all consequences arising therefrom.
+                            <br /><br />
+                            
+                            
+                            <b>20.Illegal Activities</b><br />
+                            If you are found to have used our website for illegal activities, we reserve the right to report such illegal activities to relevant government authorities in addition to suspending our services.
+                            Section Four Suspension and Termination of Service
+                            <br /><br />
+                            
+                            
+                            <b>21.Deactivation</b><br />
+                            Your account may be deactivated upon your request, provided that we find you have met all your prescribed obligations. After deactivation of your account, you will no longer be able to use our website. However, we will keep all your information, materials and documents stored on our website, which will not be used for any other purposes except for judicial proceedings or submission to relevant administration by an administrative order.
+                            <br /><br />
+                            
+                            
+                            <b>22.Suspension and Termination</b><br />
+                            Under any of the following circumstances, we may suspend or terminate your right to use our website and stop offering our service, without refunding any of your payment or owing you any liabilities:<br />
+                            
+                            (1)When required by competent administrative authorities, or when you are in breach of this agreement or in violation of any State laws or regulations;<br />
+                            (2)When you are found to have provided false information in your subscription;<br />
+                            (3)When you fail to pay our service charge in full and in time, if applicable;<br />
+                            (4)When your account has no activities for over three years;<br />
+                            (5)When all of your rights and obligations under relevant instruments have been discharged with no unresolved disputes and after we have duly given notice.<br /><br />
+                            
+                            
+                            
+                            <b>Section Five IPR</b><br /><br />
+                            
+                            <b>23.Ownership</b><br />
+                            We and our admitted right owners are the respective lawful owners of IPRs, including without limitation, copyright, trademark right, patent, or other proprietary right, to all relevant software, programs, databases, contents, trademarks, proprietary names, marks, pictures, archives, materials, website structure, domain name, web interface, webpage arrangement, and webpage design that are used on our website, as well as all information presented through our website. Such rights are protected by relevant laws.
+                            <br /><br />
+                            
+                            
+                            <b>24.No Right to Use</b><br />
+                            Without written authorization of the owners, you may not use, copy, modify, rent, lend, sell, forward, demonstrate, broadcast, or disseminate, in whole or in part, our website or any materials and resources used by our website as described in the previous Article; nor may such materials and resources be used illegally or in any way that may give rise to confusion, misunderstanding or ambiguity, nor be recorded on any storage media or processed into objects of any kind, nor be used for any other public or business purposes.
+                            <br /><br />
+                            
+                            <b>Section Six Legal Liability</b><br /><br />
+                            
+                            <b>25.Contractual Liability</b><br />
+                            You explicitly understand and agree that: the service offered by us is a foreign trade platform for social information in nature and we do not have a duty to review information provided by a third party; you assume the liability for any losses resulting from your activities on our website, including obtaining information from or concluding transactions with a third party, and you will independently take legal responsibilities and obligations should any legal disputes arise therefrom, although we may offer our assistance in dealing with such matters if you so authorize us.
+                            <br /><br />
+                            
+                            <b>26.Identity Check</b><br />
+                            You explicitly understand and agree that: identity check on the internet is extremely difficult to carry out; we will make our best effort to perform an identity check on all our users and you should give cooperation in this regard; we assume no liability for the identity check on you; and you will be held liable for all losses arising from your activities on our website under a false identity.
+                            <br /><br />
+                            
+                            
+                            <b>27.Breach of Contract</b><br />
+                            You explicitly understand and agree that: you will indemnify and compensate us in full and in a timely manner for all losses incurred by us or any relevant third party resulting from your violation of relevant laws, regulations or this agreement. You will be entitled to our compensation for your actual loss arising from our violation of relevant laws, regulations or this agreement.
+                            <br /><br />
+                            
+                            <b>28.Breach of Contract by Other Users</b><br />
+                            You explicitly understand and agree that: should you incur any losses as a result of violation of relevant laws, regulations or this agreement by other users of our website, the breaching users will independently be held liable whereas we are fully exempted from such liabilities.
+                            <br /><br />
+                            
+                            <b>Section Seven Force Majeure </b><br /><br />
+                            
+                            <b>29.Force Majeure</b><br />
+                            We shall not be liable for our suspension, delay, non-performance or termination of our services due to Force Majeure or accidents, including but limited to internet connection failure, breakdown of computer or communication or other system, power fail, hacker attack, internet virus, technology control by telecommunication sector, natural disaster, strike or riots, material shortage or rationing, rebellion, war, and government action. 
+                            <br /><br />
+                            
+                            <b>Section Eight Others</b><br /><br />
+                            
+                            <b>30.Governing Law </b><br />
+                            This Agreement shall be governed by the laws of People’s Republic of China. 
+                            <br /><br />
+                            
+                            
+                            <b>31.Dispute Resolution </b><br />
+                            Any dispute or claim arising from or in connection with these terms including their existence, interpretation or performance shall be first settled by negotiations; if parties cannot reach consensus, then either party is entitled to bring the case before the court where Shanghai Ruitaiheng Financinal Information Service Limited Liability Company is located. 
+                            <br /><br />
+                            
+                            <b>32.Severability</b><br />
+                            The invalidity of any provision herein shall not affect the validity or enforceability of any other provision of this Agreement.
+                            <br /><br />
+                            
+                            <b>33.Effectiveness</b><br />
+                            Please make sure you have read carefully these Terms of Service. If you agree to be bound by this Terms of Service, you shall tick ‘I have read and I am agreeing to be bound by this Terms of Service’ and then click the button ‘registration now’. These Terms of Service become effective and then you move on to the registration step. These Terms of Service constitute the legal document between you and our website. 
+                        </p>                     
+                    <%}%>   
+            </div>
+        </div>
+        <br class="clear"/>
+    </div>
+
+
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/index/help_center.js?v=<%=VERSION%>"></script>
+</body>
+</html>

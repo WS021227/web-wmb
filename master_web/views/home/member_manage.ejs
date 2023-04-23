@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%=VERSION%>">
+    <title><%=translate('mine_member_name')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<div class="center-k" id="member_manage">
+    <h2><%=translate('mine_member_name')%></h2>
+    <div class="center-k-content">
+        <div class="conter-k-content-title">
+            <span class="count-info"></span>
+            <span onclick="add_members(this)">+<%=translate('mine_member_name')%></span>
+        </div>
+        <ul class="content-member-manager">
+            <li>
+                <span><%=translate('mine_member_user_name')%></span>
+                <span><%=translate('mine_member_user_roles')%></span>
+                <span><%=translate('mine_list_operation')%></span>
+            </li>
+        </ul>
+    </div>
+    <div class="member-tips">
+        <%if(wglobals.lang == 'cn'){%>
+        提示：如未添加子账号，主账号可以5人同时使用；如已添加子账号，主账号只能1个人使用。
+        <%}else{%>
+         Tip: if the sub account has not been added, the main account can still be used by 5 persons at the same time. If a sub account has been added, the main account can only be used by 1 person.
+        <%}%>    
+    </div>
+</div>
+
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/member_manage.js?v=<%=VERSION%>"></script>
+</body>
+</html>

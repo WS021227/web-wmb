@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>邀请您开通邦Line-邦Line</title>
+    <%- include('./head.ejs') %>
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/not_open.css?v=<%= VERSION %>">
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">
+        <%- include('../../home/admin_tab.ejs') %>
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <div class="open-line">
+                    <%var status = results.status %>
+                    <!-- 未开通邦line -->
+                    <%if(status == 0){%>                        
+                        <!-- 提交审核中 -->
+                        <div class="open-line-message">
+                            <i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="45" height="45"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>
+                            <div class="message-main"><%=translate('bline_noopen_2_des')%></div>
+                            <a class="btn" href="https://line.52wmb.com" target="_blank"><%=translate('bline_noopen_2_button')%></a>
+                        </div>                    
+                    <%}else if(status == 2) {%>                        
+                        <!-- 审核未通过 -->
+                        <div class="open-line-message">
+                            <i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="45" height="45"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>
+                            <div class="message-main"><%=translate('bline_noopen_3_des')%></div>
+                            <div class="message-sub"><%=translate('bline_noopen_3_des_fail')%>：<%=results.msg%></div>
+                            <a class="btn" href="/user/line/edit"><%=translate('bline_noopen_3_button')%></a>
+                        </div>                    
+                    <%} else{%>                       
+                            <!-- 开通引导 -->
+                            <div class="open-line-descript">
+                                <h1><%=translate('bline_noopen_1_title')%></h1>
+                                <div class="descript"><%=translate('bline_noopen_1_des')%></div>
+                                <a class="btn" href="/user/line/edit"><%=translate('bline_noopen_1_button')%></a>
+                            </div>
+                     <%}%>        
+                            <div class="line-better-module">
+                                <div class="better-module-item">
+                                    <h2><%=translate('bline_noopen_module_1_title')%></h2>
+                                    <div class="content">
+                                        <div class="open-line-group-list" id="line_group_list">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="better-module-item">
+                                    <h2><%=translate('bline_noopen_module_2_title')%></h2>
+                                    <div class="content">
+                                        <div class="open-line-person-list" id="recommend_user"></div>
+                                    </div>
+                                </div>
+                                <div class="better-module-item">
+                                    <h2><%=translate('bline_noopen_module_3_title')%></h2>
+                                    <div class="content">
+                                        <div class="open-line-auth">
+                                            <div class="line-auth-item">
+                                                <i><svg t="1663223662170" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="19975" width="85" height="85"><path d="M512 960c-46.933 0-91.733-8.533-134.4-27.733C337.067 915.2 300.8 889.6 268.8 857.6c-61.867-64-96-147.2-93.867-236.8 2.134-70.4 21.334-134.4 66.134-202.667L448 98.133C462.933 76.8 486.4 64 512 64s49.067 12.8 64 34.133L800 448c17.067 32 27.733 57.6 36.267 83.2 10.666 29.867 14.933 59.733 14.933 89.6 0 89.6-36.267 174.933-98.133 238.933C686.933 925.867 601.6 960 512 960z m-2.133-825.6c-2.134 0-4.267 0-4.267 2.133L298.667 458.667c-36.267 57.6-53.334 108.8-55.467 166.4-2.133 70.4 25.6 136.533 74.667 185.6 25.6 25.6 53.333 44.8 87.466 59.733C439.467 885.333 473.6 891.733 512 891.733c70.4 0 138.667-27.733 187.733-78.933 51.2-51.2 78.934-117.333 78.934-189.867 0-42.666-12.8-81.066-42.667-138.666L516.267 136.533c-2.134-2.133-4.267-2.133-6.4-2.133z" fill="#00C1DE" p-id="19976"></path><path d="M558.933 544c-85.333 17.067-81.066 66.133-151.466 66.133-19.2 0-38.4-4.266-53.334-12.8-2.133 0-4.266 0-4.266 2.134-2.134 10.666-2.134 21.333-2.134 32 0 89.6 72.534 164.266 162.134 166.4C601.6 800 678.4 723.2 678.4 631.467c0-25.6-6.4-46.934-14.933-68.267 0 0 0-2.133-2.134-2.133C627.2 546.133 588.8 537.6 558.933 544z" fill="#00C1DE" p-id="19977"></path></svg></i>
+                                                <div class="name"><%=translate('bline_noopen_module_3_one')%></div>
+                                                <div class="descript">
+                                                    <%=translate('bline_noopen_module_3_one_des')%>
+                                                </div>
+                                            </div>
+                                            <div class="line-auth-item">
+                                                <i><svg t="1663222766389" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2394" width="85" height="85"><path d="M512 128a384 384 0 1 1-271.530667 112.469333A381.482667 381.482667 0 0 1 512 128m0-128C229.226667 0 0 229.226667 0 512s229.226667 512 512 512 512-229.226667 512-512S794.773333 0 512 0z" fill="#FC904A" p-id="2395"></path><path d="M512 405.333333a106.666667 106.666667 0 1 1-106.666667 106.666667 106.794667 106.794667 0 0 1 106.666667-106.666667m0-128a234.666667 234.666667 0 1 0 234.666667 234.666667 234.666667 234.666667 0 0 0-234.666667-234.666667z" fill="#F27638" p-id="2396"></path></svg></i>
+                                                <div class="name"><%=translate('bline_noopen_module_3_two')%></div>
+                                                <div class="descript">
+                                                    <%=translate('bline_noopen_module_3_two_des')%>
+                                                </div>
+                                            </div>
+                                            <div class="line-auth-item">
+                                                <i><svg t="1663222904347" class="icon" viewBox="0 0 1499 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15779" width="85" height="85"><path d="M961.501661 213.752366a213.752366 213.752366 0 1 1-427.504732 0 213.752366 213.752366 0 0 1 427.504732 0" fill="#3193FF" p-id="15780"></path><path d="M1369.404807 498.377629a136.662548 136.662548 0 1 1-273.288525 0 136.662548 136.662548 0 0 1 273.288525 0" fill="#F83CB6" p-id="15781"></path><path d="M1111.475733 712.788258a410.901896 410.901896 0 0 0-363.689868-219.530446 410.938466 410.938466 0 0 0-363.689868 219.567016 262.536909 262.536909 0 0 1 141.489804 232.95168v73.579086h444.436698V945.739938a262.57348 262.57348 0 0 1 141.453234-232.95168" fill="#3193FF" p-id="15782"></path><path d="M1232.778829 682.983608a261.366665 261.366665 0 0 0-121.303096 29.80465 409.07339 409.07339 0 0 1 47.321739 191.481161v115.049605h263.158601c40.665976 0 73.615657-32.91311 73.615657-73.505946a262.7929 262.7929 0 0 0-262.792901-262.82947" fill="#F83CB6" p-id="15783"></path><path d="M1111.475733 712.788258a262.57348 262.57348 0 0 0-141.453234 232.95168v73.615656h188.774973v-115.086175c0-69.154102-17.187958-134.28549-47.321739-191.444591" fill="#1565B2" p-id="15784"></path><path d="M384.095997 712.788258a261.037534 261.037534 0 0 0-121.303097-29.76808A262.75633 262.75633 0 0 0 0 945.739938c0 40.592836 32.91311 73.579086 73.579086 73.579086h263.195172v-115.086175c0-69.154102 17.151387-134.28549 47.321739-191.444591" fill="#31EC7C" p-id="15785"></path><path d="M384.095997 712.788258a408.92711 408.92711 0 0 0-47.321739 191.481161v115.086175h188.774972V945.739938a262.57348 262.57348 0 0 0-141.453233-232.95168" fill="#1565B2" p-id="15786"></path><path d="M399.418878 498.377629a136.662548 136.662548 0 1 1-273.288526 0 136.662548 136.662548 0 0 1 273.288526 0" fill="#31EC7C" p-id="15787"></path></svg></i>
+                                                <div class="name"><%=translate('bline_noopen_module_3_three')%></div>
+                                                <div class="descript">
+                                                    <%=translate('bline_noopen_module_3_three_des')%>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+
+<% if(!wglobals.user.bangline){%>
+    <script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+    <script type="application/javascript">
+        $(function (){
+            $.ajax('/async/not/open/recommend/users', {
+                datatype: 'text/json',
+                type:'get',
+                success: function (result){
+                    console.log(result.data.list)
+                    $.each(result.data.list, function (a, b){
+                        $('#recommend_user').append('<div class="open-line-person-item">' +
+                            '<a href="'+ line_route +'/line/'+ b.user_id +'" target="_blank">' +
+                            '<img class="head" src="'+ result.static_url + b.avatar +'" alt="">' +
+                            '<div class="name">'+ b.name +'</div>' +
+                            '<div class="position">('+ b.position +')</div>' +
+                            '<div class="sub">'+ b.company_name.slice(0,10) +'</div>' +
+                            '<div class="sub"><%=translate('bline_minpian_supply')%>：'+ b.supply_demand.slice(0,10) +'</div>' +
+                            '<div class="ip"><%=translate('bline_minpian_attribution')%>：'+ pos_show(b) +'</div></a></div>')
+                    })
+                }
+            })
+        })
+    </script>
+<%}%>
+</body>
+
+</html>

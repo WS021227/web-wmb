@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="<%=translate('solutions_company_keywords')%>" />
+    <meta name="description" content="<%=translate('solutions_company_description')%>" />
+    <title><%=translate('solutions_company_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/solution/solution.css?v=<%=VERSION%>">     
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="solution-k">
+        <%- include('./solution_leftmeun.ejs') %>
+        <div class="solution-content">
+            <%if(wglobals.lang == 'cn'){%>
+            <div class="solution-title">
+                 <h1>从外贸公司报告中获得</h1>
+                 <p>基于原始贸易数据库，超3000万真实海外公司，发现您的成交客户！</p>
+            </div>
+            <div class="solution-des"> 
+                <p>全球3000万份外贸公司贸易报告，专门为中小型企业业者而量身设计！贸易报告包含：联系方式、贸易伙伴、港口、提单、同行、采供产品清单、HS编码、全年采供趋势分析。</p>
+                <h2>贸易记录详情</h2>               
+                <p>可查阅外贸公司最新及历年提关单数据，公司数据保持每月二次更新。提供高级搜索功能帮助您筛选精准匹配的提关单数据。提关单数据包括：贸易双方、港口、物流信息、产品描述、HS编码、数量、重量、单价、供应国（原产国）等信息</p>
+                
+                <h2>公司进出口趋势</h2>
+                <p>通过大数据的整理汇总计算，为您提供了该司最近一年及上一年的进出口交易趋势图。可以通过交易次数、数量、重量、总价等维度进行切换查阅。从交易趋势图中，我们可以初步判断目标公司采供的稳定性以及采供季节周期性。</p>
+            
+                <h2>官方联系方式</h2>
+                <p>官方联系方式数据均来自于原始的提关单数据，我们将贸易公司对应的联系方式独立提取，作为数据版块进行展示。完整的联系方式包括了：联系人、电话、传真、邮箱、官网、公司地址。同时利用社媒邮箱采集工具可获取公司雇员联系方式清单。</p>
+            
+                <h2>贸易伙伴排名、交易概况</h2>
+                <p>您可以查阅目标公司的全球贸易伙伴名录。通过公司名、国家地区、交易占比、交易日期筛选贸易公司对应的贸易伙伴，同时也可以查询到贸易双方每一笔交易的产品类型、量价和贸易频率；这些数据可以为您提供竞争对手研究、已有客户的维护与监控、目标用户的开发提供了强有力的支撑。</p>
+            
+                <h2>采供区域排名</h2>
+                <p>基于底层原始数据的计算，提取目标公司的采供区域国家排名和贸易详情，可按照交易次数、占比、数量、等维度自由切换贸易国排名。分析目标公司在全球范围的主要市场以及份额占比；帮助你深度剖析目标公司市场，科学制定生产营销策略。</p>
+
+                <h2>进出口港排名</h2>
+                <p>您可以查阅目标公司所有发货港、卸货港排名及交易详情。分析启运港/抵达港/海外装货港等分布情况，优化企业物流体系。分析目标公司在全球范围的主要市场以及份额占比。</p> 
+            </div>
+            <%}else{%>
+                <div class="solution-title">
+                    <h1>Company Trade Report</h1>
+                    <p>The original customs database, contains over 30 million real trading companies, find your customers!</p>
+               </div>
+               <div class="solution-des"> 
+                   <h2>Latest Customs Transaction Data And Details</h2>               
+                   <p>Check the latest and previous year transactions, and the company data will be updated twice a month. Advanced search are available to help you filter data. The shipments data includes: trade partners, ports, logistics information, product description, HS code, quantity, weight, unit price, supplier country (country of origin), etc.</p>
+                   
+                   <h2>Company Import-expoort Trend Analysis</h2>
+                   <p>Through big data, we provide you with the company's import-export trading trend in last year and the previous year. Check data by the number of transactions, quantity, weight, total price and other dimensions. From the trading trend chart, we can initially judge the stability and the periodicity of the target company's buying and supplying.</p>
+               
+                   <h2>Reference contact info</h2>
+                   <p>The contact data is derived from the original customs data. We independently extracted the contact information and displayed it as a data section. The complete contact information includes: contact, telephone, fax, email, official website, company address. At the same time, the email hunting tool can be used to obtain a contact list of company employee.</p>
+               
+                   <h2>Trading partners rankings and transaction overview</h2>
+                   <p>You can check the target company's partner directory. Filter the trading partners by company name, country region, transaction ratio and transaction date. While you can check the product type, quantity price and trade frequency about each transaction of the two parties. These data can provide you with competitor research, customer maintenance and monitoring, and target user development.</p>
+               
+                   <h2>Global buying and supplying area ranking</h2>
+                   <p>Based on the original customs data, display the target company's buying and supplying area and trade details. It can be ranked by the number of transactions, the proportion, the quantity, etc. Analyze the target company's major market share in the world. Help you to deeply analyze the target company's market and scientifically formulates production and marketing strategies.</p>
+   
+                   <h2>Import and export port ranking</h2>
+                   <p>You can check all the target companies' shipping ports, unloading port rankings and transaction details. Analyze the distribution of POL/POD/overseas loading port, and optimize the enterprise logistics system. Analyze the target company's major worlrwide markets share.</p> 
+               </div>
+               <%}%>    
+        </div>
+        <br class="clear"/>
+    </div>
+
+
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/index/solution.js?v=<%=VERSION%>"></script>
+</body>
+</html>

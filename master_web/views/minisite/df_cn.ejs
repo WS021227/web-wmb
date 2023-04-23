@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="no_full_pop" content="yes">
+    <title>2022外贸邦数据节—告别艰辛的2022，为2023搏个彩头！</title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/minisite/sjj_index.css?v=<%=VERSION%>">
+</head>
+
+<body>
+    <%- include('../global/head.ejs') %>
+        <div class="container">
+            <!-- 12月钻石用户不显示优惠券模块 和顶部banner -->
+            <% if(Number(wglobals.user.user_functional.df_dec || 0) ==0){ %>
+                <div class="head" data-user="<%= wglobals.user.account_type %>">
+                    <h1>【数据节】告别艰辛的2022，为2023搏个彩头！</h1>
+                    <h2>抽Iphone14、华为耳机、空气炸锅！</h2>
+                    <h3>还有最给力的优惠，全年最低</h3>
+                    <div>
+                        <span><span id="day">0</span>天</span>
+                        <span><span id="hour">0</span>时</span>
+                        <span><span id="minite">0</span>分</span>
+                        <span><span id="second">0</span>秒</span>
+                    </div>
+                    <p>外贸邦数据节截止于：2022年12月31日 23:59:59</p>
+                </div>
+
+                <div class="coupon">
+                    <h2>历史力度最大，此时入手全年最低！</h2>
+                    <% if(wglobals.user.new_user){ %>
+                        <!--新钻优惠券-->
+                    <div class="coupon-content display-none" id="new_user_coupon">
+                        <h3>钻石会员代金券</h3>
+                        <div class="coupon-content-box">
+                            <div class="box-l vs-box box-l1 display-none">
+                                <div class="coupon-content-box-left">
+                                    <svg t="1670298254284" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" p-id="2804" width="88" height="90">
+                                        <path
+                                            d="M89.315556 394.808889l184.888888-187.164445a28.444444 28.444444 0 0 1 20.195556-8.533333h435.768889a28.444444 28.444444 0 0 1 20.195555 8.533333l184.888889 187.164445a28.444444 28.444444 0 0 1 1.564445 38.257778l-413.866667 492.657777a14.222222 14.222222 0 0 1-20.053333 1.706667l-1.848889-1.706667L87.751111 433.066667a28.444444 28.444444 0 0 1 1.564445-38.257778z"
+                                            fill="#FFD491" p-id="2805"></path>
+                                        <path d="M512 199.111111L312.888889 412.444444h398.222222L512 199.111111z"
+                                            fill="#FFE7C1" p-id="2806"></path>
+                                        <path
+                                            d="M312.888889 412.444444l199.111111 554.666667 199.111111-554.666667H312.888889z"
+                                            fill="#FFDBA3" p-id="2807"></path>
+                                        <path
+                                            d="M711.111111 412.444444h265.386667L512 967.111111l199.111111-554.666667z"
+                                            fill="#FFA768" p-id="2808"></path>
+                                        <path
+                                            d="M312.888889 412.444444H56.888889l455.111111 554.666667-199.111111-554.666667z"
+                                            fill="#FFA768" p-id="2809"></path>
+                                    </svg>
+                                </div>
+                                <div class="coupon-content-box-right">
+                                    <p><span>￥<span class="price">800</span></span>
+                                        <span class="kuang">黄钻代金券</span>
+                                    </p>
+                                    <p>用于购买黄钻、三剑客套装使用，可与满减使用，不可与其他优惠券叠加。</p>
+                                    <a class="coupon-receive coupon-yd">领取黄钻代金券</a>
+                                    <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu.png" alt="">
+                                </div>
+                            </div>
+                            <div class="box-l vs-box display-none">
+                                <div class="coupon-content-box-left">
+                                    <svg t="1670298324475" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                        xmlns="http://www.w3.org/2000/svg" p-id="5611" width="100" height="110">
+                                        <path
+                                            d="M718.7 144.3H307.5c-17.6 0-34.2 8.5-44.4 22.9l-141 198.1c-14.9 21-13.1 49.5 4.3 68.5L467.6 805c21.6 23.5 58.6 23.5 80.2 0.1l349.8-379.4c17.6-19.1 19.3-48.1 3.9-69.1l-138.8-190c-10.2-14-26.6-22.3-44-22.3z"
+                                            fill="#5E9EFC" p-id="5612"></path>
+                                        <path
+                                            d="M370 312.9c0-22 18-40 40-40h204c22 0 40 18 40 40s-18 40-40 40H410c-22 0-40-18-40-40z"
+                                            fill="#FFFFFF" p-id="5613"></path>
+                                    </svg>
+                                </div>
+                                <div class="coupon-content-box-right">
+                                    <p><span>￥<span class="price">200</span></span>
+                                        <span class="kuang">蓝钻代金券</span>
+                                    </p>
+                                    <p>用于购买蓝钻会员、对应套餐使用，不可与其他优惠券叠加。</p>
+                                    <a class="coupon-receive coupon-bd">领取蓝钻代金券</a>
+                                    <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="h3-2">VIP会员代金券</h3>
+                        <div class="coupon-content-box">
+                            <div class="vip-box vs-box box-l1 display-none">
+                                <p>￥<span>100</span></p>
+                                <p>用于购买VIP一年服务使用</p>
+                                <a class="coupon-receive coupon-v-12">领取代金券</a>
+                                <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu.png" alt="">
+                            </div>
+                            <div class="vip-box vs-box box-l1 display-none">
+                                <p>￥<span>30</span></p>
+                                <p>用于购买VIP三个月服务使用</p>
+                                <a class="coupon-receive coupon-v-3">领取代金券</a>
+                                <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu.png" alt="">
+                            </div>
+                            <div class="vip-box vs-box display-none">
+                                <p>￥<span>10</span></p>
+                                <p>用于购买VIP一个月服务使用</p>
+                                <a class=" coupon-receive coupon-v-1">领取代金券</a>
+                                <img class="lin-img display-none" src="<%= STATIC %>images/sjj_images/yilinqu.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage> 0){%>
+                        <!--123档续费&领取惊喜券的用户-->
+                        <div class="xf">
+                            <h3>续费黄钻福利二选一</h3>
+                            <div class="boxs">
+                                <div class="box">
+                                    <p>独立续费黄钻，减免<span>800</span>元！</p>
+                                    <p>续费黄钻时自动减免800，并延长1个月服务期；优惠券，不可与其他优惠叠加使用。</p>
+                                    <a href="/Alipay?v=yd" target="_blank">前往续费黄钻</a>
+                                </div>
+                                <div class="box">
+                                    <p>送邮箱采集+BEM邮件群发</p>
+                                    <p>按照当时购买黄钻的价格续费，赠送社媒邮箱采集标准版和BEM邮件群发工具。</p>
+                                    <a href="/Alipay?v=yd" target="_blank">前往续费黄钻</a>
+                                </div>
+                            </div>
+                            <h3 style="margin-top:30px;">续费蓝钻福利</h3>
+                            <div class="boxs">
+                                <div class="box">
+                                    <p>续费蓝钻，减免<span>200</span>元！</p>
+                                    <p>续费黄钻时自动减免200元，并延长1个月服务期；优惠券不可与其他优惠叠加使用。</p>
+                                    <a href="/Alipay?v=yd" target="_blank">前往续费黄钻</a>
+                                </div>
+                            </div>
+                        </div>
+                    <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage==0){%>
+                        <!--0档续费-->
+                        <div class="xf">
+                            <h3>续费黄钻福利二选一</h3>
+                            <div class="boxs">
+                                <div class="box">
+                                    <p>续费黄钻仅2999元</p>
+                                    <p>享黄钻价格保护政策，按照历史最低价格续费，至少节省2700元(目前黄钻已涨至5699元)。</p>
+                                    <a href="/Alipay?v=yd" target="_blank">续费黄钻 →</a>
+                                </div>
+                                <div class="box">
+                                    <p>续费蓝钻仅1999元</p>
+                                    <p>享黄钻价格保护政策，按照历史最低价格续费，至少节省1500元(目前黄钻已涨至3499元)。</p>
+                                    <a href="/Alipay?v=bd" target="_blank">续费蓝钻 →</a>
+                                </div>
+                            </div>
+                        </div>
+                    <%}%>
+                </div>
+            <%}%>
+
+            <div class="lottery_draw">
+                <div class="picture-background">
+                    <!-- 照片墙 -->
+                    <div id="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="<%= STATIC %>images/sjj_images/liwuqiang_1.png">
+                            </div>
+                            <div class="swiper-slide"><img src="<%= STATIC %>images/sjj_images/liwuqiang_2.png">
+                            </div>
+                            <div class="swiper-slide"><img src="<%= STATIC %>images/sjj_images/liwuqiang_3.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lottery_draw-content">
+                    <h2>搏彩头抽万元好礼，Iphone14等你拿!</h2>
+                    <div class="lottery_draw-content-cj">
+                        <div class="toast"></div>
+
+                        <div id="sweepstakes_list" class="lottery_draw-content-cj-content">
+                            <div class="box sweepstakes-0">
+                                <p class="frist">大展鸿“兔”奖</p>
+                                <p>12/21 10:00-11:30第一波抽奖</p>
+                                <p class="cj-flag"></p>
+                                <div class="sbox"></div>
+                                <div class="sbox2">
+                                    <p><b>第一波礼品：</b></p>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_2.png" alt="">
+                                        <div>
+                                            <p>华为FreeBuds 5i蓝牙耳机</p>
+                                            <p>价值600元，抽1人</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_1.png" alt="">
+                                        <div>
+                                            <p>奥克斯5.5升空气炸锅</p>
+                                            <p>价值300元，连抽3人</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box box1 sweepstakes-1">
+                                <p class="frist">钱“兔”无量奖</p>
+                                <p>12/27 10:00-11:30第二波抽奖</p>
+                                <p class="cj-flag"></p>
+                                <div class="sbox"></div>
+                                <div class="sbox2">
+                                    <p><b>第二波礼品：</b></p>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_2.png" alt="">
+                                        <div>
+                                            <p>华为FreeBuds 5i蓝牙耳机</p>
+                                            <p>价值600元，抽2人</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_1.png" alt="">
+                                        <div>
+                                            <p>奥克斯5.5升空气炸锅</p>
+                                            <p>价值300元，抽5人</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box sweepstakes-2">
+                                <p class="frist">“兔”然暴富奖</p>
+                                <p>01/04 10:00-11:30抽奖</p>
+                                <p class="cj-flag"></p>
+                                <div class="sbox"></div>
+
+                                <div class="sbox2">
+                                    <p><b>第三波礼品：</b></p>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_3.png" alt="Iphone14手机">
+                                        <div>
+                                            <p>Iphone14(128G 星光白)</p>
+                                            <p>价值5999元，抽1人</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_2.png"
+                                            alt="华为FreeBuds 5i无线蓝牙耳机">
+                                        <div>
+                                            <p>华为FreeBuds 5i蓝牙耳机</p>
+                                            <p>价值600元，连抽3人</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <img src="<%= STATIC %>images/sjj_images/liwu_1.png" alt="">
+                                        <div>
+                                            <p>奥克斯5.5升空气炸锅</p>
+                                            <p>价值300元，连抽9人</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spoil">
+                <h2></h2>
+                <div class="spoil-content">
+                <% if(Number(wglobals.user.user_functional.df_dec || 0) !==0){ %>
+                        <!-- 有资格挑选礼品 -->
+                    <div class="spoil-content-head">
+                        <p>赶紧挑选您的百元礼品吧！</p>
+                        <p>请从以下8款礼品中任意挑选一款，收到快递地址后，我们将在一周内邮寄！</p>
+                        <a href="javascript:void(0)" onclick="sun_toast()">填写礼品及快递信息 →</a>
+                    </div>
+                <% }else{%>
+                        <!-- 没有资格 -->
+                    <div class="spoil-content-head">
+                        <p>钻石会员享有礼品领取资格！</p>
+                        <p>活动期间购买/续费钻石，可以从以下8款礼品中任挑选一个，我们包邮哦！</p>
+                        <a href="/Alipay?v=yd" target="_blank">购买钻石会员，领礼品 →</a>
+                    </div>
+                <%} %>
+
+                    <div class="spoil-content-content">
+                        <img src="<%= STATIC %>images/sjj_images/gift_list.png" alt="礼品">
+                    </div>
+                </div>
+            </div>
+            <div class="explain">
+                <h2>2022外贸邦数据节活动说明：</h2>
+                <p>1、<b>活动时间：</b>2022/12/13 00:00至2022/12/31 23:59:59，活动过期后优惠券将失效。</p>
+                <p>2、<b>礼品领取：</b>购买钻石的每一位主账号用户都可以领取“阳光普照奖”，每个主账号只能领取1个礼品。</p>
+                <p>3、<b>万元抽奖：</b>活动期间，购买钻石的主账号用户可参加“万元好礼”活动，主账号有三次抽奖机会，抽中后从奖池中移除，最多可参加<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;三次。抽奖
+                    活动采用第三方「巨公摇号」视频号直播现场抽奖，公平公正。</p>
+                <p>4、<b>本次活动的最终解释权归外贸邦所有。</b></p>
+            </div>
+        </div>
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"> </script>
+    <script src="<%= STATIC %>javascripts/minisite/sjj_index.js?v=<%=VERSION%>"></script>
+
+
+    <script>
+        let zuanshi_list = [], vip_list = [], cj_data = [], cj_sum = 0, cj_num = 0;
+        // 0 倒计时 1 抽奖中 2抽奖已结束
+        let times = { time1: 3, time2: 3, time3: 3 };
+        // 三次抽奖的计时器
+        let InterValObj1, InterValObj2, InterValObj3;
+        // 三次抽奖的倒计时显示
+        let swiper1_day, swiper1_hour, swiper1_minite, swiper1_second, swiper2_day, swiper2_hour, swiper2_minite, swiper2_second, swiper3_day, swiper3_hour, swiper3_minite, swiper3_second
+
+        var giveaways={giveaways_addres:"",giveaways_prize:""}
+
+
+        // 抽奖数据
+        get_cj_data()
+        // 优惠券数据
+        get_coupon_data()
+
+
+        // 获取抽奖数据
+        function get_cj_data() {
+            $.ajax('/async/payment/df/sweepstakes', {
+                datatype: 'text/json',
+                type: 'get',
+                success: function (res) {
+                    if (res.state == 0) {
+                        //奖池总人数
+                        cj_sum = res.data.total_user
+                        // 抽奖次数
+                        cj_num = res.data.opp_count
+                        cj_data = res.data.list
+                        let is_win = 0, win_prize, win_no,have_count = 0, all_over = false, title_box = ''
+
+                        cj_data.forEach((item, index) => {
+                            let text = ""
+
+                            giveaways.giveaways_addres=item.giveaways_addres
+                            giveaways.giveaways_prize=item.giveaways_prize
+
+                            let time = new Date().getTime()
+                            let endtime = new Date(item.end_time).getTime()
+                            let starttime = new Date(item.start_time).getTime()
+                            if (item.is_win > 0 && !is_win) {
+                                is_win = item.is_win
+                                win_prize = item.prize
+                                win_no = item.name
+                                text = '恭喜您中奖啦！'
+                                sweepstakes_countdown(index, null, '已中奖')
+                            } else if (!item.have || is_win) {
+                                text = "不在该奖池"
+                                sweepstakes_countdown(index, null, text)
+                            } else {
+
+                                text = "已在该奖池"
+                                let _end_time, cj_state = ''
+                                if (starttime < time && time < endtime) {
+                                    // 抽奖中   不用倒计时
+                                    cj_state = '抽奖中'
+                                    have_count ++
+                                } else if (time < starttime) {
+                                    // 未开始
+                                    _end_time = starttime
+                                    have_count ++
+                                } else if (index < 2) {
+                                    // 当前批次抽奖结束
+                                    cj_state = '抽奖结束'
+                                    text = "未抽中"
+
+                                } else {
+                                    all_over = true
+                                    cj_state = '抽奖结束'
+
+                                }
+                                sweepstakes_countdown(index, _end_time, cj_state)
+                            }
+
+                            $('#sweepstakes_list .sweepstakes-' + index + ' .sbox').html(`<p>中奖率</p>
+                            <p>${Math.ceil((item.win_count / cj_sum) * 100)}%</p>
+                            <p>奖池${cj_sum}人，抽${item.win_count}人</p>
+                            <p>${text}</p>`)
+
+                            if (time > endtime) {
+                                $('#sweepstakes_list .sweepstakes-' + index + ' .sbox').append('<img src="<%= STATIC %>images/sjj_images/cj_over.png">')
+                            }
+                        })
+                        if (is_win > 0) {
+                            //
+                            $('.toast').html(`<img src="<%= STATIC %>images/sjj_images/liwu.png">
+                                    <h3>恭喜,您中奖啦!!!</h3>
+                                    <p>您在数据节${win_no}抽奖活动中，抽中了${win_prize}。<br/>请联系客服16621075894，完善收货人信息，七日内发货。</p>`)
+                        }else if(have_count > 0){
+                            $('.toast').html(`
+                            <p style="font-size:22.4px;font-weight:bold;">您还有<span>${have_count}</span>波抽奖机会!</p>
+                            <p>即刻微信扫码预约直播抽奖，Iphone14(128G星光白)等您来拿。祝您好运！！！</p>
+                            <img src="<%= STATIC %>images/sjj_images/choujiang_ma.png" class="yuyue-ma">`)
+                        }else if(all_over){
+                            $('.toast').html(`
+                            <img src="<%= STATIC %>images/sjj_images/no_gift.png" alt="">
+                            <h3>抱歉，这次活动你没有抽中！</h3>
+                            <p>感谢您对外贸邦的支持与厚爱，来年数据节我们再战。</p>`)
+
+                        }else{
+                            $('.toast').html(`
+                                <img src="<%= STATIC %>images/sjj_images/tongzhi.png">
+                                <h3>您不在奖池，钻石会员可参加抽奖！</h3>
+                                <p>活动期间购买钻石会员,最多可参加三次抽奖;高中奖率,Iphone14等你拿</p>
+                                <a href="/Alipay?v=yd">购买钻石会员，参与抽奖 →</a>`)
+                        }
+
+                        // 已经填写过
+                        if (giveaways.giveaways_addres !== null) {
+                            $(".spoil-content .spoil-content-head").remove()
+                            let $box2 = $(`
+                                    <div class="spoil-content-head">
+                                        <p>您已挑选了百元礼品...</p>
+                                        <p>您已填写了快递及礼品的信息，确认后的信息不可修改。</p>
+                                        <a href="javascript:void(0)" onclick="visit_sun_gift()">查看礼品及快递信息 →</a>
+                                    </div>`)
+                            // 已经填写过了
+                            $(".spoil-content-content").before($box2)
+                        }
+                    }
+                }
+            })
+        }
+        function sweepstakes_countdown(index, etime, show) {
+            console.log(index, etime, show)
+            if (!etime) return $('#sweepstakes_list .sweepstakes-' + index + ' .cj-flag').html(show)
+            let total = (etime - new Date().getTime()) / 1000
+            timeout_sc(index, total)
+        }
+
+        function timeout_sc(index, total) {
+            if (total <= 0) return $('#sweepstakes_list .sweepstakes-' + index + ' .cj-flag').html('抽奖中')
+            show_timeout(index, total)
+            setTimeout(function () {
+                total--
+                timeout_sc(index, total)
+            }, 1000)
+        }
+
+
+        function show_timeout(index, time_flag) {
+            let t_second = Math.floor(time_flag % 60); // 计算秒
+            let t_minite = Math.floor((time_flag / 60) % 60); //计算分
+            let t_hour = Math.floor((time_flag / 3600) % 24); //计算小时
+            let t_day = Math.floor((time_flag / 3600) / 24); //计算天
+            // console.log("距离2022-12-31 23:59:59还有" + t_day + "天" + t_hour + "时" + t_minite + "分" + t_second + "秒")
+
+
+            swiper2_day = t_day < 10 ? '0' + t_day : t_day
+            swiper2_hour = t_hour < 10 ? '0' + t_hour : t_hour
+            swiper2_minite = t_minite < 10 ? '0' + t_minite : t_minite
+            swiper2_second = t_second < 10 ? '0' + t_second : t_second
+            $('#sweepstakes_list .sweepstakes-' + index + ' .cj-flag').html(`<span>${swiper2_day}天</span><span>${swiper2_hour}时</span><span>${swiper2_minite}分</span><span>${swiper2_second}秒</span>`)
+            // 最后一小时红色显示
+            if (time_flag <= 3600) {
+                // $("#second").css("color", "red")
+                // $("#minite").css("color", "red")
+            }
+        }
+
+        // 获取优惠券数据
+        function get_coupon_data() {
+            let $new_user_coupon = $('#new_user_coupon')
+            if($new_user_coupon.length <= 0) return;
+            $.ajax('/async/payment/df/coupon', {
+                datatype: 'text/json',
+                type: 'get',
+                success: function (res) {
+                    if (res.state == 0) {
+                        $new_user_coupon.removeClass('display-none')
+                        $.each(res.data.list, function (a, b){
+                            let fx = b.vip_level == 'v'?`v-${b.vip_duration}`:b.vip_level,
+                                no_buyer_old = parseInt(wg.user.no_buyer_old || 0)
+                            if(b.vip_duration == 1 && b.vip_level== 'v' && (no_buyer_old==1 || no_buyer_old==4)) return true
+                            let $rec = $('.coupon-receive.coupon-' + fx)
+                            $rec.parents('.vs-box').removeClass('display-none')
+                            if(b.activity_state != 1){
+                                $rec.html('活动已过期')
+                            }else if(b.id){
+                                if(b.coupon_state != 1){
+                                    $rec.html('优惠券无效')
+                                }else {
+                                    $rec.html('使用优惠券 →').attr('href', `/Alipay?v=${b.vip_level}&m=${b.vip_duration}`)
+                                        .attr('target', '_blank')
+
+                                    hav_receive($rec)
+                                }
+                            }else {
+                                $rec.html('领取优惠券').attr('onclick', `get_coupon(this)`)
+                                    .data('sid', b.sid).data('v', b.vip_level).data('m', b.vip_duration)
+                            }
+                        })
+                    }
+                }
+            })
+        }
+
+        // 领取优惠券
+        function get_coupon(elem) {
+            let $elem = $(elem), params = $elem.data()
+            $.ajax('/async/payment/df/coupon', {
+                data: { setting_id: params.sid },
+                type: 'post',
+                datatype: 'text/json',
+                success: function (res) {
+                    if (res.state == 0) {
+                        $elem.attr('href', `Alipay?v=${params.v}&m=${params.m}`).attr('target', '_blank').html('使用优惠券 →')
+                        hav_receive($elem)
+                    }
+                }
+            })
+        }
+        function hav_receive($elem){
+            $elem.siblings('.lin-img').removeClass('display-none')
+        }
+
+
+        function sun_toast() {
+            layer.open({
+                type: 1,
+                skin: 'layui-layer-rim',
+                title: '请挑选"阳光普照"奖礼品',
+                closeBtn: 1,
+                area: ['600px', 'auto'], // 配置长高
+                content: '<div class="gift"><p class="gift_title"></p><p class="input" style=""><b>收件人：</b><input type="text"placeholder="请输入收件人姓名" style="" id="ipt1"></p><p class="input"><b>联系方式：</b><input type="text"placeholder="请输入联系方式" id="ipt2" ></p><p class="input"><b>收货地址：</b><textarea placeholder="请输入收货地址" id="ipt3" ></textarea></p><p class="input"><b>选择奖品:</b><select id="select_box"><option value ="1">小爱同学3.0</option><option value ="2">小米充电宝</option><option value="3">北岳露营推车</option><option value="4">4孔早餐锅</option><option value ="5">九阳保温杯</option><option value ="6">自加热饭盒</option><option value="7">珊瑚绒毛毯</option><option value="8">KEEP瑜伽垫</option></select></p><button onclick="post_gift()">提交填写信息</button></div>'
+            });
+        }
+
+        function post_sun_address() {
+            //df_giveaways_address
+            $.ajax(urlV2.df_giveaways_address, {
+                data: {
+                    address: `${this.ipt3}+${this.ipt1}+${this.ipt2}`,
+                    prize_id: this.gift_index
+                },
+                type: 'post',
+                datatype: 'text/json',
+                success: function (res) {
+                    // 处理逻辑
+                }
+            })
+        }
+
+        // 查看阳光普照奖品
+        function visit_sun_gift() {
+            layer.open({
+                title:'已挑选的“阳光普照”礼品信息',
+                type: 0,
+                closeBtn: 1,
+                shadeClose: true,
+                content: `<div class="gift1"><p class="input"><b>挑选的奖品：</b>${giveaways.giveaways_prize}</p><p class="input" ><b>收货的地址：</b>${giveaways.giveaways_addres}</p><p>如有疑问，请联系客服：16621075894</p></div>`
+            });
+        }
+
+        // 阳光普照表单提交
+        function post_gift() {
+            let name = $('#ipt1').val()
+            let phone = $('#ipt2').val()
+            let address = $('#ipt3').val()
+            let options = $("#select_box option:selected");
+            if (name !== "" && phone !== "" && address !== "") {
+                console.log(name, phone, address, options.val(), "000000000000000000000000")
+
+                $.ajax('/async/payment/df/giveaways/address', {
+                    data: {
+                        address: `${address}+${name}+${phone}`,
+                        id: parseInt(options.val())
+                    },
+                    type: 'post',
+                    datatype: 'text/json',
+                    success: function (res) {
+                        // 处理逻辑
+                        if (res.state == 0) return layer.closeAll()
+                        $.alert(res.message);
+                    }
+                })
+            } else {
+                layer.msg('所有信息都必须填写，否则影响发货。');
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<style>
+    .layui-layer-title{border-bottom:none;}
+    .newer-bl{padding:60px 30px;display:flex;}
+    .newer-bl-pic{width:300px;height:300px;margin-right:40px;}
+    .newer-bl-pic img{width:300px;height:auto;}
+    .newer-bl-text{width:470px;position:relative;}
+    .newer-bl-text h2{font-size:13.4px;height:32px;line-height:32px;color:#fff;font-weight:bold;padding:0 20px;
+    border-radius:100px;background:#7728F5;display:inline-block;margin:0;font-weight:normal;}
+    .newer-bl-text h3{font-size:30.4px;font-weight:bold;margin:10px 0;margin-top:5px;}
+    .newer-bl-text p{margin-bottom:20px;font-size:14.4px;line-height:150%;color:#666;}
+    .newer-bl-text li{line-height:215%;font-size:15.4px;position:relative;padding-left:33px;font-weight:550;color:#333;}
+    .newer-bl-text li i{position:absolute;left:0;top:4px;}
+    .newer-bl-text a{font-size:15.4px;display:inline-block;font-weight:bold;color:#007fff;text-align:right;position:absolute;right:0;bottom:-10px;}   
+</style>
+
+<%if(wglobals.lang == 'cn'){%>
+<div class="newer-bl">
+    <div class="newer-bl-pic"><img src="<%= STATIC %>images/bangline_banner.png"/></div>
+    <div class="newer-bl-text">
+        <h2>现在，邀您开通邦Line主页</h2>
+        <h3>获得免费广告位,位置绝佳！</h3>
+        <p>开通邦line个人主页，不仅能在外贸邦获得位置绝佳的免费广告位；还在能邦Line平台找到采供商真人，建立联系、赢得商机！</p>
+        <ul>
+            <li>
+                <i><svg t="1669025417383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="25" height="25"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#7728F5" p-id="1353"></path><path d="M273.408 540.32a30.464 30.464 0 0 0 0 43.072l136.832 136.864a32 32 0 0 0 45.28 0l299.456-299.488a32 32 0 0 0-45.248-45.248L442.016 643.2a16 16 0 0 1-22.624 0l-102.88-102.88a30.464 30.464 0 0 0-43.104 0z" fill="#FFFFFF" p-id="1354"></path></svg></i>
+                2,754人开通了邦Line主页
+            </li>
+            <li>
+                <i><svg t="1669025417383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="25" height="25"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#7728F5" p-id="1353"></path><path d="M273.408 540.32a30.464 30.464 0 0 0 0 43.072l136.832 136.864a32 32 0 0 0 45.28 0l299.456-299.488a32 32 0 0 0-45.248-45.248L442.016 643.2a16 16 0 0 1-22.624 0l-102.88-102.88a30.464 30.464 0 0 0-43.104 0z" fill="#FFFFFF" p-id="1354"></path></svg></i>
+                1,509条供求信信息已发布
+            </li>
+            <li>
+                <i><svg t="1669025417383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="25" height="25"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#7728F5" p-id="1353"></path><path d="M273.408 540.32a30.464 30.464 0 0 0 0 43.072l136.832 136.864a32 32 0 0 0 45.28 0l299.456-299.488a32 32 0 0 0-45.248-45.248L442.016 643.2a16 16 0 0 1-22.624 0l-102.88-102.88a30.464 30.464 0 0 0-43.104 0z" fill="#FFFFFF" p-id="1354"></path></svg></i>
+                2,300,000+次展示曝光
+            </li>
+        </ul>
+        <a href="/user/line/edit" target="_blank">创建个人主页，获取免费推广吧→</a>
+    </div>
+</div>
+
+<%}else{%>
+
+<div class="newer-bl">
+    <div class="newer-bl-pic"><img src="<%= STATIC %>images/bangline_banner.png" style="margin-top:20px;"/></div>
+    <div class="newer-bl-text" style="padding-bottom:40px;">
+        <h2>Invite you to activate the Business-Line</h2>
+        <h3 style="line-height:110%;font-size:40.5px;">Get Good Advertising Space For Free!</h3>
+        <p>You can not only obtain free good advertising space, but also found real buyers and suppliers on the platform to establish contacts and win business opportunities!</p>
+        <ul>
+            <li>
+                <i><svg t="1669025417383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="25" height="25"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#7728F5" p-id="1353"></path><path d="M273.408 540.32a30.464 30.464 0 0 0 0 43.072l136.832 136.864a32 32 0 0 0 45.28 0l299.456-299.488a32 32 0 0 0-45.248-45.248L442.016 643.2a16 16 0 0 1-22.624 0l-102.88-102.88a30.464 30.464 0 0 0-43.104 0z" fill="#FFFFFF" p-id="1354"></path></svg></i>
+                2,754 persons activated the Business-Line
+            </li>
+            <li>
+                <i><svg t="1669025417383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="25" height="25"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#7728F5" p-id="1353"></path><path d="M273.408 540.32a30.464 30.464 0 0 0 0 43.072l136.832 136.864a32 32 0 0 0 45.28 0l299.456-299.488a32 32 0 0 0-45.248-45.248L442.016 643.2a16 16 0 0 1-22.624 0l-102.88-102.88a30.464 30.464 0 0 0-43.104 0z" fill="#FFFFFF" p-id="1354"></path></svg></i>
+                1,509 supply and demand info released
+            </li>
+            <li>
+                <i><svg t="1669025417383" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1352" width="25" height="25"><path d="M0 0m512 0l0 0q512 0 512 512l0 0q0 512-512 512l0 0q-512 0-512-512l0 0q0-512 512-512Z" fill="#7728F5" p-id="1353"></path><path d="M273.408 540.32a30.464 30.464 0 0 0 0 43.072l136.832 136.864a32 32 0 0 0 45.28 0l299.456-299.488a32 32 0 0 0-45.248-45.248L442.016 643.2a16 16 0 0 1-22.624 0l-102.88-102.88a30.464 30.464 0 0 0-43.104 0z" fill="#FFFFFF" p-id="1354"></path></svg></i>
+                2,300,000+ exhibitions
+            </li>
+        </ul>
+        <a href="/user/line/edit" target="_blank">Create homepage and get free promotion→</a>
+    </div>
+</div>
+
+<%}%>

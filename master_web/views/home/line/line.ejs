@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_overview')%>-邦Line</title>
+    <%- include('./head.ejs') %>
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<% var line_user = results.line_user %>
+<%- include('../../home/admin_tab.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">        
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <!-- 个人介绍 -->
+                    <div class="line-admin-module line-person" style="background:url('<%=LINE_IMAGE_PATH%><%=line_user.cover%>') no-repeat;background-size:cover;">
+                        <div class="line-person-mask"></div>
+                        <div class="content">
+                            <a class="edit-btn" href="/user/line/edit"><%=translate('bline_overview_edit')%></a>
+                            <div class="position">
+                                <div class="head">
+                                    <img src="<%=LINE_IMAGE_PATH%><%=line_user.avatar%>"/>
+<!--                                    <img src="https://static.52wmb.com/images/userphoto/190_130975786242036984.jpg"/>-->
+                                    <div class="person-tag"><%=line_user.company_type_name%></div>
+                                </div>
+                                <div class="name"><%=line_user.name%><span>(<%=line_user.position%>)</span></div>
+                                <div class="sub job">
+                                    <%=translate('bline_overview_company')%>：<%=line_user.company_name%>
+                                </div>
+                                <div class="sub supplier">
+                                    <%=line_user.verb%>：<%=line_user.products.slice(0, 50)%>...
+                                </div>
+                                <div class="ip">
+                                    <%=translate('bline_overview_attribution')%>：<%=POS_SHOW(line_user)%>
+                                </div>
+                                <a href="<%=LINE_ROUTE()%>/line/<%=line_user.user_id%>" target="_blank" class="preview-btn"><%=translate('bline_overview_preview_homepage')%></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 数据展示 -->
+                    <div class="line-admin-module line-analyse">
+                        <div class="content">
+                            <div class="analyse-module">
+                                <div class="topic">
+                                    <span class="title"><%=translate('bline_overview_preview_homepage_data')%></span>
+                                    <!--a class="link" href="javasscript:void(0);" target="_blank"><%=translate('bline_overview_promotional_data')%></a-->
+                                </div>
+                                <div class="content">
+                                    <div class="analyse-count">
+                                        <div class="count-item" style="width:45%;">
+                                            <i><svg t="1663910817998" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2556" width="45" height="45"><path d="M127.968 711.664 269.44 711.664 269.44 889.888 127.968 889.888 127.968 711.664Z" p-id="2557"></path><path d="M343.712 528.944 488.704 528.944 488.704 889.888 343.712 889.888 343.712 528.944Z" p-id="2558"></path><path d="M559.44 598.496 703.264 598.496 703.264 889.888 559.44 889.888 559.44 598.496Z" p-id="2559"></path><path d="M775.184 421.664 920.192 421.664 920.192 889.888 775.184 889.888 775.184 421.664Z" p-id="2560"></path><path d="M89.072 534.832 425.056 225.968 617.872 415.392 799.936 203.568 733.92 134.112 920.192 134.112 920.192 314.384 855.072 247.264 617.872 534.368 422.992 334.016 135.824 601.376 89.072 534.832Z" p-id="2561"></path></svg></i>
+                                            <div class="type"><%=translate('bline_overview_promotional_displays')%></div>
+                                            <div class="count stats-day" data-all="1" data-st="promote"></div>
+                                            <div class="day stats-day" data-st="today_promote"></div>
+                                        </div>
+                                        <a href="/user/line/related?tab=viewmy">
+                                            <div class="count-item point" style="width:45%;">
+                                                <i><svg t="1663910896473" class="icon" viewBox="0 0 1613 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3540" width="45" height="45"><path d="M1158.894942 685.503861c-71.521337-75.919641-161.513314-114.157499-263.392448-127.573163-39.769161-5.236608-79.697599-5.792683-119.698691-3.423076-47.44244 2.80832-94.027016 10.487188-139.161324 25.596228-126.27938 42.270102-211.294624 126.148046-253.134396 252.866139-19.680593 59.606237-25.900812 121.115425-23.793873 183.652933 0.178838 5.328822 1.684992 6.642165 6.918806 6.639371 299.246727-0.12854 598.490659-0.114568 897.737386-0.114568 1.97281 0 3.942825 0 6.100062 0 0.19281-1.707347 0.374443-2.771993 0.427535-3.839434 2.464615-51.103036-1.997959-101.57455-14.4859-151.218936C1239.070375 799.163966 1207.851919 737.470351 1158.894942 685.503861z" p-id="3541"></path><path d="M664.912898 414.127961c53.981215 47.084764 117.178189 64.951825 187.961818 52.086647 60.036567-10.911929 108.934862-41.680495 145.454196-90.050658 56.180366-74.410693 68.570505-155.907852 29.575379-241.680364C982.926466 35.541312 872.057915-17.928537 765.867102 5.448979c-108.445851 23.874909-184.723169 117.007734-184.720374 234.403882C582.868046 304.022267 609.724525 365.986934 664.912898 414.127961z" p-id="3542"></path><path d="M497.805299 588.1376c-5.82901-2.523296-10.992965-4.898492-16.263105-7.016608-39.875346-16.02838-81.463627-23.936385-124.264655-25.867279-56.417886-2.545651-111.891282 2.799937-165.470111 21.625459-68.229595 23.972711-121.417215 66.231636-155.628417 130.705627-25.400623 47.869975-35.664263 99.456434-36.144891 153.275576-0.069859 7.849324-0.008383 15.701441-0.008383 23.763135 104.994832 0 208.841186 0 312.857996 0C335.635313 761.658227 392.729431 660.273693 497.805299 588.1376z" p-id="3543"></path><path d="M1611.380918 751.414147c-0.005589-2.484175-0.743297-5.082919-1.654254-7.432966-30.902694-79.823345-87.02438-134.299159-166.509608-165.078902-38.478172-14.899464-78.59942-21.999902-119.695896-23.726809-59.444165-2.495353-117.658817 3.884144-173.674317 25.157515-6.440972 2.445054-12.714283 5.328822-19.996354 8.402604 50.840367 34.876257 91.872573 77.590661 123.823148 128.956366 31.975724 51.40762 52.28784 107.29458 63.630098 166.794632 98.40017 0 196.126903 0 293.923494 0 0.095008-1.352464 0.21237-2.263422 0.21237-3.177174C1611.450777 838.010992 1611.47872 794.71257 1611.380918 751.414147z" p-id="3544"></path><path d="M1296.008009 496.265026c91.92846 0.567253 168.761853-75.461368 169.178211-167.406594 0.410769-90.506137-72.675403-162.181163-165.79705-162.600315-91.934049-0.410769-165.38628 70.699799-165.908823 160.624711C1132.932655 420.887489 1204.722249 495.703362 1296.008009 496.265026z" p-id="3545"></path><path d="M328.476194 496.267821c91.920077 0.553281 168.781413-75.550787 169.116735-167.451304 0.329733-90.587173-72.703346-162.186752-165.813816-162.5584-92.163186-0.368854-165.478494 70.881431-165.892057 161.222702C165.456726 421.016029 237.416775 495.717334 328.476194 496.267821z" p-id="3546"></path></svg></i>
+                                                <div class="type"><%=translate('bline_overview_homepage_visitors')%></div>
+                                                <div class="count stats-day" data-all="1" data-st="view"></div>
+                                                <div class="day stats-day" data-st="today_view"></div>
+                                                <i class="dian un display-none" data-st="uncheck_view">红点</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="analyse-module">
+                                <div class="topic">
+                                    <span class="title"><%=translate('bline_overview_people_data')%></span>
+                                </div>
+                                <div class="content">
+                                    <div class="analyse-count">
+                                        <a href="/user/line/related">
+                                            <div class="count-item">
+                                                <i><svg t="1663911037935" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7333" width="45" height="45"><path d="M640 513.1c10.3-6 18.6-23.2 1.2-31.4-5.9-2.7-12-5.2-18.1-7.6C666.5 435.2 694 378.9 694 316c0-117.2-95.1-212.3-212.3-212.3S269.4 198.8 269.4 316c0 62.9 27.5 119.2 70.9 158.1-128.6 50.5-223.5 167.9-242 309.4-0.2 1.7-0.3 3.4-0.3 5.1 0 26.7 21.6 48.4 48.4 48.4H549c-18.5-34.2-29.1-73.4-29.1-115 0.1-89.2 48.4-167 120.1-208.9z" p-id="7334"></path><path d="M761.7 523.4c-109.4 0-198.5 89-198.5 198.5 0 109.4 89 198.5 198.5 198.5s198.5-89 198.5-198.5c0-109.4-89-198.5-198.5-198.5z m124.7 188.7l-42.8 43.4c-1.8 1.8-3.1 4.9-2.4 7.3l10.4 62.4c1.8 8.6-1.8 16.5-8.6 21.4-3.7 2.4-7.9 3.7-12.2 3.7-3.1 0-6.7-0.6-9.8-2.4l-53.2-29.3c-1.8-1.2-4.3-1.2-6.1 0l-53.2 29.3c-7.3 3.7-15.3 3.1-22-1.2-7.3-4.9-10.4-12.8-9.2-21.4l10.4-61.7c0.6-3.1 0-5.5-1.8-7.3l-43.4-44c-5.5-6.1-7.3-14.7-4.9-22.6 2.4-7.3 8.6-12.8 16.5-14.1l59.3-9.2c2.4 0 4.3-1.8 5.5-4.3l26.3-56.2c3.7-7.9 11-12.2 18.9-12.2s15.3 4.9 18.9 12.2l26.9 56.2c1.2 2.4 3.1 3.7 5.5 4.3l59.3 9.2c7.3 0.6 14.1 6.1 16.5 14.1 3.1 7.7 0.7 16.3-4.8 22.4z" p-id="7335"></path></svg></i>
+                                                <div class="type"><%=translate('bline_overview_people_follow')%></div>
+                                                <div class="count stats-day" data-all="1" data-st="follow"></div>
+                                                <div class="day stats-day" data-st="today_follow"></div>
+                                            </div>
+                                        </a>
+                                        <a href="/user/line/related?tab=fans">
+                                            <div class="count-item point">
+                                                <i><svg t="1663911122460" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8291" width="45" height="45"><path d="M510.6 63.7C263 63.7 62.3 264.5 62.3 512c0 247.6 200.7 448.3 448.3 448.3 247.6 0 448.3-200.7 448.3-448.3 0-247.5-200.7-448.3-448.3-448.3z m0 779.2c-182.5 0-330.9-148.4-330.9-330.9s148.4-330.9 330.9-330.9S841.5 329.6 841.5 512 693 842.9 510.6 842.9z" fill="#515151" p-id="8292"></path><path d="M688.9 403.2c-39.8-39.8-104.2-39.8-144 0L510.6 435l-34.3-31.8c-39.8-39.8-104.2-39.8-144 0s-39.8 104.2 0 144l178.1 178.1 0.2-0.2 0.2 0.2 178.1-178.1c39.8-39.7 39.8-104.2 0-144z" fill="#515151" p-id="8293"></path></svg></i>
+                                                <div class="type"><%=translate('bline_overview_people_fans')%></div>
+                                                <div class="count stats-day" data-all="1" data-st="fans"></div>
+                                                <div class="day stats-day" data-st="today_fans"></div>
+                                                <i class="dian stats-day un display-none" data-st="uncheck_fans">红点</i>
+                                            </div>
+                                        </a>
+                                        <a href="/user/line/letter">
+                                            <div class="count-item">
+                                                <i><svg t="1663911192811" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="9569" width="41" height="41"><path d="M512 16.839111v0.284445c281.6 0 512 187.875556 512 419.271111s-230.4 419.271111-512 419.271111a79.843556 79.843556 0 0 0-29.44 6.826666c-55.296 21.504-146.944 89.372444-211.2 140.231112a43.434667 43.434667 0 0 1-25.6 9.671111 44.828444 44.828444 0 0 1-31.829333-14.136889 46.990222 46.990222 0 0 1-12.714667-33.024c0-85.418667-4.864-197.603556-30.464-216.462222C65.792 671.971556 0 560.355556 0 436.138667 0 204.487111 230.4 16.867556 512 16.867556z m166.4 312.632889h-332.8c-21.219556 0-38.4 17.607111-38.4 39.310222 0 21.703111 17.180444 39.310222 38.4 39.310222h332.8c21.219556 0 38.4-17.607111 38.4-39.310222 0-21.703111-17.180444-39.310222-38.4-39.310222z m-51.2 183.466667h-230.4c-21.219556 0-38.4 17.578667-38.4 39.281777 0 21.731556 17.180444 39.310222 38.4 39.310223h230.4c21.219556 0 38.4-17.578667 38.4-39.310223 0-21.703111-17.180444-39.310222-38.4-39.310222z" p-id="9570"></path></svg></i>
+                                                <div class="type"><%=translate('bline_overview_private_message')%></div>
+                                                <div class="count stats-day" data-all="1" data-st="letter"></div>
+                                                <div class="day stats-day" data-st="today_letter"></div>
+                                                <i class="dian un display-none" data-st="unread_letter">红点</i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 小组推荐 -->
+                    <div class="line-admin-module line-group">
+                        <div class="topic">
+                           <div class="line-module-tab">
+                                <div class="tab-item active"><%=translate('bline_overview_circles_recomm')%></div>
+                            </div>
+                        </div>
+                        <div class="content">
+                            <div class="swiper-container line-group-list" id="line_group_list"></div>
+                        </div>
+                    </div>
+
+                    <!-- 推荐供应商 -->
+                    <div class="line-admin-module line-supplier">
+                        <div class="topic">
+                            <div class="line-module-tab">
+                                <div class="tab-item tab active" id="line_recommend_user_tab" data-target="#users_list"><%=translate('bline_overview_people_recomm')%></div>
+                                <div class="tab-item tab follow-tab"  data-target="#users_list"><%=translate('bline_overview_my_concerns')%></div>
+                                <a href="<%=LINE_ROUTE()%>/members" target="_blank"><%=translate('bline_overview_friends_more')%></a>
+                            </div>
+                        </div>
+                        <div class="content" id="users_list">
+                            <div class="line-supplier-list tab-pane active" id="line_recommend_user_list"></div>
+                            <div class="line-supplier-list tab-pane" id="line_follow_user_list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

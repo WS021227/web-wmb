@@ -1,0 +1,11 @@
+
+<% var tutorial_list=results.tutorial_list || []%>
+<%tutorial_list.forEach(function(item){%>
+<li>
+    <a href="/new/<%=item.id%>">
+        <img src="https://static.52wmb.com/new_images/new_cover/<%=item.cover%>" alt="<%=item.title%>"/>
+        <h3><%=item.title%></h3>
+        <span><font><%=item.update_time%>发布</font><font><%=item.view_count%>人学习</font></span>
+    </a>
+</li>
+<%})%>

@@ -1,0 +1,73 @@
+<!-- 支付页面 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('home_meta_description')%>" />
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+    <title><%=translate('payment_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/payment/pay_detail.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <div class="container" data-img="<%= STATIC %>">
+        <%- include('../layout/header.ejs'); %>
+            <!-- 顶部轮播 -->
+            <div class="swiper" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>"> 
+                <div class="swiper-wrapper">
+                    <!-- js渲染 -->
+                </div>
+            </div>
+
+            <p class="tishi <%= wglobals.lang=='en'?'tishi-en':'' %>">
+                <span><%= translate("payment_ts") %></span>
+                <span></span>
+                <span><%= translate("payment_tc") %></span>
+            </p>
+
+            <div class="zhouqi">
+                <!-- js渲染 -->
+            </div>
+
+            <div class="zzfw">
+                <!-- js渲染 -->
+            </div>
+
+            <% var user_method = wglobals.user.paymenthod || 1, fm = wglobals.user.user_functional.fm || 'na'%>
+            <% var method = wglobals.lang=='en' || fm == 'usd'?3:(user_method > 2?1:user_method);%>
+            <div class="zf" data-pay_type="<%= user_method %>" data-pay_def="<%= method %>">
+                <h3><%= translate("payment_method") %></h3>
+                <!-- 用户数据信息中的 user.paymenthod 存在就取,不存在默认取1  wglobals.user.user_functional.fm 判断币种(历史支付订单的币种)，存在就取他，不存在取'na'' -->
+                <p>
+                    
+                    <span data-type=1 class="<%= method==1?"active":"" %> pay-method pay-rmb pay-na display-none"><img src="<%= STATIC %>mobile/images/payment/pay_detail/zhifubao.jpg" />支付宝支付</span>
+                    
+                    <span data-type=2 class="<%= method==2?"active":"" %> pay-method pay-rmb pay-na display-none"><img src="<%= STATIC %>mobile/images/payment/pay_detail/weixinzhifu.png" />微信支付</span>
+                   
+                    <span data-type=3 class="<%= method==3?"active":"" %> pay-method pay-usd pay-na display-none"><img src="<%= STATIC %>mobile/images/payment/pay_detail/paypal.png" />Paypal</span>
+                </p>
+            </div>
+
+            <div class="zf-list">
+                <h3><%= translate("payment_qd") %></h3>
+                <div class="content">
+                    <!-- js渲染 -->
+                </div>
+                <p><span><%= translate("payment_sum") %></span><span></span></p>
+            </div>
+
+            <div class="zf-btn">
+                <a></a>
+            </div>
+            <%- include('../global/foot_script.ejs'); %>
+    </div>
+    <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+    <script src="<%= STATIC %>mobile/javascripts/payment/pay_detail.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

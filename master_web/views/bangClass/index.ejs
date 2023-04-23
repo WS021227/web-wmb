@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('class_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('class_meta_description')%>" />
+    <title><%=translate('class_meta_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangClass/class.css?v=<%=VERSION%>">
+    <meta name="source" content="index">
+    <meta name="category" content="2">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+    <div class="channel-title">
+        <div class="channel-name">
+            <h1><%=translate('class_name')%></h1>
+            <p><%=translate('class_name_des')%></p>
+        </div>
+
+        <%if(wglobals.lang == 'cn'){%>
+        <%var tutorial_kfkc_item =results.tutorial_kfkc_item;console.log(tutorial_kfkc_item,'tutorial_kfkc_item')
+        if(tutorial_kfkc_item){%>
+        <div class="class-data">
+            <h2>数据开发课程</h2>
+            <h3><a href="/new/<%=tutorial_kfkc_item.id%>" target="_blank"><%=tutorial_kfkc_item.title%></a></h3>
+            <p><%=tutorial_kfkc_item.create_time%>发布，已有<%=tutorial_kfkc_item.view_count%>人学习</p>
+            <a href="/new/category-kfkc" class="class-data-link" target="_blank">所有课程<font>&gt;</font></a>
+            <span><i></i><img src="https://static.52wmb.com/new_images/new_cover/<%=tutorial_kfkc_item.cover%>" alt="<%=tutorial_kfkc_item.title%>"/></span>
+        </div>
+        <%}%>
+        <%}%>
+        
+        <div class="class-category">
+            <div>
+                <i></i>
+                <h3><%=translate('class_name_brochure')%></h3>
+                <p><%=translate('class_name_brochure_des')%></p>
+                <a href="/new/category-czsc" target="_blank"><%=translate('class_name_enter')%><font>&gt;</font></a>
+            </div>
+            <div>
+                <i></i>
+                <h3><%=translate('class_name_encyclopedia')%></h3>
+                <p><%=translate('class_name_encyclopedia_des')%></p>
+                <a href="/new/category-sjsm" target="_blank"><%=translate('class_name_enter')%><font>&gt;</font></a>
+            </div>
+            <%if(wglobals.lang == 'cn'){%>
+            <div>
+                <i></i>
+                <h3><%=translate('class_name_ask')%></h3>
+                <p><%=translate('class_name_ask_des')%></p>
+                <a href="/new/category-wenda" target="_blank"><%=translate('class_name_enter')%><font>&gt;</font></a>
+            </div>
+            <div>
+                <i></i>
+                <h3><%=translate('class_name_notice')%></h3>
+                <p><%=translate('class_name_notice_des')%></p>
+                <a href="/new/category-fwzc" target="_blank"><%=translate('class_name_enter')%><font>&gt;</font></a>
+            </div>
+            <%}%>
+            <br class="clear"/>
+        </div>
+    </div>
+
+    <div class="class-jiqiao">
+        <%if(results.tutorial_category_item.length > 0){%>
+        <div class="class-jiqiao-left">
+            <div class="bang-tab">
+                <div class="slidebtn left" data-type="left"></div>
+                <div class="tab-wrap">
+                    <div class="class-jiqiao-nav" id="jiqiao_nav">
+                        <a href="javascript:void(0);"  data-category="0" class="active"><%=translate('share_text_new')%></a>
+                        <% JSON.parse(results.tutorial_category_item).forEach(function(itemList){ %>
+                            <a data-category="<%=itemList.id%>"> <%=itemList.name%></a>
+                        <% })%>
+                    </div>
+                </div>
+               <div class="slidebtn right" data-type="right"></div>
+            </div>
+            <div class="tab-content">
+                <div class="pane tab-pane tutorial-0 active">
+                    <ul class="tutorial-list class-jiqiao-list">
+                        <%- include('../bangClass/child/index.ejs') %>
+                    </ul>
+                    <a href="javascript:void(0);" class="more category-index-more" data-page="2" data-child="0" onclick="load_tutorial_list(this)"><%= translate('share_text_more_click') %></a>
+                </div>
+            </div>
+        </div>
+        <%}%>
+        <%var tutorial_hot_list=results.tutorial_hot_list%>
+        <%if(tutorial_hot_list.length > 0){%>
+        <div class="class-jiqiao-right">
+            <div class="class-jiqiao-hot">
+                <h2><%=translate('class_model_hot')%></h2>
+                <ul>
+                    <%tutorial_hot_list.forEach(function(items,index){%>
+                        <li>
+                            <a href="/new/<%=items.id%>"><font><%=index+1%></font><%if(wglobals.lang == 'cn'){%><%=items.title.substring(0,60)%><%}else{%><%=items.title.substring(0,80)%><%}%></a>
+                            <span><%=items.view_count%><%=translate('share_text_view')%></span>
+                        </li>
+                    <%})%>
+                </ul>
+            </div>
+        </div>
+        <%}%>
+        <br class="clear"/>
+    </div>
+
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/bangClass/bangClass.js?v=<%=VERSION%>"></script>
+</body>
+</html>

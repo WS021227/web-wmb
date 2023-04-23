@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="static_path" content="<%=STATIC %>">
+    <meta name="keywords" content="海关数据,开发课程,外贸邦,视频课"/>
+    <meta name="description" content="《海关数据开发》系列课程历时一年精心筹划制作，全网最系统全面的海关数据开发课程，金牌讲师李宾主讲。34节数据开发课程，多方位掌握海关数据使用技巧!"/>
+    <title>《海关数据客户开发》系列视频课程，官方出品-外贸邦</title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/cdc.css?v=<%=VERSION%>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<div class="content bc">
+    <div class="content-head">
+        <div class="content-head-context">
+            <div class="left">
+                <h1 class="text1">《海关数据客户开发》系列课程，官方出品。</h1>
+                <p class="text2">学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</p>
+            </div>
+        </div>
+    </div>
+       <div class="content-content">
+        <% var is_open = results.data.is_open %>
+        <%if(!is_open){%>
+        <div class="content-content-head open-content">
+            <%if(new Date('2023-02-28 23:59:59') >= new Date()){%>
+                <!--非在约用户模块-->
+                <div class="lbox">
+                    <text class="text1"><span>限时免费:</span>0<font>元</font></text>
+                </div>
+                <div class="cbox">截止3月31号23:59免费领取，《海关数据开发》34节课时全套开发课程终身观看。</div>
+                <a href="javascript:void(0)" class="rbox" onclick="open_auth()">立即领取</a>
+            <%}else{%>
+                <%if(wglobals.user.vip_level){%>
+                    <div class="lbox">
+                        <text class="text1"><span>会员增值服务:</span>0<font>元</font></text>
+                    </div>
+                    <div class="cbox">付费会员有效期内可免费领取，领取后课程终身享有，赶紧领取吧。</div>
+                    <a href="javascript:void(0)" class="rbox" onclick="open_auth()">立即领取</a>
+                <%} else {%>
+                    <div class="lbox">
+                        <text class="text1"><span>全套课程&VIP会员:</span>99<font>元</font></text>
+                    </div>
+                    <div class="cbox">99元=数据VIP会员一个月+《海关数据开发》34节课时全套课程终身观看。</div>
+                    <a href="/Alipay?v=v&m=1" class="rbox" target="_blank">立即购买</a>
+                <%}%>
+            <%}%>
+
+        </div>
+        <%}%>
+
+        <div class="content-content-content">
+            <video id="play_video_box" width="940" height="529" controls></video>
+        </div>
+        <div class="content-content-bottom">
+            <text class="text1">
+                <a href="https://line.52wmb.com/line/1181038" target="_blank"><img src="https://static.52wmb.com/bangline/upload/images/avatar_1666324276.jpg"/></a>
+                <span id="class_title"></span>
+                <font>主讲人：李宾(资深数据专家、大客户经理、金牌讲师)</font>
+            </text>
+            <text class="text2">
+                <span>已有<%=results.data.total_open%>人已学习</span>
+                <%if(wglobals.user.bang_line){%>
+                <a href="/user/line/letter?user_id=1181038" target="_blank">向讲师提问题</a>
+                <%}else{%>
+                <a href="/user/line/edit" target="_blank">开通邦Line,向讲师提问</a>
+                <%}%>
+            </text>
+        </div>
+    </div>
+    <div class="content-bottom">
+        <div class="box">
+            <div class="head tab-list tabs">
+                <div class="tab" data-target="#items_con">课程介绍</div>
+                <div class="tab active" data-target="#items_con">课程目录<span class="">更新至第<%=results.data.total_class%>课</span></div>
+                <div class="tab" data-target="#items_con">邦友评论(<%=results.reply.total%>)</div>
+            </div>
+            <div id="items_con">
+                <div class="tab-pane list">
+                    <div class="class_introduce">
+                        <div class="header">
+                            <h2>《海关数据开发》系列课程</h2>
+                            <p class="p1">"学会一套完整的开发客户技能，掌握了一门生存的知识！"</p>
+                            <p>历时1年精心筹划，资深数据专家化身金牌讲师</p>
+                            <p>33节数据开发课程，多方位掌握海关数据使用技巧</p>
+                            <p>让“数据”变为正式有效的的客户&amp;市场需求</p>
+                        </div>                        
+                        <div class="context1">
+                            <h2>你为什么要学习这门课?</h2>
+                            <p class="context1-c">做外贸的你，是不是经常和别人吐槽</p>
+                            <div>
+                                <img class="context1-huan" src="<%= STATIC %>/images/cdc/ke_yumen.png"/>
+                                <p>
+                                    <font>×</font>苦守询盘，可是一个订单都没有！<br/>
+                                    <font>×</font>想用海关数据开发客户，但是完全没思路！<br/>
+                                    <font>×</font>客户合作意向一个比一个低！<br/><br/>
+                                    <font>?</font>如果你也有类似的吐槽&抱怨<br/>
+                                    <font>?</font>那么可能处于外贸初级水平<br/>
+                                    <font>?</font>需要系统性学习开发客户思路，海关数据使用技巧<br/>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="context2">
+                            <h2>学习课程可以获得什么?</h2>
+                            <div class="box1">
+                                <div>
+                                    <img src="<%= STATIC %>/images/cdc/ke_huanxing.png" class="img1" alt="学习课程可以获得什么?" />
+                                    <img class="img2" src="<%= STATIC %>/images/cdc/ke_huanxing_deng.png" alt="学习课程可以获得什么?"/>
+                                </div>
+                                <p><font>✓</font>充分了解海关数据开发客户的原理</p>
+                                <p><font>✓</font>找到精准且合适客户的方法</p>
+                                <p><font>✓</font>知道如何找到客户联系方式以及工具的使用</p>
+                                <p><font>✓</font>学会看贸易概述、分析市场找到匹配的贸易国</p>
+                                <p><font>✓</font>判断产品走向和利润,调整产品产业线</p>
+                                <p><font>✓</font>写好开发信，提高获客效率的指南</p>
+                                <p><font>✓</font>海关数据+邮箱采集+邮箱群发的解决方案</p>
+                            </div>
+                        </div>
+
+                        <div class="context3">
+                            <h2>这门课适合谁来学?</h2>
+                            <div class="bigbox">
+                                <div class="box">
+                                    <h3>想找更多的潜在客户</h3>
+                                    <img src="<%= STATIC %>/images/cdc/ke_who_1.png" alt="想找更多的潜在客户"/>
+                                    <span>外贸相关的从业者</span>
+                                    <p>
+                                        客户太少，客户质量也<br/>
+                                        越来越差，还总是拿不到<br/>
+                                        关键人的联系方式<br/>
+                                    </p>
+                                </div>
+                                <div class="box">
+                                    <h3>想学习新的开发方式</h3>
+                                    <img src="<%= STATIC %>/images/cdc/ke_who_2.png" alt="想学习新的开发方式"/>
+                                    <span>想转型的传统外贸</span>
+                                    <p>
+                                        现有获客渠道受限，业务有<br/>
+                                        所调整，需要找新的<br/>
+                                        客户来源和有效产品线<br/>
+                                    </p>
+                                </div>
+                                <div class="box">
+                                    <h3>想抓住新的市场机遇</h3>
+                                    <img src="<%= STATIC %>/images/cdc/ke_who_3.png" alt="想抓住新的市场机遇"/>
+                                    <span>市场&货代&研究者</span>
+                                    <p>
+                                        总是错过好机想要<br/>
+                                        了解贸易趋势<br/>
+                                        先人一步发现市场机遇
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="context4">
+                            <h2>你还可以获得什么?</h2>
+                            <div class="bigbox">
+                                <div class="box">
+                                    <img src="<%= STATIC %>/images/cdc/ke_jiangshi.png" alt="专业的老师"/>
+                                    <span>专业的老师</span>
+                                    <p>外贸帮高级客服经理<br/>海外客户运营经理</p>
+                                </div>
+                                <div class="box">
+                                    <img src="<%= STATIC %>/images/cdc/ke_dayi.png" alt="讲师1v1答疑"/>
+                                    <span>讲师1v1答疑</span>
+                                    <p>通过讲师邦Line主页<br/>发起一对一的在线私聊</p>
+                                </div>
+                                <div class="box">
+                                    <img src="<%= STATIC %>/images/cdc/ke_gengxin.png" style="height:80px;" alt="后续更新"/>
+                                    <span>后续更新</span>
+                                    <p>不定时更新课程，紧跟市<br/>场变化和新玩法</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane list active">
+                    <% results.data.list.forEach(function (item){%>
+                        <div class="list-btn catalog-item" >
+                            <div class="header" data-id="<%=item.id%>">
+                                <text>第<%=item.show_chapter_no%>章：<%=item.name%> (<%=item.total_class%>节)</text>
+                                <span class="icon iconfont icon-arrow-down"></span>
+                            </div>
+                            <div class="list-context class-item"></div>
+                        </div>
+                    <%}) %>
+                </div>
+                <div class="tab-pane list">
+                    <div class="textbox textbox-review">
+                        <div class="box1">
+                            <img class="img" src="https://static.52wmb.com/images/userphoto/80_<%= wglobals.user.id?wglobals.user.photo:'member.jpg' %>" />
+                            <textarea class="reply-text" id="reply_content" name="contents" placeholder="<%= wglobals.user.id?'期待您的点评...':'登录后可评论' %>"></textarea>
+                        </div>
+                        <div class="box2">
+                            <text class="text">您的点评是我们进步的源泉！</text>
+                            <%if(wglobals.user.id){%>
+                            <button onclick="reply_add()">发布评论</button>
+                            <%}else{%>
+                                <a href="/login" onclick="return referrer_link(this)">登录后可评论</a>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="reply_list">
+                            <%results.reply.data.list.forEach(function (item){%>
+                                <div class="textbox">
+                                    <div class="box1">
+                                        <img class="img" src="https://static.52wmb.com/images/userphoto/80_<%=item.photo%>">
+                                        <div class="text2">
+                                            <h3><%= item.contact%></h3>
+                                            <p class="text"><%- item.content -%></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            <%})%>
+                        </div>
+                        <%if(results.reply.has_next){%>
+                            <a id="more_reply" class="more-reply" onclick="more_reply(this)" data-page="2">更多点评</a>
+                        <%}else{%>
+                            <a class="more-reply">暂无更多</a>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../global/foot.ejs') %>
+<script type="application/javascript" src="<%= STATIC %>javascripts/bangStore/cdc.js?v=<%=VERSION%>"></script>
+</body>
+</html>

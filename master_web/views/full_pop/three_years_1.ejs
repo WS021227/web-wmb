@@ -1,0 +1,90 @@
+<style>
+    .old-diamond-tan{width:800px;padding:40px 30px;text-align:center;background:#fff;margin:0 auto;box-sizing: border-box;}
+    .old-diamond-tan .t1{font-size:17/4px;color:#E4774E;margin-top:5px;font-weight:bold;}
+    .old-diamond-tan .t2{font-size:30.4px;color:#444;font-weight:550;padding:8px 0;text-transform: capitalize;}
+    .old-diamond-tan .t3{font-size:21.4px;color:#444;font-weight:550;}
+    .old-diamond-tan .no-recive{display:inline-block;width:auto;height:55px;background:#E4774e;line-height:55px;padding:0 70px;border-radius:100px;
+        font-size:16.4px;color:#fff;text-decoration:none;margin-top:40px;}
+    .old-diamond-tan .recived{background:#007FFF;}
+    .old-diamond-tan .tips{font-size:14.4px;color:#666;padding-top:10px;}
+</style>
+
+<%if(wglobals.lang == 'cn'){%>
+<!--已领取弹窗-->
+<div class="old-diamond-tan">
+    <i><svg t="1675157656788" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7201" width="80" height="80"><path d="M93.090909 442.205091h558.545455v581.818182h-535.272728a23.272727 23.272727 0 0 1-23.272727-23.272728v-558.545454z" fill="#E4774E" p-id="7202"></path><path d="M884.363636 1024.023273h-162.909091v-581.818182h186.181819v558.545454a23.272727 23.272727 0 0 1-23.272728 23.272728z" fill="#EA8E4F" p-id="7203"></path><path d="M502.612883 253.132587m16.456304-16.456303l218.70427-218.70427q16.456303-16.456303 32.912607 0l68.737978 68.737978q16.456303 16.456303 0 32.912607l-218.70427 218.70427q-16.456303 16.456303-32.912607 0l-68.737978-68.737978q-16.456303-16.456303 0-32.912607Z" fill="#EA8E4F" p-id="7204"></path><path d="M480.364153 354.804549m-16.456304-16.456303l-218.70427-218.704271q-16.456303-16.456303 0-32.912606l70.251958-70.251959q16.456303-16.456303 32.912607 0l218.70427 218.704271q16.456303 16.456303 0 32.912606l-70.251958 70.251959q-16.456303 16.456303-32.912607 0Z" fill="#E4774E" p-id="7205"></path><path d="M0 232.727273m23.272727 0l977.454546 0q23.272727 0 23.272727 23.272727l0 93.090909q0 23.272727-23.272727 23.272727l-977.454546 0q-23.272727 0-23.272727-23.272727l0-93.090909q0-23.272727 23.272727-23.272727Z" fill="#E4774E" p-id="7206"></path></svg></i>
+    <div class="t1">您有一张“服务延长惊喜券”，请使用...</div>
+    <div class="t2">原价续费黄钻1年，可享3年服务有效期！</div>
+    <div class="t3">黄钻会员均价仅<%=amount%>元/年，绝无仅有</div>
+    <a href="/Alipay?v=yd" onclick="receive_ty(this);return true;" class="no-recive recived">已领延长惊喜券，购买会员 →</a>
+    <div class="tips dty-tips"></div>
+</div>
+<%}%>
+<%if(wglobals.lang == 'en'){%>
+    <!--已领取弹窗-->
+    <div class="old-diamond-tan">
+        <i><svg t="1675157656788" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7201" width="80" height="80"><path d="M93.090909 442.205091h558.545455v581.818182h-535.272728a23.272727 23.272727 0 0 1-23.272727-23.272728v-558.545454z" fill="#E4774E" p-id="7202"></path><path d="M884.363636 1024.023273h-162.909091v-581.818182h186.181819v558.545454a23.272727 23.272727 0 0 1-23.272728 23.272728z" fill="#EA8E4F" p-id="7203"></path><path d="M502.612883 253.132587m16.456304-16.456303l218.70427-218.70427q16.456303-16.456303 32.912607 0l68.737978 68.737978q16.456303 16.456303 0 32.912607l-218.70427 218.70427q-16.456303 16.456303-32.912607 0l-68.737978-68.737978q-16.456303-16.456303 0-32.912607Z" fill="#EA8E4F" p-id="7204"></path><path d="M480.364153 354.804549m-16.456304-16.456303l-218.70427-218.704271q-16.456303-16.456303 0-32.912606l70.251958-70.251959q16.456303-16.456303 32.912607 0l218.70427 218.704271q16.456303 16.456303 0 32.912606l-70.251958 70.251959q-16.456303 16.456303-32.912607 0Z" fill="#E4774E" p-id="7205"></path><path d="M0 232.727273m23.272727 0l977.454546 0q23.272727 0 23.272727 23.272727l0 93.090909q0 23.272727-23.272727 23.272727l-977.454546 0q-23.272727 0-23.272727-23.272727l0-93.090909q0-23.272727 23.272727-23.272727Z" fill="#E4774E" p-id="7206"></path></svg></i>
+        <div class="t1">You have a "Service Extension Coupon", please use...</div>
+        <div class="t2">Renew the yellow diamond at the original price for 1 year, and enjoy 3 years of service.</div>
+        <div class="t3">The average price of members is only $<%=amount%>/year</div>
+        <a href="/Alipay?v=yd" onclick="receive_ty(this);return true;" class="no-recive recived">Already received the coupon, to purchase →</a>
+        <div class="tips dty-tips"></div>
+    </div>
+<%}%>
+
+<%if(wglobals.lang == 'cn'){%>
+<script>
+    var dty_ex = new Date('<%= expire %>'), now_date = new Date(), $dty_tips = $('.dty-tips'), $dty_obj
+    let _time_flag = (dty_ex.getTime() - now_date.getTime()) / 1000
+    function dty_timeout(time_flag) {
+        if (time_flag > 0) {
+            var second = Math.floor(time_flag % 60); // 计算秒
+            var minite = Math.floor((time_flag / 60) % 60); //计算分
+            var hour = Math.floor((time_flag / 3600) % 24); //计算小时
+            var day = Math.floor((time_flag / 3600) / 24); //计算天
+            $dty_tips.html(`延长惊喜券有效期剩余：${day}天 / ${hour}时 / ${minite}分 / ${second}秒`)
+        } else {
+            $dty_tips.html(`延长券惊喜已过期`)
+            if($dty_obj) window.clearInterval($dty_obj)
+        }
+    }
+    $dty_obj = setInterval(function () {
+        dty_timeout(_time_flag)
+        _time_flag --;
+    }, 1000)
+
+    function receive_ty(){
+        $.wSetCookie('_DTY', '1', 86400)
+    }
+</script>
+<%}%>
+
+<%if(wglobals.lang == 'en'){%>
+    <script>
+        var dty_ex = new Date('<%= expire %>'), now_date = new Date(), $dty_tips = $('.dty-tips'), $dty_obj
+        let _time_flag = (dty_ex.getTime() - now_date.getTime()) / 1000
+        function dty_timeout(time_flag) {
+            if (time_flag > 0) {
+                var second = Math.floor(time_flag % 60); // 计算秒
+                var minite = Math.floor((time_flag / 60) % 60); //计算分
+                var hour = Math.floor((time_flag / 3600) % 24); //计算小时
+                var day = Math.floor((time_flag / 3600) / 24); //计算天
+                $dty_tips.html(`The validity of coupon left：${day}Day / ${hour}Hour / ${minite}Min / ${second}Sec`)
+            } else {
+                $dty_tips.html(`The extenstion coupon has expired`)
+                if($dty_obj) window.clearInterval($dty_obj)
+            }
+        }
+        $dty_obj = setInterval(function () {
+            dty_timeout(_time_flag)
+            _time_flag --;
+        }, 1000)
+    
+        function receive_ty(){
+            $.wSetCookie('_DTY', '1', 86400)
+        }
+    </script>
+    <%}%>
+
+
+

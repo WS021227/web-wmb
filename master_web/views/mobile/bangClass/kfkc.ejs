@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>"/>
+        <link rel="stylesheet" href="<%= STATIC %>mobile/css/bangClass/category_kfkc.css?v=<%=VERSION%>"/>
+        <meta name="source" content="kfkc">
+        <meta name="category" content="82">
+        <title>海关数据开发课程-邦课堂-外贸邦</title>
+    </head>
+    <body>
+        <% var tutorial_list=results.tutorial_list || []%>
+            <% console.log(results," 000009999999") %>
+                <div class="kfkc-container">
+                    <%- include('../layout/header.ejs'); %>
+                    <div class="num">
+                        <span>
+                            <%= keyreplace(translate("search_tags_count"),['[@数量]'],[tutorial_list[0].total_count]) %>
+                        </span>
+                        <span class="tab">
+                            <span class="active"><%= translate("share_text_hot") %></span>
+                            <span><%= translate("share_text_new") %></span>
+                        </span></div>
+                    <div class="content">
+                        <%- include('../bangClass/child/kfkc.ejs') %>
+                    </div>
+                    <span class="more"><%= translate("share_text_more_click") %></span>
+                </div>
+                <%- include('../global/foot_script.ejs') %>
+                <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+                <script src="<%= STATIC %>mobile/javascripts/bangClass/kfkc.js?v=<%=VERSION%>"></script>
+            </body>
+    </html>

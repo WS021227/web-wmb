@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%=translate('solutions_data')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/solution/solution.css?v=<%=VERSION%>">     
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="solution-k">
+        <%- include('./solution_leftmeun.ejs') %>
+        <div class="solution-content">
+            <%if(wglobals.lang == 'cn'){%>
+            <div class="solution-title tradedata">
+                 <h1>原始进出口数据</h1>
+                 <p>基于21亿条原始进出口数据，深度剖析行业目标市场，科学制定生产营销策略。</p>
+            </div>
+            <div class="solution-des"> 
+                <p>
+                目前外贸邦总共有32个一线国家和200+的二线国家的贸易数据，一线国家主要分布在北美洲、南美洲、亚洲、欧洲以及非洲。主要包括：<br/>
+                北美洲（7个）：美国、墨西哥、巴拿马、哥斯黎达加、洪都拉斯、尼加拉瓜、萨尔瓦多<br/>
+                南美洲（11个）：秘鲁、智利、巴西、阿根廷、巴拉圭、乌拉圭、哥伦比亚、玻利维亚、委内瑞拉、厄瓜多尔、危地马拉<br/>
+                亚洲（10个）：中国台湾、菲律宾、越南、韩国、印度、斯里兰卡、巴基斯坦、哈萨克斯坦、印度尼西亚、乌兹别克斯坦<br/>
+                欧洲（3个）：俄罗斯、英国、乌克兰<br/>
+                非洲（1个）：埃塞俄比亚<br/><br/>
+                贸易数据来源于各国海关一手的提单、关单数据。由于各个国家的海关法规的差异，各个国家对于贸易信息的披露都有严格的规定和限制。目前全球合法开放贸易数据的国家只有这32个国家，这些是市面上能提供的最全的国家贸易数据。<br/><br/>
+                贸易数据中包括的字段有日期、HS编码、商品描述、采购商、供应商、包装信息（重量、数量、金额）、装运信息（出货港、卸货港）、集装箱信息。由于不同的国家开放的贸易数据字段内容是不同。因此各国显示的数据字段也是不一样的。像美国、巴基斯坦等国家提供的贸易数据包含的字段多，因此数据比较完整。而像韩国、印度、英国等国家提供的贸易数据包含的字段少，数据相对不全。<br/><br/>
+                相比市面上的其他贸易数据提供商，外贸邦的优势在于其服务，以及数据更新速度。我们外贸邦自2010年上线运营以来，一直持续为用户提供专业的外贸数据服务。现平台累计有近百万会员，是线上最大的外贸数据提供商。因为外贸邦是采用线上互联网的运营模式来做的数据服务，不做过度的产品包装和营销，节省了中间各类的运营成本，所以我们的价格可以做到比同行公司价格实惠。<br/><br/>
+                由于不同的国家更新原始数据的频率不一样，像美国/巴基斯坦，这些更新比较快的国家，一周更新一次，其他的国家的数据更新一般滞后1~2个月，也就是说2~3月的数据会在5月份更新。外贸邦是一个月更新2次，一般在月中和月末进行。<br/><br/>
+                </p>
+            </div>
+            <%}else{%>
+                <div class="solution-title tradedata">
+                    <h1>Raw import and export data</h1>
+                    <p>Based on 2.1 billion pieces of raw import and export data, we provide in-depth analysis of the industry's target markets and scientifically develop production and marketing strategies.</p>
+               </div>
+               <div class="solution-des"> 
+                   <p>
+                    At present, 52WMB has direct trade data for 32 countries and Indirect data for 200+ countries. 32 countries are located in North America, South America, Asia, Europe and Africa. The main countries include.<br/><br/>                    
+                    North America (7): USA, Mexico, Panama, Costa Rica, Honduras, Nicaragua, El Salvador<br/>
+                    South America (11): Peru, Chile, Brazil, Argentina, Paraguay, Uruguay, Colombia, Bolivia, Venezuela, Ecuador, Guatemala<br/>
+                    Asia (10): Taiwan, China, Philippines, Vietnam, Korea, India, Sri Lanka, Pakistan, Kazakhstan, Indonesia, Uzbekistan<br/>
+                    Europe (3): Russia, UK, Ukraine<br/>
+                    Africa (1): Ethiopia<br/><br/>
+                    Trade data is derived from first-hand customs data of each country. Due to different policy of each country, there are strict rules and restrictions on the disclosure of trade information in each country. 
+
+                    The fields in the trade data includes date, HS code, commodity description, buyer, supplier, packaging information (weight, quantity, amount), shipment information (port of loading, port of destination), and container information. The fields in trade data of each country is different. Therefore the data fields displayed are also different from country to country. Such as USA and Pakistan contain more fields and therefore the data is more complete.South Korea and the UK provide trade data with fewer fields and the data is relatively incomplete.<br/><br/>                    
+                    Compared to other data providers, the advantage of 52WMB lies in its services and updating speed. Since 2010, we have continued to provide professional data services to our users. The platform now has more than one million members and maybe the largest online data provider. Using of online mode to do the data services, we do not do excessive product packaging and marketing, save the middle of all kinds of operating costs, so our prices can be cheaper than peer companies.<br/><br/>                    
+                    As the frequency of updating varies from country to country, such as US/Pakistan, which update more quickly, update once a week, while other countries generally have a lag of 1~2 months, which means that data between February to March will be updated in May. 52WMB is updated twice a month, usually in the middle and at the end of the month.</p>
+               </div>
+               <%}%>     
+        </div>
+        <br class="clear"/>
+    </div>
+
+
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/index/solution.js?v=<%=VERSION%>"></script>
+</body>
+</html>

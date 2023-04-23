@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="line_route" content="<%=LINE_ROUTE()%>">
+    <meta name="country_data" content="<%=JSON.stringify(results.country_data)%>" />
+    <meta name="is_search" content="1" />
+    <meta name="gcompany_type" content="<%= results.company_type %>">
+    <meta name="page_mark" content="cselv">
+    <meta name="line_route" content="<%=LINE_ROUTE()%>">
+    <%if(results.search_key){ var key=ucfirst(results.search_key).replace('_',' ')}else{var key=results.search_hs}%>
+    <% var country=(results.country_data||{})['country_' + wglobals.lang] || '',show_type = translate('share_companies_' + results.company_type) %>
+    <meta name="keywords" content="<%=keyreplace(translate('company_list_keywords_' + extend_params.head), ['[@国家]','[@公司属性]','[@产品]'], [country, show_type, key])%>" />
+    <meta name="description" content="<%=keyreplace(translate('company_list_description_' + extend_params.head),['[@数量]','[@国家]','[@公司属性]','[@产品]'], [(results.search_data || {}).hits,country,show_type,key])%>" />
+    <title><%=keyreplace(translate('company_list_title_' + extend_params.head),['[@国家]','[@公司属性]','[@产品]'],[country, show_type, key])%>-<%=translate('share_text_sitename')%></title>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/company/search.css?v=<%=VERSION%>" />
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+
+<body>
+<%- include('../global/head.ejs') %>
+<div id="page-content">
+    <%- include('../global/search.ejs') %>
+    <div class="result-box">
+        <div class="sousou-data-left">
+            <div class="sousou-data mgall-l">
+                <div class="company-list-filter">
+                    <div class="sousou-screen">
+                        <b><%=translate('search_select_country')%></b>
+                        <p class="screen-state tabs" id="country_list" data-screen="<%=results.screen %>" data-select="<%=results.country%>"></p>
+                        <a class="screen-more" data-tab="" data-country="" id="allCountries"><%=translate('share_text_all')%><font>&gt;</font></a>
+                    </div>
+                    <div class="company-search-tags company-category display-none">
+                        <div class="company-category-name"><%=translate('search_select_category')%></div>
+                        <div class="company-category-item">
+                            <div class="tab-list tabs">
+                                <div class="tab active search-tag-gf search-tag-tab" data-target="#items_con"><%=translate('search_select_official')%><i class="dian display-none"></i></div>
+                                <%if(verify_real_vip('yd')){%>
+                                <div class="tab search-tag-cus search-tag-tab" data-target="#items_con"><%=translate('search_select_customization')%><i class="dian display-none"></i></div>
+                                <a href="javascript:void(0)" class="company-category-create search-tags-all"><%=translate('share_text_all')%><font>&gt;</font></a>
+                                <%} else {%>
+                                    <div class="tab-not" onclick="share_authority_failure('yd')"><%=translate('search_select_customization')%><i class="dian display-none"></i></div>
+                                    <a href="javascript:void(0)" class="company-category-create" onclick="share_authority_failure('yd')"><%=translate('share_text_all')%><font>&gt;</font></a>
+                                <%}%>
+                            </div>
+                            <div id="items_con">
+                                <div class="tab-pane active company-category-re search-tag-pane pane-gf">
+                                    <ul class="gf"></ul>
+                                    <div class="company-category-button left">&lt;</div>
+                                    <div class="company-category-button right">&gt;</div>
+                                </div>
+                                <div class="tab-pane company-category-user search-tag-pane pane-cus">
+                                     <div class="company-category-content cus"></div>
+                                     <div class="company-category-button left">&lt;</div>
+                                     <div class="company-category-button right">&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                        <br class="clear"/>
+                    </div>
+                </div>
+
+                <div class="hint country-selected display-none"></div>
+                <div class="sousou-list">
+                    <div class="sousuo-data-list-box">
+                        <div class="filter-modules" id="screen_message" data-wstats="company_advance_search"></div>
+                        <div class="sousuo-data-list-content">
+                            <div class="sousuo-data-list">
+                                <div class="sousou-head <%=results.search_data.hits > 0?'':'display-none' %>">
+                                    <h2><b class="company-hits"><%=results.search_data.hits %></b><%=translate('company_list_result_count')%></h2>
+                                    <div class="display-none product-sort search-sort">
+                                        <div id="product_sort">
+                                            <div class="dropdown-btn" data-value="prop">
+                                                <font class="show"><%=translate('company_list_rank_transactions')%></font><i></i>
+                                            </div>
+                                            <ul class="dropdown-menu" style="margin-top:10px;">
+                                                <li class="item " data-value="prop"><%=translate('company_list_rank_percentage')%></li>
+                                                <li class="item" data-value="last_trade_date"><%=translate('company_list_rank_date')%></li>
+                                                <li class="item active" data-value="bill_count"><%=translate('company_list_rank_transactions')%></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="default-sort search-sort">
+                                        <div id="default_sort">
+                                            <div class="dropdown-btn" data-value="default">
+                                                <font class="show"><%=translate('company_list_rank_transactions')%></font><i></i>
+                                            </div>
+                                            <ul class="dropdown-menu" style="margin-top:10px;">
+                                                <li class="item" data-value="default"><%=translate('company_list_rank_intelligent')%></li>
+                                                <li class="item" data-value="last_trade_date"><%=translate('company_list_rank_date')%></li>
+                                                <li class="item active" data-value="bill_count"><%=translate('company_list_rank_transactions')%></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <br class="clear"/>
+                                </div>
+
+                                <ul class="seach-list" id="company_list">
+                                    <%- include('../company/child/search_list.ejs') %>
+                                </ul>
+                                <div class="paging" id="company_paging" data-total="<%=results.search_data.hits%>" data-per="<%=results.search_data.size%>"></div>
+                                <div class="company-list-des">
+                                    <%if(wglobals.lang == 'cn'){%>                                        
+                                        提供了<%=results.search_data.hits %>个真实海外<%=country%><%=key%><%=show_type%>名录及其提单数据，最新进口数据已更新至<%=results.search_data.last_date%>。数据源主要来自于美国、印度、巴基斯坦、韩国、英国、墨西哥、哥伦比亚等32个国家的进口数据(贸易国及数据更新表)，
+                                        您可以通过产品关键字、公司名、8位的HS编码搜索海外<%=country%><%=key%><%=show_type%>，我们罗列了公司的采购及供应产品、近期交易内容及日期、所属国家、货运总次数，活跃度评分，配合高级搜索筛选功能，可以让您轻而易举的找到优质海外<%=country%><%=key%><%=show_type%>。<br/><br/>
+                                        我们提供了批量关注功能，您可以将页面的所有的<%=country%><%=key%><%=show_type%>一键添加到“收藏公司”中，可以批量导出这些公司的提单数据和联系方式，帮助您快速创建外贸客户清单。<br/><br/>
+                                        原始贸易数据中的公司名称标准没有统一，通过公司名称搜索时，建议使用公司前几个单词搜索；清除公司名称中的标点服符号。搜列表默认公司的交易次数都是5次以上，可以筛选“交易次数大于1次”的条件，可查询更多<%=country%><%=key%><%=show_type%>。公司的高级筛选功能、批量关注及联系方式导出功能。
+                                        <%}else{%>
+                                        Offering Real<%=results.search_data.hits %> <%=country%> <%=key%> <%=show_type%> Directory, B/Ls, Which Import Data Has Been Updated To <%=results.search_data.last_date%>. So Far, There Are 32 Countries' Customs Data At Great Export Import. You Can Search For Buyers Of US, UK, Pakistan,
+                                        India, South Korea, Mexico, Colombia And Other Countries Through Product Keyword, Company Name, 8-Digit HS Code. <br/><br/>It'll Be An Easy Job To Find The Best <%=country%><%=key%><%=show_type%> By Means Of Listing Products,
+                                        Latest Transactions & Date, Origin, Freight Transport In Total, Activity Score With Advanced Search & Sort. Batch Follow Will Be Used For One-Click Adding All <%=country%><%=key%><%=show_type%> To Data Management Center At One Page,
+                                        Meanwhile, Exporting B/Ls And Contacts Of Companies Help You Create Customers' List Quickly.                                    
+                                       <%}%>    
+                                </div>
+                            </div>
+                        </div>
+                        <br class="clear-box"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="soso-data-right">
+            <div class="module-content mar-l">
+                <div class="collect-box" id="operate_box">
+                    <h2><%=translate('toolbar_name')%><a href="/user/datacenter/home" target="_blank" rel="nofollow"><%=translate('mine_name')%>→</a></h2>
+                    <div class="data-tool data-tool-list data-tool-list-category">
+                        <a href="javascript:void(0)"  id="bulk_follow"><i class="tool-batch"></i><font><%=translate('toolbar_bulk_collection')%></font></a>
+                        <a href="javascript:void(0)" class="action-search-tag" data-action="copy"><i class="tool-filer"></i><font><%=translate('toolbar_save_filter')%></font></a>
+                        <a href="javascript:void(0)" class="action-search-tag" data-action="create"><i class="tool-create"></i><font><%=translate('toolbar_create_category')%></font></a>
+                    </div>
+                    <ul class="operation-list" id="tool_list"></ul>
+                </div>
+                <div id="bang_line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
+<input type="hidden" id="mark_js" value="<%= STATIC %>plugins/jquery.mark.min.js">
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/company/search.js?v=<%=VERSION%>"></script>
+</body>
+</html>

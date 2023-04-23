@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>PalPal Payment-Great Export Import</title>
+    <link rel="stylesheet" href="<%= STATIC %>css/pay_center/pay_center.css?v=<%=VERSION%>">
+</head>
+<body>
+<div class="pay-finish">
+    <div class="pay-nav">
+        <img src="https://static.52wmb.com/wmb_img/wmblogo.png" alt="Great Export Import" class="nav-logo">
+        <span>|</span>
+        <span>Payment Centre</span>
+        <span class="issue">Any questions, please contact us whatsapp：+8616621075894</span>
+
+    </div>
+    <div class="pay-verify-box">Payment status is being returned, please wait...</div>
+    <div class="pay-success-box" style="display: none">
+        <div class="pay_success">
+            <img src="<%= STATIC %>/images/succeed.png">
+            <h2>Successful payment<span>Here you can...</span></h2>
+        </div>
+
+        <div class="youhuiquan" style="display: none">
+            <div class="youhuiquan-title">
+                <h2>【Double 11】Surprise <b>coupons</b>, direct <b>deduction</b> for renewal</h2>
+                <p>Renew the yellow diamond member at the price of $399.9, and enjoy it immediately. </p>
+            </div>
+            <div class="youhuiquan-body">
+              <div class="youhuiquan-body-c">
+                <i><svg t="1667460300433" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2664" width="70" height="70"><path d="M819.2 0H204.8L0 307.2l512 716.8L1024 307.2z m-307.2 804.864L229.888 409.6h125.44L512 628.736 668.672 409.6h125.952z" p-id="2665" fill="#B02D1E"></path></svg></i>
+                  <h3><span>$</span><b class="yh-amount"></b><font>Surprise coupons</font></h3>
+                <p>It can only be used to renew a yellow diamond member and can’t be enjoyed with another discount at the same time.</p>
+              </div> 
+            </div>
+            <div class="youhuiquan-foot">
+                <a href="javascript:void(0)" onclick="sp_coupon(this)" data-err="Failed to receive" data-sus="Received the surprise coupon, use it now">Get the surprise coupon now</a>
+                <!--a href="#">惊喜券已领，立即使用<font>></font></a-->
+                <span>Tips: The coupon is valid for 7 days, and the activity will be over at 23:59, Nov 30.</span>
+            </div>
+        </div>
+
+        <ul>
+            <li><a href="/user/datacenter/member_manage">View permissions</a></li>
+            <li><a href="/buyer">Find a company</a></li>
+            <li><a href="/new">Development skills</a></li>
+        </ul>
+    </div>
+</div>
+<input type="hidden" id="order_no" value="<%=results.order_no%>">
+<script src="<%= STATIC %>plugins/jquery-3.2.1.min.js"></script>
+<script src="<%= STATIC %>javascripts/payment/payment_after.js?v=<%=VERSION%>"></script>
+<script>
+    let order_no = $('#order_no').val()
+    function verification_order() {
+        unity_verification_order(order_no, function (result) {
+
+            let state = result.state
+            if (state === 0) {
+                $('.pay-verify-box').remove()
+                $('.pay-success-box').show();
+            } else if (state === 10000) {  // 订单未支付成功
+                count = 10
+                window.setTimeout(verification_order, 1000)
+            } else {
+                $('body').html(result.message)
+            }
+        })
+    }
+    verification_order()
+</script>
+</body>
+</html>

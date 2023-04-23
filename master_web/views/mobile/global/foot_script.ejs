@@ -1,0 +1,15 @@
+
+<script type="application/javascript">
+    let wg = {user: {extended_auth: {}, user_functional: {}}};
+    try {
+        wg = <%-JSON.stringify(wglobals)%>
+    }catch (e){
+
+    }
+
+    if(!wg.user.extended_auth) wg.user.extended_auth = {}
+    if(!wg.user.user_functional) wg.user.user_functional = {}
+</script>
+<script src="<%= PROV_URL() %>?v=<%=Date.now()%>"></script>
+
+<% console.log(STATIC,"路径参数") %>

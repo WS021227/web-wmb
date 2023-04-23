@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="is_stags" content="1">
+    <meta name="gcompany_type" content="<%= results.company_type %>">
+    <%var show_type = translate('share_companies_' + results.company_type)%>
+    <meta name="keywords" content="<%=translate('search_tags_meta_keywords').replace('[@公司属性]',show_type)%>" />
+    <%let reg=/\[@(.*?)\]/g%>
+   <meta name="description" content="<%=translate('search_tags_meta_description').replace(reg,show_type)%>" />
+   <title><%=translate('search_tags_meta_title').replace('[@公司属性]',show_type)%>-<%=ucfirst(translate('share_text_sitename'))%></title>
+
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <%if(wglobals.user.id){%>
+    <link href="<%= STATIC %>stylesheets/foundation-datepicker.css" rel="stylesheet" type="text/css">
+    <%}%>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/company/search_tags.css?v=<%=VERSION%>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<div id="page-content">
+    <%- include('../global/search.ejs') %>
+    <div class="result-box">
+        <div class="sousou-data-left">
+            <div class="sousou-data mgall-l">
+                <div class="sousou-screen" id="navbar">
+                    <b><%=translate('search_select_country')%>：</b>
+                    <p class="screen-state tabs" id="country_list" data-screen="<%= results.screen %>"></p>
+                    <a class="screen-more" data-tab="" data-country="" id="allCountries"><%=translate('share_text_all')%><font>&gt;</font></a>
+                </div>
+                <div class="hint country-selected display-none"></div>
+                <div class="sousou-list" id="tag_stats_list">
+                    <%- include('./child/tag_stats_list.ejs') %>
+                </div>
+            </div>
+        </div>
+        <div class="soso-data-right">
+            <div class="module-content mar-l">
+                <div class="collect-box" id="operate_box">
+                    <h2><%=translate('toolbar_name')%><a href="/user/datacenter/home" target="_blank" rel="nofollow"><%=translate('mine_name')%>→</a></h2>
+                    <div class="data-tool data-tool-list">
+                        <a href="javascript:void(0);" onclick="create_tag('0')"><i class="tool-create"></i><font><%=translate('toolbar_create_category')%></font></a>
+                        <a href="javascript:void(0);" id="byq_url"><i class="tool-save"></i><font><%=translate('toolbar_edit_category')%></font></a>
+                    </div>
+                    <ul class="operation-list" id="tool_list"></ul>
+                </div>
+                <div id="bang_line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../global/foot.ejs') %>
+<input type="hidden" id="wMask_js" value="<%= STATIC %>plugins/mask.js">
+<%if(wglobals.user.id){%>
+<script src="<%= STATIC %>js/foundation-datepicker.min.js"></script>
+<%}%>
+<script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/company/search_tags.js?v=<%=VERSION%>"></script>
+<script>
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<% console.log(results.tutorial_list,"shuju") %>
+<% let data_list=results.tutorial_list %>
+
+<% if(data_list.length!=0){ %>
+<% data_list.forEach((item,index)=>{ %>
+    <div class="sbox tab"  data-id="<%= item.id %>">
+        <a href="/new/<%= item.id %>">
+            <img src="https://static.52wmb.com/new_images/new_cover/<%= item.cover %>" alt="">
+            </a>
+        <div class="right">
+            <a href="/new/<%= item.id %>">
+                <h4>
+                    <%= item.title %>
+                </h4>
+            </a>
+            <p><%= item.description %></p>
+            <span><%= item.update_time %>&nbsp;|&nbsp;<%= item.view_count %><%= translate("share_text_view") %></span>
+        </div>
+    </div>
+<% }) %>
+<% }else{ %>
+    <span class="sbox no-data tab" data-id="no-data" style="font-size: .75rem;background-color: #f5f5f5;"><%= translate("class_no_data") %></span>
+    <% } %>

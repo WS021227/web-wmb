@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="data_ie" content="<%=results.data_ie %>">
+<!--    <meta name="countries" content="<%= JSON.stringify(results.countries) %>">-->
+    <meta name="perms" content="<%= results.perms %>">
+    <meta name="page_mark" content="celv">
+    <%if(wglobals.lang == 'cn'){%>
+    <title><%=translate('report_meta_title').replace('[@国家]',results.countries.country_cn)%></title>
+    <%}else{%>
+    <title><%=translate('report_meta_title').replace('[@国家]',ucfirst(results.countries.country))%></title>
+    <%}%>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <%if(wglobals.user.id){%>
+    <link rel="stylesheet" href="<%= STATIC %>stylesheets/jquery.datatables.min.css"/>
+    <link rel="stylesheet" href="<%= STATIC %>stylesheets/dcalendar.picker.css"/>
+    <%}%>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/billsearch/customs_data.css?v=<%=VERSION%>" />
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+    <meta content="<%=results.ct_date%>" data-st="<%=results.search_date%>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<div id="page-content">
+    <input type="hidden" id="ptoken" value="">
+    <div class="seach-Box">
+        <div class="seach-gongsi mgall-l">
+            <%var countries_list=results.countries %>
+            <div class="industry-report" data-import_time="<%=countries_list.import_date %>" data-country="<%=countries_list.country %>">
+                <h2><i class="ensign i-<%=countries_list.country.replace(/\ /g, "-") %>"></i>
+                    <%if(wglobals.lang == 'cn'){%>
+                        <%=translate('report_web_name').replace('[@国家]',countries_list.country_cn)%>
+                        <%}else{%>
+                        <%=translate('report_web_name').replace('[@国家]',countries_list.country)%>
+                    <%}%>
+                </h2>
+                <span class="data-updating" ><%=translate('report_web_data_update')%><%=countries_list.new_date%></span>
+                <span class="data-updating"><%=translate('report_web_data_type')%>：<%=countries_list.str_data_types%></span>
+            </div>
+            <a href="/billsearch" class="change-state"><%=translate('report_web_country_change')%>→</a>
+        </div>
+    </div>
+    <div class="result-box">
+        <div class="sousou-data-left">
+            <div class="sousou-data mgall-l">
+                <div class="sousou-list">
+                    <div class="fast-search-box">
+                        <h2><%=translate('report_search_quick')%><span class="higher-search display-none" id="higher_search"><font>+</font><%=translate('report_search_more')%></span></h2>
+                        <div class="fast-search-con">
+                            <form id="search_from" name="search_from"></form>
+                            <br class="clear-box"/>
+                            <div class="fast-search-btn-box" >
+                                <span class="fast-search-btn" id="search_btn"><%=translate('report_search_now')%></span>
+                                <font class="fast-search-empty" onclick="reload_search()"><i></i><%=translate('share_text_emptying')%></font>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report-box">
+                        <div class="report-tab">
+                            <b class="report-title"><%=translate('report_catelogue')%>：</b>
+                            <span id="report_tab"><a class="tab-active" data-field="trade_data"><%=translate('report_catelogue_data')%></a></span>
+                        </div>
+                        <div class="search-tips"><span>×</span><p></p></div>     
+                        <div id="company_loading"><%=translate('share_text_loading')%><span></span><span></span><span></span></div>
+                        <div class="catalog-property-box" id="catalog_property">
+                            <div class="tab-con tab-trade-data selected">
+                                <h2 class="tab-con-hint">
+                                    <span class="hits"><%= results.trade.hits%></span><%=translate('report_catelogue_transactions')%>
+                                    <span class="export-data display-none" id="download_trade"><i class="export-data-icon"></i><%=translate('share_text_export')%>
+                                    </span>
+                                </h2>
+                                <div class="trade-data-box table-<%=countries_list.country.replace(/\ /g, "-")%>">
+                                    <div id="customs_data_list">
+                                        <%- include('./child_trade_list.ejs') %>
+                                    </div>
+                                    <div id="trade_data_paging" data-total="<%=results.trade.hits%>"  data-per="50"></div>
+                                </div>
+                            </div>
+                            <div class="tab-con tab-market-analysis" id="tab_market_analysis">
+                                <div class="buyer-deal-map veidoo-chart">
+                                    <div id="trade_data_title"></div>
+                                    <div id="trend_chart"></div>
+                                    <p class="trend-box" id="trend_box"></p>
+                                </div>
+                                <table class="marketing-studies-list" border="0" cellspacing="0" cellpadding="0" id="marketing_studies_list"></table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="soso-data-right">
+            <div class="module-content mar-l">
+                <div class="collect-box" id="operate_box">
+                    <h2><%=translate('toolbar_name')%></h2>
+                    <div class="data-tool data-tool-list">
+                        <a href="javascript:void(0)" id="found_industry_tags" onclick="found_industry_tags()"><i class="tool-create"></i><font><%=translate('toolbar_create_labels')%></font></a>
+                        <a href="javascript:void(0)" onclick="search_to_tag()"><i class="tool-save"></i><font><%=translate('toolbar_labels_save')%></font></a>
+                    </div>
+                    <ul class="operation-list" id="tool_list"></ul>
+                </div>
+                <div class="industry-tags-box">
+                    <h2></h2>
+                    <div class="industry-tags" id="industry_tags"></div>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" id="ExcelGen_js" value="<%= STATIC %>plugins/wDownloadExcel.js">
+<input type="hidden" id="JSONToExcelConvertor_js" value="<%= STATIC %>js/JSONToExcelConvertor.js">
+<%- include('../global/foot.ejs') %>
+<%if(wglobals.user.id){%>
+<script src="https://static.52wmb.com/web_components/echarts/echarts.min.js"></script>
+<script src="<%= STATIC %>js/world.js"></script>
+<script src="<%= STATIC %>js/jquery.datatables.min.js"></script>
+<%}%>
+<script  src="<%= STATIC %>js/dcalendar.picker.js?v=2"></script>
+<script  src="<%= STATIC %>javascripts/billsearch/customs_data.js?v=<%=VERSION%>"></script>
+</body>
+</html>

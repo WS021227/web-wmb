@@ -1,0 +1,29 @@
+<div class="higher-search">
+    <div class="header-title"><h2><%=translate('detail_tab_share_advanced')%></h2></div>
+    <div class="power-search-box">
+<!--        <form id="trade_port_search_form" onsubmit="return false">-->
+        <input placeholder="<%=translate('detail_tab_product_tips')%>" class="search-input clear-target datatables-search-text" id="tab_trade_product_search" />
+        <i class="delete-input clear-txt">×</i>
+        <input type="hidden" name="state" value="0">
+        <input type="hidden" name="start_time" value="**">
+<!--        </form>-->
+    </div>
+</div>
+<div class="result-list">
+    <div class="header-title">
+        <h2><%=translate('detail_module_product')%></h2>
+    </div>
+    <div class="trading-list-box">
+        <div class="trading-list-data">
+            <div class="trading-list-number"><%=translate('detail_tab_share_total')%><font class="hits"></font>，<%=translate('detail_tab_share_page')%></div><div id="trade_product_page_len"></div>
+            <br class="clear-box"/>
+        </div>
+<!--        <span class="export tab-export" data-src="content_product" data-fl="产品标签名录"><i></i><%=translate('share_text_export')%></span>-->
+        <span class="export product-export"><i></i><%=translate('share_text_export')%></span>
+    </div>
+    <div>
+        <table border="0" id="content_product" class="datatable-content"></table>
+    </div>
+</div>
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="source" content="fwzc">
+    <meta name="category" content="3">
+    <title>网站通告-邦课堂-外贸邦</title>
+
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/bangClass/tonggao.css?v=<%=VERSION%>">
+</head>
+<body>
+<% var tutorial_list = results.tutorial_list||[], tutorial_hot_list = results.tutorial_hot_list || []; %>
+<% console.log(tutorial_list,"6666666") %>
+<div class="tg-container">
+    <%- include('../layout/header.ejs'); %>
+
+    <div class="tg-content no-sjsm">
+        <ul>
+            <% tutorial_list.forEach((item,index)=>{ %>
+                <a href="/new/<%= item.id %>">
+                    <li data-id="<%= item.id %>" class="index1">
+                        <span><%= item.title %></span>
+                        <p><%= item.description %></p>
+                        <div><span class="name"><%= item.name %></span><span class="date"><%= item.update_time %><%= wglobals.lang=="cn"?" 发布":" publish" %></span></div>
+                    </li>
+                </a>
+            <% }) %>
+            
+        </ul>
+        <span class="tg-content-more"><%= translate('customs_data_dj') %></span>
+    </div>
+    
+</div>
+
+<%- include('../layout/footer.ejs'); %>
+<script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+        <script src="<%= STATIC %>mobile/javascripts/bangClass/sjsm_wenda_tonggao.js?v=<%=VERSION%>"></script>
+</body>
+</html>

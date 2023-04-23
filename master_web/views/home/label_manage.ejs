@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>stylesheets/dcalendar.picker.css">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+    <title><%=translate('mine_tags_managment')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<%var user= wglobals.user %>
+<div class="center-k" id="tag_manager" >
+    <h2><%=translate('mine_tags_managment')%></h2>
+    <div class="center-tag-select">
+        <a href="javascript:void(0)" class="tab active" data-target="#tags_tab" data-pos=".search"><%=translate('mine_tags_filter')%></a>
+        <a href="javascript:void(0)" class="tab" data-target="#tags_tab" data-pos=".detail"><%=translate('mine_tags_company')%></a>
+        <a href="javascript:void(0)" class="tab" data-target="#tags_tab" data-pos=".customs"><%=translate('mine_tags_industry')%></a>
+    </div>
+    <div class="center-k-content" id="tags_tab">
+        <div class="center-k-content-box tab-pane active search" id="search_tags_list">
+            <div class="conter-k-content-title">
+                <span></span>
+                <span onclick="create_tag()">+<%=translate('mine_tags_add')%></span>
+            </div>
+            <ul class="content-search-tags head">
+                <li>
+                    <span><%=translate('mine_tags_name')%></span>
+                    <span><%=translate('mine_tags_screening')%></span>
+                    <span><%=translate('mine_tags_type')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-search-tags body"></ul>
+            <div id="search_tags"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div class="center-k-content-box tab-pane detail" id="product_tags_list">
+            <div class="conter-k-content-title" >
+                <span></span>
+                <span onclick="add_product_tags()">+<%=translate('mine_tags_add')%></span>
+            </div>
+            <ul class="content-company-tags head">
+                <li>
+                    <span><%=translate('mine_tags_name')%></span>
+                    <span><%=translate('mine_tags_affiliated')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-company-tags body">
+                <li>
+                    <span><%=translate('mine_tags_name')%></span>
+                    <span><%=translate('mine_tags_affiliated')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <div id="product_tags_page"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div class="center-k-content-box tab-pane customs" id="trade_tags_list">
+            <div class="conter-k-content-title" >
+                <span></span>
+            </div>
+            <ul class="content-product-tags head">
+                <li>
+                    <span><%=translate('mine_tags_name')%></span>
+                    <span><%=translate('mine_tags_country')%></span>
+                    <span><%=translate('mine_tags_data_type')%></span>
+                    <span><%=translate('mine_tags_data_time')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-product-tags body">
+            </ul>
+            <div id="trade_tags_page"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+    </div>
+<!--    <div class="center-tab-company-more"><a href="javascript:void(0)">加载更多标签</a></div>-->
+</div>
+
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/label_manage.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>js/dcalendar.picker.js?v=<%=VERSION%>"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/mall.css?v=<%=VERSION%>">
+    <title>邦商城-外贸邦</title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<div class="channel-title">
+    <div class="channel-name">
+        <h1>邦商城</h1>
+        <p>为邦友精心挑选性价比高、用户体验好的第三方外贸产品。</p>
+    </div>
+    <div class="mall-list">
+        <ul>
+            <li>
+                <i class="js-ico"></i>
+                <h2>Jungle Scount亚马逊选品工具</h2> 
+                <p>获取亚马逊终端竞品价格、销量，成就数百万的跨境热销爆款！</p>
+                <% console.log(wglobals.user,"用户数据") %>
+                <% if(!verify_vip_level(wglobals.user.vip_level, 'bd', wglobals.user.experience)){ %>
+                    <span>￥<font>1399</font>元起/年</span>
+                <% }else{ %>
+                    <span>￥<font>1249</font>元起/年</span>
+                <% } %>
+                <a href="/amazon" target="_blank">申请免费体验</a>
+                <u style="background-image: linear-gradient(to right, #E928DE, #FFA71A);">免费体验</u>
+             </li>
+            <li>
+               <i class="changtingka-ico"></i>
+               <h2>邦阅大课堂课程畅听卡</h2> 
+               <p>持卡者，所有已上线课程有效期内无限制观看，已上线87个，月上新2个。免费参加直播课。</p>
+               <span>￥<font>99</font>元/6个月</span>
+               <a href="/yuekt" target="_blank">查看详情</a>
+            </li>
+            <li>
+                <i class="shemei-ico"></i>
+                <h2>社媒邮箱采集软件</h2> 
+                <p>一键深挖公司关键人邮箱、职位及社交账号。外贸客户开发过程中，开发效率提升不止10倍。</p>
+                <span>￥<font>999</font>元起/年</span>
+                <a href="/social-media" target="_blank">查看详情</a>
+                <u>钻石服务</u>
+             </li>
+             <li>
+                <i class="sanjianke-ico"></i>
+                <h2>外贸客户开发三剑客</h2> 
+                <p>我们郑重向您推荐：优秀的外贸客户开发整体解决方案，帮您找到真实的成交客户。</p>
+                <span>￥<font>6686</font>元起/年</span>
+                <a href="/san-jian-ke" target="_blank">查看详情</a>
+             </li>
+             <li>
+                <i class="bem-ico"></i>
+                <h2>BEM邮件群发软件</h2> 
+                <p>群发到达率到达率高达90%，无限量邮件群发！代发平台，独立设置收发件人邮箱。</p>
+                <span>￥<font>1288</font>元起/年</span>
+                <a href="/benchmark" target="_blank">查看详情</a>
+                <u>钻石服务</u>
+             </li>
+            <li>
+                <font>——敬请期待——</font>
+            </li>
+            <br class="clear"/>
+        </ul>
+    </div>
+</div>
+
+<%- include('../global/foot.ejs') %>
+</body>
+</html>

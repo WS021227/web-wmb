@@ -1,0 +1,11 @@
+<% var nav_active = results.solution?results.solution:'';console.log(nav_active,'nav_active')%>
+<div class="solution-nav">
+    <h1><%=translate('solutions_name')%></h1>
+    <ul>
+        <li class="<%=nav_active=='companies'?"active":"" %>"><a href="/companies"><font>●</font><%=translate('solutions_company')%></a></li>
+        <li class="<%=nav_active=='industry'?"active":"" %>"><a href="/industry"><font>●</font><%=translate('solutions_industry')%></a></li>
+        <li class="<%=nav_active=='tradedata'?"active":"" %>"><a href="/tradedata"><font>●</font><%=translate('solutions_data')%></a></li>
+        <li class="<%=nav_active=='usergroups'?"active":"" %>"><a href="/usergroups"><font>●</font><%=translate('solutions_usergroups')%></a></li>
+        <li class="<%=nav_active=='sucess'?"active":"" %>"><a href="/sucess"><font>●</font><%=translate('solutions_success')%></a></li>
+    </ul>
+</div>

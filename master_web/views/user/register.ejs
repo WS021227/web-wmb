@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="no_full_pop" content="yes">
+    <meta name="static_url" content="<%= STATIC %>">
+    <title><%=translate('register_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/user/account.css?v=<%=VERSION%>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+</head>
+<body>
+
+<div class="user-info-k">
+    <div class="web-title">
+        <div class="web-logo">
+            <a href="/"><img src="https://static.52wmb.com/wmb_img/wmblogo.png"/></a>
+            <span><%=translate('register_welcome')%></span>
+        </div>
+        <div class="web-text"><%=translate('login_enter_help')%></div>
+        <br class="clear"/>
+    </div>
+    <div class="user-c">
+        <div class="user-c-left" >
+            <% if(wglobals.lang=='cn'){ %>
+            <div id="tel_sign" class="bind-box">
+                <h2>手机号注册<a onclick="tab_bind(this)">邮箱注册 →</a></h2>
+                <ul>
+                    <li>
+                        <fieldset>
+                            <i class="ico-phone"></i>
+                            <input type="text" name="user_name" placeholder="请输手机号" id="phone">
+                        </fieldset>
+                    </li>
+
+
+                    <li style="display:none">
+                        <fieldset>
+                            <i class="ico-yzm"></i>
+                            <input type="text" name="picture_code" value="*" placeholder="请输入右侧图片验证码..." id="phone_picture_code">
+                            <img src="" onclick="change_code(this)" id="phone_img_picture_code">
+                        </fieldset>
+                    </li>
+
+                    <li>
+                        <fieldset>
+                            <i class="ico-yzm"></i>
+                            <input type="text" name="user_name" placeholder="请输入验证码..." id="phone_code">
+                            <a href="javascript:void(0)" class="get-code" onclick="get_phone_code(this)">获取验证码</a>
+                        </fieldset>
+                    </li>
+                    
+                    <li>
+                        <fieldset>
+                            <i class="ico-password"></i>
+                            <input type="password" name="user_name" placeholder="请输入密码" autocomplete="off" id="phone_pwd">
+                            <span class="ico-see"></span>
+                        </fieldset>
+                    </li>
+                </ul>
+                <div class="sumbit ext"><a href="javascript:void(0)"  onclick="register_phone()"><%=translate('register_enter_text')%></a></div>
+            </div>
+            <%}%>
+
+            <div id="email_sign" class="bind-box <%= wglobals.lang == 'en'?'':'display-none'%>">
+                <h2><%=translate('register_email')%><%if(wglobals.lang == 'cn'){%><a onclick="tab_bind(this)">手机号注册 →</a><%}%></h2>
+                <ul >
+                    <li>
+                        <fieldset>
+                            <i class="ico-phone"></i>
+                            <input type="text" name="user_name" placeholder="<%=translate('register_account_text')%>" id="email">
+                        </fieldset>
+                    </li>
+                    <li style="display:none;">
+                        <fieldset>
+                            <i class="ico-pic"></i>
+                            <input type="text" name="picture_code" value="*" placeholder="<%=translate('register_pic_code')%>" id="email_picture_code">
+                            <img src="" onclick="change_code(this)" id="email_img_picture_code">
+                        </fieldset>
+                    </li>
+                    <li>
+                        <fieldset>
+                            <i class="ico-yzm"></i>
+                            <input type="text" name="user_name" placeholder="<%=translate('register_code_text')%>" id="email_code">
+                            <span class="get-code" onclick="get_email_code(this)"><%=translate('register_code_get_text')%></span>
+                        </fieldset>
+                    </li>
+                    <li>
+                        <fieldset>
+                            <i class="ico-password"></i>
+                            <input type="password" name="user_name" placeholder="<%=translate('register_pw_set')%>" autocomplete="off" id="email_pwd">
+                            <span class="ico-see"></span>
+                        </fieldset>
+                    </li>
+                </ul>
+                <div class="sumbit ext"><a href="javascript:void(0)"  onclick="register_email()"><%=translate('register_enter_text')%></a></div>
+            </div>
+            <font class="xieyi"><%-translate('register_law_text')-%></font>
+            <%if(wglobals.lang == 'cn'){%>
+            <div style="text-align:center;">
+              <a href="javascript:void(0)" onclick="qq_login()" class="qq-link"><i><svg t="1649936876555" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5786" width="20" height="20"><path d="M514.9184 507.8528m-450.816 0a450.816 450.816 0 1 0 901.632 0 450.816 450.816 0 1 0-901.632 0Z" fill="#59ADF8" p-id="5787"></path><path d="M330.3424 712.6528l-44.9024-81.92c-10.0864 12.1856-19.456 24.8832-30.3104 36.1984-14.8992 15.4624-24.576 12.288-30.5664-8.6016-10.5472-36.7104-2.2528-71.168 15.0016-103.3728 11.7248-21.8112 26.112-42.4448 41.216-62.1056 7.3728-9.6256 10.9568-18.0736 10.4448-30.3104-1.024-23.9104 0.1536-47.5648 20.0704-65.8944 3.9424-3.584 3.4816-12.5952 3.9936-19.1488 4.1984-55.9104 19.0464-108.1344 62.208-146.6368 57.088-50.944 123.9552-66.5088 197.8368-44.7488 72.0896 21.248 116.1216 69.888 134.0928 142.5408 1.7408 7.1168 2.7136 14.4896 4.0448 21.7088 3.9424 21.5552 3.2768 43.0592 18.3808 63.1296 9.472 12.5952 5.9904 34.6624 9.3696 52.3264 1.536 8.2432 3.584 17.5616 8.6016 23.7568 27.3408 33.28 51.3536 68.608 58.4704 111.6672 3.2256 19.456 0.768 40.448-2.4576 60.16-2.9184 17.7664-14.592 20.224-27.648 6.8608-11.3152-11.6224-21.0944-24.7808-31.5904-37.376-15.0528 27.4432-29.952 54.5792-45.0048 81.9712 9.1136 6.5536 19.4048 12.5952 28.1088 20.48 30.9248 27.904 23.9616 71.0656-15.5136 83.6096-64 20.3776-125.8496 16.4864-182.9376-24.2176-7.0656-5.0176-24.1664-4.1984-31.7952 1.024-59.3408 40.6016-122.7776 44.4416-187.904 20.6848-32.9728-12.032-37.7856-53.1456-11.8272-78.6432 8.8576-8.7552 19.8144-15.104 30.6176-23.1424z" fill="#FFFFFF" p-id="5788"></path></svg></i>使用QQ登陆</a>
+              <a href="javascript:void(0)" onclick="sina_login()" class="qq-link"><i><svg t="1649936969459" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6637" width="20" height="20"><path d="M480.8 457.76a271.04 271.04 0 0 0-37.28 2.72c-96 13.44-166.72 75.04-157.92 137.44s93.6 101.92 189.6 88.48 166.72-75.04 157.92-137.44c-7.68-54.08-73.12-91.04-152.32-91.2z m-23.36 211.52a122.08 122.08 0 0 1-24 2.4c-48 0-88-27.52-96-68.32-9.28-48 29.44-95.2 86.56-106.24s110.88 18.4 120 66.08-29.44 95.04-86.56 106.08z" fill="#F56467" p-id="6638"></path><path d="M512 73.28A438.72 438.72 0 1 0 950.72 512 438.72 438.72 0 0 0 512 73.28z m-43.84 666.88c-150.24 0-272-78.56-272-176S378.56 314.72 448 314.72c29.28 0 86.56 21.76 46.4 90.88a246.24 246.24 0 0 0 34.08-10.08c32-9.12 76.96-18.24 107.68 0 51.04 29.6 0 77.12 0 82.4s102.4 5.28 102.4 87.2c0.32 96.48-120.16 175.04-270.4 175.04z m213.76-358.88a56 56 0 0 0-47.2-16 16.96 16.96 0 0 1-17.28-14.4 12.16 12.16 0 0 0 0 2.4v-4.8a12.16 12.16 0 0 0 0 2.4 20.48 20.48 0 0 1 17.28-17.28 77.28 77.28 0 0 1 68.32 18.56c32 28.48 18.72 75.68 18.72 75.68a21.28 21.28 0 0 1-20.48 17.28h-1.76a12.48 12.48 0 0 1-12.8-16.8 49.44 49.44 0 0 0-4.8-47.04z m120.16 60.64a29.6 29.6 0 0 1-26.08 25.92 22.08 22.08 0 0 1-19.68-25.92A139.2 139.2 0 0 0 736 336c-34.88-50.08-109.92-41.28-109.92-41.28A26.24 26.24 0 0 1 599.84 272v2.88-5.6 2.72a26.56 26.56 0 0 1 26.24-23.52 188.32 188.32 0 0 1 136.16 47.04c58.08 55.04 39.84 146.4 39.84 146.4z" fill="#F56467" p-id="6639"></path><path d="M459.36 547.04a17.6 17.6 0 1 0 17.6 17.6 17.6 17.6 0 0 0-17.6-17.6zM415.04 570.24a43.52 43.52 0 0 0-18.4 4.32 32 32 0 0 0-20.64 38.56 32 32 0 0 0 42.88 9.12 32 32 0 0 0 20.64-38.72 25.76 25.76 0 0 0-24.48-13.28z" fill="#F56467" p-id="6640"></path></svg></i>使用新浪登陆</a>
+            </div>
+            <%}%>
+        </div>
+        <%if(wglobals.lang == 'cn'){%>
+        <div class="user-c-right">
+            <div>
+                <h2>微信快速注册</h2>
+                <div id="wxpqrcode"></div>
+                <p>微信扫码关注外贸邦服务号<br/>快速注册“外贸邦网”</p>
+            </div>
+        </div>
+        <%}%>
+        <br class="clear"/>
+        <div class="user-bottom"><a href="/login" onclick="return login_or_register(this)"><%-translate('register_login_text')-%></a></div>
+    </div>
+</div>
+
+<input type="hidden" value="" id="domain_name">
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/user/account.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>plugins/mask.js"></script>
+<script src="https://static.52wmb.com/wmb_js/jquery.qrcode.min.js" type="text/javascript"></script>
+</body>
+</html>

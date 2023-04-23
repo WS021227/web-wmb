@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="is_third" content="0">
+    <meta name="no_full_pop" content="yes">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/user/account.css?v=<%=VERSION%>">
+    <meta name="static_url" content="<%= STATIC %>">
+    <title>会员账号绑定 - 外贸邦</title>
+</head>
+
+<div class="user-info-k">
+    <div class="web-title">
+        <div class="web-logo">
+            <a href="/"><img src="https://static.52wmb.com/wmb_img/wmblogo.png"/></a>
+            <span>账号绑定</span>
+        </div>
+        <div class="web-text">如遇任何问题，请拨打：021-64033826</div>
+        <br class="clear"/>
+    </div>
+    <div class="user-c" style="padding-bottom:80px;">
+        <div class="user-c-left" style="border-right:none;padding-left:175px;">
+            <div id="tel_sign" class="bind-box">
+                <h2>第三方注册/登陆，需绑定账号<a href="javascript:void(0)" onclick="tab_bind(this)">邮箱绑定 →</a></h2>
+                <ul >
+                    <li>
+                        <fieldset>
+                            <i class="ico-phone"></i>
+                            <input type="text" name="user_name" placeholder="请输手机号" id="phone">
+                        </fieldset>
+                    </li>
+                    <li style="display: none">
+                        <fieldset>
+                            <i class="ico-yzm"></i>
+                            <input type="text" name="picture_code" value="*" placeholder="请输入右侧图片验证码..." id="phone_picture_code">
+                            <img src="" onclick="change_code(this)" id="phone_img_picture_code">
+                        </fieldset>
+                    </li>
+                    <li>
+                        <fieldset>
+                            <i class="ico-yzm"></i>
+                            <input type="text" name="user_name" placeholder="请输入验证码..." id="phone_code">
+                            <a href="javascript:void(0)" class="get-code" onclick="get_phone_code(this)">获取验证码</a>
+                        </fieldset>
+                    </li>
+                    <div class="sumbit"><a href="javascript:void(0)" onclick="bind_phone(this)">立即绑定</a></div><br/>
+                    <!--a onclick="sign_out()" href="javascript:void(0)" style="display:block;text-align:center;color:#666;font-size:12.4px;margin-top:15px;margin-bottom:-10px;">退出第三方登录绑定</a-->
+                </ul>
+            </div>
+            <div id="email_sign" class="bind-box display-none">
+                <h2>第三方注册/登陆，需绑定账号<a href="javascript:void(0)" onclick="tab_bind(this)">绑定手机号 →</a></h2>
+                <ul >
+                    <li>
+                        <fieldset>
+                            <i class="ico-phone"></i>
+                            <input type="text" name="user_name" placeholder="请输邮箱" id="email">
+                        </fieldset>
+                    </li>
+                    <li style="display:none;">
+                        <fieldset>
+                            <i class="ico-pic"></i>
+                            <input type="text" name="picture_code" value="*" placeholder="请输入右侧图片验证码..." id="email_picture_code">
+                            <img src="" onclick="change_code(this)" id="email_img_picture_code">
+                        </fieldset>
+                    </li>
+                    <li>
+                        <fieldset>
+                            <i class="ico-yzm"></i>
+                            <input type="text" name="user_name" placeholder="请输入验证码..." id="email_code">
+                            <span class="get-code" onclick="get_email_code(this)">获取验证码</span>
+                        </fieldset>
+                    </li>
+                    <div class="sumbit"><a href="javascript:void(0)" onclick="bind_email(this)">立即绑定</a></div><br/>
+                    <!--a onclick="sign_out()" href="javascript:void(0)" style="display:block;text-align:center;color:#666;font-size:12.4px;margin-top:15px;margin-bottom:-10px;">退出第三方登录绑定</a-->
+                </ul>
+            </div>
+            <font class="xieyi">点击绑定按钮，即表示愿意并遵守<a href="/help/user_agreement" target="_blank">《用户协议》</a>相关内容。</font>
+        </div>
+        <div class="user-c-left" id="email_sign">
+
+        </div>
+        <br class="clear"/>
+    </div>
+</div>
+<%- include('../global/foot_script.ejs') %>
+<script type="text/javascript">
+    let redirectUrl = queryString('redirectUrl'),
+    redirect =  redirectUrl !== "" ? decodeURIComponent(redirectUrl) : "/"
+
+
+
+    var email_InterValObj,phone_InterValObj;
+    var email_count = 60, phone_count = 60; //间隔函数，1秒执行
+    var email_curCount, phone_curCount; //当前剩余秒数
+
+    let lading_gif = '<%= STATIC %>images/loading.gif'
+    $(function(){
+        $('#phone-register').bind('submit', function(e){
+            ajaxSubmit(this, function(data){
+                if(data.state === 0) {
+                    window.location.href = redirect
+                }else {
+                    $("#J-message").children('p').html(data.message)
+                }
+            },check_register_data);
+            e.preventDefault();
+        });
+        $('#email-register').bind('submit', function(e){
+            ajaxSubmit(this, function(data){
+                if(data.state === 0) {
+                    window.location.href = redirect
+                }else {
+                    $("#J-message").children('p').html(data.message)
+                }
+            },check_register_data);
+            e.preventDefault();
+        });
+    });
+
+
+    /*获取手机验证码*/
+    function get_phone_code(elem) {
+        let phone = $('#phone').val(), phone_pattern = /^1[0-9]{10}$/;
+        if(!phone) return $.alert('请输入手机号')
+        if(!phone_pattern.test(phone)) return $.alert('手机号格式不正确')
+
+        var picture_code = $('#phone_picture_code').val()
+        if(!picture_code && picture_code != '*'){
+            return $.alert('请输入图片验证码')
+        }
+        let $this = $(elem)
+
+        let data = {
+            phone: phone,
+            picture_code: picture_code
+        }
+        $.ajax('/async/account/third-bind-phone/verify-code', {
+            datatype: 'text/json',
+            type: 'post',
+            data: data,
+            success: function (result) {
+                if(result.state == 0) {
+                    $this.removeAttr('onclick')
+                    let sd = 60, timer = window.setInterval(function () {
+                        sd--;
+                        if (sd == 0) {
+                            $this.html('重新获取验证码').attr('onclick', 'get_phone_code(this)')
+                            window.clearInterval(timer)
+                        } else {
+                            $this.html(sd + '秒后获取验证码')
+                        }
+                    }, 1000)
+                    return
+                }
+                if(result.state == 2000){
+                    $('#phone_picture_code').val('')
+                    if(!$('#phone_img_picture_code').data('show')) {
+                        change_code('#phone_img_picture_code')
+                    }
+                    return;
+                }
+                $.alert(result.message)
+            }
+        })
+    }
+
+    /**
+     * 提交绑定手机
+     */
+    function bind_phone() {
+        let phone = $("#phone").val()
+        if(!phone) return $.alert('请输入手机号')
+        let code =  $("#phone_code").val()
+        if(!code) return $.alert('请输入手机验证码')
+        $.ajax('/async/account/third-bind/phone', {
+            datatype: 'text/json',
+            type: 'post',
+            data: {code: $("#phone_code").val(), phone: $("#phone").val()},
+            success: function (result) {
+                if (result.state == 0) {
+                    $.alert('绑定成功，请稍后...')
+                    $.wSetCookie('third', '', 0, function () {
+                        window.location.href = '/'
+                    })
+                    return false
+                }
+                let msg = result.message, keys = result.error?Object.keys(result.error):[]
+                if(keys.length > 0) {
+                    msg += ', errors:[ '
+                    $.each(result.error, function (key, value) {
+                        msg += (key +':' + value)
+                    })
+                    msg += ']'
+                }
+                $.alert(msg)
+
+            }
+        })
+    }
+
+    /*获取邮箱验证码*/
+    function get_email_code(elem) {
+        let email = $('#email').val(), email_pattern = /\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14}/;
+        if (!email) return $.alert('请输入邮箱地址')
+        if (!email_pattern.test(email)) return $.alert('邮箱地址格式不正确')
+
+        var picture_code = $('#email_picture_code').val()
+        if(!picture_code && picture_code != '*'){
+            return $.alert('请输入图片验证码')
+        }
+        let $this = $(elem)
+        $.ajax('/async/account/third-bind-email/verify-code', {
+            datatype: 'text/json',
+            type: 'post',
+            data: {email: email, picture_code: picture_code},
+            success: function (result) {
+                if(result.state == 0) {
+                    $this.removeAttr('onclick')
+                    let sd = 60, timer = window.setInterval(function () {
+                        sd--;
+                        if (sd == 0) {
+                            $this.html('重新获取验证码').attr('onclick', 'get_email_code(this)')
+                            window.clearInterval(timer)
+                        } else {
+                            $this.html(sd + '秒后获取验证码')
+                        }
+                    }, 1000)
+                    return
+                }
+                if(result.state == 2000){
+                    $('#email_picture_code').val('')
+                    if(!$('#email_img_picture_code').data('show')) {
+                        change_code('#email_img_picture_code')
+                    }
+                    return;
+                }
+                $.alert(result.message)
+            }
+        })
+    }
+    /**
+     * 提交绑定邮箱
+     */
+    function bind_email(elem) {
+        $.ajax('/async/account/third-bind/email', {
+            datatype: 'text/json',
+            type: 'post',
+            data: {code: $("#email_code").val(), email: $("#email").val()},
+            success: function (result) {
+                $(elem).html('保存').attr('onclick', 'bind_email(this)')
+                if (result.state == 0) {
+                    $.alert('绑定成功，请稍后...')
+                    $.wSetCookie('third', '', 0, function () {
+                        window.location.href = '/'
+                    })
+                    return false
+                }
+                let msg = result.message, keys = result.error?Object.keys(result.error):[]
+                if(keys.length > 0) {
+                    msg += ', errors:[ '
+                    $.each(result.error, function (key, value) {
+                        msg += (key +':' + value)
+                    })
+                    msg += ']'
+                }
+                $.alert(msg)
+            }, error: function (e) {
+                $.alert('绑定失败')
+                $(elem).html('保存').attr('onclick', 'bind_email(this)')
+            }
+        })
+    }
+
+
+    // function third_sign()
+
+    /*邮箱注册按钮切换*/
+    function tab_bind(elem) {
+        $(elem).parents('.bind-box').addClass('display-none').siblings('.bind-box').removeClass('display-none')
+    }
+
+    function sign_out() {
+        $.wSetCookie('third', '', 0, function (){
+            window.location.href = '/'
+        })
+    }
+    function change_code(elem) {
+        $(elem).addClass('picture-code').attr('src', lading_gif).data('show', 1).parents('li').show()
+        $.ajax('/async/picture-code', {
+            datatype: 'text/json',
+            type: 'get',
+            data: {'width': 100, 'height': 33},
+            success: function (result) {
+                if (result.state == 1) {
+                    var data = result.data.base64
+                    $(elem).attr('src', "data:image/png;base64," + data).removeClass('picture-code')
+                }
+            }
+        })
+    }
+    //将form转为AJAX提交
+    function ajaxSubmit(frm, fn,check_balback) {
+        var dataPara = getFormJson(frm);
+        var is_submit = check_balback != null ? check_balback(dataPara) : true
+        if (!is_submit) return
+        $.ajax({
+            url: frm.action,
+            type: frm.method,
+            data: dataPara,
+            success: fn
+        });
+    }
+    //将form中的值转换为键值对。
+    function getFormJson(frm) {
+        var o = {};
+        var a = $(frm).serializeArray();
+        $.each(a, function () {
+            if (o[this.name] !== undefined) {
+                if (!o[this.name].push) {
+                    o[this.name] = [o[this.name]];
+                }
+                o[this.name].push(this.value || '');
+            } else {
+                o[this.name] = this.value || '';
+            }
+        });
+
+        return o;
+    }
+    function check_register_data(formjson) {
+        if (formjson.register_phone != null && formjson.register_phone == '') {
+            $("#J-message").children('p').html('手机号不能空')
+            return false
+        }
+        if (formjson.register_email != null && formjson.register_email == '') {
+            $("#J-message").children('p').html('邮箱不能空')
+            return false
+        }
+        if (formjson.register_yzm != null && formjson.register_yzm == '') {
+            $("#J-message").children('p').html('请输入验证码')
+            return false
+        }
+        if (formjson.register_contact != null && formjson.register_contact == '') {
+            $("#J-message").children('p').html('请输入昵称')
+            return false
+        }
+        return true
+    }
+</script>
+</body>
+</html>

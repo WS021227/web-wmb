@@ -1,0 +1,100 @@
+.line-system-message {
+    display: block;
+}
+
+.line-system-message .title {
+    font-size: 16.4px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.line-system-message .system-message-content {
+    display: block;
+}
+
+.system-message-item {
+    display: block;
+    padding: 20px 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+.system-message-item .position {
+    position: relative;
+    padding-left: 70px;
+    min-height: 60px;
+}
+
+.system-message-item .position.flex {
+    display: flex;
+    align-items: center;
+}
+
+
+.system-message-item .position .icon,
+.system-message-item .position .head {
+    width:50px;
+    height:50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #f7f7f7;
+    border-radius:100px;
+}
+
+.system-message-item .position .name {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 7px;
+}
+
+.system-message-item .position .time {
+    font-size: 12px;
+    color: #999;
+    margin-bottom: 7px;
+}
+
+.system-message-item .position .detail {
+    font-size: 15.4px;
+    color: #333;
+    margin-bottom: 7px;
+    line-height:150%;
+}
+
+.system-message-item .position .from {
+    color: #666;
+    font-size: 13.4px;
+}
+.system-message-item .position .detail .from{color:#06c;}
+
+.system-message-item .position .check-status {
+    display: block;
+    padding: 15px 15px;
+    background-color: #fafafa;
+    border-radius:5px;
+    margin-top:8px;
+}
+
+.system-message-item .position .check-status .status-str {
+    font-size: 13.4px;
+    color: #f30;
+    margin-bottom:4px;
+}
+
+.system-message-item .position .check-status .status-str.success {
+    color:#5cb85c;
+}
+
+.system-message-item .position .check-status .status-reason {
+    font-size: 13.4px;
+    color: #666;
+}
+
+.system-message-item .position .reply-from,
+.system-message-item .position .reply-from a {
+    font-size: 14px;
+    color: #666;
+}

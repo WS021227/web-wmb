@@ -1,0 +1,312 @@
+<% let phone=results.phone,email=results.email,show_flag=results.show_flag %>
+<!-- 未填写过表单 -->
+<% if(show_flag==0){ %>
+    <%if(wglobals.lang=='cn'){%>
+        <div class="jungle_scout_experience_box">
+            <h2>Jungle Scount 插件+网页版免费试用表单填写</h2>
+            <span>申请开通后您可以免费体验插件和网页版3天，以开通时间为准。</span>
+
+            <form id="js_experience_upload" method="post" action="/async/common/js/trial" class="js_experience_upload" target="targetIfr">
+
+                <label for="">公司(个人)类型</label>
+                <select id="company_type" name="company_type" required oninput="this.setCustomValidity('')">
+                    <option style="display:none;" value="0">请选择</option>
+                    <option disabled></option>
+                    <option value="1">贸易公司</option>
+                    <option disabled></option>
+                    <option value="2">工贸一体</option>
+                    <option disabled></option>
+                    <option value="3">工厂</option>
+                    <option disabled></option>
+                    <option value="4">个人soho</option>
+                    <option disabled></option>
+                </select>
+
+                <label for="">跨境电商现状</label>
+                <select id="Cross_border_type" name="ds_status" required oninput="this.setCustomValidity('')">
+                    <option style="display: none;" value="0">请选择</option>
+                    <option disabled></option>
+                    <option value="1">已做跨境电商</option>
+                    <option disabled></option>
+                    <option value="2">有做跨境电商的意愿</option>
+                    <option disabled></option>
+                </select>
+
+                <label for="">主营产品</label>
+                <input id="products_type" name="products" type="text" class="no-margin" placeholder="请输入产品关键词..." required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+                <span class="margin-10 margin-20 text">多个产品请用"|"分割...</span>
+
+                <label for="">您的姓名、昵称</label>
+                <input id="name_type" name="name" type="text" placeholder="姓名或是昵称" required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+
+                <label for="">邮箱账号</label>
+                <% console.log(email,phone) %>
+                <input id="email_type" name="email" type="email" class="no-margin <%= email!=""?'disabled':''%>" placeholder="<%= email!=""?email:"请输入您的邮箱号" %>" <%= email!=""?'disabled':"" %>  required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+
+                <% if(email==""){ %>
+                    <a href="javascript:void(0);" id="get_email">获取邮箱验证码</a>
+                    <input id="email_type_captcha" name="email_code" class="no-margin" type="text" placeholder="填写邮箱验证码"  required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+                <% } %>
+                <span class="margin-10 margin-20 text">用于体验账号开通使用..</span>
+
+                <% if(wglobals.lang=='cn'){ %>
+                    <label for="" style="margin-top:10px;">您的手机号</label>
+                    <input id="phone_type" name="phone" pattern="^1(3|4|5|6|7|8|9)\d{9}$" type="tel" class="no-margin <%= phone!=""?'disabled':''%>"  placeholder="<%= phone!=""?phone:"请输入您的手机号" %>" <%= phone!=""?'disabled':"" %> required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+                    <% if(phone==""){ %>
+                        <a href="javascript:void(0);" id="get_phone">获取手机验证码</a>
+                        <input id="phone_type_captcha" name="phone_code" class="no-margin" type="text" placeholder="手机验证码" required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+                        <span class="margin-10 margin-20 text">用于接收开通短信使用...</span>
+                    <% } %>
+                <% } %>
+
+                <input type="submit" class="button" value="提交申请" onclick="setMyText()">
+
+            </form>
+            <iframe name="targetIfr" id="targetIfr" style="display:none"></iframe> 
+        </div>
+    <%}else{%>
+        <div class="jungle_scout_experience_box">
+            <h2>Free Trial Form of Jungle Scount Plugin + Web</h2>
+            <span style="font-size:13.4px;">After activating, you can experience the plug-in and web version 3 days for free.</span>
+            <form id="js_experience_upload" method="post" action="/async/common/js/trial" class="js_experience_upload" target="targetIfr" autocomplete='off'>
+                <label for="">Company (personal) type</label>
+                <select id="company_type" name="company_type" required oninput="this.setCustomValidity('')">
+                    <option style="display: none;" value="0">please choose...</option>
+                    <option disabled></option>
+                    <option value="1">Trading company</option>
+                    <option disabled></option>
+                    <option value="2">Industry and trade integration</option>
+                    <option disabled></option>
+                    <option value="3">Factory</option>
+                    <option disabled></option>
+                    <option value="4">SOHO</option>
+                    <option disabled></option>
+                </select>
+
+                <label for="">Cross border e-commerce intention</label>
+                <select id="Cross_border_type" name="ds_status" required oninput="this.setCustomValidity('')">
+                    <option style="display: none;" value="0">please choose...</option>
+                    <option disabled></option>
+                    <option value="1">Already engaged in cross-border e-commerce</option>
+                    <option disabled></option>
+                    <option value="2">Interested in doing cross-border e-commerce</option>
+                    <option disabled></option>
+                </select>
+
+                <!-- 社媒邮箱账号 -->
+                <label for="">Social media email account</label>
+                <select id="Social_media" name="fb" style="width:30%;float:left;">
+                    <option disabled></option>
+                    <option value="Whatsapp">Whatsapp</option>
+                    <option disabled></option>
+                    <option value="Facebook">Facebook Name</option>
+                    <option disabled></option>
+                </select>
+                <input style="float:right;width:68%;padding:11.5px 0;padding-left:5px;" id="Social_media_text" name="fb_value" type="text" class="no-margin" oninput="this.setCustomValidity('')" placeholder="Please enter a social media account" autoComplete ='off'/>
+
+                <label for="" style="clear:both;">Main Products</label>
+                <input id="products_type" name="products" type="text" class="no-margin" placeholder="Please input product keywords" required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+                <span class="margin-10 margin-20 text">Please use '|' to separate multiple products...</span>
+
+                <label for="">Your name or nickname</label>
+                <input id="name_type" name="name" type="text" placeholder="Please input name or nickname" required oninput="this.setCustomValidity('')"  autoComplete ='off'/>
+
+                <label for="">Email account</label>
+                <% console.log(email,phone) %>
+                <input id="email_type" name="email" type="email" class="no-margin <%= email!=""?'disabled':''%>" placeholder="<%= email!=""?email:"Please enter your Email" %>" <%= email!=""?'disabled':"" %>  required oninput="this.setCustomValidity('')"  autoComplete ='off'/>
+                <% if(email==""){ %>
+                    <a href="javascript:void(0);" id="get_email">Obtain the verification code</a>
+                    <input id="email_type_captcha" name="email_code" class="no-margin" type="text"  placeholder="Please input email verification code"  required oninput="this.setCustomValidity('')"  autoComplete ='off'/>
+                <% } %>
+                <span class="margin-10 margin-20 text">Used to experience and get the notification...</span>
+                <input type="submit" class="button" value="Submit now" onclick="setMyText()">
+            </form>
+            <iframe name="targetIfr" id="targetIfr" style="display:none"></iframe> 
+        </div>
+    <%}%>
+<% }else{ %>
+    <% if(wglobals.lang=="cn"){ %>
+        <div class="js-ytj">
+            <i><svg t="1681969092562" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" width="50" height="50"><path d="M513.550821 60.225663c-248.290923 0-449.579345 201.299679-449.579345 449.625394 0 248.296039 201.288422 449.594695 449.579345 449.594695 248.285806 0 449.640744-201.299679 449.640744-449.594695C963.192587 261.525342 761.836627 60.225663 513.550821 60.225663zM513.671571 917.673369c-225.166249 0-407.696446-182.53736-407.696446-407.706679S288.505321 102.254895 513.671571 102.254895c225.173412 0 407.703609 182.541453 407.703609 407.710772S738.844983 917.673369 513.671571 917.673369z" fill="#040000" p-id="1882"></path><path d="M366.566188 453.597869c0 7.726985-9.203616 13.995759-20.559245 13.995759l0 0c-11.347442 0-20.551058-6.268774-20.551058-13.995759L325.455885 336.364841c0-7.726985 9.203616-13.995759 20.551058-13.995759l0 0c11.355629 0 20.559245 6.268774 20.559245 13.995759L366.566188 453.597869z" fill="#040000" p-id="1883"></path><path d="M701.708178 453.597869c0 7.726985-9.203616 13.995759-20.560268 13.995759l0 0c-11.346419 0-20.550035-6.268774-20.550035-13.995759L660.597875 336.364841c0-7.726985 9.203616-13.995759 20.550035-13.995759l0 0c11.356652 0 20.560268 6.268774 20.560268 13.995759L701.708178 453.597869z" fill="#040000" p-id="1884"></path><path d="M194.375477 516.844332c5.372358 171.733293 146.171104 309.314765 319.206042 309.314765 173.028798 0 313.831638-137.580448 319.203996-309.314765L194.375477 516.844332zM513.58152 791.890618c-149.042501 0-274.939863-123.655298-274.939863-240.83716l549.877679 0C774.690376 669.841911 662.617881 791.890618 513.58152 791.890618z" fill="#040000" p-id="1885"></path></svg></i>
+            <h2>恭喜！你已成功提交申请!</h2>
+            <span>我们将在24小时之内为您开通试用权限，请留意开通邮件。</span>
+            <span class="last">(如已开通，请忽视此条提示)</span>
+        </div>
+    <% }else{ %>
+        <div class="js-ytj">
+            <i><svg t="1681969092562" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" width="50" height="50"><path d="M513.550821 60.225663c-248.290923 0-449.579345 201.299679-449.579345 449.625394 0 248.296039 201.288422 449.594695 449.579345 449.594695 248.285806 0 449.640744-201.299679 449.640744-449.594695C963.192587 261.525342 761.836627 60.225663 513.550821 60.225663zM513.671571 917.673369c-225.166249 0-407.696446-182.53736-407.696446-407.706679S288.505321 102.254895 513.671571 102.254895c225.173412 0 407.703609 182.541453 407.703609 407.710772S738.844983 917.673369 513.671571 917.673369z" fill="#040000" p-id="1882"></path><path d="M366.566188 453.597869c0 7.726985-9.203616 13.995759-20.559245 13.995759l0 0c-11.347442 0-20.551058-6.268774-20.551058-13.995759L325.455885 336.364841c0-7.726985 9.203616-13.995759 20.551058-13.995759l0 0c11.355629 0 20.559245 6.268774 20.559245 13.995759L366.566188 453.597869z" fill="#040000" p-id="1883"></path><path d="M701.708178 453.597869c0 7.726985-9.203616 13.995759-20.560268 13.995759l0 0c-11.346419 0-20.550035-6.268774-20.550035-13.995759L660.597875 336.364841c0-7.726985 9.203616-13.995759 20.550035-13.995759l0 0c11.356652 0 20.560268 6.268774 20.560268 13.995759L701.708178 453.597869z" fill="#040000" p-id="1884"></path><path d="M194.375477 516.844332c5.372358 171.733293 146.171104 309.314765 319.206042 309.314765 173.028798 0 313.831638-137.580448 319.203996-309.314765L194.375477 516.844332zM513.58152 791.890618c-149.042501 0-274.939863-123.655298-274.939863-240.83716l549.877679 0C774.690376 669.841911 662.617881 791.890618 513.58152 791.890618z" fill="#040000" p-id="1885"></path></svg></i>
+            <h2>Congratulations! Successfully submitted!</h2>
+            <span>We will activate the trial permission for you within 24 hours<br/>Please pay attention to the trial email.</span>
+            <span class="last">(If it has already been activated, please ignore this prompt)</span>
+        </div>
+    <% } %>
+<% } %>
+    <script>
+        $(function(){
+            $("#targetIfr").on('load',(function(){
+                var text = $(this).contents().find("body").text(); //获取到的是json的字符串
+                var j = $.parseJSON(text);  //json字符串转换成json对象
+                if(j.state!=0){
+                    // 多种情况翻译
+                    if(j.state==1300) return layer.msg(`${unity_lang('Repeat_the_addition')}`)
+                    if(j.state==1000) return layer.msg(`${unity_lang('Please_enter_the_email')}`)
+                    if(j.state==1001) return layer.msg(`${unity_lang('Please_enter_the_email_verification_code')}`)
+                    if(j.state==1002) return layer.msg(`${unity_lang('The_email_verification_code_is_invalid')}`)
+                    if(j.state==1100) return layer.msg(`${unity_lang('Please_fill_in_the_phone_number')}`)
+                    if(j.state==1101) return layer.msg(`${unity_lang('Please_enter_the_mobile_phone_verification_code')}`)
+                    if(j.state==1102) return layer.msg(`${unity_lang('Mobile_phone_verification_code_is_invalid')}`)
+                    if(j.state==1103) return layer.msg(`${unity_lang('Mobile_phone_number_parsing_error')}`)
+                } 
+                show_toast()
+            }))
+
+            // 手机验证码
+            $("#get_phone").click(function(){
+                get_phone(this)
+            })
+
+            // 邮箱验证码
+            $("#get_email").click(function(){
+                get_email(this)
+            })
+        })
+
+        // 获取邮箱验证码
+        function get_email(event){
+            let email_key=$("#email_type").val()
+            let reg=/^([a-zA-Z\d][\w-]{2,})@(\w{2,})\.([a-z]{2,})(\.[a-z]{2,})?$/
+            if(email_key=="") return layer.msg(`${unity_lang('Please_enter_the_email')}`)
+            if(!reg.test(email_key)) return layer.msg(`${unity_lang('The_email_address_is_in_the_wrong_format')}`)//
+
+            $.ajax('/async/account/send/email/code', {
+                datatype: 'text/json',
+                type: 'post',
+                data:{
+                    email:email_key
+                },
+                success: function (result) {
+                    console.log(result,"邮箱有效性")
+                    let flag=result.state
+                    if(flag!=0){
+                        if(flag==100){
+                            return layer.msg(`${unity_lang('The_email_address_is_in_the_wrong_format')}`)
+                        }
+                        return layer.msg(`${unity_lang('error')}`)
+                    } 
+                    layer.msg(`${unity_lang('The_verification_code_has_been_sent')}`)
+                    $(event).attr("disabled", 'true').css("pointer-events","none"); 
+                    time($(event),'get_Email_verification_code')
+                 }
+            })
+        }
+
+        // 获取手机验证码
+        function get_phone(event){
+            let phone_key=$("#phone_type").val()
+            let reg=/^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
+            if(phone_key=="") return layer.msg(`${unity_lang('Please_fill_in_the_phone_number')}`)
+            if(!reg.test(phone_key)) return layer.msg(`${unity_lang('The_phone_number_is_in_the_wrong_format')}`)//
+
+            $.ajax('/async/account/send/phone/code', {
+                datatype: 'text/json',
+                type: 'post',
+                data:{
+                    phone:phone_key
+                },
+                success: function (result) {
+                    console.log(result,"手机号有效性")
+                    let flag=result.state
+                    if(flag!=0){
+                        if(flag==100){
+                            return layer.msg(`${unity_lang('The_phone_number_is_in_the_wrong_format')}`)
+                        }
+                        return layer.msg(`${unity_lang('error')}`)
+                    } 
+                    layer.msg(`${unity_lang('The_verification_code_has_been_sent')}`)
+                    $(event).attr("disabled", 'true').css("pointer-events","none"); 
+                    time($(event),'Get_a_phone_verification_code')
+                 }
+            })
+        }
+
+        function setMyText(){
+            document.getElementById("company_type").setCustomValidity('')
+            document.getElementById("Cross_border_type").setCustomValidity('')
+
+            let company_type=$("#company_type").val(),Cross_border_type=$("#Cross_border_type").val()
+            if(company_type==0) {
+                document.getElementById("company_type").setCustomValidity(`${unity_lang('Please_select_the_Company_(Individual)_type')}`)
+            }
+            if(Cross_border_type==0) {
+                document.getElementById("Cross_border_type").setCustomValidity(`${unity_lang('Please_select_the_current_situation_of_cross_border_e_commerce(Individual)_type')}`)
+            }
+
+            var obj = document.getElementById("products_type");
+            var obj1 = document.getElementById("name_type");
+            var obj2 = document.getElementById("email_type") || null;
+            var obj21 = document.getElementById("email_type_captcha") || null;
+            var obj3 = document.getElementById("phone_type") || null
+            var obj31 = document.getElementById("phone_type_captcha") || null
+            obj.setCustomValidity('');
+            obj1.setCustomValidity('');
+
+            if(obj21){
+                obj2.setCustomValidity('');
+                obj21.setCustomValidity('');
+            }
+            
+            if(obj3){obj3.setCustomValidity('');}
+
+            if (obj.checkValidity() == false) {
+                obj.setCustomValidity(`${unity_lang('products')}`);
+            } else {
+                obj.setCustomValidity('');
+            }
+            if (obj1.checkValidity() == false) {
+                obj1.setCustomValidity(`${unity_lang('nick_name')}`);
+            } else {
+                obj1.setCustomValidity('');
+            }
+           
+            if(obj21){
+                if (obj2.checkValidity() == false) {
+                    obj2.setCustomValidity(`${unity_lang('Please_enter_the_email')}`);
+                } else {
+                    obj2.setCustomValidity('');
+                }
+                if (obj21.checkValidity() == false) {
+                    obj21.setCustomValidity(`${unity_lang('Please_enter_the_email_verification_code')}`);
+                } else {
+                    obj21.setCustomValidity('');
+                }
+            }
+            
+            if(obj3){
+                if (obj3.checkValidity() == false) {
+                    obj3.setCustomValidity(`${unity_lang('Please_fill_in_the_phone_number')}`);
+                } else {
+                    obj3.setCustomValidity('');
+                }
+                if (obj31.checkValidity() == false) {
+                    obj31.setCustomValidity(`${unity_lang('Please_enter_the_mobile_phone_verification_code')}`);
+                } else {
+                    obj31.setCustomValidity('');
+                }
+            }
+        }
+
+        function time(event,text){
+            $(event).addClass("yfs")
+            let time1=59
+            let timer=setInterval(function(){
+                if(time1>=1){
+                    event.text(`${unity_lang('Sent')}(${time1--})`)
+                }else{
+                    window.clearInterval(timer)
+                    event.removeClass("yfs")
+                    event.removeAttr("disabled").css('pointer-events',"auto");
+                    event.text(`${unity_lang(text)}`)
+                }
+            },1000)
+        }
+    </script>

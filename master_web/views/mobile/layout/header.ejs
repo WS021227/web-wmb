@@ -1,0 +1,15 @@
+ <div class="header">
+        <img class="backbtn" src="<%= STATIC %>mobile/images/layout/header/backbtn-left.png" />
+        <a href="/"><img class="logo" src="https://static.52wmb.com/wmb_new/images/logo.png" alt="logo"/></a>
+        <div class="right">
+            <% if(wglobals.lang=="cn"){ %>
+                <a href="/mall"><img class="vip" src="<%= STATIC %>mobile/images/layout/header/shop1.png"/></a>
+            <%}%>
+            <% if(wglobals.user.id){ %>
+                <a href="/user/datacenter/home"><img class="photo" src="https://static.52wmb.com/images/userphoto/80_<%= wglobals.user.photo %>"></a>
+            <% }else{ %>
+                <a href="/user/datacenter/home"><img class="vip" src="<%= STATIC %>mobile/images/layout/header/me1.png" /></a>
+            <% } %>
+                <a href="/Alipay"><img class="car" src="<%= STATIC %>mobile/images/layout/header/car1.png" /></a>
+        </div>
+  </div>

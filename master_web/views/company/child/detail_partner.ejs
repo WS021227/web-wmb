@@ -1,0 +1,62 @@
+<div class="higher-search">
+    <div class="header-title"><h2><%=translate('detail_tab_share_advanced')%></h2></div>
+    <div class="power-search-box">
+        <form id="partner_search_form" onsubmit="return false">
+        <input placeholder="<%=translate('detail_tab_partner_tips')%>" class="search-input clear-target datatables-search-text" name="trade_company" id="tab_trade_partner_search"/>
+        <i class="delete-input clear-txt">×</i>
+        <input type="hidden" name="state" value="0">
+        <input type="hidden" name="start_time" value="**">
+        <input type="hidden" name="date_type" value="0">
+        </form>
+    </div>
+</div>
+<div class="result-list">
+    <div class="header-title">
+        <h2><%=translate('detail_module_partners')%></h2>
+        <div id="trade_partner_deep">
+            <div class="dropdown-btn" data-value="*">
+                <font class="show"><%=translate('detail_tab_share_trade_depth')%></font>
+                <i></i>
+            </div>
+            <ul class="dropdown-menu" style="margin-top: 10px;">
+                <li class="item active" data-value="*"><%=translate('detail_tab_share_no_conditions')%></li>
+                <li class="item" data-value="1"><%=translate('detail_tab_share_no_last_year')%></li>
+                <li class="item" data-value="2"><%=translate('detail_tab_share_already')%></li>
+                <li class="item" data-value="3"><%=translate('detail_tab_share_new_add')%></li>
+            </ul>
+        </div>
+    </div>
+    <div class="trading-list-box">
+        <div class="trading-list-data">
+            <div class="trading-list-number"><%=translate('detail_tab_share_total')%><font class="hits"></font>，<%=translate('detail_tab_share_page')%></div><div id="trade_partner_page_len"></div>
+            <br class="clear-box"/>
+        </div>
+<!--        <span class="export tab-export" data-type="partner" data-src="content_trade_partner" data-fl="贸易伙伴名录"><i></i><%=translate('share_text_export')%></span>-->
+        <span class="export partner-export"><i></i><%=translate('share_text_export')%></span>
+    </div>
+    <div>
+        <table border="0" id="content_trade_partner" class="datatable-content"></table>
+    </div>
+</div>
+<script>
+    $(function() {
+        $('#trade_partner_deep').wdropdown({
+            selected: function (e){
+                $('#partner_search_form [name="date_type"]').val(0)
+                var _val = e.value
+                if (_val == '1') {
+                    $('#partner_search_form [name="start_time"]').val($.formatDate($.date_add(-1, company_end_time)))
+                    $('#partner_search_form [name="state"]').val(0)
+                    $('#partner_search_form [name="date_type"]').val(1)
+                } else if (_val == '*') {
+                    $('#partner_search_form [name="start_time"]').val('**')
+                    $('#partner_search_form [name="state"]').val(0)
+                } else {
+                    $('#partner_search_form [name="start_time"]').val('**')
+                    $('#partner_search_form [name="state"]').val({'2': 2, '3': 1}[_val])
+                }
+                trade_partner()
+            }
+        })
+    });
+</script>

@@ -1,0 +1,18 @@
+body{background:#F7F8FA;}
+.company-foot{width:100%;height:auto;margin-top:20px;background:#f5f5f5;}
+.company-foot-k{width:940px;padding:30px 0;position:relative;height:auto;margin:0 auto;box-shadow:none;background:none;}
+
+
+.weixin{width:940px;margin:0 auto;padding-top:140px;padding-bottom:125px;}
+.weixin-l{width:58%;float:left;}
+.weixin-r{float:right;width:35%;}
+.weixin-r img{width:100%;}
+.weixin-title{margin-bottom:60px;}
+.weixin-title h1{font-size:30.4px;font-weight:bold;margin:0;line-height:120%;position:relative;padding-left:90px;height:86px;line-height:130%;}
+.weixin-title h1 img{position:absolute;left:0;top:0;width:80px;height:80px;}
+.weixin-title p{padding-top:8px;font-size:15.4px;color:#333;}
+.weixin-title p font{color:#999;padding:0 5.5px;}
+.weixin-pic{display:flex;}
+.weixin-pic span{flex:1;text-align:left;}
+.weixin-pic span img{box-shadow:0 0 10px rgb(0 0 0 / 5%);width:200px;padding:5px;background:#fff;border-radius:3px;}
+.weixin-pic span font{display:block;font-size:15.4px;color:#666;margin-top:8px;width:200px;text-align:center;}

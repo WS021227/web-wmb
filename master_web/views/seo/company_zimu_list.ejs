@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css">
+    <link rel="stylesheet" href="<%= STATIC %>css/product/product.css">
+    <% var str=translate('seo_zimu_list_title'); var reg = /\[@(.*?)\]/gi;var arr = str.match(reg);
+    str=str.replace(arr[0],results.letter);str=str.replace(arr[1],results.start);%>
+    <title><%=ucfirst(str)%>-<%=translate('share_text_sitename')%></title>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%var letter=results.letter; %>
+<div class="product-k"> 
+    <div class="product-list-title"><h2>【<%=letter%>】<%=translate('seo_zimu_list_name')%></h2></div>   
+    <div class="product-jiqiao-zimu">      
+        <div class="product-zimu-show">
+            <a href="/category/list/new" class="<%=letter=='new'?"active":"" %>">New</a>
+            <a href="/category/list/A" class="<%=letter=='A'?"active":"" %>">A</a> 
+            <a href="/category/list/B" class="<%=letter=='B'?"active":"" %>">B</a>
+            <a href="/category/list/C" class="<%=letter=='C'?"active":"" %>">C</a> 
+            <a href="/category/list/D" class="<%=letter=='D'?"active":"" %>">D</a>
+            <a href="/category/list/E" class="<%=letter=='E'?"active":"" %>">E</a>
+            <a href="/category/list/F" class="<%=letter=='F'?"active":"" %>">F</a>
+            <a href="/category/list/G" class="<%=letter=='G'?"active":"" %>">G</a>
+            <a href="/category/list/H" class="<%=letter=='H'?"active":"" %>">H</a>
+            <a href="/category/list/I" class="<%=letter=='I'?"active":"" %>">I</a>
+            <a href="/category/list/J" class="<%=letter=='J'?"active":"" %>">J</a>
+            <a href="/category/list/K" class="<%=letter=='K'?"active":"" %>">K</a>
+            <a href="/category/list/L" class="<%=letter=='L'?"active":"" %>">L</a>
+            <a href="/category/list/M" class="<%=letter=='M'?"active":"" %>">M</a>
+            <a href="/category/list/N" class="<%=letter=='N'?"active":"" %>">N</a>
+            <a href="/category/list/O" class="<%=letter=='O'?"active":"" %>">O</a>
+            <a href="/category/list/P" class="<%=letter=='P'?"active":"" %>">P</a>
+            <a href="/category/list/Q" class="<%=letter=='Q'?"active":"" %>">Q</a>
+            <a href="/category/list/R" class="<%=letter=='R'?"active":"" %>">R</a>
+            <a href="/category/list/S" class="<%=letter=='S'?"active":"" %>">S</a>
+            <a href="/category/list/T" class="<%=letter=='T'?"active":"" %>">T</a>
+            <a href="/category/list/U" class="<%=letter=='U'?"active":"" %>">U</a>
+            <a href="/category/list/V" class="<%=letter=='V'?"active":"" %>">V</a>
+            <a href="/category/list/W" class="<%=letter=='W'?"active":"" %>">W</a>
+            <a href="/category/list/X" class="<%=letter=='X'?"active":"" %>">X</a>
+            <a href="/category/list/Y" class="<%=letter=='Y'?"active":"" %>">Y</a>
+            <a href="/category/list/Z" class="<%=letter=='Z'?"active":"" %>">Z</a>
+       </div>
+   </div>
+    <div class="product-list-c" id="product_list_box">
+        <%var letter_list=results.list; %>
+            <%letter_list.forEach(function(item,index){%>
+            <a href="/category/<%=item.word.replace(/\ /g, '-')%>" target="_blank"><%=item.word%></a>
+            <%})%>     
+        <br class="clear"/>            
+    </div>
+    <%- results.pagination -%>
+</div>
+<%- include('../global/foot.ejs') %>
+<script src="<%= STATIC %>javascripts/seo/seo.js"></script>
+</body>
+</html>

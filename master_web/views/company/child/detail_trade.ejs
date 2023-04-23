@@ -1,0 +1,132 @@
+<% let user=wglobals.user; %>
+<div class="higher-search">
+    <span class="header-title">
+        <h2><%=translate('detail_tab_share_advanced')%></h2>
+        <a class="search-btn" id="trade_data_btn" onclick="trade_data()"><%=translate('detail_tab_share_search')%>
+            <%if(!VERIFY_AUTHORITY('v')){%><i></i><%}%>
+        </a>
+    </span>
+    <form id="trade_search_form">
+        <span class="content">
+            <fieldset class="fieldset" id="trade_date">
+                <font><%=translate('detail_module_bill_date')%></font>
+                <input placeholder="<%=translate('detail_bill_start_time_product')%>" style="width:148px;"  value='' name="start_time" id="trade_data_start_time" class="clear-target"/>
+                <input placeholder="<%=translate('detail_bill_end_time_product')%>" style="width:148px;border-left:1px #eee solid;"  value='' name="end_time" id="trade_data_end_time" class="clear-target"/>
+            </fieldset>
+            <fieldset class="fieldset" id="trade_des">
+              <font><%=translate('detail_nav_product')%></font>
+              <input placeholder="<%=translate('detail_bill_des_product')%>" value='' name="key" id="trade_data_describe" class="clear-target"/>
+              <i class="clear-txt">×</i>
+            </fieldset>
+        </span>
+
+        <span class="content">
+            <fieldset class="fieldset" id="trade_hs">
+                <font><%=translate('detail_nav_hscode')%></font>
+                <input placeholder="<%=translate('detail_bill_hs_product')%>" value='' name="hs" id="trade_data_hs"  class="clear-target"/>
+                <i class="clear-txt">×</i>
+            </fieldset>
+            <fieldset class="fieldset" id="trade_area">
+                <font><%=translate('detail_nav_area')%></font>
+                <input placeholder="<%=translate('detail_bill_areas_product')%>" value='' name="trade_country" id="trade_data_area"  class="clear-target"/>
+                <i class="clear-txt">×</i>
+            </fieldset>
+        </span>
+
+        <span class="content">
+            <fieldset class="fieldset" id="trade_port">
+               <font><%=translate('detail_module_bill_trade_port')%></font>
+               <input placeholder="<%=translate('detail_bill_port_product')%>" value='' name="trade_port" id="trade_data_port" class="clear-target"/>
+               <i class="clear-txt">×</i>
+            </fieldset>
+            <fieldset class="fieldset" id="trade_bill">
+              <font><%=translate('detail_module_bill_number')%></font>
+              <input placeholder="<%=translate('detail_bill_no_product')%>" value=''  name="bill_no"  id="trade_data_bill" class="clear-target"/>
+              <i class="clear-txt">×</i>
+            </fieldset>
+        </span>
+        <input type="hidden" name="source_country">
+    </form>
+</div>
+<div class="result-list">
+    <div class="header-title">
+        <h2><%=translate('detail_module_bill')%></h2>
+
+        <!--
+        <%if(results.countries){%>
+        <div id="trade_data_source">
+            <div class="dropdown-btn" data-value="*"><font class="show">数据来源</font><i></i></div>
+            <ul class="dropdown-menu" style="margin-top: 10px;">
+                <li class="item active" data-value="*"><%=translate('detail_module_bill')%></li>
+                <%results.countries.list.forEach(function (v, i) {%>
+                    <li class="item" data-value="<%= v.country_en%>"><%= v.country_cn %></li>
+                <%})%>
+            </ul>
+        </div>
+        <%}%>
+        -->
+
+        <%if(results.year){%>
+        <div id="trade_data_day">
+            <div class="dropdown-btn" data-value="0"><font class="show"><%=translate('detail_module_bill_date')%></font><i></i></div>
+            <ul class="dropdown-menu" style="margin-top: 10px;">
+                <li class="item active" data-value="0"><%=translate('detail_tab_share_all_year')%></li>
+                <%results.year.list.forEach(function (v, i) {%>
+                    <li class="item" data-value="<%= v.key_as_string%>"><%= v.key_as_string%></li>
+                <%})%>
+            </ul>
+        </div>
+        <%}%>
+    </div>
+    <div class="trading-list-box">
+        <span class="trading-list-data">
+            <%=translate('detail_tab_share_total')%><span class="hits"><%=results.trade.data.hits%></span>
+        </span>
+        <%if(VERIFY_AUTHORITY('yd')){%><span class="export"><i></i><%=translate('share_text_export')%></span><%}%>
+    </div>
+    <ul class="trading-list">
+        <li class="list-head">
+            <p class="date"><%=translate('detail_module_bill_date')%></p>
+            <p class="area"><%=translate('detail_module_area')%></p>
+            <p class="describe"><%=translate('detail_module_bill_product')%></p>
+            <p class="qty"><%=translate('detail_module_bill_qty')%></p>
+            <p class="detail"><%=translate('detail_module_detail')%></p>
+        </li>
+        <%results.trade.data.list.forEach(function (v, i) {%>
+            <li class="list-con" data-id="<%= v.id %>" data-index="<%=i%>" onclick="trading_record(this)">
+                <p class="date"><%= v.date %></p>
+                <p class="area"><%= show_country(v.seller_country) %></p>
+                <p class="describe"><%= v.descript %></p>
+                <p class="qty"><%= v.qty||'-' %></p>
+                <p class="detail"><font>&gt;</font></p>
+            </li>
+        <%})%>
+
+    </ul>
+    <div class="paging" id="trade_data_page" data-total="<%=results.trade.data.hits%>" data-per="<%=results.size%>"></div>
+</div>
+
+<script>
+    $(function() {
+
+        $('#trade_data_source').wdropdown({
+            selected: function (e){
+                $('#trade_search_form [name="source_country"]').val(e.value)
+                trade_data()
+            }
+        })
+        $('#trade_data_day').wdropdown({
+            selected: function (e){
+                var trade_data_day = Number(e.value)
+                if (trade_data_day == 0) {
+                    $('#trade_data_start_time').val('**')
+                    $('#trade_data_end_time').val(company_details.last_trade_date)
+                } else {
+                    $('#trade_data_start_time').val(trade_data_day + '-01-01')
+                    $('#trade_data_end_time').val(trade_data_day + '-12-31')
+                }
+                trade_data()
+            }
+        })
+    });
+</script>

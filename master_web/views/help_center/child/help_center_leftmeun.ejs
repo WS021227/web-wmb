@@ -1,0 +1,12 @@
+<div class="help-nav">
+    <% var nav_active = results.help_center?results.help_center:'';console.log(nav_active,'nav_active')%>
+    <h1><%=translate('help_name')%></h1>
+    <ul>
+        <li class="<%=nav_active=='aboutus'?"active":"" %>"><a href="/help/aboutus"><font>●</font><%=translate('help_nav_aboutus')%></a></li>
+        <li class="<%=nav_active=='contactus'?"active":"" %>"><a href="/help/contactus"><font>●</font><%=translate('help_nav_contact')%></a></li>
+        <li class="<%=nav_active=='price'?"active":"" %>"><a href="/help/price"><font>●</font><%=translate('help_nav_ad')%></a></li>
+        <li class="<%=nav_active=='user_agreement'?"active":"" %>"><a href="/help/user_agreement"><font>●</font><%=translate('help_nav_user_agreement')%></a></li>
+        <%if(wglobals.lang == 'cn'){%><li class="<%=nav_active=='joboffers'?"active":"" %>"><a href="/help/joboffers"><font>●</font>招聘信息</a></li><%}%>
+        <li class="<%=nav_active=='privacy_policy'?"active":"" %>"><a href="/help/privacy_policy"><font>●</font><%=translate('help_nav_privacy_policy')%></a></li>
+    </ul>
+</div>

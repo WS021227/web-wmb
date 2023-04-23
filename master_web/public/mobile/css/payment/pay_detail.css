@@ -1,0 +1,278 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.container {
+  background-color: #F5F5F5;
+  padding: 0.75rem 0.9375rem;
+  padding-bottom: 5.75rem;
+}
+.container .swiper {
+  margin-top: 2.75rem;
+}
+.container .swiper .swiper-wrapper .swiper-slide {
+  width:9rem !important;
+  margin-right: 0.625rem;
+}
+.container .swiper .swiper-wrapper .swiper-slide .sbox {
+  background-color: white;
+  padding: 0.9375rem 0.625rem;
+  border-radius: 0.3125rem;
+  font-size: 0.8125rem;
+  color: #333;
+  text-align: center;
+}
+.container .swiper .swiper-wrapper .swiper-slide .sbox :nth-child(1) {
+  display: block;
+  font-weight: 600;
+}
+.container .swiper .swiper-wrapper .swiper-slide .sbox :nth-child(2) {
+  list-style: none;
+  margin-top: 0.75rem;
+  margin-bottom: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 0.75rem;
+}
+.container .swiper .swiper-wrapper .swiper-slide .sbox :nth-child(2) span {
+  font-size: 1.5rem;
+  font-weight: 600;
+  height: 1.68rem;
+}
+.container .swiper .swiper-wrapper .swiper-slide .sbox :nth-child(3) {
+  font-size: 0.6rem;
+  color: #666;
+  display:block;
+  text-align:center;
+}
+.container .swiper .swiper-wrapper .swiper-slide .active {
+  background-color: #F2F9FF;
+  border: 2px solid #015EB9;
+}
+.container .swiper .swiper-wrapper .swiper-slide .active :nth-child(2) {
+  color: #015EB9;
+}
+.container .tishi {
+  line-height: 0.7rem;
+  color: #f60;
+  font-size: 0.7rem;
+  list-style: none;
+  margin: 0.75rem 0;
+}
+
+.container .tishi-en {
+  white-space: nowrap;
+  transform-origin: center left;
+  transform: scale(0.72);
+}
+.container .tishi-en :nth-child(3) {
+  font-weight: 600;
+  color: #000;
+}
+.container .zhouqi {
+  background-color: white;
+  border-radius: 0.3125rem;
+  padding:0.625rem;
+  position: relative;
+}
+.container .zhouqi p {
+  list-style: none;
+  padding: 0.625rem 0;
+  font-size: 0.8rem;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px #eee solid;
+}
+.container .zhouqi p:last-child{border-bottom:none;padding-bottom:0;}
+.container .zhouqi p input {
+  margin-right: 0.1875rem;
+  float:left;
+  margin-top:0.1rem;
+}
+.container .zhouqi p :nth-child(2) span {
+  margin-left: 0.3125rem;
+  color: orange;
+  font-weight: 0 !important;
+  font-size: 0.75rem !important;
+}
+.container .zhouqi p img {
+  width: 0.75rem;
+}
+.container .zhouqi p > span > span {
+  display: inline-block;
+  max-width: 11.875rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size:0.8rem;
+}
+.container .zhouqi h3 {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.225rem;
+}
+.container .zzfw {
+  background-color: white;
+  border-radius: 0.3125rem;
+  padding: 0 0.625rem;
+  padding-top: 0.625rem;
+  margin-top: 0.75rem;
+  position: relative;
+}
+.container .zzfw h3 {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.225rem;
+}
+.container .zzfw p {
+  list-style: none;
+  padding: 0.625rem 0;
+  font-size: 0.75rem;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px #eee solid;
+}
+.container .zzfw p:last-child{border-bottom:none;}
+.container .zzfw p input {
+  margin-right: 0.1875rem;
+  border-radius: 50% !important;
+  float:left;
+  margin-top:0.1rem;
+}
+.container .zzfw p img {
+  width: 0.75rem;
+}
+.container .zzfw p span > span {
+  display: inline-block;
+  max-width: 11.25rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.container .zf {
+  background-color: white;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0.625rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.container .zf h3 {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.625rem;
+}
+.container .zf p {
+  list-style: none;
+  padding: 0.625rem 0;
+  font-size: 0.8rem;
+  color: #333;
+  display:flex;
+}
+.container .zf p span {
+  padding: 0.5rem 0.625rem;
+  font-size:0.8rem;
+  display:block;
+  border:2px #ddd solid;
+  background:#fafafa;
+  border-radius:5px;
+}
+.container .zf p .display-none{
+  display: none;
+}
+.container .zf p span img {
+  display: inline-block;
+  width: 0.8125rem;
+  margin-right: 0.2rem;
+  float:left;
+  margin-top:0.1rem;
+}
+.container .zf p :nth-child(2) {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.container .zf p .active {
+  border: 2px solid #015EB9;
+  background-color: #F2F9FF;
+  border-radius: 0.3125rem;
+  font-weight: 600;
+  color:#015EB9;
+}
+.container .zf-list {
+  background-color: white;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0.625rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+.container .zf-list h3 {
+  font-size: 0.875rem;
+  color: #333;
+  margin-bottom: 0.625rem;
+}
+.container .zf-list .content p {
+  list-style: none;
+  padding: 0.25rem 0;
+  font-size: 0.8rem;
+  color: #333;
+}
+.container .zf-list .content :last-child {
+  margin-bottom: 0.625rem;
+}
+.container .zf-list > p {
+  list-style: none;
+  padding: 0.625rem 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color:#333;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #efefef;
+}
+.container .zf-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0.8rem 0.9375rem;
+  font-size:0.9rem;
+  color: white;
+  background-color: white;
+  width: 100vw;
+  border-top:1px #eee solid;
+  font-weight:bold;
+}
+.container .zf-btn a {
+  display: block;
+  padding: 0.625rem 0;
+  text-align: center;
+  background-image: linear-gradient(to right, #015EB9, #70B8FF);
+  border-radius: 1.5625rem;
+  margin:0 0.8rem;
+}
+.container .select-box0,
+.container .select-box1,
+.container .select-box2,
+.container .select-box3 {
+  position: absolute;
+  z-index: 10;
+  background-color: white;
+  border-radius: 0.625rem;
+  box-shadow: 0 0 0.75rem #ccc;
+  display: none;
+  padding: 0.625rem 0.9375rem;
+}
+.container .select-box0 p,
+.container .select-box1 p,
+.container .select-box2 p,
+.container .select-box3 p {
+  display: block;
+  padding: 0.625rem 0.625rem;
+  text-align: center;
+}
+.container .select-box3 {
+  position: absolute;
+  z-index: 10;
+  left: 4.2rem;
+}

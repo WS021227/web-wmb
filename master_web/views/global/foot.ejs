@@ -1,0 +1,32 @@
+<div class="company-foot">
+    <div class="company-foot-k">
+        <div class="company-foot-left">
+            <%if(wglobals.lang == 'cn'){%>
+            <p><b>咨询热线:021-64033826</b><font>(周一至周五 9:15-18:00)</font></p>
+            <%}else{%>
+            <p><b>Whatsapp:+8616621075894</b><font>(9:00 Am-18:00 Pm (SGT))</font></p>    
+            <%}%>
+            <p>
+                <a href="/help/aboutus" rel="nofollow"><%=translate('help_nav_aboutus')%></a>
+                <a href="/help/contactus" rel="nofollow"><%=translate('help_nav_contact')%></a>
+                <%if(wglobals.lang == 'cn'){%>
+                <a href="/help/user_agreement" rel="nofollow"><%=translate('help_nav_user_agreement')%></a>
+                <a href="/help/privacy_policy" rel="nofollow"><%=translate('help_nav_privacy_policy')%></a>
+                <a href="/help/joboffers" rel="nofollow">招聘信息</a>
+                <%}%>
+                <a href="/help/price" rel="nofollow"><%=translate('help_nav_ad')%></a>
+                <a href="/buyer"><%=translate('share_nav_buyer')%></a>
+                <a href="/supplier"><%=translate('share_nav_supplier')%></a>
+                <a href="/companies"><%=translate('solutions_company')%></a>
+                <a href="/industry"><%=translate('solutions_industry')%></a>
+            </p>
+            <%if(wglobals.lang == 'cn'){%>
+            <p>&copy;2010-<%=new Date().getFullYear()%> 外贸邦版权所有<font>|</font>虹梅路2007号远中产业园3期1号楼705室</p>
+            <%}else{%>
+            <p>&copy;2010-<%=new Date().getFullYear()%> 52wmb.com all rights reserved</p>
+            <%}%>
+        </div>
+    </div>
+</div>
+
+<%- include('../global/foot_script.ejs') %>

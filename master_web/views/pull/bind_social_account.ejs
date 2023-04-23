@@ -1,0 +1,53 @@
+<style>
+    .bill-detail-head {padding:15px 20px;background-color:#EAEDF2;}
+    .bill-detail-head h2 {font-size: 17.4px;color: #333333;font-weight: bold;flex: 1;}
+    .bill-detail-head .bill-data{font-size:13.4px;color:#666666;line-height:15px;margin-top:5px;}
+    .bind-social-k{padding:20px;}
+    .bind-social-k h2{font-size:14.4px;margin-bottom:5px;color:#333;}
+    .bind-social-k input{border: 1px solid #DDDDDD;border-radius:3px;width:96%;padding:5px 10px;height:35px;display: flex;margin-bottom:30px;box-shadow: 0 2px 8px rgb(0 0 0 / 3%);}
+    #btn_bind_sa{background:#007FFF;color:#fff;display:block;height:44px;line-height:44px;padding:0 30px;border-radius:3px;
+    text-align: center;border:none;width:100%;display:block;font-size:14.4px;font-weight:bold;}
+</style>
+<div id="pop_share_bind_social_account">
+    <div class="bill-detail-head">
+        <span class="bill-detail-head-top"><h2>Please improve your social account</h2></span>
+        <p class="bill-data">fill in one of the following social accounts</p>
+    </div>
+    <div class="bind-social-k">
+        <ul>
+            <li>
+                <h2>Facebook account</h2>
+                <input name="facebook" type="text" placeholder="Facebook account">
+            </li>
+            <li>
+                <h2>Whatsapp account</h2>
+                <input name="whatsapp" type="text" placeholder="Whatsapp account">
+            </li>
+        </ul>
+        <p class="error-message"></p>
+        <button id="btn_bind_sa">Save Now</button>
+    </div>
+</div>
+<script type="text/javascript">
+    function bind_sa(fn, elem) {
+        var _facebook = $('[name="facebook"]').val()
+        var _whatsapp = $('[name="whatsapp"]').val()
+        if(!_facebook && !_whatsapp) return $.alert('Please input Facebook or Whatsapp account')
+        $(elem).html('loading......').addClass('disabled').prop('disabled', true)
+        $.ajax('/async/social-account/bind', {
+            type: 'post',
+            data: {facebook: _facebook, whatsapp: _whatsapp},
+            cache: false,
+            datatype: "json",
+            success: function (data) {
+                if (data.state == 0) return fn()
+
+                $(elem).html('Save now').removeClass('disabled').prop('disabled', false)
+                $.alert('error')
+            },error: function (e){
+                $(elem).html('Save now').removeClass('disabled').prop('disabled', false)
+                $.alert('error')
+            }
+        });
+    }
+</script>

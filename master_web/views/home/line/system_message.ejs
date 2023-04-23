@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_system_title')%>-邦Line</title>
+    <%- include('./head.ejs') %>
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/system_message.css?v=<%= VERSION %>">
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">
+        <%- include('../../home/admin_tab.ejs') %>
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <!-- 左侧菜单 -->
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <div class="line-system-message">
+                        <div class="title"><%=translate('bline_system_title')%></div>
+                        <div class="system-message-content" id="system_message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+<script type="application/javascript">
+    $(function (){
+        message_list(1)
+    })
+
+    function message_list(page){
+        $.ajax('/async/line/system/message', {
+            data: {page: page},
+            datatype: 'json',
+            type:'get',
+            success: function (result){
+                // $('#system_message').html('')
+                let list =(result.data || {}).list || []
+                if(list.length <= 0) return not_fount($('#system_message'))
+                $.each(list, function (a, b){
+                    $('#system_message').append(window['build_message_'+ b.event_id](b))
+                })
+            }
+        })
+    }
+
+    /**
+     * 贴子审核不通过
+     * @param item
+     * @returns {string}
+     */
+    function build_message_9(item){
+        let html = ''
+        html += '<div class="system-message-item">' +
+            '<div class="position"><i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="35" height="35"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>' +
+            '<div class="time">'+ show_time(item.create_time) +'<%=translate('bline_system_postings')%></div>' +
+            '<div class="detail">'+ item.contents + '</div>'
+            if(item.circle_id){
+                html += '<a class="from" href="'+ line_route +'/group-'+ item.circle_id +'" target="_blank"><%=translate('bline_system_post_in')%>'+ item.circle_name +'</a>'
+            }else{
+                html += '<a class="from" href="'+ line_route +'/topic/'+ item.source_id +'" target="_blank"><%=translate('bline_system_post_original')%></a>'
+
+            }
+           html+= '<div class="check-status">' +
+            '<div class="status-str"><%=translate('bline_system_not_approveds')%></div>' +
+            '<div class="status-reason"><%=translate('bline_system_reasons')%>：'+ item.extend_msg +'</div></div> </div></div>'
+        return html
+    }
+
+    /**
+     * 贴子审核通过
+     * @param item
+     * @returns {string}
+     */
+    function build_message_11(item){
+        let html = ''
+        html += '<div class="system-message-item">' +
+            '<div class="position"><i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="35" height="35"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>' +
+            '<div class="time">'+ show_time(item.create_time) +'<%=translate('bline_system_postings')%></div>'
+
+        let content = brSlice(item.contents, 80)
+        if(item.circle_id){
+            html += '<div class="detail">'+ content.html
+            html += '<a class="from" href="'+ line_route +'/topic/'+ item.source_id +'" target="_blank"><%=translate('bline_system_detail')%></a></div>'
+            html += '<a class="from" href="'+ line_route +'/group-'+ item.circle_id +'" target="_blank"><%=translate('bline_system_post_in')%>'+ item.circle_name +'</a>'
+        }else{
+            html += '<div class="detail">'+ content.html
+            html += '<a class="from" href="'+ line_route +'/line/'+ item.user_id +'" target="_blank"><%=translate('bline_system_detail')%></a></div>'
+
+        }
+        html+= '<div class="check-status">' +
+            '<div class="status-str success"><%=translate('bline_system_review_approved')%></div>' +
+            '<div class="status-reason"><%=translate('bline_system_review_approved_content')%></div></div> </div></div>'
+        return html
+    }
+    function build_message_10(item){
+        let html = ''
+        html += '<div class="system-message-item">' +
+            '<div class="position"><i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="35" height="35"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>' +
+            '<div class="time">'+ show_time(item.create_time) +'<%=translate('bline_system_your_reply')%></div>' +
+            '<div class="detail">'+ item.contents + '</div>'
+            if(item.circle_id){
+                html += '<a class="from" href="'+ line_route +'/topic/'+ item.source_id +'" target="_blank"><%=translate('bline_system_post_original')%></a>'
+            }else{
+                html += '<a class="from" href="'+ line_route +'/topic/'+ item.source_id +'" target="_blank"><%=translate('bline_system_post_original')%></a>'
+
+            }
+           html+= '<div class="check-status">' +
+            '<div class="status-str"><%=translate('bline_system_not_approved')%></div>' +
+            '<div class="status-reason"><%=translate('bline_system_reasons')%>：'+ item.extend_msg +'</div></div> </div></div>'
+        return html
+    }
+    function build_message_12(item){
+        let html = ''
+        html += '<div class="system-message-item">' +
+            '<div class="position"><i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="35" height="35"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>' +
+            '<div class="time">'+ show_time(item.create_time) +'<%=translate('bline_system_your_reply')%></div>' +
+            '<div class="detail">'+ item.contents + '</div>'
+        if(item.circle_id){
+            html += '<a class="from" href="'+ line_route +'/topic/'+ item.source_id +'" target="_blank"><%=translate('bline_system_post_original')%></a>'
+        }else{
+            html += '<a class="from" href="'+ line_route +'/topic/'+ item.source_id +'" target="_blank"><%=translate('bline_system_post_original')%></a>'
+
+        }
+        html+= '<div class="check-status">' +
+            '<div class="status-str success"><%=translate('bline_system_review_approved')%></div>' +
+            '<div class="status-reason"><%=translate('bline_system_review_approved_content')%></div></div> </div></div>'
+        return html
+    }
+    function build_message_13(item){
+        let html = ''
+        html += '<div class="system-message-item">' +
+            '<div class="position"><i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="35" height="35"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>' +
+            '<div class="time">'+ show_time(item.create_time) +'</div>' +
+            '<div class="detail"><%=translate('bline_system_message_change_success')%></div>'
+        return html
+    }
+    function build_message_14(item){
+        let html = ''
+        html += '<div class="system-message-item">' +
+            '<div class="position"><i class="icon"><svg t="1663946256938" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15829" width="35" height="35"><path d="M544 161.536a330.666667 330.666667 0 0 1 298.666667 329.130667h-0.341334c0.213333 1.493333 0.341333 2.986667 0.341334 4.565333v219.434667h39.68a32 32 0 0 1 0 64h-212.053334a160 160 0 0 1-316.586666 0H141.909333a32 32 0 1 1 0-64h39.424v-219.434667c0-1.578667 0.128-3.072 0.341334-4.565333H181.333333a330.666667 330.666667 0 0 1 298.666667-329.130667V128a32 32 0 1 1 64 0v33.536z m-298.666667 553.130667h533.333334v-219.434667c0-1.578667 0.128-3.072 0.341333-4.565333h-0.341333a266.666667 266.666667 0 1 0-533.333334 0h-0.341333c0.213333 1.493333 0.341333 2.986667 0.341333 4.565333v219.434667z m359.765334 64H418.901333a96 96 0 0 0 186.197334 0z" fill="#111111" p-id="15830"></path></svg></i>' +
+            '<div class="time">'+ show_time(item.create_time) +'</div>'
+        html+= '<div class="check-status">' +
+            '<div class="status-str"><%=translate('bline_system_message_change')%></div>' +
+            '<div class="status-reason"><%=translate('bline_system_reasons')%>：'+ item.extend_msg +'</div></div> </div></div>'
+        return html
+    }
+</script>
+</body>
+
+</html>

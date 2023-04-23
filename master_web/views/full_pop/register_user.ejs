@@ -1,0 +1,70 @@
+<style>
+    .new-register{padding:35px 50px;}
+    .new-register h2{font-size:21.4px;color:#333;text-align:center;display: block;}
+    .new-register p{font-size:15.4px;}
+    .new-register-1{line-height:150%;padding-bottom:20px;padding-top:10px;}
+    .new-register-2{text-align: center;}
+    .new-register-2 span{display:block;}
+    .new-register-2 span b{color:#f30;font-size:18.4px;}
+    .new-register-2 span:nth-child(2){font-size:14.4px;color:#999;padding-top:2px;}
+    .new-register-3{text-align:center;padding-top:8px;}
+    .new-register-3 a{display:inline-block;height:42px;line-height:42px;color:#fff;font-size:15.4px;background:#007FFF;width:280px;border-radius:3px;}
+</style>
+<%
+var register_date = new Date(wglobals.user.create_time), now_date = new Date(),
+        is_day = register_date.date_format('yyyy-mm-dd') == now_date.date_format('yyyy-mm-dd');
+
+if(wglobals.lang == 'cn'){
+
+    if(is_day){
+    wglobals.temp = {title: '普通用户（当日注册）'}
+%>
+<div class="new-register">
+    <h2>成为付费用户后，可查阅公司数据</h2>
+    <p class="new-register-1">您当前等级是普通会员，每天可查阅2家公司数据。建议您升级至付费会员，付费VIP会员每天可查阅200家公司贸易报告及其联系方式。疫情期间，我们建议您更多的尝试线上积累客户资源。</p>
+    <p class="new-register-2">
+        <span>VIP会员低至<b>89元</b>/首月&nbsp;<font>(原价99元/月)</font></span>
+        <span>新人券:10元(注册后24小时内)</span>
+    </p>
+    <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">现在，购买会员</a></p>
+</div>
+<% } else {
+    wglobals.temp = {title: '普通用户（非当日注册）'}
+%>
+<div class="new-register">
+    <h2>成为付费用户后，可查阅公司数据</h2>
+    <p class="new-register-1">您当前等级是普通会员，每天可查阅2家公司数据。建议您升级至付费会员，付费VIP会员每天可查阅200家公司贸易报告及其联系方式。疫情期间，我们建议您更多的尝试线上积累客户资源。</p>
+    <p class="new-register-2">
+        <span>VIP会员低至<b>99元</b>/30天</span>
+    </p>
+    <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">现在，购买会员</a></p>
+</div>
+<% } %>
+
+<% } else {    
+    // 当天注册
+    if(is_day){
+    wglobals.temp = {title: 'en 普通用户（当日注册）'}
+%>
+<div class="new-register">
+    <h2>Paid subscribers have access to data</h2>
+    <p class="new-register-1">You are currently a regular member and have access to 2 companies per day. We recommend that you upgrade to VIP membership, which gives you access to 200 companies and their contact details per day.</p>
+    <p class="new-register-2">
+        <span>VIP as low as<b>$25.4</b>/First month&nbsp;<font>(Original price $29.9)</font></span>
+        <span>Newcomer Voucher:$1.5(Within 24 hours)</span>
+    </p>
+    <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">Now，Buy membership</a></p>
+</div>
+<% } else {
+    wglobals.temp = {title: 'en 普通用户（非当日注册）'}
+%>
+<div class="new-register">
+    <h2>Paid subscribers have access to data</h2>
+    <p class="new-register-1">You are currently a regular member and have access to 2 companies per day. We recommend that you upgrade to VIP membership, which gives you access to 200 companies and their contact details per day.</p>
+    <p class="new-register-2">
+        <span>VIP as low as<b>$29.9</b>/30 days</span>
+    </p>
+    <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">Now，Buy membership</a></p>
+</div>
+
+<% } } %>

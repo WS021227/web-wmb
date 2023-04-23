@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title><%=title%>-外贸邦</title>
+</head>
+<style>
+    body{background:#fafafa;}
+    .third-tips{border:1px #f7f7f7 solid;width:400px;text-align:center;margin:0 auto;padding:50px 30px;margin-top:150px;background:#fff;
+    font-size:14.5px;color:#333;line-height:150%;box-shadow: 0 0 10px rgb(0 0 0 / 4%);}
+</style>
+<body>
+<div class="third-tips">
+   <i><svg t="1656659361748" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3833" width="50" height="50"><path d="M512 0C230.4 0 0 230.4 0 512s230.4 512 512 512 512-230.4 512-512-230.4-512-512-512z m0 960c-249.6 0-448-198.4-448-448s198.4-448 448-448 448 198.4 448 448-198.4 448-448 448z m-64-192h128V448H448v320z m0-384h128V256H448v128z" fill="#FF7E11" p-id="3834"></path></svg></i>
+   <div id="third_msg"></div>
+</div>
+<script src="https://static.52wmb.com/wmb_js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    //获取cookie
+    function getCookie(name, key) {
+        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        arr = document.cookie.match(reg)
+        if (arr != null && arr[2] != null && arr[2] != '') {
+            var str_arr = arr[2].replace('"','').replace('"','')
+            if (key != null&&key!='') {
+                var key_reg = new RegExp("(^|&)" + key + "=([^&]*)(&|$)", "i");
+                var key_r = str_arr.match(key_reg)
+                var value = key_r!=null&&key_r.length>2?key_r[2]:''
+                return value
+            }
+            return str_arr;
+        }
+        return "";
+    }
+    /**
+     * 获取url参数
+     * @param name
+     * @returns {string}
+     */
+    function queryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        var query = '';
+        if (r != null) {
+            if (r[2] != null) query = r[2];
+        }
+        return decodeURI(query)
+    }
+    let $third_msg = $('#third_msg')
+    $(function (){
+        // if(!result) {return $("#thirdparty").html('登录成功，请稍后...');}
+        var code = queryString('code'),
+            state = queryString('state'),
+
+            wmb_redirect_uri = decodeURIComponent(queryString('wmb_redirect_uri'));
+        if(!code || !state) return $third_msg.html('登陆参数非法')
+        $.ajax({
+            url: "/async/third/authorization",
+            type: "post",
+            datatype: "json",
+            async: true,
+            data: { "yue_api": "<%= api %>", "code": code, "state": state, "source": 0, 'promote': promote},
+            success: function (result) {
+                if(result.state == 20000) {
+                    let extra_data = result.data.extra_data;
+                    $third_msg.html('该账号由于<font class="block-cause">' + extra_data.cause + '</font>被禁止登陆<br />封禁结束时间为:' + extra_data.ban_end_time
+                        + ' <br /> 如有疑问，请致电：021-64033826')
+                    return
+                }
+                if(result.state != 0) {
+                    $third_msg.html('登录失败，请稍后...');
+                    window.location.href = wmb_redirect_uri != "" ? wmb_redirect_uri : "/";
+                    return;
+                }
+                $third_msg.html('登录成功，请稍后...');
+                window.location.href = wmb_redirect_uri != "" ? wmb_redirect_uri : "/";
+            }
+        });
+
+    })
+</script>
+</body>
+</html>

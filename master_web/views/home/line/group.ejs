@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_circle_title')%>-邦Line</title>
+    <%- include('./head.ejs') %>
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/group.css?v=<%= VERSION %>">
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<%- include('../../home/admin_tab.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">        
+        <div class="line-admin-content">
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+
+                    <!-- 圈子 -->
+                    <div class="topic">
+                        <div class="line-admin-module my-group">
+                            <div class="line-module-tab my-group-tab">
+                                <div class="tab-item tab group active"  data-hav="" data-tab="group" data-target="#group_content"><%=translate('bline_circle_joined')%></div>
+                                <div class="tab-item tab topic"  data-hav="" data-tab="topic" data-target="#group_content"><%=translate('bline_circle_posts')%></div>
+                                <div class="tab-item tab message" data-hav="" data-tab="message" data-target="#group_content">
+                                    <%=translate('bline_circle_news')%><i id="tab_circle_msg" class="point display-none"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content" id="group_content">
+                        <!-- 加入的 -->
+                        <div class="my-center-module tab-pane active">
+                            <div class="my-group-list" id="group_list"></div>
+                        </div>
+                        <!-- 我的帖子 -->
+                        <div class="my-center-module tab-pane">
+                            <div class="tab-exchange">
+                                <div class="select">
+                                    <div class="selected"><%=translate('bline_circle_affiliation')%><i class="icon"><svg t="1663231372360" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2910" width="13" height="13"><path d="M917.284001 297.722752c-5.406127-5.437849-13.06762-8.396227-21.479197-8.396227-9.611915 0-18.953677 3.844561-25.713638 10.543124L511.980046 659.992589 153.873018 299.91672c-6.729262-6.745634-16.072047-10.619872-25.654286-10.619872-8.470929 0-16.131399 2.989077-21.598924 8.457626-12.301164 12.435217-11.32493 33.69031 2.192945 47.312562l376.764969 378.821815c6.758937 6.788613 15.860223 10.723226 25.052582 10.8143l3.425006 0c8.981559-0.301875 17.814738-4.205788 24.423249-10.8143l376.733247-378.852514C928.728658 331.382363 929.690566 310.113967 917.284001 297.722752" p-id="2911"></path></svg></i></div>
+                                    <div class="select-option" id="circle_list">
+                                        <div class="option-item" data-value="0"><%=translate('bline_circle_filter')%></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="group-message-list" id="topic_list"></div>
+                            <a href="javascript:void(0)" data-page="2" class="display-none" id="more_topic"></a>
+                        </div>
+                        <!-- 消息 -->
+                        <div class="my-center-module tab-pane">
+                            <div class="group-message-list"  id="group_message_list"></div>
+                            <a href="javascript:void(0)" data-page="2" class="display-none" id="more_group_message"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/line_group.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

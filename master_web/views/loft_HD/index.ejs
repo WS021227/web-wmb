@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('store_data_keywords')%>" />
+    <meta name="description" content="<%=translate('store_data_description')%>" /></head>
+    <title><%=translate('store_data_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/loft_HD/loft_hd.css?v=<%=VERSION%>">
+    <%if(wglobals.lang == 'en'){%><link rel="stylesheet" href="<%= STATIC %>css/en.css?v=<%=VERSION%>"><%}%>
+<body>
+<%- include('../global/head.ejs') %>
+<% console.log(results,"价格数据") %>
+<% var user=wglobals.user||{}; %>
+<%if(wglobals.lang == 'cn'){%>
+<div id="page-content">
+    <div class="seach-Box">
+        <div class="loft-title">   
+            <h1>数据会员权限与功能</h1>        
+            <p>致力成为用户体验好、性价比高、有效果的外贸数据查询平台！</p>
+            <!--a href="#">咨询客服→</a-->
+        </div>
+    </div>
+    <div class="result-box">
+        <div class="sousou-data-left">
+            <div class="sousou-data mgall-l">
+                <% if(wglobals.is_df ){ %>
+                <% if(wglobals.user.new_user ){ %>
+                 <div class="sjj-price">
+                    <span>2022数据节福利→→<br><font>截止至2022/12/31</font></span>
+                    <span>最高领100元优惠券<br><font>年付仅789元</font></span>
+                    <span>领取200元优惠券<br><font>在送礼品+最高抽Iphone14</font></span>
+                    <span>满减基础上，可领取800元优惠券<br><font>在送百元礼品+最高抽Iphone14</font></span>
+                 </div>
+                 <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage > 0){%>
+                 <div class="sjj-price-old">
+                    <span>2022数据节福利→→<br><font>截止至2022/12/31</font></span>
+                    <span>&nbsp;<br><font>&nbsp;</font></span>
+                    <span>先减免200元<br><font>在送礼品+最高抽Iphone14</font></span>
+                    <span>先减免800元 或 送邮箱采集和邮件群发，2选1<br><font>在送百元礼品+最高抽Iphone14</font></span>
+                 </div>
+                    <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage == 0){%>
+                 <!--0档续费期用户-->
+                 <div class="sjj-price-old">
+                    <span>2022数据节福利→→<br><font>截止至2022/12/31</font></span>
+                    <span>&nbsp;<br><font>&nbsp;</font></span>
+                    <span>续购节省1500元<br><font>再送好礼+最高抽Iphone14</font></span>
+                    <span>享价格保护，续购节省2700元<br><font>再送百元好礼+最高抽Iphone14</font></span>
+                 </div>
+                <% } %>
+                <%}%>
+                 
+                 <div class="loft-hd-content">
+                      <ul>
+                          <li>
+                              <span class="loft-hd-title">会员功能</span>
+                              <% if(results.v){%>
+                              <span>
+                                 <h2>VIP会员</h2>
+                                 <font>联系方式及交易记录</font>
+                                 <font class="loft-hd-price"><b><%=results.v.amount%></b>元/30天</font>
+                                 <a href="<%=user.id?'/Alipay?v=v':'/login'%>">购买→</a>
+                              </span>
+                              <span>
+                                <h2>蓝钻会员</h2>
+                                <font>公司贸易报告无限查阅</font>
+                                <font class="loft-hd-price"><b><%=results.bd.amount%></b>元/年</font>
+                                <a data-wstats="diamond_buy_button" href="<%=user.id?'/Alipay?v=bd':'/login'%>">购买→</a>
+                             </span>
+                              <%}%>
+                              <% if(results.yd){%>
+                              <span>
+                                 <h2>黄钻会员</h2>
+                                 <font>企业账号，多人协同</font>
+                                 <font class="loft-hd-price"><b><%=results.yd.amount%></b>元/年</font>
+                                 <a data-wstats="diamond_buy_button" href="<%=user.id?'/Alipay?v=yd':'/login'%>">购买→</a>
+                              </span>
+                              <%}%>
+                              <% var tms_active = 'display-none'  %>
+                              <% if(results.tsm){  %>
+                              <% tms_active = '' %>
+                              <span>
+                                 <h2>外贸三剑客</h2>
+                                 <font>黄钻+邮箱采集+群发</font>
+                                 <font class="loft-hd-price"><b><%=results.tsm.amount%></b>元/年</font>
+                                 <!--<a class="sanjianke" href="<%=user.id?'/Alipay?v=tsm':'/login'%>">购买→</a>-->
+                                 <a data-wstats="diamond_buy_button" href="<%=user.id?'/Alipay?v=tsm':'/login'%>">购买→</a>
+                              </span>
+                              <%}%>
+                              <br class="clear-box"/>
+                          </li>
+
+                          <!--2022数据节非钻登陆用户
+                          <li style="background:#fff;padding:5px 0;box-sizing:border-box;">
+                            <span style="color:#BD3124;">2022年数据节活动价</span>
+                            <span style="color:#BD3124;">年付减100元仅799元!</span>
+                            <span style="color:#BD3124;">1主账号+2子账号</span>
+                            <span style="color:#BD3124;">1主账号+4子账号</span>
+                            <span style="color:#BD3124;">1主账号+4子账号</span>
+                            <br class="clear-box"/>                        
+                          </li>-->
+
+                          <li class="loft-hd-bg">
+                            <span>数据会员子账号</span>
+                            <span>仅1人使用</span>
+                            <span>1主账号+2子账号</span>
+                            <span>1主账号+4子账号</span>
+                            <span>1主账号+4子账号</span>
+                            <br class="clear-box"/>                        
+                        </li>
+                        <li class="loft-hd-bottom">
+                            <span>数据源贸易国</span>
+                            <span>32个（印尼除外）</span>
+                            <span>33个</span>
+                            <span>33个</span>
+                            <span>33个</span> 
+                            <br class="clear-box"/>                       
+                        </li>
+                        <div class="zzfw">
+                            <div class="zzfw-content">增值服务</div>
+                            <li class="loft-hd-bg li-bg">
+                                <span>社媒邮箱采集</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span>购买权</span>
+                                <span>购买权</span>
+                                <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                                <br class="clear-box"/>                        
+                            </li>
+                            <li class="loft-hd-bottom li-bg">
+                                <span>BEM邮件群发</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span>购买权</span>
+                                <span>购买权</span>
+                                <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                                <br class="clear-box"/>                        
+                            </li>
+                        </div>
+                        <li class="loft-hd-bg">
+                            <span><b>搜索贸易公司</b></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>HS编码搜索</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>搜索高级筛选</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bottom">
+                            <span>搜索标签创建</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bg">
+                            <span><b>公司贸易报告(概述)</b></span>
+                            <span>200份/天</span>
+                            <span>不限量</span>
+                            <span>不限量</span>
+                            <span class=" <%=tms_active%>">不限量</span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>公司联系方式</span>
+                            <span>不超过200条/天</span>
+                            <span>不限量</span>
+                            <span>不限量</span>
+                            <span class=" <%=tms_active%>">不限量</span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>公司提关单数据</span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>贸易伙伴/区域/港口</span>
+                            <span>TOP5</span>
+                            <span>全部</span>
+                            <span>全部</span>
+                            <span class=" <%=tms_active%>">全部</span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>采供产品/HS编码</span>
+                            <span>TOP5</span>
+                            <span>全部</span>
+                            <span>全部</span>
+                            <span class=" <%=tms_active%>">全部</span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bottom">
+                            <span>公司标签功能</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bg">
+                            <span><b>行业分析报告(概述)</b></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>原始提关单数据</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>采购/供应商排名</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>贸易区域/港口排名</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bottom">
+                            <span>月度/趋势分析</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bg">
+                            <span><b>提关单数据导出</b></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li>
+                            <span>联系方式导出</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                        <li class="loft-hd-bottom">
+                            <span>公司名录导出</span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-false">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture">&nbsp;</i></span>
+                            <span><i class="loft-hd-ture <%=tms_active%>">&nbsp;</i></span>
+                            <br class="clear-box"/>
+                        </li>
+                     </ul>
+                 </div>
+
+                 <!--ask-->
+                 <div class="loft-hd-ask">
+                     <h2>会员常见问答<a href="/new/category-wenda">更多<font>&gt;</font></a></h2>
+                     <div id="questions">
+                        <ul>
+                            <li class="clearfix">
+                                <h3><b class="UI-ask"></b>目前有多个国家的贸易数据可以提供，是否真实，数据如何更新？</h3>
+                                <div class="foldContent">
+                                    <p>目前我们已提供了31个贸易国进出口数据的查询，所有数据均从当地国家商务部门采购，数据合法且有保障...</p>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <h3><b class="UI-ask"></b>未过期的VIP会员是否可以升级至黄钻会员？</h3>
+                                <div class="foldContent">
+                                    <p>普通注册用户可以直接购买VIP和钻石会员。如果您的VIP账号尚未过期，亦可直接升级至钻石(蓝黄)会员，升级会员时系统会自动将您VIP的余额进行抵扣。</p>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <h3><b class="UI-ask"></b>是否可以提供合同和发票？</h3>
+                                <div class="foldContent">
+                                    <p>合同原件或是电子稿件均可提供，联系客服走合同流程。可提供电子发票、纸质普票和专票，钻石会员可在数据管理中心”我的订单“中申请开票或联系客服开票，纸质发票包邮！</p>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <h3><b class="UI-ask"></b>你们的付款方式有哪些，如何开通会员账号和权限？</h3>
+                                <div class="foldContent">
+                                    <p>支持PayPal、支付宝、微信、银行对公转账。在线支付账号将自动开通，选择对公转账时，转账成功后1个小时内手动开通账号，提供网站注册账号。</p>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <h3><b class="UI-ask"></b>这些数据可以帮我做什么、通过数据可以查到哪些内容？</h3>
+                                <div class="foldContent">
+                                    <p>数据使用场景很多，包括客户开发、市场分析、同行&客户的监控与维护。查阅内容有：贸易伙伴、产品、量价、市场分析、联系方式..</p>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <h3><b class="UI-ask"></b>你们跟市面上的贸易数据同行公司有哪些优势和区别？</h3>
+                                <div class="foldContent">
+                                    <p>首先产品属性是平台模式，注册用户可免费验证，体验好。其次我们有数据顾问和售后客服，可以省去中间差价...</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                 </div>
+            </div>
+        </div>
+        <div class="soso-data-right">
+            <div class="module-content mar-l">
+                <div class="collect-box">
+                    <h2>选择我们的理由？</h2> 
+                    <ul class="loft-hd-why">
+                        <li>
+                            <h3>全球用户超过100万</h3>
+                            <p>建站11年，累计注册用户100万；用户信赖的贸易数据查询平台。</p>
+                            <i></i>
+                        </li>
+                        <li>
+                            <h3>性价比高用户体验好</h3>
+                            <p>开放式数据查询体验，信息对称体验好；互联网直销模式，性价比高。</p>
+                            <i></i>
+                        </li>
+                        <li>
+                            <h3>33个数据源贸易国</h3>
+                            <p>数据源贸易国最多平台之一，原始海关数据保持周更、月更。</p>
+                            <i></i>
+                        </li>
+                    </ul>  
+                </div>
+                <div class="bang-classroom" id="bang_classroom">
+                    <h2>邦课堂<a href="#">更多<font>&gt;</font></a></h2>
+                    <ul class="bang-list">
+                      <li>● <a href="/new/category-czsc">外贸邦《平台手册》</a></li>
+                      <li>● <a href="/new/category-kfkc" target="_blank">《海关数据开发课程》连载</a></li> 
+                      <li>● <a href="/new/22" target="_blank">外贸邦数据服务理念</a></li>                     
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%}else{%>
+    <div id="page-content">
+        <div class="seach-Box">
+            <div class="loft-title">   
+                <h1>Member Service And Price</h1>        
+                <p>Committed to becoming the best user experience and the most cost-effective platform.</p>
+            </div>
+        </div>
+        <div class="result-box">
+            <div class="sousou-data-left">
+                <div class="sousou-data mgall-l">
+                  
+
+                <% if(wglobals.is_df ){ %>
+                    <% if(wglobals.user.new_user ){ %>    
+                 <!--非钻用户 --> 
+                 <div class="sjj-price-en">
+                    <span>2022 Data Festival→→<br><font>Valid until 12/31/2022</font></span>
+                    <span>Up to $20 off<br><font>Annual only pay $248.9/year</font></span>
+                    <span>$45 off<br><font>$494.9/year paid</font></span>
+                    <span>$120 off<br><font>$749.9/year paid</font></span>
+                 </div>                 
+                  <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage > 0){%>
+
+                 <!--123档续费期用户 --> 
+                <div class="sjj-price-en">
+                    <span>2022 Data Festival→→<br><font>Valid until 12/31/2022</font></span>
+                    <span>&nbsp;<br><font>&nbsp;</font></span>
+                    <span>$45 Off<br><font>Gift 1 month service</font></span>
+                    <span>$120 off or free gift<br/><font>Email hunting tool (standard)</font></span>
+                 </div>  
+
+                 <%} else if(wglobals.user.diamond_renew_user && wglobals.user.user_stage == 0){%>
+                <!--0档-->
+                <div class="sjj-price-en">
+                    <span>2022 Data Festival→→<br><font>Valid until 12/31/2022</font></span>
+                    <span>&nbsp;<br><font>&nbsp;</font></span>
+                    <span>Renew at original price<br/>Save$240</span>
+                    <span>Renew at original price<br/>Save $470</span>
+                 </div>       
+                 <% } %>
+                 <%}%>
+
+
+                     <div class="loft-hd-content">
+                          <ul>
+                              <li>
+                                  <span class="loft-hd-title">Features</span>
+                                  <% if(results.v){%>
+                                  <span>
+                                     <h2>VIP Membership</h2>
+                                     <font>Check contact information and shipments</font>
+                                     <font class="loft-hd-price">$<b><%=results.v.amount%></b>/30 days</font>
+                                     <a href="<%=user.id?'/Alipay?v=v':'/login'%>">Buy now →</a>
+                                  </span>
+                                  <% }%>
+                                  <span>
+                                    <h2>Blue Diamond</h2>
+                                    <font>Unlimited of the company report check</font>
+                                    <font class="loft-hd-price">$<b><%=results.bd.amount%></b>/Year</font>
+                                    <a href="<%=user.id?'/Alipay?v=bd':'/login'%>">Buy now →</a>
+                                 </span>
+                                  <% if(results.yd){%>
+                                  <span>
+                                     <h2>Yellow Diamond</h2>
+                                     <font>Multi-person collaborative operation</font>
+                                     <font class="loft-hd-price">$<b><%=results.yd.amount%></b>/Year</font>
+                                     <a href="<%=user.id?'/Alipay?v=yd':'/login'%>">Buy now →</a>
+                                  </span>
+                                  <% }%>
+                                  <br class="clear-box"/>
+                              </li>
+                              <li class="loft-hd-bg">
+                                <span>Member Sub-Accounts</span>
+                                <span>Used by 1 person<br/>only</span>
+                                <span>1 main account<br/>2 sub-accounts</span>  
+                                <span>1 main account<br/>4 sub-accounts</span>                              
+                                <br class="clear-box"/>                        
+                            </li>
+                            <li class="loft-hd-bottom">
+                                <span>Trade Countries</span>
+                                <span>32 (Excluding Indonesia)</span>
+                                <span>33</span>
+                                <span>33</span>
+                                <br class="clear-box"/>                       
+                            </li>
+                            <li class="loft-hd-bg loft-hd-bottom">
+                                <span>Email Hunting Tool</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span>Right to buy</span>
+                                <span>Right to buy</span>
+                                <br class="clear-box"/>                        
+                            </li>
+                            <li class="loft-hd-bg">
+                                <span><b>Search for companies</b></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>HS Code Search</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Search Advanced Filter</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bottom">
+                                <span>Search tag creation</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bg">
+                                <span><b>Company trade reports</b></span>
+                                <span>200 copies/day</span>
+                                <span>Unlimited</span>
+                                <span>Unlimited</span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Reference contact info</span>
+                                <span>≤200 copies/day</span>
+                                <span>Unlimited</span>
+                                <span>Unlimited</span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Company trade data review</span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Partners/Port/area</span>
+                                <span>TOP5</span>
+                                <span>All</span>
+                                <span>All</span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Products/HS code</span>
+                                <span>TOP5</span>
+                                <span>All</span>
+                                <span>All</span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bottom">
+                                <span>Company label function</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bg">
+                                <span><b>Industry Analysis Reports</b></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Original bill of lading data</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Buyers/Suppliers Ranking</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Trade area/Port Rankings</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bottom">
+                                <span>Monthly/Trend analysis</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bg">
+                                <span><b>Export of B/Ls data</b></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li>
+                                <span>Contact export</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                            <li class="loft-hd-bottom">
+                                <span>Company directory xport</span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-false">&nbsp;</i></span>
+                                <span><i class="loft-hd-ture">&nbsp;</i></span>
+                                <br class="clear-box"/>
+                            </li>
+                         </ul>
+                     </div>
+    
+                     <!--ask-->
+                     <div class="loft-hd-ask">
+                         <h2>Members' Frequently Asked Questions</h2>
+                         <div id="questions">
+                            <ul>
+                                <li class="clearfix">
+                                    <h3><b class="UI-ask"></b>How many countries' trade data are currently available? How is the data updated?</h3>
+                                    <div class="foldContent">
+                                        <p>We currently provide access to import and export data for 31 trading countries, all data is sourced from local national commerce departments, the data is legal and guaranteed......</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <h3><b class="UI-ask"></b>Can I upgrade my unexpired VIP membership to Yellow Diamond membership?</h3>
+                                    <div class="foldContent">
+                                        <p>The system will automatically credit the balance of your VIP when you upgrade your membership.</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <h3><b class="UI-ask"></b>Is it possible to provide a contract and invoice?</h3>
+                                    <div class="foldContent">
+                                        <p>The original contract or the electronic copy can be provided, contact customer service to go through the contract process. Electronic invoices, paper invoices and special invoices are available. Diamond members can apply for invoicing in the "My Orders" section of the Data Management Centre or contact customer service for invoicing, and paper invoices are shipped!</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <h3><b class="UI-ask"></b>What are your payment options? How do I open a membership account and access?</h3>
+                                    <div class="foldContent">
+                                        <p>PayPal, Alipay, WeChat and bank transfers for public use are supported. Online payment account will be opened automatically, when you choose to transfer funds for public use, the account will be opened manually within 1 hour after the successful transfer, a website registration account is provided.</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <h3><b class="UI-ask"></b>What can this data do for me and what can I find out through it?</h3>
+                                    <div class="foldContent">
+                                        <p>The data is used in many scenarios, including customer development, market analysis, peer & customer monitoring and maintenance. Check out: trading partners, products, volumes, market analysis, contact details...</p>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                    <h3><b class="UI-ask"></b>What are the advantages and differences between you and fellow trade data companies in the market?</h3>
+                                    <div class="foldContent">
+                                        <p>Firstly, the product attributes are platform model, registered users can verify for free and have a good experience. Secondly, we have data consultants and after-sales customer service, which can eliminate the middle price difference...</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>
+            </div>
+            <div class="soso-data-right">
+                <div class="module-content mar-l">
+                    <div class="collect-box">
+                        <h2>Reasons for choosing us?</h2> 
+                        <ul class="loft-hd-why">
+                            <li>
+                                <h3>Over 1 million users worldwide</h3>
+                                <p>Built 11 years ago, with a cumulative total of 1 million registered users.</p>
+                                <i></i>
+                            </li>
+                            <li>
+                                <h3>Good value for money user experience</h3>
+                                <p>Open data query experience, good information symmetry experience.</p>
+                                <i></i>
+                            </li>
+                            <li>
+                                <h3>32 data source trading countries</h3>
+                                <p>Raw customs data is maintained in weekly and monthly updates.</p>
+                                <i></i>
+                            </li>
+                        </ul>  
+                    </div>
+                    <div class="bang-classroom" id="bang_classroom">
+                        <h2>Class<a href="/new">more<font>&gt;</font></a></h2>
+                        <ul class="bang-list">
+                          <li>● <a href="#" target="_blank">Product Brochure</a></li>
+                          <li>● <a href="#" target="_blank">International Trade Course</a></li> 
+                          <li>● <a href="#" target="_blank">Data Encyclopedia</a></li>                                               
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%}%>
+
+<%- include('../global/foot.ejs') %>
+ <script  src="<%= STATIC %>javascripts/loft_HD/loft_HD.js"></script> 
+</body>
+</html>

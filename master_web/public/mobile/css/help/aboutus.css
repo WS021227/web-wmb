@@ -1,0 +1,37 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+.help-k{
+    margin-top: 2.75rem;
+    padding: 1.25rem 0;
+}
+.help-k .help-content{
+    margin: 0 0.9375rem;
+    padding-bottom: 1.5rem;
+}
+.help-k .help-content>img{
+    display: block;
+    width: 90vw;
+    margin: 0 auto;
+}
+.help-k .help-content>h2{
+    font-size: 1rem;
+}
+.help-k .help-content>p{
+    font-size: .75rem;
+    color: #333;
+    line-height: 1.2rem;
+    padding: .63rem 0;
+}
+.help-k .help-content img{width:100%;}
+.help-bg{font-size:0.8rem;background:#fff;line-height:180%;padding:0.9375rem;border-radius:10px;}
+.help-bg h2, .help-bg p b{font-size:0.9375rem;font-weight:bold;margin-top:1rem;display:inline-block;}
+.foot-contact{padding-bottom:3.5rem;}
+.help-bg-bottom{margin-bottom:1.5rem;}
+
+
+
+
+  

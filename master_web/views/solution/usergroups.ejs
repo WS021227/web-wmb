@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><%=translate('solutions_usergroups')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/solution/solution.css?v=<%=VERSION%>">    
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="solution-k">
+        <%- include('./solution_leftmeun.ejs') %>
+        <div class="solution-content">
+            <%if(wglobals.lang == 'cn'){%>
+            <div class="solution-title industry">
+                 <h1>使用人群</h1>
+                 <p>以下用户群体都可以使用我们的数据，客户开发、市场调研、风控监测、打假等等..</p>
+            </div>
+            <div class="solution-des"> 
+                <h2>采购商</h2>               
+                <p>通过运行简单的关键词搜索，轻松找到新的供应商。只要输入任何产品的关键词，你就能立即掌握市场的内部运作情况。今天就寻找新的供应商或监控你的竞争对手。</p>
+                
+                <h2>供应商</h2>
+                <p>运行产品搜索，快速、轻松地产生新的线索。只需输入任何产品的关键词，你就能立即掌握市场的内部运作情况，唾手可得。今天就可以找到新的买家或监控你的竞争对手。</p>
+            
+                <h2>货代、物流公司</h2>
+                <p>提供交易次数、重量、数量易总价四个维度的市场趋势分析图及报表数据，帮助您洞悉市场不同时间段内数据变化，科学制定生产营销策略。</p>
+            
+                <h2>律师</h2>
+                <p>我们直观的系统使寻找货物变得容易eys 根据公司名称、产品关键词（如品牌）或特定的提单来识别感兴趣的货物。使用真实的运输数据来执行知识产权</p>
+            
+                <h2>投资者</h2>
+                <p>在投资前衡量一个公司的健康状况。使用进口数据来确定一个公司或市场的稳定性和运输趋势，以确保明智的投资。确定该公司的装运趋势是否符合或超过你的预期。 </p>
+
+                <h2>学校、研究者</h2>
+                <p>全面掌握目标市场的现有的优质进出口商及新增进出口商，快速匹配到适合开发的客户群体。点击公司名可查阅当前公司完整的贸易报告..</p> 
+            </div>
+            <%}else{%>
+                <div class="solution-title industry">
+                    <h1>User groups</h1>
+                    <p>The following user groups can use our data for customer development, market research, risk control monitoring, counterfeiting, etc...</p>
+               </div>
+               <div class="solution-des"> 
+                   <h2>Buyer</h2>               
+                   <p>Find new suppliers easily by a simple keyword search. Just enter the keywords, and you'll instantly have an inside view of the market. Find a new supplier or monitor your competitors now.</p>
+                   
+                   <h2>Supplier</h2>
+                   <p>Search a product keywords to generate new leads quickly and easily. Just enter the keywords, and you'll instantly have an inside view of the market. Find new buyers or monitor your competitors Now.</p>
+               
+                   <h2>Freight forwarding and logistics companies</h2>
+                   <p>Provides market trend analysis charts and reports in four dimensions: number of transactions, weight, quantity and total price, helping you understand the market changes and scientifically formulate production and marketing strategies.</p>  
+                   
+                   <h2>Lawyers</h2>
+                   <p>Our intuitive system makes finding shipments easily. Eys. Identify cargo of interest based on company name, product keywords (such as brands), or specific bills of lading. Use real shipping data to protect intellectual property.</p>
+                   
+                   <h2>Investors</h2>
+                   <p>Measure the health of a company before investing. Use import data to determine whether a company or market is stable and predict future trends to ensure a wise investment. Determine if the company's trading trends meet or exceed your expectations.</p> 
+                   
+                   <h2>Schools, Researchers</h2>
+                   <p>Get a comprehensive overview of existing and new quality importers and exporters in your target market. Quickly match suitable customer. Click on the company name to access the full trade report of the current company...</p>
+                </div>  
+            <%}%>    
+        </div>
+        <br class="clear"/>
+    </div>
+
+
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/index/solution.js?v=<%=VERSION%>"></script>
+</body>
+</html>

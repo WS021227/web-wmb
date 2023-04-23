@@ -1,0 +1,61 @@
+<div class="higher-search">
+    <div class="header-title"><h2><%=translate('detail_tab_share_advanced')%></h2></div>
+    <div class="power-search-box">
+        <form id="hs_search_form" onsubmit="return false">
+        <input placeholder="<%=translate('detail_tab_hscode_tips')%>" class="search-input  datatables-search-text clear-target" id="tab_trade_hs_search"/>
+        <i class="delete-input clear-txt">×</i>
+        <input type="hidden" name="state" value="0">
+        <input type="hidden" name="start_time" value="**">
+        </form>
+    </div>
+</div>
+<div class="result-list">
+    <div class="header-title">
+        <h2><%=translate('detail_nav_hscode')%></h2>
+        <div id="trade_hs_deep">
+            <div class="dropdown-btn" data-value="*">
+                <font class="show"><%=translate('detail_tab_share_trade_depth')%></font>
+                <i></i>
+            </div>
+            <ul class="dropdown-menu" style="margin-top: 10px;">
+                <li class="item active" data-value="*"><%=translate('detail_tab_share_no_conditions')%></li>
+                <li class="item" data-value="1"><%=translate('detail_tab_share_no_last_year')%></li>
+                <li class="item" data-value="2"><%=translate('detail_tab_share_already')%></li>
+                <li class="item" data-value="3"><%=translate('detail_tab_share_new_add')%></li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="trading-list-box">
+        <div class="trading-list-data">
+            <div class="trading-list-number"><%=translate('detail_tab_share_total')%><font class="hits"></font>，<%=translate('detail_tab_share_page')%></div><div id="trade_hs_page_len"></div>
+            <br class="clear-box"/>
+        </div>
+        <!--<span class="export tab-export" data-src="content_trade_hs" data-fl="HS编码名录"><i></i><%=translate('share_text_export')%></span>-->
+        <span class="export hs-export"><i></i><%=translate('share_text_export')%></span>
+    </div>
+    <div>
+        <table border="0" id="content_trade_hs" class="datatable-content"></table>
+    </div>
+</div>
+<script>
+    $(function() {
+        $('#trade_hs_deep').wdropdown({
+            selected: function (e){
+                var _val = e.value
+                if (_val == '1') {
+                    $('#hs_search_form [name="start_time"]').val($.formatDate($.date_add(-1, company_end_time)))
+                    $('#hs_search_form [name="state"]').val(0)
+                } else if (_val == '*') {
+                    $('#hs_search_form [name="start_time"]').val('**')
+                    $('#hs_search_form [name="state"]').val(0)
+                } else {
+                    $('#hs_search_form [name="start_time"]').val('**')
+                    $('#hs_search_form [name="state"]').val({'2': 2, '3': 1}[_val])
+                }
+                trade_hs()
+            }
+        })
+    });
+</script>
+

@@ -1,0 +1,50 @@
+<% var nav_active = wglobals.nav_active; %>
+<% console.log(wglobals,"000") %>
+    <div class="nav-box ">
+        <div class="nav">
+            <div class="leftsidebar" id="left_sidebar">                
+                <div><a href="/"><img src="<%= STATIC %>/images/logo.png" class="logo" alt="<%=translate('share_text_sitename')%>"></a></div>
+                <div class="leftsidebar-mine">
+                    <a href="/user/datacenter/home" class="line-ms <%=nav_active=='datacenter'?'nav-active':'' %>"  rel="nofllow">
+                       <%=translate('share_nav_mine')%><font class="count display-none"></font>
+                    </a>
+                    <i></i>
+                    <ul>
+                        <li><a href="/user/datacenter/home" rel="nofllow"><%=translate('share_mine_data_manager')%></a></li>
+                        <li class="line-ms"><a class="point" href="/user/line/index" rel="nofllow"><%=translate('share_mine_line_manager')%></a><font class="count display-none"></font></li>
+                    </ul>
+                </div>     
+                <div><a href="/buyer" <%=nav_active=='buyer'?'class=nav-active':'' %>><%=translate('share_nav_buyer')%></a></div>
+                <div><a href="/supplier" <%=nav_active=='supplier'?'class=nav-active':'' %>><%=translate('share_nav_supplier')%></a></div>
+                <div><a href="/billsearch" <%=nav_active=='customs'?'class=nav-active':'' %>><%=translate('share_nav_tradedata')%></a></div>
+                <%if(wglobals.lang == 'cn'){%>
+                <div><a href="/customs-data-course" <%=nav_active=='course'?'class=nav-active':'' %>>开发课</a></div>
+                <%}%>    
+                <div><a href="/loft_HD" <%=nav_active=='loft_hd'?'class=nav-active':'' %>><%=translate('share_nav_price')%></a></div>
+            </div>
+            <div class="rightsidebar">
+                <div class="rightsidebar-nav">
+                    <a href="/"><%=translate('share_nav_home')%></a>
+                    <%if(wglobals.lang == 'cn'){%><a href="https://line.52wmb.com" target="_blank">邦Line</a><%}else{%><a href="https://line.52wmb.com/en" target="_blank">B-Line</a><%}%>
+                    <%if(wglobals.lang == 'en'){%>
+                    <a href="/social-media">Email Hunting</a>     
+                    <a href="/amazon">Jungle Scout</a>            
+                    <%}%>  
+                    <a href="/new"><%=translate('share_nav_class')%></a>    
+                    <%if(wglobals.lang == 'cn'){%><a href="/mall">商城</a>
+                    <a href="/weixin">移动端</a><%}%>
+                    <%if(wglobals.lang == 'cn'){%><a href="https://en.52wmb.com">EN</a><%}else{%><a href="https://www.52wmb.com">中文</a><%}%>
+                    <%- include('../global/head_login_status.ejs') %>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div id="top_notice" class="notice-content display-none"></div>
+    <script>
+    </script>
+
+
+
+
+    
+

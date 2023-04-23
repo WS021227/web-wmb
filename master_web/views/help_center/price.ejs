@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/help_center/help.css?v=<%=VERSION%>">
+    <title><%=translate('help_nav_ad')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+    <%- include('../global/head.ejs') %>
+    <div class="help-k">
+        <%- include('./child/help_center_leftmeun.ejs') %>
+        <div class="help-content">
+            <%if(wglobals.lang == 'cn'){%>
+            <div>
+                <h1>广告招募</h1>
+                <h2>通用版</h2>
+                <p>
+                    针对国内外贸人群，遍及外贸全行业。外贸邦四大版面展示，经济适用性价比高！<br/>
+                    7,000元/月<br/>
+                    覆盖用户120,000人/月<br/> 
+                    覆盖全国外贸用户<br/>
+                    人均浏览3次/天<br/>
+                    用户类型C类<br/>
+                    展示渠道网站
+                </p>
+                <h2>专业版</h2>
+                <p>
+                    覆盖国内外人群，囊括各类型用户。专享人气版面，活跃的社交媒体用户。展示效果好！<br/>
+                    15,000元/月<br/>
+                    覆盖用户290,000人/月<br/> 
+                    覆盖全国外贸用户<br/>
+                    人均浏览4次/天<br/>
+                    用户类型C&B类<br/>
+                    展示渠道网站+社交媒体
+                </p>
+                <h2>定制版</h2>
+                <p>
+                    诚意十足，全站资源一网打尽。个性十足，地域人群定向推送。创意十足，定制设计效果非凡。<br/>
+                    36,000元/月<br/>
+                    覆盖用户350,000人/月<br/> 
+                    覆盖全国外贸用户<br/>
+                    人均浏览4次/天<br/>
+                    锁定精准用户<br/>
+                    展示渠道网站+社交媒体+EDM<br/>
+                    定制专属页面
+                </p>
+                <p>
+                    联系人：朱先生 <br/>
+                    电话：021-64033526-8019 <br/>
+                    QQ：2607116917
+                </p>
+            </div>
+            <%}else{%>
+                <div>
+                    <h1>Advertise</h1>
+                    <h2>General version</h2>
+                    <p>
+                        For the domestic foreign trade crowd, throughout the foreign trade industry, economical and cost-effective!<br/>
+                        7,000 RMB/month<br/>
+                        Covering 120,000 users/month<br/>
+                        Covering all foreign trade users in China<br/>
+                        Per capita browsing 3 times/day<br/>
+                        User Type C<br/>
+                        Display Channel is web site
+                    </p>
+                    <h2>Professional Edition</h2>
+                    <p>
+                        Reaching a national and international audience, with active social media users. Great display!<br/>
+                        15,000 RMB/month<br/>
+                        Covering 290,000 users/month <br/>
+                        Coverage of foreign trade users nationwide<br/>
+                        4 views per capita/day<br/>
+                        User type C&B category<br/>
+                        Website + Social Media<br/>
+                    </p>
+                    <h2>Customised version</h2>
+                    <p>
+                        Crowd-targeted push. Creative and custom designed for exceptional results<br/>
+                        36,000RMB/month<br/>
+                        Covering 350,000 users/month<br/>
+                        Covering foreign trade users nationwide<br/>
+                        Per capita browsing 4 times/day<br/>
+                        Targeting precise users<br/>
+                        Display channels website + social media + EDM<br/>
+                        Dedicated page<br/>
+                    </p>
+                    <p>
+                        联系人：朱先生 <br/>
+                        电话：021-64033526-8019 <br/>
+                        QQ：2607116917
+                    </p>
+                </div>
+            <%}%>
+        </div>
+        <br class="clear"/>
+    </div>
+
+
+    <%- include('../global/foot.ejs') %>
+    <script src="<%= STATIC %>javascripts/index/help_center.js?v=<%=VERSION%>"></script>
+</body>
+</html>

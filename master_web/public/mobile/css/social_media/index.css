@@ -1,0 +1,402 @@
+.email-container {
+  background-color: #f5f5f5;
+  padding-bottom: 4.75rem;
+}
+.email-container .email-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff;
+}
+.email-container .email-header h1 {
+  padding: 0.625rem 0;
+  text-align: center;
+  font-size: 1.0625rem;
+  line-height: 1.5rem;
+  color: #333;
+  font-weight: 600;
+}
+.email-container .email-header img {
+  width: 0.75rem;
+  position: absolute;
+  top: 1rem;
+  left: 0.9375rem;
+}
+.email-container .email-ctk {
+  margin-top: 2.75rem;
+  padding: 1.8rem 0.8rem;
+  background:#EAEDF2;
+  text-align:center;
+  padding-top:2rem;
+}
+.email-container .email-ctk .left {
+  width:100%;
+  
+}
+.email-container .email-ctk .left h2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #333;
+  font-size: 1.4rem;
+  line-height: 1.625rem;
+  font-weight: 600;
+  margin-bottom: 0.3125rem;
+  white-space: nowrap;
+}
+.email-container .email-ctk .left p {
+  display: block;
+  padding:0 0.9375rem;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+  color:#333;
+  margin-bottom: 0.3125rem;
+}
+.email-container .email-ctk .left :nth-child(3) {
+  color: #999;
+  font-size: 0.65rem;
+  line-height: 1.0625rem;
+  display:block;
+  text-align:center;
+}
+.email-container .email-ctk .left :nth-child(3) > span {
+  display: inline-block;
+  font-size: 0.9375rem !important;
+  color: #DD0100;
+  font-weight: 600;
+}
+.email-container .email-ctk .left :nth-child(4) {
+  font-size: 0.5rem;
+  color: #777;
+  line-height: 0.6875rem;
+  display: inline-block;
+  white-space: nowrap;
+  transform-origin: top left;
+  transform: scale(0.66);
+}
+.email-container .email-ctk .right img {
+  width: 10.3125rem;
+}
+.email-container h3 {
+  padding:0 0.9375rem;
+  padding-top:1.6rem;
+  padding-bottom:0.6rem;
+  font-size:0.9375rem;
+  color: #333;
+  font-weight: 600;
+}
+.email-container h4 {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.375rem;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+.email-container h4 img {
+  margin-right: 0.625rem;
+}
+.email-container h4 .index {
+  position: absolute;
+  left: 0.4375rem;
+  top: 0.0625rem;
+  font-size: 1rem;
+  line-height: 1.3125rem;
+  color: #fff;
+}
+.email-container h4 .jiage {
+  display: block;
+  font-size: 0.625rem;
+  color: #777;
+  margin-left: 0.75rem;
+  transform-origin: center left;
+  transform: scale(0.8);
+}
+.email-container .email-ys .email-sp-box {  
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  padding: 0.625rem 0;
+  margin: 0 0.9375rem;
+}
+.email-container .email-ys .email-sp-box video {
+  display: block;
+  width:20rem;
+  margin: 0 0.7375rem;
+}
+.email-container .email-nr .nr-box {
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  padding: 1.875rem 0.9375rem;
+  margin: 0 0.9375rem;
+}
+.email-container .email-nr .nr-box :nth-child(1) {
+  margin-top: 0;
+}
+.email-container .email-nr .nr-box h4 {
+  margin-top: 2rem;
+}
+.email-container .email-nr .nr-box p {
+  font-size: 0.75rem;
+  color: #333;
+  line-height: 1.125rem;
+  margin-bottom: 0.625rem;
+}
+.email-container .email-nr .nr-box > span {
+  display: block;
+  font-size: 0.625rem;
+  color: #777;
+  transform-origin: top left;
+  transform: scale(0.8);
+  margin-bottom: 0.625rem;
+}
+.email-container .email-nr .nr-box > img {width:20rem;}
+.email-container .email-bb h3 {}
+.email-container .email-bb .bb-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.9375rem;
+}
+.email-container .email-bb .bb-box .left {
+  width: 11.4375rem;
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  color: #333;
+  font-size: 0.75rem;
+}
+.email-container .email-bb .bb-box .left .title {
+  display: block;
+  color: #333;
+  font-size: 0.8rem;
+  border-top-left-radius: 0.3125rem;
+  border-top-right-radius: 0.3125rem;
+  text-align: center;
+  padding: 0.6875rem 1.9375rem;
+  background-color: #d8d8d8;
+  font-weight:bold;
+}
+.email-container .email-bb .bb-box .left ul {
+  width: 10.4375rem;
+}
+.email-container .email-bb .bb-box .left ul li {
+  list-style: none;
+  padding: 0.75rem 0.625rem;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px #e5e5e5 solid;
+}
+.email-container .email-bb .bb-box .left ul li:last-child{border-bottom:none;}
+.email-container .email-bb .bb-box .left ul li span {
+  display: block;
+}
+.email-container .email-bb .bb-box .left ul li .ymx {
+  display: block;
+  width: 9.25rem !important;
+}
+.email-container .email-bb .bb-box .left ul li :nth-child(2n) {
+  text-align:right;
+  padding-left:0.2rem;
+}
+.email-container .email-bb .bb-box .right {
+  margin-left: 0.5875rem;
+}
+.email-container .email-bb .bb-box .right .title {
+  color: #fff;
+  background: linear-gradient(to right, #FFB46F, #FECE99);
+}
+.email-container .email-bb .bb-box .right li :nth-child(2n) {
+  color: #FF9900;
+}
+.email-container .email-bb .bb-box .right li .ymx {
+  display: block;
+}
+.email-container .yuekt-qy .qy-list {
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  margin: 0 0.9375rem;
+  margin-top: 0.3125rem;
+  padding: 0.75rem 0.9375rem;
+}
+.email-container .yuekt-qy .qy-list .h1,
+.email-container .yuekt-qy .qy-list .h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.email-container .yuekt-qy .qy-list .h1 .box,
+.email-container .yuekt-qy .qy-list .h2 .box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.email-container .yuekt-qy .qy-list .h1 .box img,
+.email-container .yuekt-qy .qy-list .h2 .box img {
+  width: 2.75rem;
+}
+.email-container .yuekt-qy .qy-list .h1 .box > span,
+.email-container .yuekt-qy .qy-list .h2 .box > span {
+  font-size: 0.65rem;
+  color: #333;
+  margin-top: 0.3125rem;
+}
+.email-container .yuekt-qy .qy-list .h1 {
+  margin-bottom: 0.75rem;
+}
+.email-container .email-pj .pj-list {}
+.email-container .email-pj .pj-list .swiper {
+  z-index: 0;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide {
+  width: 18rem;
+  margin-left: 0.5375rem;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box {
+  padding: 0.625rem 0.625rem;
+  background-color: #fff;
+  border-radius: 0.3125rem;
+  min-height:9rem;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box > div {
+  display: flex;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box > div img {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius:100px;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box > div > div {
+  margin-left: 0.625rem;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box > div > div span {
+  display: block;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box > div > div :nth-child(1) {
+  font-size: 0.8rem;
+  color: #333;
+  font-weight:bold;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box > div > div :nth-child(2) {
+  font-size: 0.6rem;
+  color: #015EB9;
+  margin-top: 0.125rem;
+}
+.email-container .email-pj .pj-list .swiper .swiper-wrapper .swiper-slide .pj-box p {
+  margin-top: 0.625rem;
+  color: #333;
+  font-size: 0.75rem;
+  line-height: 17px;
+}
+.email-container .email-wd {}
+.email-container .email-wd ul {
+  list-style: none;
+  padding: 0.625rem 0.875rem;
+  background-color: white;
+  border-radius: 0.3125rem;
+  margin: 0 0.9375rem;
+}
+.email-container .email-wd ul li {
+  padding: 0.625rem 0;
+  font-size: 0.875rem;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom:1px #efefef solid;
+}
+.email-container .email-wd ul li:last-child{border-bottom:none;padding-bottom:0;}
+.email-container .email-wd ul li :nth-child(1) {
+  font-size: 0.875rem;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.email-container .email-wd ul li :nth-child(1) .qq {
+  display: inline-block;
+  padding: 0.0625rem 0.25rem;
+  color: white;
+  font-size: 0.6875rem;
+  text-align: center;
+  line-height: 1rem;
+  background-color: #015EB9;
+  border-radius: 0.125rem;
+  margin-right: 0.425rem;
+}
+.email-container .email-wd ul li :nth-child(1) .text {
+  font-size: 0.8rem;
+  color: #333;
+  display: inline-block;
+  width: 14rem;
+}
+.email-container .email-wd ul li img {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+.email-container .email-wd ul li .hs {
+  padding: 0.0625rem 0.25rem;
+  color: white;
+  background-color: #E5E5E5;
+  border-radius: 0.125rem;
+  font-size: 0.6875rem;
+  margin-right: 0.625rem;
+}
+.email-container .email-wd ul li .text {
+  color: #777;
+  font-size: 0.75rem;
+  width: 18.75rem;
+  max-height: 2.125rem;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  /* 这里是超出几行省略 */
+  overflow: hidden;
+}
+.email-container .email-zf {
+  width: 100vw;
+  padding: 0.6rem 2rem;
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  font-size:0.8rem;
+  border-top:1px #ddd solid;
+}
+.email-container .email-zf a {
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius:1.5625rem;
+  text-align: center;
+  display: block;
+  margin:0 0.6rem;
+  font-weight:bold;
+}
+.email-container .email-zf > :nth-child(1) {
+  color: #015EB9;
+  border: 1px solid #015EB9;
+  background:#fafafa;
+  padding:0.3rem 1.2rem;
+  
+}
+
+.email-container .email-zf :nth-child(2),
+.email-container .email-zf .liji {
+  margin-left: 0.1875rem;
+  color: #fff;
+  background: linear-gradient(to right, #015EB9, #70B8FF);
+  border: 0;
+}
+.email-container .email-zf .liji {
+  margin: 0 auto;
+}
+.email-container .email-zf .youjian {
+  width: 100vw;
+  padding: 0.625rem 0;
+  text-align: center;font-weight:bold;
+}

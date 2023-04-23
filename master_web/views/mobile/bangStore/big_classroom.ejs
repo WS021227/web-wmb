@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="邦阅大课堂已上线外贸课程9个，月更2个，年度计划上新视频课程<%=results.wmb_bangclass.playback_count %>个。视频涵盖主流B2B、社媒工具、跨境电商、独立站、搜索引擎、外贸数据等课程内容。"/>
+        <meta name="keywords" content="外贸课程,培训,B2B,跨境,SEO,独立站,搜索引擎"/>
+        <title>邦阅大课堂-外贸邦</title>
+        <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>"/>
+        <link rel="stylesheet" href="<%= STATIC %>mobile/css/yuekt/index.css?v=<%=VERSION%>" />
+    </head>
+    <body>
+        <% console.log(results.wmb_bangclass,"大课堂数据") %>
+            <% let kc_list = results.wmb_bangclass.playback_list,sum_num=results.wmb_bangclass.playback_count %>
+                <div class="yuekt-container" data-img="<%= STATIC %>" data-img="<%= STATIC %>">
+                    <%- include('../layout/header.ejs'); %>
+                    <div class="yuekt-ctk">
+                        <div class="left">
+                            <h2>邦阅大课堂畅听卡</h2>
+                            <p>持卡者,所有已上线外贸课程有效期内<br/>无限制观看,月上新2个</p>
+                        </div>
+                    </div>
+                    <div class="yuekt-kc">
+                        <h3>外贸课程</h3>
+                        <div class="yuekt-kc-list">
+                            <div class="swiper" id="swiper">
+                                <div class="swiper-wrapper">
+                                    <% let num=parseInt(sum_num/6)+1 %>
+                                    <% let arr=[] %>
+                                    <% for(let i=0;i<num;i++){ %>
+                                        <% arr.push('0') %>
+                                    <% } %>
+                                    <% arr.forEach((item,index)=>{ %>
+                                            <div class="swiper-slide swiper-slide-ws">
+                                                <% if(index==0){%>
+                                                <% kc_list.forEach((item,index)=>{ %>
+                                                        <div class="kc-box">
+                                                            <img src="<%= item.head %>" alt="">
+                                                            <div>
+                                                                <span class="time">时长：<%= item.class_duration %>&nbsp;|&nbsp;<%= item.class_students %>人学习</span>
+                                                                <span class="title"><%= item.class_type %></span>
+                                                                <p><%= item.title %></p>
+                                                                <span class="teacher">讲师：<%= item.user_name %></span>
+                                                            </div>
+                                                        </div>
+                                                <% }) %>
+                                                <% } %>
+                                            </div>
+                                    <% }) %> 
+                                              
+                                </div>
+                                <div class="pagination">
+                                    <% arr.forEach(function(item,index){ %>
+                                        <span class="<%= index==0?"active":"" %>"></span>
+                                    <%  }) %>
+                                </div>  
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="yuekt-qy">
+                                        <h3>会员权益</h3>
+                                        <div class="qy-list">
+                                            <div class="h1">
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_1.png" alt="无限观看">
+                                                    <span>无限观看</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_2.png" alt="社群答疑">
+                                                    <span>社群答疑</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_3.png" alt="商家对接">
+                                                    <span>商家对接</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_4.png" alt="免费开户">
+                                                    <span>免费开户</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_5.png" alt="行业资源">
+                                                    <span>行业资源</span>
+                                                </div>
+                                            </div>
+
+                                            <div class="h2">
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_6.png" alt="公开课件">
+                                                    <span>公开课件</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_7.png" alt="活动优先">
+                                                    <span>活动优先</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_8.png" alt="半年有效">
+                                                    <span>半年有效</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_9.png" alt="课件月更">
+                                                    <span>课件月更</span>
+                                                </div>
+                                                <div class="box">
+                                                    <img src="<%=STATIC %>mobile/images/loft_HD/icon_10.png" alt="一对一">
+                                                    <span>一对一</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                    </div>
+
+                    <div class="yuekt-wd">
+                                        <h3>常见问答</h3>
+                                        <ul>
+                                            <li>
+                                                <span>
+                                                    <span class="qq">Q</span>
+                                                    <span class="text">邦阅大课堂随心听服务是直播还是录播课程？</span>
+                                                </span>
+                                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <span class="qq">Q</span>
+                                                    <span class="text">购买后如何观看随心听课程？</span>
+                                                </span>
+                                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <span class="qq">Q</span>
+                                                    <span class="text">随心听有多少课时，每个课时有多少？</span>
+                                                </span>
+                                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <span class="qq">Q</span>
+                                                    <span class="text">观看随心听课程过程中有疑问怎么办？</span>
+                                                </span>
+                                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                                            </li>
+                                            <li>
+                                                <span>
+                                                    <span class="qq">Q</span>
+                                                    <span class="text">邦阅大课堂随心听服务能否退款？</span>
+                                                </span>
+                                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                                            </li>
+            
+                                        </ul>
+                    </div>
+                    <div class="yuekt-zf"><a class="liji" href="/product?product=12&adds=yue_kt">畅听卡 ¥99/6个月</a></div>
+                    <%- include('../global/foot_script.ejs'); %>
+                </div>
+                <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+                <script src="<%= STATIC %>mobile/javascripts/bangStore/index.js?v=<%=VERSION%>"></script>
+    </body>
+</html>

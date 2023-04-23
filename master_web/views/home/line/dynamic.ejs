@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=translate('bline_homepage_title')%>-邦Line</title>
+    <%- include('./head.ejs') %>    
+    <link rel="stylesheet" href="<%= PLUGINS_STATIC %>cropper/laycrop.css?v=<%= VERSION %>">
+    <link rel="stylesheet" href="<%= PLUGINS_STATIC %>cropper/cropper.min.css">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/line/dynamic.css?v=<%= VERSION %>"    
+</head>
+
+<body>
+<%- include('../../global/head.ejs') %>
+<div class="wrapper">
+    <div class="line-admin">
+        <%- include('../../home/admin_tab.ejs') %>
+        <!-- 主体内容 -->
+        <div class="line-admin-content">
+            <!-- 左侧菜单 -->
+            <%- include('./menu.ejs') %>
+            <!-- 右侧内容 -->
+            <div class="line-admin-wrapper">
+                <div class="container">
+                    <!-- 动态 -->
+                    <div class="topic">
+                        <div class="line-admin-module my-group">
+                            <div class="line-module-tab my-group-tab">
+                                <div class="tab-item tab topic active" data-tab="topic" data-target="#dynamic"><%=translate('bline_homepage_last_news')%></div>
+                                <div class="tab-item tab reply" data-tab="reply"   data-target="#dynamic"><%=translate('bline_homepage_my_response')%></div>
+                                <div class="tab-item tab replymy"  data-tab="replymy"  data-target="#dynamic"><%=translate('bline_homepage_my_to')%></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content" id="dynamic">
+                        <div class="my-center-module tab-pane active" data-hav="1">
+                            <!-- 最新动态 -->
+                            <div class="new-dynamic">
+                                <div class="dynamic-left">
+                                    <!-- 发布动态 -->
+                                    <div class="public-dynamic topic-edit">
+                                        <form id="topic_form">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_homepage_post')%></span>
+                                            <div class="position">
+                                                <div class="tab-exchange">
+                                                    <div id="circle_list" class="dropdown-container default-select" style="display:flex;">
+                                                        <div><%=translate('bline_homepage_sync_to')%>：</div>
+                                                        <div class="dropdown-btn">
+                                                            <font class="show"><%=translate('bline_homepage_select_circle')%></font>
+                                                            <i></i>
+                                                        </div>
+                                                        <ul class="dropdown-menu" style="margin-top: 10px;">
+                                                        </ul>
+                                                        <input type="hidden" name="group_id" value="0">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <textarea class="input-textarea" name="contents" rows="4"></textarea>
+
+                                            <input type="hidden" name="images">
+                                            <input type="hidden" name="circle_id" value="0">
+                                            <input type="hidden" name="video">
+                                        </form>
+                                        <div class="topic-pics display-none"></div>
+
+                                        <form id="form_topic_image_upload">
+                                            <input type="file" name="topic_image_file" accept="image/png,image/jpeg,image/jpg" hidden id="file_topic_image">
+                                        </form>
+                                        <div class="video-src display-none">
+                                            <%=translate('bline_homepage_video_address')%>：<font ></font>
+                                            <i onclick="video_remove(this)">×</i>
+                                        </div>
+
+                                        <div class="exchange">
+                                            <a class="btn-link image-upload" ><i class="iconfont"></i><%=translate('bline_homepage_add_image')%></a>
+                                            <a class="btn-link" onclick="add_video()"><i class="iconfont"></i><%=translate('bline_homepage_insert_video')%></a>
+                                            <a class="btn submit" onclick="topic_add(this)"><%=translate('bline_homepage_publish')%></a>
+                                        </div>
+                                    </div>
+                                    <!-- 动态展示 -->
+                                    <div class="topic-list" id="topic_list"></div>
+                                    <a data-page="" class="display-none" id="topic_more" onclick="more_topic(this)"><%=translate('bline_homepage_loading_more')%></a>
+                                </div>
+                                <div class="dynamic-right display-none">
+                                    <!-- 访客 -->
+                                    <div class="dynamic-right-module">
+                                        <div class="topic">
+                                            <span class="title"><%=translate('bline_homepage_visitors')%></span>
+                                            <a class="link" href="/user/line/related?tab=viewmy"><%=translate('bline_homepage_visitors_more')%></a>
+                                        </div>
+                                        <div class="content">
+                                            <div class="visitor-list" id="view_my_users"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-center-module tab-pane" data-hav="0">
+                            <div class="group-message-list" id="reply_list" ></div>
+                        </div>
+                        <div class="my-center-module tab-pane" data-hav="0">
+                            <div class="group-message-list" id="reply_my_list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/line.js?v=<%=VERSION%>"></script>
+<script src="<%= STATIC %>javascripts/home/line_dynamic.js?v=<%=VERSION%>"></script>
+<!--<script src="<%=PLUGINS_STATIC%>swiper/swiper.min.js"></script>-->
+<script src="<%=PLUGINS_STATIC%>cropper/laycrop.js"></script>
+<script src="<%=PLUGINS_STATIC%>cropper/cropper.min.js"></script>
+</body>
+
+</html>

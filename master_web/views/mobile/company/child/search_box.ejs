@@ -1,0 +1,32 @@
+ <!-- 搜索盒子 -->
+ <div class="box">
+    <span class="del-btn" onclick="del_box()"><img src="<%= STATIC %>mobile/images/company/company_list/del_btn.png" alt=""></span>
+    <div class="tab">
+        <span id="flag" data-id="2" class="active"><%= translate("company_search_cpm") %></span>
+        <span id="flag" data-id="1"><%= translate("company_search_gsm") %></span>
+        <span id="flag" data-id="3"><%= translate("company_search_hs") %></span>
+    </div>
+    <div class="search-box">
+        <span id="borm" class="borm"><%= translate("share_nav_buyer") %></span>
+        <img src="<%= STATIC %>mobile/images/user/register/down.png" class="down" id="down" />
+        <div class="select">
+            <span id="options" class="select-active" data-id="0"><%= translate("share_nav_buyer") %></span>
+            <span id="options" data-id="1"><%= translate("share_nav_supplier") %></span>
+        </div>
+        <span>|</span>
+        <input placeholder="" id="search_code" type="search" />
+        <button id="search_btn"><%= translate("export_search") %></button>
+    </div>
+    <div class="hostory" id="hostory">
+        <h3><%= translate("mine_history_name") %></h3>
+        <div class="context">
+            <!-- 渲染 -->
+        </div>
+    </div>
+    <div class="hot hostory">
+        <h3><%= translate("share_text_hot") %></h3>
+        <div class="context">
+            <!-- 渲染 -->
+        </div>
+    </div>
+</div>

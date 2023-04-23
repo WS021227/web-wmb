@@ -1,0 +1,106 @@
+<!-- buyer页面 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="line_route" content="<%=LINE_ROUTE()%>">
+    <%if(results.search_key){ var key=ucfirst(results.search_key).replace('_',' ')}else{var key=results.search_hs}%>
+    <% var country=(results.country_data||{})['country_' + wglobals.lang] || '',show_type = translate('share_companies_' + results.company_type) %>
+    <meta name="keywords" content="<%=keyreplace(translate('company_list_keywords_' + extend_params.head), ['[@国家]','[@公司属性]','[@产品]'], [country, show_type, key])%>" />
+    <meta name="description" content="<%=keyreplace(translate('company_list_description_' + extend_params.head),['[@数量]','[@国家]','[@公司属性]','[@产品]'], [(results.search_data || {}).hits,country,show_type,key])%>" />
+    <title><%=keyreplace(translate('company_list_title_' + extend_params.head),['[@国家]','[@公司属性]','[@产品]'],[country, show_type, key])%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/company_list/company_list.css?v=<%=VERSION%>" />
+</head>
+<body>
+    <div class="container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+        <% console.log(wglobals.user,"545656455646456456456") %>
+        <%- include('../layout/header.ejs'); %>
+            <div class="go-top"><img src="<%= STATIC %>mobile/images/company/company_list/to_top.png"></div>
+            <div class="sort-toast">
+                <span class="active" data-sort="default"><%= translate("company_list_rank_intelligent") %></span>
+                <span data-sort="last_trade_date"><%= translate("company_list_rank_date") %></span>
+                <span data-sort="bill_count"><%= translate("company_list_rank_transactions") %></span>
+            </div>
+            <div class="box-more">
+                <div class="title">
+                    <div class="left"></div>
+                    <div class="select-country-right"><img src="<%= STATIC %>mobile/images/company/company_list/del_btn.png"></div>
+                </div>
+                <div class="select-country-content" id="select_country_content"></div>
+                <div class="select-country-options"></div>
+                <button class="select-country-btn"></button>
+            </div>
+            <div class="search-context">
+                <div class="header-box">
+                    <div class="search" id="context_search"><img src="<%= STATIC %>mobile/images/index/index-search.png"><span></span></div>
+                </div>
+                <div class="country-list-box">
+                    <div class="country-list-box-li"></div>
+                    <span class="right-btn"><img src="<%= STATIC %>mobile/images/company/company_list/company_list-right.png" class="right" id="right_btn" /></span>
+                </div>
+                <div class="company-box">
+                    <div class="company-list">
+                        <div class="title">
+                            <div class="sum">
+                                <%= results.search_data.hits.toLocaleString() %>
+                                <%= translate("company_list_companies_count") %>
+                            </div>
+                            <div class="setting">
+                                <div class="left">
+                                    <img src="<%= STATIC %>mobile/images/company/company_list/company_list-sx.png" />
+                                    <span><%= translate("company_list_paixu") %></span>
+                                </div>
+                                <div class="right">
+                                    <img src="<%= STATIC %>mobile/images/company/company_list/company_list-index.png" />
+                                    <span><%= translate("company_list_shaixuan") %></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+        <% var search_data=results.search_data %>
+        <% if(search_data && search_data.list && search_data.list.length> 0){ %>
+                <% search_data.list.forEach((item)=>{ %>
+                    <div class="company" data-date="<%=item.last_trade_date%>" data-num="<%= item.bill_count %>">
+                        <a class="titlt" href="<%= item.type==0?'/buyer/'+item.id:'/supplier/'+item.id %>"><%= item.name %></a>
+                        <div class="start">
+                            <span class="img star-width-<%= item.star %>" id="star_img"></span>
+                            <span><%= item.country %><%= item.type==0?translate('share_nav_buyer'):translate('share_nav_supplier') %>,<%= keyreplace(translate("company_list_star_text"),['[@分数]'],[item.rating]) %></span>
+                        </div>
+                        <div class="text">
+                            <% if(item.product) {%>
+                                <span class="p1" id="reason_flag">
+                                    <span class="more-text"><b><%= translate("search_list_reason") %>:</b>&nbsp;<%= keyreplace(translate("search_list_reason_tips"),['[@产品]','[@总量]','[@两年交易数]','[@占比]'],[item.product.value,item.product.count,item.two_year_bill,item.product.prop]) %></span>
+                                </span>
+                                <span class="p2"><b><%= translate("search_list_main_products") %>:</b>&nbsp;<%= item.product.value_list %></span>                                   
+                            <%}%>
+                            <span class="p1 p1more"><span class="more-text"><b><%= translate("company_list_modle_product") %>:</b>&nbsp;<%= item.descript %></span></span>   
+                        </div>
+                        <div class="kuang">
+                            <% if(item.have_follow!==0) {%><div class="shoucang"><%= translate("company_share_tag_collections") %></div><% } %>
+                            <div class="shoucang yellow"><%= translate("company_share_tag_finesearch")  %></div>
+                            <% if(item.weight>=1000) {%><div class="shoucang phone"><%= translate("company_share_tag_contact") %></div><% } %>
+                        </div>
+                        <div class="date">
+                            <%= translate("company_list_modle_update") %><span><%= item.last_trade_date.replace(new RegExp('-', 'g' ),'/') %></span>
+                            <div id="follow_btn" data-id="<%= item.id %>">
+                                <% if(item.is_follow===false) { %><img src="<%= STATIC %>mobile/images/company/company_list/follow_false.png" id="shoucang" data-id="<%= item.id %>" /><% } %>
+                                <% if(item.is_follow===true) { %><img src="<%= STATIC %>mobile/images/company/company_list/follow_true.png" id="quxiao" data-id="<%= item.id %>" /><% } %>
+                                <span id="follw_text"><%= translate("detail_active_collect") %></span>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>                
+           </div>
+         <% } %>
+        </div>
+        <span class="company-more"><%= translate("share_text_more_click") %></span>
+    </div>                    
+</div>
+    <%- include('../layout/footer.ejs'); %>
+    <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+    <script src="<%= STATIC %>mobile/javascripts/company_list/index.js?v=<%=VERSION%>"></script>
+</body>
+</html>

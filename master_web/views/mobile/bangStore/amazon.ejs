@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%= translate('store_soso_keywords') %>" />
+    <meta name="keywords" content="<%=translate('store_js_keywords')%>" />
+    <meta name="description" content="<%=translate('store_js_description')%>" />
+    <title><%=translate('store_js_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/social_media/index.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <div class="email-container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+        <% console.log(results,"000000") %>
+        <% let data_bz=results.add_service[0],data_gj=results.add_service[1] %>
+            <%- include('../layout/header.ejs'); %>
+                <% if(wglobals.lang=="cn" ){ %>
+                    <div class="email-ctk">
+                        <div class="left">
+                            <h2>JungleScount选品工具</h2>
+                            <p>实时获取亚马逊竞品的销量利润<br/>大数据选品稳操胜券！</p>
+                        </div>
+                    </div>
+                    <div class="email-ys">
+                        <h3>视频操作演示</h3>
+                        <div class="email-sp-box">
+                            <video controls autoplay src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/ac4135915285890803524564369/wFvCMIPHEB4A.mp4"></video>
+                        </div>
+                    </div>
+
+                    <div class="email-nr">
+                        <h3>内容介绍</h3>
+                        <div class="nr-box">
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png">
+                                <span class="index">1</span>
+                                <span>了解亚马逊上有什么卖</span>
+                            </h4>
+                            <p>发现高需求，低竞争的关键字，以在亚马逊上找到具有潜力的产品。我们使用AI驱动的见解帮助您识别趋势并筛选机会，因此您可以放心地制定产品策略。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_1.png" alt="了解亚马逊上有什么卖">
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png">
+                                <span class="index">2</span>
+                                <span>跟踪产品如何随着时间出售</span>
+                            </h4>
+                            <p>保存并监控产品创意，这样您就不会失去任何机会。跟踪一个产品或一组产品，以评估一段时间内的销售情况并发现趋势，意外的高峰和季节性。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_2.png" alt="跟踪产品如何随着时间出售">
+
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png">
+                                <span class="index">3</span><span>评估产品潜力</span>
+                            </h4>
+                            <p>使用最全面的产品研究过滤器以及利润计算器来缩小搜索范围，以帮助您比较每个产品机会的价格，收入和亚马逊物流费用。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_3.png" alt="评估产品潜力">
+
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt="">
+                                <span class="index">4</span>
+                                <span>赢得更多评论</span>
+                            </h4>
+                            <p>通过为您的商家信息赢得更多评论，快速提高您的信誉和产品排名。一键式直接从卖方中心请求所有FBA订单的评论-（也是最简单）的方式来增加您的清单。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_4.png" alt="赢得更多评论">
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt="">
+                                <span class="index">5</span><span>智能管理您的库存</span>
+                            </h4>
+                            <p>我们帮助您自动化库存计划以防止缺货。JungleScout的需求预测工具利用数据来预测市场趋势和季节性。我们的AI驱动的库存仪表板建议最佳库存水平，重新订购日期和重新订购数量。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_5.png" alt="智能管理您的库存">
+
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt="">
+                                <span class="index">6</span>
+                                <span>评估您的财务状况</span>
+                            </h4>
+                            <p>分析您亚马逊业务的健康状况并实时查看利润。创建损益表，深入了解PPC广告系列分析并跟踪隐藏费用。快速轻松地查看您的财务状况，因此您可以对产品投资充满信心。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_6.png" alt="评估您的财务状况">
+
+                            <h4>
+                                <img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt="">
+                                <span class="index">7</span>
+                                <span>扩大品牌</span>
+                            </h4>
+                            <p>通过新产品创意发展您的亚马逊业务。查看历史销售，价格，搜索量等，以帮助您确定在亚马逊上流行的新的有利可图产品，或寻找补充机会来扩展品牌。</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_7.png" alt="扩大品牌">
+
+                        </div>
+                    </div>
+
+                    <div class="email-bb">
+                        <h3>版本对比</h3>
+                        <div class="bb-box">
+                            <div class="left">
+                                <span class="title">插件版</span>
+                                <ul>
+                                    <li>
+                                        <span>一键获取竞品销量</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt="一键获取竞品销量"></span>
+                                    </li>
+                                    <li>
+                                        <span>验证选品思路</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt="验证选品思路"></span>
+                                    </li>
+                                    <li>
+                                        <span>市场竞争程度分析</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt="市场竞争程度分析"></span>
+                                    </li>
+                                    <li>
+                                        <span>批量邀评</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt="批量邀评"></span>
+                                    </li>
+                                    <li>
+                                        <span>缓存模式</span>
+                                        <span><img src="<%= STATIC %>mobile/images/bangStore/check.png" alt="缓存模式"></span>
+                                    </li>
+                                    <li>
+                                        <span>选品数据库</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>竞品跟踪器</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>潜力市场搜索器</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>关键词功能</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>监控提醒</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>新品助推器</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>店铺销售分析</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>库存管理</span>
+                                        <span>—</span>
+                                    </li>
+                                    <li>
+                                        <span>Listing生成器</span>
+                                        <span>—</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="left right">
+                                <span class="title">插件+网页版</span>
+                                <ul>
+                                    <li>
+                                        <span class="ymx">一键获取竞品销量</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">验证选品思路</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">市场竞争程度分析</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">批量邀评</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">缓存模式</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">选品数据库</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">竞品跟踪器</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">潜力市场搜索器</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">关键词功能</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">监控提醒</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">新品助推器</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">店铺销售分析</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">库存管理</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                    <li>
+                                        <span class="ymx">Listing生成器</span>
+                                        <span><img src="<%=STATIC %>mobile/images/bangStore/check.png" alt=""></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-pj">
+                        <h3>用户评价</h3>
+                        <div class="pj-list">
+                            <div class="swiper" id="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://www.junglescout.com/wp-content/uploads/2018/10/kevin-thumbnail@2x-100x100.png" alt="Kevin Rizer">
+                                                <div>
+                                                    <span>Kevin Rizer</span>
+                                                    <span>首席执行官·使用3年</span>
+                                                </div>
+                                            </div>
+                                            <p>Jungle Scout亚马逊选品运维工具，是我开始所有产品研究的方式，它为我和我的团队节省了每个月无数的时间。老实说，没有它，我不知道我们做了什么！”</p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://www.junglescout.com/wp-content/uploads/2018/10/robert-thumbnail@2x-100x100.png" alt="Robert Kiyosaki">
+                                                <div>
+                                                    <span>Robert Kiyosaki</span>
+                                                    <span>创始人·使用4年</span>
+                                                </div>
+                                            </div>
+                                            <p>通过平时与客户经理的沟通、直播的交流，我们能感受到外贸邦切实的在为用户服务。这也是我一直向客户朋友推荐的原因。</p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://www.junglescout.cn/wp-content/uploads/2020/05/WechatIMG67.png" alt="Vitor.Fan">
+                                                <div>
+                                                    <span>Vitor.Fan</span>
+                                                    <span>亚马逊站长·使用2年</span>
+                                                </div>
+                                            </div>
+                                            <p>虽然国内的所有数据很多是开放的，但JS是亚马逊唯一官方的认可数据抓取工具。三年的JS铁粉。JS的数据精准度和稳定性都是值得称赞的，它支撑了我做精细化运营的绝大部分数据需求。</p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://static.52wmb.com/images/userphoto/190_155641777493927154037.jpg" alt="Jessie">
+                                                <div>
+                                                    <span>Jessie</span>
+                                                    <span>个人卖家·使用3年</span>
+                                                </div>
+                                            </div>
+                                            <p>JS真的做出了一个好产品，很适合我们小卖家，要是早点用上就好了。我用了一周不到的时间，已经发现了一款产品，正在跟供应商商谈。这已经是我做亚马逊卖家一年以来，速度最快的一次了。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-wd">
+                        <h3>Jungle Scount选品工具常见问答</h3>
+                        <ul>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">JS的软件支持哪些站点？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">支持几人同时使用？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">JS插件如何下载？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">JS插件有没有终身版？Jungle Scout网页版有没有终身版？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">新手卖家，选择JS插件还是Jungle Scout网页版？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                            </li>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">我只需要看销量，买哪个产品？</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png">
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="email-zf">
+
+                        <% if(wglobals.user.vip_level && (wglobals.user.vip_level=="yd" || wglobals.user.vip_level=="bd")) { %>
+                            <a href="/product?product=9&adds=jungle_scout"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_rmb %></a>
+                            <a href="/product?product=10&adds=jungle_scout"><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_rmb %></a>
+                        <% }else{ %>
+                            <a href="/Alipay?bd&amazon_0"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_rmb.toLocaleString() %></span></a>
+                            <a href="/Alipay?bd&amazon_1"><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_rmb.toLocaleString() %></span></a>
+                        <% } %>
+                        
+                    </div>
+                <% }else{ %>
+
+                    <div class="email-ctk">
+                        <div class="left">
+                            <h2>Jungle Scout Product Choosing tool</h2>
+                            <p>Get Real-Time Sales And Prices <br/>Of Amazon's Competing Products!</p>
+                        </div>
+                      </div>
+
+                    <div class="email-ys">
+                        <h3>Video operation demonstration</h3>
+                        <div class="email-sp-box">
+                            <video controls autoplay src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/b136a1d75285890803684855707/Lnx3xi6Gw74A.mp4"></video>
+                        </div>
+                    </div>
+
+                    <div class="email-nr">
+                        <h3>Contents introduction</h3>
+                        <div class="nr-box">
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">1</span><span>Learn what’s selling on Amazon</span></h4>
+                            <p>Uncover high-demand, low-competition keywords to find products with maximum profit potential on Amazon. We help you identify trends and filter opportunities using AI-driven insights so you can confidently craft your product strategy.</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_1.png" alt="" style="width:20rem;">
+
+
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">2</span><span>Track how products sell over time</span></h4>
+                            <p>Save and monitor product ideas so you never lose out on an opportunity. Track a product or group of products to evaluate sales over time and spot trends, unexpected spikes, and seasonality.</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_2.png" alt="" style="width:20rem;">
+
+
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">3</span><span>Evaluate product potential</span></h4>
+                            <p>Use the most comprehensive product research filters along with a profit calculator to narrow your search to help you compare prices, revenue, and FBA fees for each product opportunity.</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_3.png" alt="" style="width:20rem;">
+
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">4</span><span>Win more reviews</span></h4>
+                            <p>Quickly boost your credibility and product rankings by earning more reviews for your listings. Request reviews for all your FBA orders directly from Seller Central in one click — the best (and easiest) way to grow your listings.</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_4.png" alt="" style="width:20rem;">
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">5</span><span>Intelligently manage your inventory</span></h4>
+                            <p>We help you automate inventory planning to prevent stock-outs. Jungle
+                                Scout's demand forecasting tool utilizes data to predict market trends and seasonality. Our AI-powered inventory dashboard suggests optimal stock levels, reorder dates, and reorder quantities.</p>
+                                <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_5.png" alt="" style="width:20rem;">
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">6</span><span>Evaluate your finances</span></h4>
+                            <p>Analyze the health of your Amazon business and see profit in real time. Create profit and loss statements, dive into PPC campaign analysis, and track hidden fees. View your finances quickly and easily, so you can feel confident in your product investment.</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_6.png" alt="" style="width:20rem;">
+
+                            <h4><img src="<%= STATIC %>mobile/images/bangStore/bianhao.png" alt=""><span
+                                    class="index">7</span><span>Expand your brand</span></h4>
+                            <p>Grow your Amazon business with new product ideas. View historical sales, prices, search volume, and more to help you identify new profitable products that are popular on Amazon, or find complementary opportunities to expand your brand.</p>
+                            <img src="https://static.52wmb.com/wmb_img/minisite/js_banner_7.png" alt="" style="width:20rem;">
+
+                        </div>
+                    </div>
+
+                    <div class="email-bb">
+                        <h3>Version comparison</h3>
+                        <div class="bb-box">
+                            <div class="left">
+                                <span class="title">Plug-in version</span>
+                                <ul>
+                                    <li><span>Get competitive sales with one click</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Verify product selection ideas</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Analysis of the degree of market competition</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Bulk invitations to reviews</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Cache mode</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Selection database</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Competitor trackers</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Potential market finder</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Keyword features</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Monitoring alerts</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>New product booster</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Store sales analysis</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Inventory management</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Listing generator</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                </ul>
+                            </div>
+                            <div class="right left">
+                                <span class="title">Plugin + web version</span>
+                                <ul>
+                                    <li><span>Get competitive sales with one click</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Verify product selection ideas</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Analysis of the degree of market competition</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Bulk invitations to reviews</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Cache mode</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Selection database</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Competitor trackers</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Potential market finder</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Keyword features</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Monitoring alerts</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>New product booster</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Store sales analysis</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Inventory management</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                    <li><span>Listing generator</span><span><img src="<%=
+                                        STATIC %>mobile/images/bangStore/check.png" alt=""></span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-pj">
+                        <h3>User reviews</h3>
+                        <div class="pj-list">
+                            <div class="swiper" id="swiper">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://www.junglescout.com/wp-content/uploads/2018/10/kevin-thumbnail@2x-100x100.png" alt="">
+                                                <div>
+                                                    <span>Kevin Rizer</span>
+                                                    <span>Founder・3 years of use</span>
+                                                </div>
+                                            </div>
+                                            <p>Jungle Scout Amazon product selection operation and maintenance tool is the way I start all product research. It saves my team and me countless hours every month.</p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://www.junglescout.com/wp-content/uploads/2018/10/robert-thumbnail@2x-100x100.png" alt="">
+                                                <div>
+                                                    <span>Robert Kiyosaki</span>
+                                                    <span>Founder・4 years of use</span>
+                                                </div>
+                                            </div>
+                                            <p>It is currently the best Amazon selection operation and maintenance software. As well as the selection tool, he also shows users how to be successful on amazon.</p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://www.junglescout.cn/wp-content/uploads/2020/05/WechatIMG67.png" alt="">
+                                                <div>
+                                                    <span>Vitor.Fan</span>
+                                                    <span>webmaster・2 years of use</span>
+                                                </div>
+                                            </div>
+                                            <p>Although much of the domestic data is open, JS is Amazon's only officially approved data scraping tool. Three years of JS die-hard fan.</p>
+                                        </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="pj-box">
+                                            <div>
+                                                <img src="https://static.52wmb.com/images/userphoto/190_155641777493927154037.jpg" alt="">
+                                                <div>
+                                                    <span>Jessie</span>
+                                                    <span>Individual sellers・3 years of use</span>
+                                                </div>
+                                            </div>
+                                            <p>JS has really made a good product, which is very suitable for our small sellers, if only used early. I have found a product in less than a week, and I am in talks with the supplier.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="email-wd">
+                        <h3>Listen to card FAQs</h3>
+                        <ul>
+                            <li>
+                                <span>
+                                    <span class="qq">Q</span>
+                                    <span class="text">What sites does JS software support?</span>
+                                </span>
+                                <img src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt="">
+                            </li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">How many people are supported simultaneously?</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span class="text">How to download JS plugin?</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">Is there a lifetime version of the JS plugin? Is there a lifetime version of Jungle Scout web version?</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">As for novice seller, choose JS plugin or Jungle Scout web version?</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                            <li><span><span class="qq">Q</span><span
+                                        class="text">I only need to look at sales, which product should I buy?</span></span><img
+                                    src="<%= STATIC %>mobile/images/loft_HD/jiantou_down.png" alt=""></li>
+                        </ul>
+                    </div>
+
+                    <div class="email-zf">
+                        <% if(wglobals.user.vip_level && (wglobals.user.vip_level=="yd" || wglobals.user.vip_level=="bd")) { %>
+                            <a href="/product?product=9&adds=jungle_scout"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_usd %></a>
+                            <a href="/product?product=10&adds=jungle_scout"><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_usd %></a>
+                        <% }else{ %>
+                            <a href="/Alipay?bd&amazon_0"><%= data_bz.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_bz.amount_usd.toLocaleString() %></span></a>
+                            <a href="/Alipay?bd&amazon_1"><%= data_gj.alias %><span><%= translate("mine_vouchers_fuhao") %><%= data_gj.amount_usd.toLocaleString() %></span></a>
+                        <% } %>
+                    </div>
+                    
+                    <%}%>
+                    <%- include('../global/foot_script.ejs'); %>
+    </div>
+
+    <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+    <script src="<%= STATIC %>mobile/javascripts/social_media/index.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

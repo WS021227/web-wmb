@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="keywords" content="<%=translate('home_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('home_meta_description')%>" />
+    <title><%=translate('login_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/user/login.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <div class="container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+        <div class="logo">
+            <a href="/"><img src="<%= STATIC %>mobile/images/user/register/logo.png" /></a>
+        </div>
+
+        <div class="from">
+            <div class="box1">
+                <div class="text">
+                    <span class="lab1"></span>
+                </div>
+                <input name="phoneNumber" id="phoneNumber" placeholder="<%= translate("login_account_text") %>" />
+            </div>
+            <div class="box3">
+                <div class="text">
+                    <span class="lab3"></span>
+                </div>
+                <input name="passWord" id="passWord" placeholder="<%= translate("login_pw_text") %>" type="password" />
+                <span class="mmtoast"></span>
+            </div>
+        </div>
+
+        <button class="now-login"><%= translate("login_enter_text") %></button>
+
+        <span class="login"><span></span><a href="/register"></a></span>
+
+        <%- include('../layout/footer.ejs'); %>
+    </div>
+
+    <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+    <script src="<%= STATIC %>mobile/javascripts/user/login/login.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('seo_company_list_keywords')%>" />
+    <meta name="description" content="<%=translate('seo_company_list_description')%>" />
+    <title><%=translate('seo_company_list_title')%>-<%=translate('share_text_sitename')%></title>
+    <link rel="alternate" hreflang="zh-cn" href="https://www.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="en" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="ru" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="es" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="alternate" hreflang="vi" href="https://en.52wmb.com<%=wglobals.path%>" />
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/product/product.css?v=<%=VERSION%>">
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%var topic_list=results.topic_list.list;%>
+<div class="product-k">
+       <div class="product-topic-list">
+           <h2><%=translate('seo_company_list_title')%><font><%=translate('seo_company_list_count')%></font></h2>
+           <ul>
+               <%  var _l = wglobals.lang == 'cn'?70:190 %>
+            <%topic_list.forEach(function(item,index){%>
+                <li>
+                    <a href="/category/<%=item.url%>" target="_blank">
+                       <h3><%=item.title%></h3>
+                       <img src="https://static.52wmb.com/images/company_topic/<%=item.cover%>"/>
+                       <p><%=item.introduction.substring(0, _l)%></p>
+                       <span><%=item.create_time.split(' ')[0]%><font>|</font><%=item.view%><%=translate('share_text_view')%></span>
+                    </a>
+                  </li>
+                <%})%>
+          </ul>
+       </div>
+</div>
+<%- include('../global/foot.ejs') %>
+</body>
+</html>

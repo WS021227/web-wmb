@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head >
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>[404]您访问的页面不存在</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #err-moudle {
+            display: block;
+            margin-top: 10%;
+            width: 100%;
+            min-width: 1280px;
+            min-height: 100vh;
+            background: #fff;
+            opacity: 1;
+            -webkit-transition: opacity .3s;
+            -moz-transition: opacity .3s;
+            -ms-transition: opacity .3s;
+            -o-transition: opacity .3s;
+            transition: opacity .3s;
+        }
+
+        #err-moudle.hide {
+            opacity: 0;
+        }
+
+        #err-moudle .center-moudle {
+            display: block;
+            width: 1280px;
+            min-height: 398px;
+            padding-top: 398px;
+            margin: 0 auto 0;
+            position: relative;
+            background: url(https://static.52wmb.com/yue/upload_new/images/not_data.png) no-repeat 50% 0;
+            background-size: 1270px 398px;
+        }
+
+        #err-moudle .center-moudle .eyes-animate {
+            position: absolute;
+            top: 144px;
+            left: 194px;
+            font-size: 0;
+        }
+
+        #err-moudle .center-moudle .eyes-animate .eyes {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: rgba(0, 0, 0, .8);
+            border: 1px solid rgba(255, 255, 255, .9);
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            animation: eyes 1s linear 2s infinite alternate;
+            -moz-animation: eyes 1s linear 2s infinite alternate;
+            -webkit-animation: eyes 1s linear 2s infinite alternate;
+            -o-animation: eyes 1s linear 2s infinite alternate;
+        }
+
+        #err-moudle .center-moudle .eyes-animate .eyes.right-eye {
+            margin-left: 75px;
+        }
+
+        #err-moudle .right-content {
+            position: absolute;
+            left: 715px;
+            top: 50px;
+        }
+
+        #err-moudle .right-content .icon-404 {
+            display: block;
+            width: 308px;
+            height: 49px;
+            margin-bottom: 10px;
+            background-size: 208px 69px;
+            font-size:30px;
+            color:#A00;
+        }
+
+        #err-moudle .right-content .p1 {
+            font-size: 18px;
+            color: #999;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        #err-moudle .right-content .p2 {
+            font-size: 20px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        #err-moudle .right-content .back-index {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0 15px;
+            height: 32px;
+            line-height: 32px;
+            font-size: 18px;
+            color: #fff;
+            background: #f44534;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+        }
+
+        @keyframes eyes {
+            80% {
+                height: 14px;
+            }
+            100% {
+                height: 2px;
+            }
+        }
+
+        @-webkit-keyframes eyes {
+            80% {
+                height: 14px;
+            }
+            100% {
+                height: 2px;
+            }
+        }
+
+        .rd-search {
+            display: block;
+            width: 1000px;
+            padding: 0 30px;
+            margin: 150px 140px 0;
+        }
+
+        .rd-search .t {
+            display: block;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #999999;
+        }
+
+        .rd-search .hotcont-change {
+            font-size: 18px;
+            color: #999;
+            cursor: pointer;
+        }
+
+        .rd-search ul {
+            display: inherit;
+            margin-right: -2%;
+            font-size: 0;
+        }
+
+        .rd-search ul li {
+            float: left;
+            width: 12.285714285714%;
+            margin-right: 2%;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .rd-search ul li a {
+            display: inline-block;
+            width: 100%;
+        }
+
+        .rd-search ul li .hottags-bg {
+            display: block;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+            position: relative;
+        }
+
+        .rd-search ul li .hottags-bg:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .4);
+            z-index: 2;
+        }
+
+        .rd-search ul li .hottags-bg:after {
+            content: '';
+        }
+
+        .rd-search ul li .hottags-bg img {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .rd-search ul li .hottags-ac {
+            position: absolute;
+            top: 7px;
+            right: 7px;
+            z-index: 3;
+            letter-spacing: 1px;
+            text-align: right;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, .6);
+            font-size: 14px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hottags-mask {
+            position: absolute;
+            z-index: 3;
+            bottom: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(14, 155, 211, .86);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-transition: .3s;
+            -moz-transition: .3s;
+            -ms-transition: .3s;
+            -o-transition: .3s;
+            transition: .3s;
+        }
+
+        .hottags-mask.hottags-mask-c {
+            bottom: 0;
+        }
+
+        .hottags-mask .mask-ac {
+            display: block;
+            text-align: center;
+            font-size: 24px;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+<div id="err-moudle">
+    <div class="center-moudle">
+        <div class="eyes-animate">
+            <span class="eyes left-eye"></span>
+            <span class="eyes right-eye"></span>
+        </div>
+        <div class="right-content">
+            <div class="top"><span class="icon-404">网页被删除了哦！(伪404)</span></div>
+            <div class="content">
+                <p class="p1">哎呦？！挺厉害嘛，我躲在这里都被你找到了！<br/>您访问的页面不存在<br/>请检查是否输入错误</p>
+                <a class="back-index" href="/" style="margin-top:15px;">返回首页</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

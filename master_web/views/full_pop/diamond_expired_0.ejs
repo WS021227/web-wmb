@@ -1,0 +1,104 @@
+<style>
+    .sjj-k-content-top {
+        color: #333;
+        font-size: 20.4px;
+        font-weight: bold;
+        margin-bottom:15px;
+        text-transform:capitalize;
+        text-align:left;
+    }
+    .root-fixed-pop {top: 18px;}
+    .old-user-mail {
+        font-family: 微软雅黑;
+        line-height: 160%;
+        font-size: 15.4px;
+        color: #333;
+         background: #fff;
+        padding:35px 50px;
+    }
+
+    .old-user-mail p span {color: #f30;}
+    .old-user-mail h2 {
+        text-align: left;
+        border-bottom: 1px #eee double;
+        padding-bottom: 25px;
+        margin-bottom: 25px;
+        font-size: 25px;
+    }
+
+    .old-user-mail a {
+        color: #fff;
+        display: inline-block;
+        height:42px;
+        background: #007FFF;
+        padding: 0 35px;
+        line-height:42px;
+        border-radius:3px;
+        margin-right: 15px;
+        font-size: 14.4px;
+    }
+    .old-user-mail font {color: #f30;}
+    .old-user-mail-k p:nth-child(2){padding:15px 0;}
+    .old-user-mail-k p b{display:inline-block;padding-bottom:2px;}
+</style>
+<div class="old-user-mail">
+    <%
+    var amount_html = '', save_amount = 0;
+    results.list.forEach(function (item, _) {
+        save_amount = save_amount>0?Math.min(save_amount, item.new_amount - item.amount):item.new_amount - item.amount
+        console.log(item.new_amount - item.amount, 'item.new_amount-item.amount,', save_amount, 'save_amount')
+        if(wglobals.lang == 'cn') {
+            amount_html += '<b>' + item.name + '：' + item.amount + '元/年</b> <span>(现价' + item.new_amount + '元)</span><br/>'
+        }else{
+            amount_html += '<b>' + item.name + ' USD $' + item.amount + '/year</b> <span>(current price $' + item.new_amount + ')</span><br/>'
+        }
+    })
+    %>
+    <% if(wglobals.lang == 'cn'){ %>
+    <% if(verify_real_vip('bd')){ %>
+    <% wglobals.temp = {title: '钻石会员续费优惠政策'} %>
+    <div class="sjj-k-content-top">钻石会员续费优惠政策</div>
+        <div class="old-user-mail-k">
+            <p><b>亲爱的<%=wglobals.user.contact%>：</b><br/>您的钻石账号将在<%=wglobals.user.vip_end_time %>到期，建议您续费并继续使用数据服务。为感谢您对外贸邦初期的支持，您享有续费低价保护政策；按照首次购买价续费钻石会员，并多赠送1个月的有效服务期。<br/></p>
+            <p><%- amount_html -%></p>
+            <p><a href="/Alipay?v=yd&s=WebTanChuang" target="_blank">现在续费钻石，至少节省<%= save_amount %>元 →</a> </p>
+        </div>
+    <% }else{ %>
+        <% wglobals.temp = {title: '重要通知，请务必仔细阅读！'} %>
+        <div class="sjj-k-content-top">重要通知，请务必仔细阅读！</div>
+        <div class="old-user-mail-k">
+            <p>
+                <b>亲爱的<%=wglobals.user.contact%>：</b><br/>
+                您的钻石账号已过期，建议您续费后继续使用！<br/>为感谢您对网站的支持，截止至<b><%=results.rn_end_time%></b>续费您将继续享有低价续费政策，并赠送1个月的服务期！如超过此时间，您的续费价格将恢复成现价！<br/>
+            </p>
+            <p><%- amount_html -%></p>
+            <p><a href="/Alipay?v=yd&s=WebTanChuang" target="_blank">现在续费，至少节省<%= save_amount %>元 →</a></p>
+        </div>
+    <% } %>
+    <% } else { %>
+    <% if(verify_real_vip('bd')){ %>
+      <% wglobals.temp = {title: 'Renewal Promotions For Old Members'} %>
+        <div class="sjj-k-content-top">Renewal Promotions For Old Members</div>
+        <div class="old-user-mail-k">
+            <p>
+                <b>Dear <%=wglobals.user.contact%>：</b><br/>
+                Your diamond account will expires at <%=wglobals.user.vip_end_time %>, Recommend you renew and continue to use data service.<br/>
+                We offer preferential price passages for old diamond users. You can renew according to the historical price of the website. Increase the service period of 1 month respectively.<br/>
+            </p>
+            <p><%- amount_html -%></p>
+            <p><a href="/Alipay?v=yd&s=WebTanChuang" target="_blank">Renew now, save at least $<%= save_amount %></a></p>
+        </div>
+    <% } else { %>
+        <% wglobals.temp = {title: 'Important notice, please read carefully!'} %>
+        <div class="sjj-k-content-top">Important notice, please read carefully!</div>
+        <div class="old-user-mail-k">
+            <p>
+                <b>Dear <%=wglobals.user.contact%>：</b><br/>
+                Your diamond member account expired, suggest you renew and use it continually. Thanks for your support, you will still enjoy the special rate until <%=results.rn_end_time%> and we will also add 1 more month service period for you. If exceed the date, it will recover to the normal price.
+             </p>
+            <p><%- amount_html -%></p>
+            <p><a href="/Alipay?v=yd&s=WebTanChuang" target="_blank">Renew now, save at least $<%= save_amount %></a></p>
+        </div>
+    <% } %>
+    <% } %>
+</div>

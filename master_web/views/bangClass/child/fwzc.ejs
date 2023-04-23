@@ -1,0 +1,7 @@
+<%var tutorial_list = results.tutorial_list||[] %>
+<% tutorial_list.forEach(function(item){ %>
+    <li>
+        <font><%= item.update_time %>发布</font>
+        <a  href="/new/<%= item.id %>"><%= item.title.substring(0, 30) %></a>
+    </li>
+<% }) %>

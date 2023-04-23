@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="pop_module" content="admin">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/home_center/home_center.css?v=<%=VERSION%>">
+    <title><%=translate('mine_download_name')%>-<%=translate('share_text_sitename')%></title>
+</head>
+<body>
+<%- include('../global/head.ejs') %>
+<%- include('../global/user_datacenter_leftmenu.ejs') %>
+<%var user= wglobals.user %>
+
+<div class="center-k" id="download_record">
+    <h2><%=translate('mine_download_name')%></h2>
+    <div class="center-tag-select">
+        <a href="javascript:void(0)" class="active" ><%=translate('share_text_all')%></a>
+        <a href="javascript:void(0)" data-type="3"><%=translate('mine_download_bill_data')%></a>
+        <a href="javascript:void(0)" data-type="4"><%=translate('mine_download_directory')%></a>
+        <a href="javascript:void(0)" data-type="1"><%=translate('mine_download_trading')%></a>
+        <a href="javascript:void(0)" data-type="0"><%=translate('mine_permission_contact')%></a>
+    </div>
+    <div class="center-k-content">
+        <div id="record_all" class="center-k-download-box">
+            <div class="conter-k-content-title">
+                <span></span>
+            </div>
+            <ul class="content-data-download head">
+                <li>
+                    <span><%=translate('share_text_all')%></span>
+                    <span><%=translate('mine_download_file')%></span>
+                    <span><%=translate('mine_download_number')%></span>
+                    <span><%=translate('mine_download_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+
+            </ul>
+            <ul class="content-data-download body"></ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div id="record_3" class="center-k-download-box">
+            <div class="conter-k-content-title">
+                <span></span>
+            </div>
+            <ul class="content-data-download head">
+                <li>
+                    <span><%=translate('mine_download_bill_data')%></span>
+                    <span><%=translate('mine_download_file')%></span>
+                    <span><%=translate('mine_download_number')%></span>
+                    <span><%=translate('mine_download_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-data-download body"></ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div id="record_4" class="center-k-download-box">
+            <div class="conter-k-content-title">
+                <span></span>
+            </div>
+            <ul class="content-data-download head">
+                <li>
+                    <span><%=translate('mine_download_directory')%></span>
+                    <span><%=translate('mine_download_file')%></span>
+                    <span><%=translate('mine_download_number')%></span>
+                    <span><%=translate('mine_download_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-data-download body"> </ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div id="record_1" class="center-k-download-box">
+            <div class="conter-k-content-title">
+                <span></span>
+            </div>
+            <ul class="content-data-download head">
+                <li>
+                    <span><%=translate('mine_download_trading')%></span>
+                    <span><%=translate('mine_download_file')%></span>
+                    <span><%=translate('mine_download_number')%></span>
+                    <span><%=translate('mine_download_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+            </ul>
+            <ul class="content-data-download body"></ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+        </div>
+        <div id="record_0" class="center-k-download-box">
+            <div class="conter-k-content-title">
+                <span></span>
+            </div>
+            <ul class="content-data-download head">
+                <li>
+                    <span><%=translate('mine_permission_contact')%></span>
+                    <span><%=translate('mine_download_file')%></span>
+                    <span><%=translate('mine_download_number')%></span>
+                    <span><%=translate('mine_download_date')%></span>
+                    <span><%=translate('mine_list_operation')%></span>
+                </li>
+
+            </ul>
+            <ul class="content-data-download body"></ul>
+            <div class="paging"></div>
+            <div class="center-tags-no display-none">
+                <i></i>
+                <span><%=translate('mine_share_no_content')%></span>
+            </div>
+           
+        </div>
+        <div class="center-tags-no display-none">
+            <i></i>
+            <span><%=translate('mine_share_no_content')%></span>
+        </div>
+    </div>
+</div>
+
+<%- include('../global/foot_script.ejs') %>
+<script src="<%= STATIC %>javascripts/home/download_record.js?v=<%=VERSION%>"></script>
+
+</body>
+</html>

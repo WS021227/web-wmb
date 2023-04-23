@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="data_ie" content="<%=results.data_ie %>">
+    <meta name="countries" content="<%= JSON.stringify(results.countries) %>">
+    <meta name="perms" content="<%= results.perms %>">
+    <meta name="page_mark" content="celv">
+    <meta content="<%=results.ct_date%>" data-st="<%=results.search_date%>">
+    <%if(wglobals.lang == 'cn'){%>
+    <title><%=translate('report_meta_title').replace('[@国家]',results.countries.country_cn)%></title>
+    <%}else{%>
+    <title><%=translate('report_meta_title').replace('[@国家]',ucfirst(results.countries.country))%></title>
+    <%}%>
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/billsearch/customs_data.css?v=<%=VERSION%>" />
+</head>
+<body>
+    <% let user=wglobals.user.vip_level,user1=wglobals.user %>
+        <% console.log(results,"用户数据") %>
+            <div class="container" data-lang="<%= wglobals.lang %>" data-img="<%= STATIC %>">
+                <%- include('../layout/header.ejs'); %>
+                    <div class="customs-data-header" data-vip="<%= wglobals.user.vip_level %>">
+                        <div class="title">
+                            <div>
+                                <span class="img img-<%=results.countries.country.replace(' ','-') %>" alt=""></span>
+                                <span class="c-name"><%= wglobals.lang=="cn" ?results.countries.country_cn:results.countries.country %><%= translate("home_hot_dataupdate_des") %></span>
+                            </div>
+                            <div>
+                                <span class="customs-data-header-text"><%= translate("company_data_0") %></span>
+                                <img id="customs_data_header_down" src="<%= STATIC %>mobile/images/billsearch/xiangxiajiantou.png" />
+                            </div>
+                            <!-- 下拉弹窗 -->
+                            <div class="customs-data-header-box">
+                                <% if(wglobals.lang=="cn"){ %>
+                                    <% results.countries.str_data_types.split("、").forEach(function(item,index){ %>
+                                        <span class="<%= index==0?'active':"" %>"><%= item %></span>
+                                    <%  })  %>       
+                                <% }else{ %>      
+                                    <% results.countries.str_data_types.split("&").forEach(function(item,index){ %>
+                                        <span class="<%= index==0?'active':"" %>"><%= item %></span>
+                                    <%  })  %>      
+                                <% } %>                   
+                            </div>
+                        </div>
+                        <span>
+                            <span>
+                                <%= translate("report_web_data_update") %>
+                            </span>
+                            <%= results.countries.new_date %>
+                        </span>
+                        <span>
+                            <span><%= translate("report_web_data_type") %></span>
+                            <%= results.countries.str_data_types %>
+                        </span>
+                    </div>
+
+                    <div class="customs-data-toast">
+                        <div>
+                            <span class="img"></span>
+                            <span class="text"></span>
+                        </div>
+                        <div class="create-bg">+<%= translate("customs_data_create") %></div>
+                    </div>
+
+                    <div class="customs-data-swiper">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <div class="sbox active" data-num=0>
+                                        <span alt="" class="img-0"></span>
+                                        <div class="text">
+                                            <span><%= translate("detail_nav_overview") %></span>
+                                            <span><%= translate("customs_data_zl") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=1>
+                                        <span alt="" class="img-1"></span>
+                                        <div class="text">
+                                            <span><%= translate("customs_data_sc") %></span>
+                                            <span><%= translate("customs_data_yd") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=3>
+                                        <span alt="" class="img-3"></span>
+                                        <div class="text">
+                                            <span><%= translate("customs_data_hg") %></span>
+                                            <span><%= translate("mine_download_bill_data") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=2>
+                                        <span alt="" class="img-2"></span>
+                                        <div class="text">
+                                            <span><%= translate("customs_data_gyg") %></span>
+                                            <span><%= translate("customs_data_gqqy") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=4>
+                                        <span alt="" class="img-4"></span>
+                                        <div class="text">
+                                            <span><%= translate("share_nav_buyer") %></span>
+                                            <span><%= translate("seo_detail_buyer_rank") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=5>
+                                        <span alt="" class="img-5"></span>
+                                        <div class="text">
+                                            <span><%= translate("share_company_1") %></span>
+                                            <span><%= translate("seo_detail_supplier_rank") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=6>
+                                        <span alt="" class="img-6"></span>
+                                        <div class="text">
+                                            <span><%= translate("detail_module_bill_import_port") %></span>
+                                            <span><%= translate("customs_data_mdgk") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=7>
+                                        <span alt="" class="img-7"></span>
+                                        <div class="text">
+                                            <span><%= translate("detail_module_bill_export_port") %></span>
+                                            <span><%= translate("customs_data_chgk") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="sbox" data-num=8>
+                                        <span alt="" class="img-8"></span>
+                                        <div class="text">
+                                            <span><%= translate("search_type_hscode") %></span>
+                                            <span> <%= translate("detail_module_hscode") %></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content">
+                        <!-- tab切换-----------贸易概述 -->
+                        <div class="tab-options tab-options0 active" data-num=0>
+                            <div class="customs-data-table">
+                                <h3>
+                                    <span><%= translate("detail_module_market_des") %></span>
+                                    <span class="right">
+                                        <span class="active"><%= translate("company_details_jys") %></span>
+                                        <span><%= translate("detail_module_weight") %></span>
+                                        <span><%= translate("detail_module_bill_amount") %></span>
+                                    </span>
+                                </h3>
+                                <!-- 折线、柱状图 -->
+                                <div class="table-box" data-country="<%=results.countries.country %>" data-date="<%=results.countries.new_date%>" data-ckdate="<%=results.countries.raw_export_date%>">
+                                    <div id="main"></div>
+                                </div>
+                                <!-- 表格 -->
+                                <div class="table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <td><%= translate("company_trade_month") %></td>
+                                                <td><%= translate("company_details_jys") %></td>
+                                                <td><%= translate("detail_module_percentage") %></td>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                    <span class="tabel-more">
+                                        <span>
+                                            <%= translate("customs_data_more") %>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- 提关单数据 -->
+                            <div class="customs-data-data">
+                                <h3>
+                                    <span>
+                                        <%= translate("mine_download_bill_data") %>
+                                    </span>
+                                    <span class="data-sum"></span>
+                                </h3>
+                                <!-- ejs -->
+                            </div>
+                            <!-- 进口港或者出口港 -->
+                            <div class="customs-data-corg">
+                                <h3>
+                                    <span>
+                                        <span class="customs-data-corg-options active">
+                                            <%= translate("company_list_modle_buyer") %>
+                                        </span>
+                                        <span class="customs-data-corg-options">
+                                            <%= translate("share_companies_1") %>
+                                        </span>
+                                    </span>
+                                    <span class="data-sum"></span>
+                                </h3>
+                                <div class="customs-data-corg-text">
+                                    <p><span>
+                                            <%= translate("detail_module_partners_name") %>
+                                        </span><span>
+                                            <%= translate("detail_module_percentage") %>
+                                        </span></p>
+                                    <div class="customs-data-corg-text-option"></div>
+                                </div>
+                            </div>
+
+                            <div class="customs-data-map">
+                                <h3>
+                                    <span><%= translate("customs_data_gyg") %></span>
+                                    <span class="data-sum" id="gyg_data_sum"></span>
+                                </h3>
+                                <!-- map -->
+                                <div id="map_main"></div>
+                                <div class="customs-data-map-table">
+                                    <p>
+                                        <span><%= translate("customs_data_gj") %></span>
+                                        <span><%= translate("company_details_jys") %></span>
+                                        <span><%= translate("detail_module_percentage") %></span>
+                                    </p>
+                                    <div class="customs-data-map-text-option"></div>
+                                </div>
+                            </div>
+
+                            <!-- port -->
+                            <div class="customs-data-gk">
+                                <h3>
+                                    <span>
+                                        <span class="customs-data-gk-options active"><%= translate("detail_module_bill_import_port") %></span>
+                                        <span class="customs-data-gk-options"><%= translate("detail_module_bill_export_port") %></span>
+                                    </span>
+                                    <span class="data-sum"></span>
+                                </h3>
+                                <div class="customs-data-gk-text">
+                                    <p>
+                                        <span><%= translate("payment_product") %></span>
+                                        <span><%= translate("company_details_jys") %></span>
+                                        <span><%= translate("detail_module_percentage") %></span>
+                                    </p>
+                                    <div class="customs-data-gk-text-option"></div>
+                                </div>
+                            </div>
+
+                            <!-- hscode -->
+                            <div class="customs-data-hs" id="customs-data-hs">
+                                <h3>
+                                    <span class="customs-data-hs-options"><%= translate("detail_module_hscode") %></span>
+                                    <span class="data-sum"></span>
+                                </h3>
+                                <div class="customs-data-hs-text">
+                                    <p>
+                                        <span><%= translate("detail_module_hscode_name") %></span>
+                                        <span><%= translate("company_details_jys") %></span>
+                                        <span><%= translate("detail_module_percentage") %></span>
+                                    </p>
+                                    <div class="customs-data-hs-text-option"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--market -->
+                        <div class="tab-options tab-options1" data-num=1>
+                            <h3>
+                                <span class="tab-options1-sum tab-title"><%= translate("customs_data_sc") %><span></span></span>
+                                <span class="tab-options1-options">
+                                    <span class="option1">
+                                        <%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                    </span>
+                                </span>
+                            </h3>
+                            <div class="tab-options1-content">
+                                <h4><span><%= translate("company_details_date") %></span>
+                                    <span><%= translate("company_details_jys") %></span>
+                                    <span><%= translate("detail_module_percentage") %></span>
+                                </h4>
+                                <div class="tab-options1-content-text"></div>
+                            </div>
+                        </div>
+
+                         <!-- custom data -->
+                         <div class="tab-options tab-options3" data-num=3>
+                            <h3>
+                                <span class="tab-options3-sum tab-title"><%= translate("customs_data_hg") %><span></span></span>
+                                <span class="tab-options3-options">
+                                    <span class="option1"><%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" /></span>
+                                    <span class="option2"><%= translate("company_details_date") %><img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" /></span>
+                                </span>
+                            </h3>
+                            <div class="tab-options3-content">
+                                <h4>
+                                    <span><%= translate("company_details_date") %></span>
+                                    <span><%= translate("detail_module_bill_product") %></span>
+                                    <span><%= translate("detail_detail") %></span>
+                                </h4>
+                                <div class="tab-options3-content-text"></div>
+                                <span class="more more1"><%= translate("customs_data_dj") %></span>
+                            </div>
+                        </div>
+
+                        <!-- country -->
+                        <div class="tab-options tab-options2" data-num=2>
+                            <h3>
+                                <span class="tab-options2-sum tab-title"><%= translate("customs_data_gyg") %><span></span></span>
+                                <span class="tab-options2-options"><%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" /></span>
+                            </h3>
+                            <div class="tab-options2-content">
+                                <div id="tab_map_main"></div>
+                                <div class="tab-map-table">
+                                    <p>
+                                        <span><%= translate("customs_data_gj") %></span>
+                                        <span><%= translate("company_details_jys") %></span>
+                                        <span><%= translate("detail_module_percentage") %></span>
+                                    </p>
+                                    <div class="tab-map-text-option"></div>
+                                    <span class="more more1"><%= translate("customs_data_dj") %></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- buyer -->
+                        <div class="tab-options tab-options4" data-num=4>
+                            <h3>
+                                <span class="tab-options4-sum tab-title"><%= translate("share_nav_buyer") %><span></span></span>
+                                <span class="tab-options4-options">
+                                    <span class="option1"> <%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" /></span>
+                                    <span class="option2"><%= translate("company_details_date") %><img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" /></span>
+                                </span>
+                            </h3>
+                            <div class="tab-options4-content">
+                                <h4>
+                                    <span><%= translate("bline_setup_company_name") %></span>
+                                    <span><%= translate("company_details_jys") %></span>
+                                    <span><%= translate("detail_module_percentage") %></span>
+                                </h4>
+                                <div class="tab-options4-content-text"></div>
+                                <span class="more more1"><%= translate("customs_data_dj") %></span>
+                            </div>
+                        </div>
+
+                        <!-- supplier -->
+                        <div class="tab-options tab-options5" data-num=5>
+                            <h3>
+                                <span class="tab-options5-sum tab-title"><%= translate("share_nav_supplier") %><span></span></span>
+                                <span class="tab-options5-options">
+                                    <span class="option1"><%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" /></span>
+                                    <span class="option2"><%= translate("company_details_date") %><img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" /></span>
+                                </span>
+                            </h3>
+                            <div class="tab-options5-content">
+                                <h4>
+                                    <span><%= translate("bline_setup_company_name") %></span>
+                                    <span><%= translate("company_details_jys") %></span>
+                                    <span><%= translate("detail_module_percentage") %></span>
+                                </h4>
+                                <div class="tab-options5-content-text"></div>
+                                <span class="more more1"><%= translate("customs_data_dj") %></span>
+                            </div>
+                        </div>
+
+                        <!-- pod -->
+                        <div class="tab-options tab-options6" data-num=6>
+                            <h3>
+                                <span class="tab-options6-sum tab-title"><%= translate("detail_module_bill_import_port") %><span></span></span>
+                                <span class="tab-options6-options">
+                                    <span class="option1">
+                                        <%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" />
+                                    </span>
+                                    <span class="option2">
+                                        <%= translate("company_details_date") %><img  src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" />
+                                    </span>
+                                </span>
+                            </h3>
+                            <div class="tab-options6-content">
+                                <h4>
+                                    <span><%= translate("detail_module_partners_name") %></span>
+                                    <span><%= translate("company_details_jys") %></span>
+                                    <span><%= translate("detail_module_percentage") %></span>
+                                </h4>
+                                <div class="tab-options6-content-text"></div>
+                                <span class="more more1"><%= translate("customs_data_dj") %></span>
+                            </div>
+                        </div>
+
+                        <!-- pol -->
+                        <div class="tab-options tab-options7" data-num=7>
+                            <h3>
+                                <span class="tab-options7-sum tab-title"><%= translate("detail_module_bill_export_port") %><span></span></span>
+                                <span class="tab-options7-options">
+                                    <span class="option1"><%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" /></span>
+                                    <span class="option2"><%= translate("company_details_date") %><img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" /></span>
+                                </span>
+                            </h3>
+                            <div class="tab-options7-content">
+                                <h4>
+                                    <span><%= translate("mine_userinfo_company") %></span>
+                                    <span><%= translate("detail_module_transactions") %></span>
+                                    <span><%= translate("detail_module_percentage") %></span>
+                                </h4>
+                                <div class="tab-options7-content-text"></div>
+                                <span class="more more1"><%= translate("customs_data_dj") %></span>
+                            </div>
+                        </div>
+
+                        <!-- hscode -->
+                        <div class="tab-options tab-options8" data-num=8>
+                            <h3>
+                                <span class="tab-options8-sum tab-title"><%= translate("detail_module_bill_hscode") %><span></span></span>
+                                <span class="tab-options8-options">
+                                    <span class="option1"><%= translate("share_text_export") %><img src="<%= STATIC %>mobile/images/company/company_details/input.png" /></span>
+                                    <span class="option2"><%= translate("company_details_date") %><img src="<%= STATIC %>mobile/images/company/company_details/xiangxiajiantou.png" /></span>
+                                </span>
+                            </h3>
+                            <div class="tab-options8-content">
+                                <h4>
+                                    <span><%= translate("mine_userinfo_company") %></span>
+                                    <span><%= translate("detail_module_transactions") %></span>
+                                    <span><%= translate("detail_module_percentage") %></span>
+                                </h4>
+                                <div class="tab-options8-content-text"></div>
+                                <span class="more more1"><%= translate("customs_data_dj") %></span>
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <!-- 详情页面 -->
+                    <div class="jy-detail-page">
+                        <h3>
+                            <span><%= translate("customs_data_tgdxq") %></span>
+                            <img id="xq_del" src="<%= STATIC %>mobile/images/company/company_list/del_btn.png">
+                        </h3>
+                        <div class="jy-detail-page-time-box"></div>
+                        <div class="jy-detail-page-huo">
+                            <h3><span><%= translate("company_details_data") %></span></h3>
+                            <!-- js渲染 -->
+                            <p class="xq-page-li"><span><%= translate("company_details_date") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("share_nav_supplier") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("share_nav_buyer") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li">
+                                <span><%= translate("detail_module_bill_product") %></span>
+                                <span class="xq-page-date xq-page-date-more">xxxxx</span><span class="more">[<%=translate("report_search_more") %>]</span>
+                            </p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_weight") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("company_details_jys") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_bill_amount") %></span><span class="xq-page-date"></span></p>
+                            <p class="xq-page-li"><span><%= translate("detail_module_bill_import_area_ws") %></span><span class="xq-page-date"></span></p>
+                        </div>
+                        <div class="jy-detail-page-product">
+                            <h3><span><%= translate("company_details_hyxx") %></span></h3>
+                            <!-- js渲染 -->
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ycd") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cyr") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cdm") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1" style="display: flex;justify-content: left;"><span><%= translate("xq_ckg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_mdg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ycg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cyrdm") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cgsqc") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_hc") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_jkg") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_ysfs") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                            <p class="xq-page-li xq-page-li1"><span><%= translate("xq_cm") %></span><span class="xq-page-date xq-page-date1"></span></p>
+                        </div>
+                    </div>                    
+            </div>
+            <%- include('../layout/footer.ejs'); %>
+            <script src="<%= STATIC %>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+            <script src="<%= STATIC %>mobile/javascripts/echart-4.js"></script>
+            <script src="<%= STATIC %>js/world.js"></script>
+            <script src="<%= STATIC %>mobile/javascripts/billsearch/customs_data.js?v=<%=VERSION%>"></script> 
+</body>
+</html>

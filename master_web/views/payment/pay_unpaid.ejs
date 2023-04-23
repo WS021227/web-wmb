@@ -1,0 +1,95 @@
+
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="https://static.52wmb.com/wmb_css/web_global.css?v=20220412153858" rel="stylesheet" type="text/css">
+    <title>未完成支付的订单-支付中心</title>
+    <link rel="stylesheet" href="<%= STATIC %>css/pay_center/pay_center.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
+</head>
+<body>
+<div class="user-info-k">
+    <div class="web-title">
+        <div class="web-logo">
+            <a href="/"><img src="https://static.52wmb.com/wmb_img/wmblogo.png"/></a>
+            <span>支付中心</span>
+        </div>
+        <div class="web-text">支付如遇任何疑问，请拨打：021-64033826</div>
+        <br class="clear"/>
+    </div>
+    <%if(results){ console.log(results)%>
+    <div class="user-c">
+        <div class="products-pay" id="unpaid">
+            <ul>
+                <li class="title">
+                    <span class="products-pay-2">会员套餐</span>
+                    <span class="products-pay-2">会员服务价格</span>
+                    <span class="products-pay-2">已支付</span>
+                    <span class="products-pay-2">未支付</span>
+                </li>
+                <li>
+                    <span class="products-pay-1"><%=results.payment_content%></span>
+                    <span class="products-pay-2">￥<%=results.total_amount %></span>
+                    <span class="products-pay-2">￥<%=results.paid_amount%></span>
+                    <span class="products-pay-3 pay_total">￥<%=results.remain_amount%></span>
+                </li>
+            </ul>
+        </div>
+        <form id="pay_submit" name="pay_submit" method="post" action="/payment/keep">
+            <div class="pay-share  member-paymethod-select">
+                <h2>支付方式</h2>
+                <ul id="pay_mode" >
+                    <% var method = results.paymenthod%>
+                        <li class="<%= method==1?'active':'' %>" data-method="1">
+                            <label>
+                                <i><svg t="1645596753346" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2060" width="35" height="35"><path d="M230.4 576.512c-12.288 9.728-25.088 24.064-28.672 41.984-5.12 24.576-1.024 55.296 22.528 79.872 28.672 29.184 72.704 37.376 91.648 38.912 51.2 3.584 105.984-22.016 147.456-50.688 16.384-11.264 44.032-34.304 70.144-69.632-59.392-30.72-133.632-64.512-212.48-61.44-40.448 1.536-69.632 9.728-90.624 20.992z m752.64 135.68c26.112-61.44 40.96-129.024 40.96-200.192C1024 229.888 794.112 0 512 0S0 229.888 0 512s229.888 512 512 512c170.496 0 321.536-83.968 414.72-211.968-88.064-43.52-232.96-115.712-322.56-159.232-42.496 48.64-105.472 97.28-176.64 118.272-44.544 13.312-84.992 18.432-126.976 9.728-41.984-8.704-72.704-28.16-90.624-47.616-9.216-10.24-19.456-22.528-27.136-37.888 0.512 1.024 1.024 2.048 1.024 3.072 0 0-4.608-7.68-7.68-19.456-1.536-6.144-3.072-11.776-3.584-17.92-0.512-4.096-0.512-8.704 0-12.8-0.512-7.68 0-15.872 1.536-24.064 4.096-20.48 12.8-44.032 35.328-65.536 49.152-48.128 114.688-50.688 148.992-50.176 50.176 0.512 138.24 22.528 211.968 48.64 20.48-43.52 33.792-90.112 41.984-121.344h-307.2v-33.28h157.696v-66.56H272.384V302.08h190.464V235.52c0-9.216 2.048-16.384 16.384-16.384h74.752V302.08h207.36v33.28h-207.36v66.56h165.888s-16.896 92.672-68.608 184.32c115.2 40.96 278.016 104.448 331.776 125.952z" fill="#06B4FD" p-id="2061"></path></svg></i>
+                                <b>支付宝</b>
+                                <input type="radio" hidden name="method" value="1" <%= method==1?'checked=checked':'' %> >
+                            </label>
+                        </li>
+                        <li class="<%= method==2?'active':'' %>" data-method="2">
+                            <label>
+                                <i><svg t="1645596826966" class="icon" viewBox="0 0 1159 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4240" width="35" height="35"><path d="M421.831217 646.377878a36.571117 36.571117 0 0 1-17.421151 3.989577 38.100455 38.100455 0 0 1-33.645428-19.947883l-2.72621-5.385928-106.388706-231.129462A17.953094 17.953094 0 0 1 260.652328 385.659057a18.352052 18.352052 0 0 1 18.618024-18.751009 21.344234 21.344234 0 0 1 12.101715 3.989576l125.139715 88.701583a64.697631 64.697631 0 0 0 32.182583 9.375505 53.194353 53.194353 0 0 0 19.947882-4.056069l585.802809-260.652329C949.85166 80.655937 776.637549 0 580.416881 0 260.652328 0 0 216.36803 0 483.603159c0 145.087597 77.929727 276.810113 200.143752 365.711175a39.895765 39.895765 0 0 1 16.091292 30.852724 37.900976 37.900976 0 0 1-2.726211 12.101716c-9.375505 36.238653-25.599782 95.483863-25.599782 98.077087a49.936199 49.936199 0 0 0-2.726211 14.761433 18.352052 18.352052 0 0 0 18.817503 18.883995 15.160391 15.160391 0 0 0 10.771856-3.989576l126.336588-73.873657a64.365167 64.365167 0 0 1 30.919217-9.375505 74.804558 74.804558 0 0 1 17.354658 2.726211 674.504392 674.504392 0 0 0 189.504881 26.597176c319.764553 0 580.416881-216.36803 580.416881-483.603159a424.823399 424.823399 0 0 0-65.894504-224.413675L425.554822 643.651668l-3.989577 2.72621z" fill="#09BB07" p-id="4241"></path></svg></i>
+                                <b>微信支付</b>
+                                <input type="radio" hidden name="method" value="2" <%= method==2?'checked=checked':'' %> >
+                            </label>
+                        </li>
+                    <br class="clear"/>
+                </ul>
+            </div>
+            <input type="hidden" name="child_id" value="<%=results.child_id %>">
+        </form>
+        <div class="pay-share member-order-list">
+            <h2>订单描述</h2>
+            <ul>未支付金额：¥<%=results.remain_amount %>元，本次支付：￥<%=results.payamount %></ul>
+        </div>
+        <div class="pay-sumbit">
+            <span>实付:<b>￥<font><%=results.payamount %></font></b></span>
+            <a href="javascript:void(0);"  onclick="submit_payment()">立即支付</a>
+            <br class="clear"/>
+        </div>
+    </div>
+    <%}%>
+    <div id="aps"></div>
+</div>
+
+
+<%- include('../global/foot.ejs') %>
+<!--<script src="<%= STATIC %>javascripts/payment/pay_detail.js"></script>-->
+<script src="https://static.52wmb.com/wmb_js/jquery.qrcode.min.js" type="text/javascript"></script>
+<script type="application/javascript">
+    $(function (){
+        // 支付方式
+        $('input[name="method"]').change(function () {
+            let $this = $(this), $pe = $this.parents('li')
+            $pe.addClass("active").siblings().removeClass("active");
+        })
+    })
+    /*添加订单*/
+    function submit_payment() {
+        document.pay_submit.submit();
+    }
+</script>
+</body>
+</html>

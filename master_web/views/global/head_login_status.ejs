@@ -1,0 +1,17 @@
+<% var user=wglobals.user||{}; console.log(user, 'asdfasdfasdfasd -user')%>
+ <font>|</font>
+<%if(user.id){%>
+    <a class="login-link" href="/user/datacenter/spacecp">
+        <img src="https://static.52wmb.com/images/userphoto/80_<%=user.photo %>"/>
+       <span class="nav-share nav-level<%=user.vip_level%>"><%=user.vip_name_%></span>
+    </a>
+    <%if(user.vip_level != ''){%>
+        <a href="/Alipay?v=<%=user.vip_level%>" target="_blank" data-wstats="diamond_buy_button"><%=translate('share_nav_renew')%></a>
+    <%}else {%>
+        <a href="/Alipay" target="_blank" data-wstats="diamond_buy_button"><%=translate('share_nav_buy')%></a>
+    <%}%>
+        <a href="javascript:void(0);" onclick="logout()"><%=translate('share_nav_logout')%></a>
+<% }else{%>
+        <a href="/login" onclick="return referrer_link(this)" rel="nofollow"><%=translate('share_nav_login')%></a>
+        <a href="/register" onclick="return referrer_link(this)" rel="nofollow"><%=translate('share_nav_register')%></a>
+<%}%>

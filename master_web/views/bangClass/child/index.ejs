@@ -1,0 +1,10 @@
+
+<%var tutorial_list=results.tutorial_list || []%>
+<%tutorial_list.forEach(function(items){%>
+<li>
+    <img src="https://static.52wmb.com/new_images/new_cover/<%=items.cover%>"/>
+    <h3><a href="/new/<%=items.id%>"><%=items.title.substring(0, wglobals.lang == 'cn'?30:100)%></a></h3>
+    <p><%=items.description.substring(0, wglobals.lang == 'cn'?40:60)%>...</p>
+    <span><%=items.update_time%><font>|</font><%=items.view_count%><%=translate('share_text_view')%></span>
+</li>
+<%})%>

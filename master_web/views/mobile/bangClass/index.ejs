@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="<%=translate('class_meta_keywords')%>" />
+    <meta name="description" content="<%=translate('class_meta_description')%>" />
+    <title><%=translate('class_meta_title')%>-<%=translate('share_text_sitename')%></title>
+    <meta name="source" content="index">
+    <meta name="category" content="2">
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/default/default.css?v=<%=VERSION%>" />
+    <link rel="stylesheet" href="<%= STATIC %>mobile/css/bangClass/index.css?v=<%=VERSION%>" />
+</head>
+
+<body>
+    <% console.log(results," class-data") %>
+        <% let class_tab_data=JSON.parse(results.tutorial_category_item),
+            class_tab_content_data=results.tutorial_list,hot_list=results.tutorial_hot_list %>
+            <% console.log(class_tab_data," 12312312312312312312") %>
+
+                <div class="class-container" data-lang="<%= wglobals.lang %>">
+                    <%- include('../layout/header.ejs'); %>
+                        <div class="class-content">
+                            <% if(wglobals.lang=="cn" ){ %>
+                                <a href="/new/category-kfkc">
+                                    <img src="<%= STATIC %>mobile/images/bangClass/banner.png" alt="">
+                                </a>
+                                <% } %>
+                                    <div class="tab <%= wglobals.lang==" en"?'tab-en':"" %>">
+                                        <div class='tab-box'>
+                                            <a href="/new/category-czsc">
+                                                <img src="<%= STATIC %>mobile/images/bangClass/icon_shouce.png" alt="">
+                                                <span class="cpsc"><%= translate("class_name_brochure") %></span>
+                                            </a>
+                                        </div>
+                                        
+                                        <div class='tab-box'>
+                                            <a href="/new/category-sjsm">
+                                                <img src="<%= STATIC %>mobile/images/bangClass/icon_baike.png" alt="">
+                                                <span class="sjbk"><%= translate("class_name_encyclopedia") %></span>
+                                            </a>
+                                        </div>
+
+                                        <% if(wglobals.lang=="cn" ){ %>
+                                            <div class='tab-box'>
+                                                <a href="/new/category-wenda">
+                                                    <img src="<%= STATIC %>mobile/images/bangClass/icon_wenda.png"
+                                                        alt="">
+                                                    <span class="cjwd"><%= translate("class_name_ask") %></span>
+                                                </a>
+
+                                            </div>
+
+                                            <div class='tab-box'>
+                                                <a href="/new/category-fwzc">
+                                                    <img src="<%= STATIC %>mobile/images/bangClass/icon_tonggao.png"
+                                                        alt="">
+                                                    <span class="gftg"><%= translate("class_name_notice") %></span>
+                                                </a>
+
+                                            </div>
+                                            <% } %>
+                                    </div>
+
+                                    <div class="hot-text">
+                                        <h2><img src="<%= STATIC %>mobile/images/bangClass/hot.png" /><span><%= translate("class_model_hot") %></span></h2>
+
+                                        <ul>
+                                            <% hot_list.forEach((item,index)=>{ %>
+                                                <li data-id="<%= item.id %>">
+                                                    <a href="/new/<%= item.id %>">
+                                                        <span class="index index<%= index+1 %>">
+                                                            <%= index+1%>.
+                                                        </span>
+                                                        <span>
+                                                            <%= item.title %>
+                                                        </span><span class="num">
+                                                            <%= item.view_count %>
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            <% }) %>
+                                        </ul>
+                                    </div>
+
+                                    <div class="class-content">
+                                        <div class="class-tab">
+                                            <!-- 首个 -->
+                                            <span class="active"><%= translate("share_text_new") %></span>
+                                            <% class_tab_data.forEach((item,index)=>{%>
+                                                <span data-id="<%=item.id%>">
+                                                    <%= item.name %>
+                                                </span>
+                                            <% }) %>
+                                        </div>
+                                        <div class="class-tab-content">
+                                            <% console.log(class_tab_content_data,"465454") %>
+                                            <% class_tab_content_data.forEach((item)=>{
+                                                %>
+                                                <div class="tab1" data-id="<%=item.id%>">
+                                                    <a href="/new/<%= item.id %>">
+                                                    <img src="https://static.52wmb.com/new_images/new_cover/<%= item.cover %>" alt="">
+                                                    </a>
+                                                    <div class="right">
+                                                        <a href="/new/<%= item.id %>">
+                                                            <h4>
+                                                                <%= item.title %>
+                                                            </h4>
+                                                        </a>
+                                                            <p>
+                                                                <%= item.description %>
+                                                            </p>
+                                                            <span>
+                                                                <%= item.update_time %>&nbsp;|&nbsp;<%=item.view_count%>
+                                                                <%= translate("share_text_view") %>
+                                                            </span>
+                                                        
+                                                    </div>
+                                                </div>
+                                            <% }) %>
+                                            
+                                        </div>
+                                        <span class="more"><%= translate("share_text_more_click") %></span>
+                                    </div>
+                                    <%- include('../layout/footer.ejs'); %>
+                                        <script
+                                            src="<%=STATIC%>mobile/javascripts/default/default.min.js?v=<%=VERSION%>"></script>
+                                        <script
+                                            src="<%=STATIC%>mobile/javascripts/bangClass/index.js?v=<%=VERSION%>"></script>
+</body>
+
+</html>
