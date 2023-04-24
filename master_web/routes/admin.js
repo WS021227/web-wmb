@@ -64,4 +64,8 @@ router.use('/', minisite);
 const bangline = require('./bangline/url_map');
 router.use('/', bangline);
 
+// 新版开发课
+const course = require('./course/url_map');
+router.use('/', course);
+
 module.exports = router;
