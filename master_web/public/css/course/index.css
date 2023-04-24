@@ -99,6 +99,42 @@
 .course-gf>div>div{
     width: 460px;
 }
-.gf-left,.gf-right{
-    
+.course-gf .gf-left{
+    position: relative;
 }
+.gf-left>img{
+    width: 100%;
+    height: 200px;
+}
+.gf-left>.tol{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px 5px;
+    font-weight: 600;
+}
+.gf-left>.over{
+    background-color: aquamarine;
+    color: #ffffff;
+}
+.gf-left>.updata{
+    background-color: red;
+    color: #ffffff;
+}
+.gf-left>div{
+    display: flex;
+    justify-content: space-between;
+}
+.gf-left>div>img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.gf-left>div>.text{
+    width: 80%;
+}
+.gf-left .text span{
+    display: block
+}
+
