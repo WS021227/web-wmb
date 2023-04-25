@@ -713,7 +713,7 @@ let lang_data = {
 
     c: {cn: '市场趋势分析', en: 'Market trend analysis'},
     detail_module_select_transactions: {cn: '交易次数', en: 'Number of Transactions'},
-    detail_module_quantity: {cn: '交易数', en: 'Quantity'},
+    detail_module_quantity: {cn: '交易量', en: 'Quantity'},
     detail_module_weight: {cn: '重量', en: 'Weight'},
     detail_module_year: {cn: '年份', en: 'Year'},
     detail_module_market_des: {cn: '市场分析', en: 'Market analysis'},

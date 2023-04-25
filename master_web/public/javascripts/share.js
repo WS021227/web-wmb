@@ -1045,12 +1045,6 @@ $(function () {
         ' <li><a href="/user/datacenter/viewlog" target="_blank"><i><svg t="1652196194888" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="24294" width="18" height="18"><path d="M511.87137 1023.99975A512.06637 512.06637 0 0 1 312.473616 40.48796 512.26137 512.26137 0 0 1 983.51179 312.730625 511.67537 511.67537 0 0 1 511.87137 1023.99975z m0-945.623836a433.752466 433.752466 0 0 0-168.735792 833.328974 434.339466 434.339466 0 0 0 568.3113-230.839716 435.315464 435.315464 0 0 0 0-336.496586l-3.514995-8.20199A432.776467 432.776467 0 0 0 511.87137 78.375914z" p-id="24295"></path><path d="M511.285371 511.542381h234.355712a39.059952 39.059952 0 0 1 0 78.118903H472.226419a39.059952 39.059952 0 0 1-39.059952-39.059951V277.186669a39.059952 39.059952 0 0 1 78.118904 0z" p-id="24296"></path></svg></i><p>' + unity_lang('toolbar_nav_viewed') + '</p><span><font>&gt;</font></span></a></li>'
     $("#tool_list").html(_tool_list)
 
-    $('#top_notice .notice-close').click(function () {
-        $.wSetCookie('_TNOTICE_0002', '1', 86400 * 30, function () {
-            $('#top_notice').remove()
-        })
-    })
-
     if ($('#df_head').length > 0) {
         $('body').append('\n' +
             '<div class="sjj-right">\n' +
@@ -1075,6 +1069,15 @@ $(function () {
     // line 消息统计
     line_message_stats()
     lower_right()
+})
+
+$(function(){
+    $('#top_notice .notice-close').click(function () {
+        console.log("关闭top")
+        $.wSetCookie('_TNOTICE_0002', '1', 86400 * 30, function () {
+            $('#top_notice').remove()
+        })
+    })
 })
 
 function show_cj_toast(){
@@ -2059,7 +2062,7 @@ function unity_child_perms(mark, fn) {
 }
 
 function full_top() {
-    let tpn = getCookies('_TNOTICE_0006')
+    let tpn = getCookies('_TNOTICE_0002')
     if (tpn) return;
     let html = '',
         $top_notice = $('#top_notice')
@@ -2067,11 +2070,11 @@ function full_top() {
     if (_lang == 'cn') {
         html = '<p class="notice">' +
             '<font>【邦友福利日】免费体验Jungle Scout(亚马逊选品工具)高级版3天时间，实时获取跨境终端产品价格、销量，成就跨境热销爆款！<a href="/amazon?s=nav_top" target="_blank" style="color:#06c;padding-left:10px;">了解产品并申请体验→</a></font>' +
-            '<a class="notice-close"></a></p>'
+            '<a class="notice-close">× 关闭</a></p>'
     } else {
         html = '<p class="notice">' +
             '<font>[Welfare Day] 3 days free trial of Jungle Scout (Amazon tool), and get the product price and sales volume of the end side, and achieve hot sales! <a href="/amazon?s=nav_top" target="_blank" style="padding-left:10px;color:#06c">To learn more or try it →</a></font>' +
-            '<a class="notice-close"></a></p>'
+            '<a class="notice-close">× close</a></p>'
     }
     $top_notice.html(html).removeClass('display-none')
 }

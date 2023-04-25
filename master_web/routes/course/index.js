@@ -5,6 +5,7 @@ const tools = require('../../common/util.js')
 const router = express.Router();
 
 router.index = function (req, res) {
+    res.locals.wglobals.nav_active='course'
     // tools.getMasterApiQuery('/line/circle/master/home', {
     //         top_count: 2
     //     }, req, res,
@@ -15,6 +16,12 @@ router.index = function (req, res) {
     //     })
     res.wrender('./course/index.ejs', {
         results: '新版开发课'
+    });
+}
+
+router.recording_detail = function(req,res){
+    res.wrender('./course/recording_detail.ejs', {
+        results: '录播课详情'
     });
 }
 

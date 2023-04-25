@@ -397,10 +397,11 @@ margin-top:15px;border-radius:100px;}
 #recommend-global.hide .recommend-global {width: 213px;}
 
 /*全站通告*/
-#top_notice{background:#FFF2F2;}
+#top_notice{background:#FFF2F2;position:relative;}
 .notice{padding:12px 0;font-size:13.4px;color:#f10;letter-spacing:0.3px;width:940px;margin:0 auto;}
 .notice a{color:#005FB9;text-decoration:underline;}
-.notice .notice-close{cursor:pointer;float:right;color:#888;text-decoration:none;font-size:12.4px;float:right;color:#333;text-decoration:none;}
+.notice .notice-close{cursor:pointer;;color:#888;text-decoration:none;font-size:12.4px;position:absolute;right:20px;top:50%;margin-top:-10px;
+    color:#333;text-decoration:none;}
 
 .search-gongsi-select{height:30px;}
 .search-gongsi-select .search-tab{float:left;cursor:pointer;height:30px;line-height:30px;background:#2E568D;padding:0 30px;margin-right:5px;color:#CFDDF1;font-size:13.4px;border-radius:5px 5px 0 0;}
