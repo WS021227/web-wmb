@@ -129,6 +129,14 @@ position: relative;
 .recording-detail-bottom .tw-content{
     padding: 20px 20px;
 }
+.tw-content .kc-js{
+    padding: 40px 0;
+    text-align: center;
+}
+.kc-js>span{
+    display: block;
+    padding: 100px 0;
+}
 .tw-content .tw-box{
     display: flex;
     justify-content: space-between;
@@ -171,7 +179,6 @@ position: relative;
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 }
-
 .zs-box>.right>:nth-child(1){
     font-size: 18px;
     font-weight: 600;
@@ -182,5 +189,9 @@ position: relative;
     padding: 5px 0;
 }.zs-box>.right>:nth-child(3){
     font-size: 16px;
-
+}
+.pl-more{
+    display: block;
+    text-align: center;
+    padding: 40px 0;
 }

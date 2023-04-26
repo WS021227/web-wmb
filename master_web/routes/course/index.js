@@ -15,7 +15,8 @@ router.index = function (req, res) {
                     function (result) {
                         results.top_live_data = result.data || {};
                         callback(null, 1)
-                    })
+                    }
+                )
             },
             function (callback) {
                 // 资源包列表
@@ -28,7 +29,8 @@ router.index = function (req, res) {
                     function (result) {
                         results.zyb_list = result.data || {};
                         callback(null, 1)
-                    })
+                    }
+                )
             },
             function (callback) {
                 // 录播课程列表
@@ -40,7 +42,8 @@ router.index = function (req, res) {
                     function (result) {
                         results.lb_list = result.data || {};
                         callback(null, 1)
-                    })
+                    }
+                )
             },
         ],
             function (err, _) {
@@ -73,7 +76,8 @@ router.recording_detail = function(req,res){
                 }
                 tools.getMasterApiQuery(`/course/2023/reply/${id}`, key, req, res,
                     function (result) {
-                        results.wd_data_list = result || {};
+                        results.wd_data_list = result.data.list || {};
+                        results.wd_data_list_num = result.data.total || 0
                         callback(null, 1)
                     }
                 )
@@ -112,6 +116,71 @@ router.get_tj_or_new=function(req,res){
             })
         } 
     })
+}
+
+// 课程介绍
+router.get_kcjs=function(req,res){
+    let results={},id=req.query.id
+    let key={
+        start:0,
+        size:5
+    }
+    // 暂时借用这个接口
+    tools.getMasterApiQuery(`/course/2023/reply/${id}`, key, req, res,
+        function (result) {
+            results.wd_data_list = result.data.list || {};
+            results.wd_data_list_num = result.data.total || 0
+            res.wrender('./course/children/js_box.ejs', {
+                results: results
+              },
+              function (err, str) {
+                if (err) return false
+                return res.send({
+                  content: str,
+                  state: 0
+                })
+            })
+        }
+    )
+}
+
+//课程问答
+router.get_kcwd=function(req,res){
+    let results={},id=req.query.id
+    let key={
+        start:0,
+        size:5
+    }
+    tools.getMasterApiQuery(`/course/2023/reply/${id}`, key, req, res,
+        function (result) {
+            results.wd_data_list = result.data.list || {};
+            results.wd_data_list_num = result.data.total || 0
+            res.wrender('./course/children/wd_list.ejs', {
+                results: results
+              },
+              function (err, str) {
+                if (err) return false
+                return res.send({
+                  content: str,
+                  state: 0
+                })
+            })
+        }
+    )
+}
+
+// 发布评论
+router.post_pl=function(req,res){
+    console.log(req.body,"0000000")
+    let results={},id=req.body.id,pl_content=req.body.content
+    let key={
+        content:pl_content,
+    }
+    tools.postMasterApiQuery(`/course/2023/reply/${id}`, key, req, res,
+        function (result) {
+            res.send(result)
+        }
+    )
 }
 
 module.exports = router;
