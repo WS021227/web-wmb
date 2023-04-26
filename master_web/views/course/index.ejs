@@ -9,24 +9,26 @@
     <link href="<%= STATIC %>css/course/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <% console.log(results.zyb_list.list,"页面数据") %>
+    <% let top_live_data = results.top_live_data,zyb_list=results.zyb_list.list,zyb_list_num=results.zyb_list.total,lb_list=results.lb_list.list,lb_list_num=results.lb_list.total %>
     <%- include('../global/head.ejs') %>
     <div class="course-container">
         <div class="course-header">
             <div class="header-left">
-                <h1>《whatsapp的用户运维方法论》直播课预约</h1>
-                <p>介绍通过WIPO查询全球产品流通品牌的方法，帮助出口企业学习和掌握通过查询和解读WIPO全球品牌商标库获。介绍WIPO资源的其他应用...</p>
-                <div class="header-time">时间：<span>2023/12/23  14:00</span><font>|</font>时长：<span>预计1小时20分</span><font>|</font>平台：微信视频号</div>
+                <h1>《<%= top_live_data.name %>》直播课预约</h1>
+                <p><%= top_live_data.des %></p>
+                <div class="header-time">时间：<span><%= top_live_data.live_time %></span><font>|</font>时长：<span>预计<%= top_live_data.live_dur %></span><font>|</font>平台：微信视频号</div>
                 <div class="header-left-user">
-                    <img src="" alt="">
+                    <img src="<%= STATIC %>images/<%= top_live_data.lecturer_avatar %>" alt="">
                     <div>
-                        <span>讲师：Home310</span>
-                        <span class="text">数据实操者，曾利用数据开发过3个客户,findker.com创始人</span>
+                        <span>讲师：<%= top_live_data.lecturer %></span>
+                        <span class="text"><%= top_live_data.lecturer_des %></span>
                     </div>
                 </div>
             </div>
             <div class="header-right">
                 <span>微信扫码预约直播课</span>
-                <img src="" alt="">
+                <img src="<%= STATIC %>images/<%=top_live_data.reserve_qrcode%>" alt="">
             </div>
         </div>
 
@@ -68,106 +70,57 @@
                     <span class="active">推荐资源</span>
                     <span>最新</span>
                 </div>
-                <a href="javascript:void(0);" id="course_zy_num">共计2个
+                <a href="javascript:void(0);" id="course_zy_num">
+                    共计<span><%= zyb_list_num %></span>个
                     <i>
                         <svg t="1682405529782" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2579" width="18" height="18"><path d="M332.501333 183.168a42.666667 42.666667 0 0 1 57.621334-2.496l2.709333 2.496 298.666667 298.666667a42.666667 42.666667 0 0 1 2.496 57.621333l-2.496 2.709333-298.666667 298.666667a42.666667 42.666667 0 0 1-62.826667-57.621333l2.496-2.709334L600.96 512 332.501333 243.498667a42.666667 42.666667 0 0 1-2.496-57.621334l2.496-2.709333z" fill="#999999" p-id="2580"></path></svg>
                     </i>
                 </a>
             </h2>
             <div class="course-zy-list">
-                <div class="zy-box">
-                    <img src="" alt="">
-                    <span>在eBay平台上收到TRO的品牌清单</span>
-                    <div><span>大小：22.5k</span><font>|</font><span>格式：word</span></div>
-                    <a href="">下载</a>
-                </div>
-                <div class="zy-box">
-                    <img src="" alt="">
-                    <span>在eBay平台上收到TRO的品牌清单</span>
-                    <div><span>大小：22.5k</span><font>|</font><span>格式：word</span></div>
-                    <a href="">下载</a>
-                </div>
-                <div class="zy-box">
-                    <img src="" alt="">
-                    <span>在eBay平台上收到TRO的品牌清单</span>
-                    <div><span>大小：22.5k</span><font>|</font><span>格式：word</span></div>
-                    <a href="">下载</a>
-                </div>
-                <div class="zy-box">
-                    <img src="" alt="">
-                    <span>在eBay平台上收到TRO的品牌清单</span>
-                    <div><span>大小：22.5k</span><font>|</font><span>格式：word</span></div>
-                    <a href="">下载</a>
-                </div>
+                <% zyb_list.forEach(function(item,index){ %>
+                    <div class="zy-box">
+                        <img src="<%= STATIC %>images/<%= item.icon %>" alt="">
+                        <span><%= item.name %></span>
+                        <div><span>大小：<%= item.size/8/1024 %>k</span><font>|</font><span>格式：<%= item.format %></span></div>
+                        <a href="">下载</a>
+                    </div>
+                <% }) %>
             </div>
         </div>
 
         <div class="course-gf course-lb">
             <h2>
                 <span>录播课程</span>
-                <span id="num">共计8个</span>
+                <span id="num">共计<%= lb_list_num %>个</span>
             </h2>
             <div class="course-lb-list">
-                <div class="lb-box">
-                    <img src="" alt="">
-                    <div class="content">
-                        <span>(零基础可学)电商视觉全能实训班(第五期)</span>
-                        <span>学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</span>
-                        <div>时间：<span>1小时33分</span><font>|</font><span>120<span>人已学习</div>
-                        <a href="/recording_detail">观看课程</a>
+                <% lb_list.forEach(function(item,index){ %>
+                    <div class="lb-box">
+                        <a href="/recording_detail/<%= item.id %>">
+                            <img src="<%= STATIC %>images/<%= item.cover %>" alt="">
+                        </a>
+                        <div class="content">
+                            <a href="/recording_detail/<%= item.id %>">
+                                <span><%= item.name %></span>
+                            </a>
+                            <span><%= item.lecturer_des %></span>
+                            <div>时间：<span><%= item.live_dur %></span><font>|</font><span><%= item.reveive_users %><span>人已学习</div>
+                            <a class="gkkc" href="/recording_detail/<%= item.id %>">观看课程</a>
+                        </div>
+                        <div class="right">
+                            <img src="<%= STATIC %>images/<%= item.lecturer_avatar %>" alt="">
+                            <span>讲师：<%= item.lecturer %></span>
+                            <span><%= item.lecturer_des %></span>
+                        </div>
                     </div>
-                    <div class="right">
-                        <img src="" alt="">
-                        <span>讲师：李四张三</span>
-                        <span>美丽说PC站设置总监</span>
-                    </div>
-                </div>
-                <div class="lb-box">
-                    <img src="" alt="">
-                    <div class="content">
-                        <span>(零基础可学)电商视觉全能实训班(第五期)</span>
-                        <span>学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</span>
-                        <div>时间：<span>1小时33分</span><font>|</font><span>120<span>人已学习</div>
-                        <a href="/recording_detail">观看课程</a>
-                    </div>
-                    <div class="right">
-                        <img src="" alt="">
-                        <span>讲师：李四张三</span>
-                        <span>美丽说PC站设置总监</span>
-                    </div>
-                </div>
-                <div class="lb-box">
-                    <img src="" alt="">
-                    <div class="content">
-                        <span>(零基础可学)电商视觉全能实训班(第五期)</span>
-                        <span>学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</span>
-                        <div>时间：<span>1小时33分</span><font>|</font><span>120<span>人已学习</div>
-                        <a href="/recording_detail">观看课程</a>
-                    </div>
-                    <div class="right">
-                        <img src="" alt="">
-                        <span>讲师：李四张三</span>
-                        <span>美丽说PC站设置总监</span>
-                    </div>
-                </div>
-                <div class="lb-box">
-                    <img src="" alt="">
-                    <div class="content">
-                        <span>(零基础可学)电商视觉全能实训班(第五期)</span>
-                        <span>学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</span>
-                        <div>时间：<span>1小时33分</span><font>|</font><span>120<span>人已学习</div>
-                        <a href="/recording_detail">观看课程</a>
-                    </div>
-                    <div class="right">
-                        <img src="" alt="">
-                        <span>讲师：李四张三</span>
-                        <span>美丽说PC站设置总监</span>
-                    </div>
-                </div>
+                <% }) %>
             </div>
         </div>
     </div>
+
     <%- include('../global/foot_script.ejs') %>
+    <script src="<%= STATIC %>javascripts/course/pagination.js?v=<%=VERSION%>"></script>
     <script src="<%= STATIC %>javascripts/course/index.js?v=<%=VERSION%>"></script>
 </body>
 </html>

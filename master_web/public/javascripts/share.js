@@ -5177,7 +5177,6 @@ var ModelBox = (function (opt) {
         //按钮
         layero.find('.' + doms[6]).children('a').on('click', function () {
             var index = $(this).index();
-            console.log(index, 'asdfasdfasdfasdf')
             if (index === 0) {
                 if (config.yes) {
                     config.yes(that.index, layero)

@@ -1,0 +1,73 @@
+<% console.log(results,"侧拉数据ejs") %>
+<% let list=results.list,num=results.total%>
+<div class='side-box'>
+    <div class="side-box-head">
+        <span>外贸资源</span>
+        <span>共计<%= num %>个</span>
+    </div>
+    <div class="side-box-content">
+        <% list.forEach(function(item,index){ %>
+            <div class="lb-box" id="xz_lb_box">
+                <img src="<%= STATIC %>images/<%= item.cover %>" alt="">
+                <div class="content">
+                    <span><%= item.name %></span>
+                    <div>大小：<span><%= item.size/8/1024 %></span>k<font>|</font>格式：<span><%= item.format %><span></div>
+                </div>
+                <a href="">下载</a>
+            </div>
+        <% }) %>
+    </div>
+    <!-- 分页 -->
+    <div class="setPageDiv">
+        <div class="Pagination" id="pagination">
+
+        </div>
+    </div>
+</div>
+
+<!-- 分页 -->
+<script>
+var data = {
+        page:1 //默认获取第一页
+    };
+
+$(function(){
+    $("#pagination").pagination({
+        currentPage: 1,	//当前页
+        totalPage: 10,	//总页数
+        count: 10,	//显示10页
+        callback: function(current) {
+            //current  点击的页码
+            data.page = current;
+            get_article();
+        }
+    });
+})
+
+function get_article(){
+    $.loadajax('/async/get_tj_or_new', {
+        datatype: 'text/html',
+        type: 'get',
+        success: function (result) {
+            side.changeContent(result.content)
+        }
+    })
+    pagination(res.page, res.totalPage);
+}
+
+get_article();
+
+//分页功能
+function pagination(now,total){
+    $("#pagination").pagination({
+        currentPage: 1,
+        totalPage: 10,
+        count: 10,
+        callback: function(current) {
+            //current  点击的页码
+            data.page = current; //点击改变页码，重新获取页码的数据
+            get_article();
+        }
+    });
+}
+</script>

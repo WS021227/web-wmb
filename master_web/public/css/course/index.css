@@ -44,7 +44,7 @@
     display: flex;
     justify-content: space-between;
 
-    width: 372px;
+    width: 600px;
 }
 .header-left-user>img{
     width: 70px;
@@ -57,7 +57,7 @@
     display: block;
 }
 .header-left-user>div>.text{
-    max-width: 280px;
+    width: 500px;
     margin-top: 10px;
 }
 
@@ -102,10 +102,12 @@
 }
 .course-gf .gf-left{
     position: relative;
+    background-color: #eee;
 }
-.gf-left>img,a>img{
+.gf-left>img,.gf-left>a>img{
     width: 100%;
     height: 200px;
+    background-color: #ccc;
 }
 .gf-left>.tol{
     display: inline-block;
@@ -137,15 +139,22 @@
     width: 80%;
 }
 .gf-left .text span{
-    display: block
+    display: block;
+    font-size: 12px;
 }
 .gf-left .text>:nth-child(1),a>span{
-    font-size: 18px;
+    font-size: 18px !important;
     font-weight: 600;
     color: #101010;
+    margin-bottom: 5px;
 }
 
 /* 资源 */
+.course-zy h2>a>span{
+    font-size: 18px;
+    font-weight: 600;
+    color: #999 !important;
+}
 .course-zy .course-zy-h2-left span{
     font-size: 18px;
     color: #777;
@@ -228,7 +237,7 @@
     justify-content: space-between;
     margin-bottom: 10px;
 }
-.lb-box>img{
+.lb-box>a>img{
     width: 180px;
     height: 140px;
 }
@@ -258,7 +267,10 @@
     padding: 5px 0;
     font-size: 14px;
 }
-.lb-box>.content>a{
+.lb-box font{
+    margin: 0 5px;
+}
+.lb-box>.content>.gkkc{
     font-size: 14px;
     color: #101010;
     border-radius: 5px;
@@ -296,5 +308,84 @@
     color: #999;
 }
 
+/* 下载侧拉 */
+.side-box{
+    width: 100%;
+    max-height: 400px;
+}
+.side-box>.side-box-head{
+    background-color: #D7DEE1;
+    padding: 20px 30px;
+    font-size: 18px;
+    color: #101010;
+    font-weight: 600;
 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.side-box-head>:nth-child(2){
+    font-size: 13px;
+    color: #777;
+}
+.side-box-content{
+    padding: 0px 20px;
+}
+.side-box-content .lb-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 0;
+    border-bottom: 1px solid #999;
+}
+.side-box-content .lb-box img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.side-box-content .lb-box .content{
+    width: 400px;
+}
+.side-box-content .lb-box>a{
+    color: #101010;
+    border: 1px solid #999;
+    padding: 5px 15px;
+}
+.setPageDiv{
+    width: 100%;
+    height: 40px;
+    
+    padding: 0 20px;
+    padding-top: 20px;
+}
+
+/* 分页 */   
+.setPageDiv #pagination{
+    height: 100%;
+}
+.setPageDiv #pagination a {
+    text-decoration: none;
+	border: 1px solid #AAE;
+	color: #777;
+}
+
+#pagination a, #pagination span {
+    display: inline-block;
+    padding: 0.5em 0.7em;
+    margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+#pagination .current {
+    background: #c7c7c7;
+    color: #fff;
+	border: 1px solid #AAE;
+}
+
+#pagination .current.prev, #pagination .current.next{
+	color:#999;
+	border-color:#999;
+	background:#fff;
+}
 
