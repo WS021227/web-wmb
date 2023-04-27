@@ -1,0 +1,19 @@
+<% let list=results.list || [] %>
+<% list.forEach(function(item,index){ %>
+    <div class="lb-box" id="xz_lb_box">
+        <img src="<%= STATIC %>images/<%= item.cover %>" alt="">
+        <div class="content">
+            <span><%= item.name %></span>
+            <div>大小：<span><%= (item.size/8/1024).toFixed(2) %></span>k<font>|</font>格式：<span><%= item.format %><span></div>
+        </div>
+        <% if(!wglobals.simple_user.id) {%>
+            <a href="/login">下载</a>
+        <% } %>
+        <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
+            <a href="/async/download_zy/<%= item.id %>">下载</a>
+        <% } else { %>
+            <!-- 提示购买黄钻 -->
+            <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
+        <% } %>
+    </div>
+<% }) %>

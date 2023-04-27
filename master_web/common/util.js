@@ -1165,5 +1165,14 @@ module.exports = {
            }
            return fn(1)
         })
+    },
+    // 日期格式化处理
+    date_zh_day(date){
+        let tdate=new Date()
+        let day = Math.floor((tdate - date)/86400000)
+        if(day<1) return '今日发布'
+        if(day>1 && day<30) return `${day}日前发布`
+        if(day>=30 && day<365) return `${Math.floor(day/30)}月前发布`
+        if(day>=365) return `${Math.floor(day/365)}年前发布`
     }
 }

@@ -9,7 +9,6 @@ $(function(){
     })
 
     $(".tw-content").on('click','.pl-more',function(){
-        console.log("000")
         let id=$(this).data("id")
         get_wd_data_more(id)
     })
@@ -23,7 +22,7 @@ function get_wd_data(id,more){
         success: function (result) {
             if(result.state==0){
                 $(".tw-content").html($(result.content))
-                $("#pl_box").focus()
+                $("#pl_ipt_box").focus()
             }
         }
     })
@@ -56,24 +55,3 @@ function get_js_data(id){
     })
 }
 
-// 发布评论
-function post_pl(id){
-    let pl_text=$("#pl_box").val()
-    if(pl_text=="") {
-        layer.msg("请输入您的评论")
-        $("#pl_box").focus()
-    }
-    else{
-        $("#pl_box").val('')
-        $.loadajax('/async/post_pl', {
-            datatype: 'text',
-            method:'POST',
-            data: {id:id,content:pl_text},
-            success: function (result) {
-                if(result.state==0){
-                    layer.msg("提交成功!")
-                }
-            }
-        })
-    }
-}

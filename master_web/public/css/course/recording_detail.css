@@ -170,6 +170,9 @@ position: relative;
     text-decoration: none;
     box-sizing: border-box;
 }
+.zs-box>.right{
+    width: 800px;
+}
 .zs-box>.right>span,p{
     display: block;
     max-width: 800px;
@@ -190,6 +193,7 @@ position: relative;
 }.zs-box>.right>:nth-child(3){
     font-size: 16px;
 }
+
 .pl-more{
     display: block;
     text-align: center;

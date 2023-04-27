@@ -1,6 +1,6 @@
 <% console.log(results,"侧拉数据ejs") %>
 <% let list=results.list,num=results.total%>
-<div class='side-box'>
+<div class='side-box' data-sum="<%= num %>">
     <div class="side-box-head">
         <span>外贸资源</span>
         <span>共计<%= num %>个</span>
@@ -11,9 +11,17 @@
                 <img src="<%= STATIC %>images/<%= item.cover %>" alt="">
                 <div class="content">
                     <span><%= item.name %></span>
-                    <div>大小：<span><%= item.size/8/1024 %></span>k<font>|</font>格式：<span><%= item.format %><span></div>
+                    <div>大小：<span><%= (item.size/8/1024).toFixed(2) %></span>k<font>|</font>格式：<span><%= item.format %><span></div>
                 </div>
-                <a href="">下载</a>
+                <% if(!wglobals.user.id) {%>
+                    <a href="/login">下载</a>
+                <% } %>
+                <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
+                    <a href="/async/download_zy/<%= item.id %>">下载</a>
+                <% } else { %>
+                    <!-- 提示购买黄钻 -->
+                <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
+                <% } %>
             </div>
         <% }) %>
     </div>
@@ -27,47 +35,29 @@
 
 <!-- 分页 -->
 <script>
-var data = {
-        page:1 //默认获取第一页
-    };
-
-$(function(){
-    $("#pagination").pagination({
-        currentPage: 1,	//当前页
-        totalPage: 10,	//总页数
-        count: 10,	//显示10页
-        callback: function(current) {
-            //current  点击的页码
-            data.page = current;
-            get_article();
-        }
+    let sum=$(".side-box").data("sum")
+    $("#pagination").pagination(sum, {
+        num_edge_entries: 1,
+        num_display_entries: 3,
+        items_per_page:5,
+        prev_text:"<",
+        next_text:">",
+        callback: pageselectCallback,
     });
-})
 
-function get_article(){
-    $.loadajax('/async/get_tj_or_new', {
-        datatype: 'text/html',
-        type: 'get',
-        success: function (result) {
-            side.changeContent(result.content)
+    function pageselectCallback(){
+        let num = parseInt($("#pagination span[class='current']").text())
+        if(num){
+            let end = num * 5
+            let start = end - 5
+            $.loadajax('/async/get_side', {
+                datatype: 'text',
+                data: {start:start,end:end},
+                success: function (result) {
+                    console.log(result,"more")
+                    $(".side-box-content").html($(result.content))
+                }
+            })
         }
-    })
-    pagination(res.page, res.totalPage);
-}
-
-get_article();
-
-//分页功能
-function pagination(now,total){
-    $("#pagination").pagination({
-        currentPage: 1,
-        totalPage: 10,
-        count: 10,
-        callback: function(current) {
-            //current  点击的页码
-            data.page = current; //点击改变页码，重新获取页码的数据
-            get_article();
-        }
-    });
-}
+    }
 </script>

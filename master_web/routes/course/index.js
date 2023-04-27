@@ -1,5 +1,9 @@
 const express = require('express');
 const async = require('async');
+const fs = require("fs");
+const path = require("path");
+const request = require("request");
+
 const tools = require('../../common/util.js')
 
 const router = express.Router();
@@ -54,6 +58,26 @@ router.index = function (req, res) {
         );
 }
 
+// 点击加载更多
+router.get_lbkc=function(req,res){
+    let start=req.query.start,end=req.query.end
+    // 录播课程列表
+    let key={
+        start:start,
+        size:end
+    }
+    let results={}
+
+    tools.getMasterApiQuery('/course/2023/list', key, req, res,
+        function (result) {
+            results.lb_list = result.data || {};
+            res.send({
+                results:results
+            })
+        }
+    )
+}
+
 router.recording_detail = function(req,res){
     let id=req.params.id
     let results={}
@@ -95,7 +119,7 @@ router.get_tj_or_new=function(req,res){
     // 资源包列表
     let key={
         start:0,
-        size:4,
+        size:5,
     }
     let id = req.query.id || null
     id ? key.is_rec=id : ""
@@ -115,6 +139,75 @@ router.get_tj_or_new=function(req,res){
                 })
             })
         } 
+    })
+}
+
+// 下载资源包
+router.download_zy=function(req,res){
+    let id = parseInt(req.query.pack_id)
+    async.waterfall([
+        function (cb) {
+        // 获取资源包地址(文件名)
+        tools.getMasterApiQuery(`/course/2023/information-pack/${id}`, {}, req, res,
+            function(result){
+                console.log(result)
+                if(result.state != 0) return cb(null,1)
+                let url = result.data.file
+                cb(null,url)
+            }
+        )
+        },
+        function (data, cb) {
+            // let fileName = data
+            var dirPath = path.join(__dirname, "file");
+            if (!fs.existsSync(dirPath)) {
+                fs.mkdirSync(dirPath);
+                console.log("文件夹创建成功");
+            } else {
+                console.log(dirPath,"文件夹已存在");
+            }
+
+            let fileName = "cover_16825010105251746.jpg" ;
+            let url = "https://static.52wmb.com/wmb_course/2023/images/" + fileName;
+            let stream = fs.createWriteStream(path.join(dirPath, fileName));
+            request(url,function(error, response, body){
+                if (error) {
+                    return cb(null,1)
+                  }
+            }).pipe(stream).on("close", function (err) {
+                let down={state:0,url:dirPath}
+                cb(null,down)
+            });
+        }
+      ], function (err, fun_cb) {
+        return res.send({
+            fun_cb
+        });
+      }
+    )
+}
+
+// 侧拉分页
+router.get_side=function(req,res){
+    // 资源包列表
+    let key={
+        start:0,
+        size:5,
+    }
+    key.start=req.query.start
+    key.end=req.query.end
+    tools.getMasterApiQuery('/course/2023/information-pack', key, req, res,
+    function (result) {
+            res.wrender('./course/children/side_children.ejs', {
+                results: result.data
+              },
+              function (err, str) {
+                if (err) return false
+                return res.send({
+                  content: str,
+                  state: 0
+                })
+            })
     })
 }
 
@@ -146,6 +239,7 @@ router.get_kcjs=function(req,res){
 
 //课程问答
 router.get_kcwd=function(req,res){
+    console.log(req.query.id)
     let results={},id=req.query.id
     let key={
         start:0,

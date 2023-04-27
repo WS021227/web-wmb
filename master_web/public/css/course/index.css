@@ -307,6 +307,11 @@
 .lb-box>.right>:nth-child(3){
     color: #999;
 }
+.lbkc-more{
+    display: block;
+    text-align: center;
+    padding: 60px 0;
+}
 
 /* 下载侧拉 */
 .side-box{
@@ -362,30 +367,32 @@
 
 /* 分页 */   
 .setPageDiv #pagination{
-    height: 100%;
+    padding-top: 20px;
+    height: 40px;
 }
 .setPageDiv #pagination a {
     text-decoration: none;
-	border: 1px solid #AAE;
-	color: #777;
+    background-color: #ffffff;
+    color: #999;
+	border: 1px solid #ccc;
 }
 
 #pagination a, #pagination span {
     display: inline-block;
-    padding: 0.5em 0.7em;
-    margin-right: 5px;
+    padding: 0.2em 0.5em;
+    margin-right: 10px;
 	margin-bottom: 5px;
 }
 
 #pagination .current {
-    background: #c7c7c7;
-    color: #fff;
-	border: 1px solid #AAE;
+    background-color: #ffffff;
+    color: #007FFF;
+	border: 1px solid #007FFF;
 }
 
 #pagination .current.prev, #pagination .current.next{
-	color:#999;
-	border-color:#999;
-	background:#fff;
+    background-color: #ccc;
+    color: #fff;
+	border: 1px solid #ccc;
 }
 

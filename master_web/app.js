@@ -327,5 +327,6 @@ app.locals["VERSION"] = baseConfig.config.version
 app.locals["PROV_URL"] = util.prov_url
 app.locals["LINE_IMAGE_PATH"] = baseConfig.config.line_image_path
 app.locals["LINE_ROUTE"] = util.line_route
+app.locals["DATE_ZH_DAY"] = util.date_zh_day
 app.locals["UTIL"] = util
 module.exports = app;
