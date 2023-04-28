@@ -396,3 +396,16 @@
 	border: 1px solid #ccc;
 }
 
+/* 成功下载弹窗 */
+.layui-layer-title{
+
+}
+.down-box{
+    padding: 20px 20px;
+}
+.down-box span{
+    display: block;
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 20px;
+}

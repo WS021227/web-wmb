@@ -19,10 +19,32 @@
         </div>
         <div class="recording-detail-video">
             <div class="video-content">
-                <div class="content-top">
-                    <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                    <a href="">立即领取</a>
-                </div>
+                <% if(!wglobals.user.id) { %>
+                    <div class="content-top">
+                        <span>邦友福利视频免费领取，一次领取终身享有！</span>
+                        <a href="/login">立即领取</a>
+                    </div>
+                <% } else { %>
+                    <% if(!xq_data.is_receive) { %>
+                        <div class="content-top">
+                            <span>邦友福利视频免费领取，一次领取终身享有！</span>
+                            <a href="javascript:void(0);" onclick="get_kc(this)" data-id="<%= xq_data.id %>">立即领取</a>
+                        </div>
+                    <% } else { %>
+                        <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
+                            <div class="content-top">
+                                <span>邦友福利视频免费领取，一次领取终身享有！</span>
+                                <a href="#">立即领取</a>
+                            </div>
+                        <% } else { %>
+                            <!-- 提示购买黄钻 -->
+                            <div class="content-top">
+                                <span>邦友福利视频免费领取，一次领取终身享有！</span>
+                                <a href="javascript:void(0);" onclick="share_authority_failure('yd')">立即领取</a>
+                            </div>
+                        <% } %>
+                    <% } %>
+                <% } %>
                 <div class="content-video">
                     <video width="940" height="530" src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4">
                     </video>

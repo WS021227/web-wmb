@@ -8,12 +8,13 @@
         </div>
         <% if(!wglobals.simple_user.id) {%>
             <a href="/login">下载</a>
-        <% } %>
-        <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
-            <a href="/async/download_zy/<%= item.id %>">下载</a>
         <% } else { %>
-            <!-- 提示购买黄钻 -->
-            <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
+            <% if(verify_vip_level(wglobals.simple_user.vip_level, 'yd', wglobals.simple_user.experience)){ %>
+                <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>">下载</a>
+            <% } else { %>
+                <!-- 提示购买黄钻 -->
+                <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
+            <% } %>
         <% } %>
     </div>
 <% }) %>

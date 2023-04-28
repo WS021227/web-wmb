@@ -55,3 +55,17 @@ function get_js_data(id){
     })
 }
 
+// 领取课程
+function get_kc(event){
+    let id=$(event).data("id")
+    $.loadajax('/async/post_pl', {
+        datatype: 'text',
+        method:'POST',
+        data: {id:id},
+        success: function (result) {
+            // if(result.state==0){
+                console.log(result,"领取")
+            // }
+        }
+    })
+}

@@ -211,6 +211,16 @@ router.get_side=function(req,res){
     })
 }
 
+// 课程领取
+router.get_kc=function(req,res){
+    let id=req.body.id
+    tools.postMasterApiQuery(`/course/2023/reply/${id}`, key, req, res,
+        function (result) {
+            res.send(result)
+        }
+    )
+}
+
 // 课程介绍
 router.get_kcjs=function(req,res){
     let results={},id=req.query.id

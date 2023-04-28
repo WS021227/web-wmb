@@ -32,6 +32,8 @@ $(function(){
         lb_num+=10
         get_lbkc_list_more(lb_num)
     })
+
+    
 })
 
 function put_tj_or_new(list,more){
@@ -46,7 +48,7 @@ function put_tj_or_new(list,more){
                 <div><span>大小：${(item.size/8/1024).toFixed(2)}k</span><font>|</font><span>格式：${item.format}</span></div>
                 ${!wg.user.id?`<a href="/login">下载</a>`:
                               !verify_vip_level(wg.user.vip_level, 'yd', wg.user.experience)?`<a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>`:
-                              `<a href="/async/download_zy/${item.id}">下载</a>`
+                              `<a href="javascript:void(0);" onclick="download_zy(this)" data-id="${item.id}">下载</a>`
                 }
                 
             </div>
@@ -68,7 +70,7 @@ function get_lbkc_list_more(lb_num){
 }
 
 // 下载资源包
-function download_zy(event){
+function  download_zy(event){
     let id = $(event).data("id")
     $.loadajax('/async/download_zy', {
         datatype: 'text',
@@ -76,12 +78,25 @@ function download_zy(event){
         success: function (result) {
             console.log(result,"下载")
             if(result.fun_cb.state==0) {
-           
-                //'Saveas'表示打开“文件另存为”对话框命令
-                var fileSave = new ActiveXObject("MSComDlg.CommonDialog");
-                fileSave.ShowSave();
-    
-        }
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim',
+                    area: ['600px', 'auto'], // 配置长高
+                    shadeClose: false, //点击遮罩关闭
+                    maxmin: false,
+                    closeBtn: 1,
+                    title: '下载成功',
+                    content: `<div class="down-box">
+                                <span>文件路径：${result.fun_cb.url}</span>
+                                <input type="file" id="fileInput">
+                            </div>`,
+                    success:function(){
+                        
+                    }
+                });
+                
+            }
         }
     })
 }
+
