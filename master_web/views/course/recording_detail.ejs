@@ -10,7 +10,6 @@
 </head>
 <body>
     <% let xq_data=results.xq_data,wd_data_list=results.wd_data_list,wd_data_list_num=results.wd_data_list_num %>
-    <% console.log(xq_data,"问答列表数据") %>
     <%- include('../global/head.ejs') %>
     <div class="recording-detail-container">
         <div class="recording-detail-head">
@@ -19,38 +18,16 @@
         </div>
         <div class="recording-detail-video">
             <div class="video-content">
-                <% if(!wglobals.user.id) { %>
-                    <div class="content-top">
-                        <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                        <a href="/login">立即领取</a>
-                    </div>
-                <% } else { %>
-                    <% if(!xq_data.is_receive) { %>
-                        <div class="content-top">
-                            <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                            <a href="javascript:void(0);" onclick="get_kc(this)" data-id="<%= xq_data.id %>">立即领取</a>
-                        </div>
-                    <% } else { %>
-                        <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
-                            <div class="content-top">
-                                <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                                <a href="#">立即领取</a>
-                            </div>
-                        <% } else { %>
-                            <!-- 提示购买黄钻 -->
-                            <div class="content-top">
-                                <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                                <a href="javascript:void(0);" onclick="share_authority_failure('yd')">立即领取</a>
-                            </div>
-                        <% } %>
-                    <% } %>
-                <% } %>
+                <div class="content-top">
+                    <span>邦友福利视频免费领取，一次领取终身享有！</span>
+                    <a href="">立即领取</a>
+                </div>
                 <div class="content-video">
                     <video width="940" height="530" src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4">
                     </video>
                 </div>
                 <div class="content-bottom">
-                    <img src="<%= STATIC %>images/<%= xq_data.lecturer_avatar %>" alt="">
+                    <img src="https://static.52wmb.com/wmb_course/2023/images/<%= xq_data.lecturer_avatar %>" alt="">
                     <div>
                         <span>正在主讲：《<%= xq_data.name %>》</span>
                         <span>主讲人：<%= xq_data.lecturer %>(资深数据专家、大客户经理、金牌讲师)</span>
@@ -62,7 +39,7 @@
                             </i>
                             <%= xq_data.reveive_users %>人已学习
                         </span>
-                        <a href="">下载课件PPT</a>
+                        <a href="javascript:void(0);" onclick="down_ppt(this)" data-id="<%= xq_data.ppt_file %>">下载课件PPT</a>
                     </div>
                 </div>
             </div>
@@ -72,7 +49,9 @@
                 <span class="active">课程介绍</span>
                 <span>课程提问(<span><%= wd_data_list_num %></span>)</span>
             </div>
-            <div class="tw-content">        
+            <div class="tw-content">
+                <%- results.content %>
+                <div class="tw-box-list"></div>
             </div>
         </div>
     </div>

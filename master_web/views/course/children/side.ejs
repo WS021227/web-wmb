@@ -8,20 +8,16 @@
     <div class="side-box-content">
         <% list.forEach(function(item,index){ %>
             <div class="lb-box" id="xz_lb_box">
-                <img src="<%= STATIC %>images/<%= item.cover %>" alt="">
+                <img src="<%= item.cover %>" alt="">
                 <div class="content">
                     <span><%= item.name %></span>
                     <div>大小：<span><%= (item.size/8/1024).toFixed(2) %></span>k<font>|</font>格式：<span><%= item.format %><span></div>
                 </div>
-                <% if(!wglobals.user.id) {%>
-                    <a href="/login">下载</a>
+                <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
+                    <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>">下载</a>
                 <% } else { %>
-                    <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
-                        <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>">下载</a>
-                    <% } else { %>
-                        <!-- 提示购买黄钻 -->
-                        <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
-                    <% } %>
+                    <!-- 提示购买黄钻 -->
+                    <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
                 <% } %>
             </div>
         <% }) %>
@@ -29,14 +25,12 @@
     <!-- 分页 -->
     <div class="setPageDiv">
         <div class="Pagination" id="pagination">
-
         </div>
     </div>
 </div>
 
 <!-- 分页 -->
 <script>
-    let sum=$(".side-box").data("sum")
     $("#pagination").pagination(sum, {
         num_edge_entries: 1,
         num_display_entries: 3,
@@ -45,7 +39,6 @@
         next_text:">",
         callback: pageselectCallback,
     });
-
     function pageselectCallback(){
         let num = parseInt($("#pagination span[class='current']").text())
         if(num){

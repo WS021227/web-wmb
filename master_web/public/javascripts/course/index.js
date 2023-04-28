@@ -1,4 +1,5 @@
 let lb_num=0
+let sum=$("#course_zy_num").data("sum")
 $(function(){
     // 推荐资源、最新资源
     $(".course-zy-h2-left span").click(function(){
@@ -29,11 +30,10 @@ $(function(){
     })
     // 录播课程加载更多
     $("#lbkc_more").click(function(){
+        console.log("1212212")
         lb_num+=10
         get_lbkc_list_more(lb_num)
     })
-
-    
 })
 
 function put_tj_or_new(list,more){
@@ -59,44 +59,80 @@ function put_tj_or_new(list,more){
 
 // 录播课程加载更多
 function get_lbkc_list_more(lb_num){
-    let end=lb_num+10
+    lb_num+=10
     $.loadajax('/async/get_lbkc', {
         datatype: 'text',
-        data: {start:lb_num,end:end},
+        data: {start:lb_num},
         success: function (result) {
-            console.log(result,"more")
+            console.log(result,result.lb_list.length,"more")
+            if(result.lb_list.length<10) { $("#lbkc_more").text(`暂无更多`);$("#lbkc_more").unbind("click"); }
+            result.lb_list.forEach(function(item,index){
+                let $box=$(`
+                            <div class="lb-box">
+                                <a href="/recording_detail/${item.id}">
+                                    <img src="https://static.52wmb.com/wmb_course/2023/images/${item.cover}" alt="">
+                                </a>
+                            <div class="content">
+                                    <a href="/recording_detail/${item.id}">
+                                        <span>${item.name}</span>
+                                    </a>
+                                    <span>${item.lecturer_des}</span>
+                                    <div>时间：<span>${item.live_dur}</span><font>|</font><span>${item.reveive_users}<span>人已学习</div>
+                                    <a class="gkkc" href="/recording_detail/${item.id}">观看课程</a>
+                                </div>
+                                <div class="right">
+                                    <img src="https://static.52wmb.com/wmb_course/2023/images/${item.lecturer_avatar}" alt="">
+                                    <span>讲师：${item.lecturer}</span>
+                                    <span>${item.lecturer_des}</span>
+                                </div>
+                            </div>
+                        `)
+                $(".course-lb-list").append($box)
+            })
         }
     })
 }
 
 // 下载资源包
-function  download_zy(event){
+function download_zy(event){
     let id = $(event).data("id")
     $.loadajax('/async/download_zy', {
         datatype: 'text',
         data: {pack_id:id},
         success: function (result) {
             console.log(result,"下载")
-            if(result.fun_cb.state==0) {
+            // 1 下载失败
+            if(result.fun_cb.state!=1) {
+                let box=`
+                    <span>文件保存地址：${result.fun_cb.url}</span>
+                    <input type="file" id="fileipt"/>
+                `
                 layer.open({
-                    type: 1,
-                    skin: 'layui-layer-rim',
+                    title:`${result.fun_cb.title}`,
+                    skin:'down-over',
                     area: ['600px', 'auto'], // 配置长高
-                    shadeClose: false, //点击遮罩关闭
+                    shadeClose: true, //点击遮罩关闭
                     maxmin: false,
                     closeBtn: 1,
-                    title: '下载成功',
-                    content: `<div class="down-box">
-                                <span>文件路径：${result.fun_cb.url}</span>
-                                <input type="file" id="fileInput">
-                            </div>`,
+                    content:box,
+                    icon:1,
                     success:function(){
-                        
+                        open_file()
                     }
-                });
-                
+                })    
+            }else{
+                layer.msg("下载失败")
             }
         }
     })
 }
 
+function open_file(){
+    var  inputObj=document.createElement( 'input' )
+    inputObj.setAttribute( 'id' , '_ef' );
+    inputObj.setAttribute( 'type' , 'file' );
+    inputObj.setAttribute( "style" , 'visibility:hidden' );
+    document.body.appendChild(inputObj);
+    // inputObj.click();
+    inputObj.value ;
+}

@@ -169,15 +169,15 @@
     vertical-align: middle;
 }
 .course-zy .course-zy-list{
-    padding: 20px 20px;
-    background-color: #eee;
     display: flex;
     width: 100%;
     box-sizing: border-box;
     justify-content: space-between;
 }
 .course-zy-list .zy-box{
+    padding: 20px 20px;
     width: 156px;
+    background-color: #eee;
 }
 .zy-box>img{
     width: 50px;
@@ -207,6 +207,11 @@
     color: #999;
     text-align: center;
     padding: 5px 0;
+
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .zy-box font{
     margin: 0 5px;
@@ -236,6 +241,7 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
+    background-color: #eee;
 }
 .lb-box>a>img{
     width: 180px;
@@ -303,9 +309,18 @@
     color: #101010;
     text-align: center;
     padding: 5px 0;
+
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .lb-box>.right>:nth-child(3){
     color: #999;
+    width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .lbkc-more{
     display: block;
@@ -335,6 +350,7 @@
 }
 .side-box-content{
     padding: 0px 20px;
+    min-height: 553px;
 }
 .side-box-content .lb-box{
     display: flex;
@@ -357,6 +373,7 @@
     border: 1px solid #999;
     padding: 5px 15px;
 }
+/* 分页 */
 .setPageDiv{
     width: 100%;
     height: 40px;
@@ -364,8 +381,6 @@
     padding: 0 20px;
     padding-top: 20px;
 }
-
-/* 分页 */   
 .setPageDiv #pagination{
     padding-top: 20px;
     height: 40px;
@@ -395,17 +410,24 @@
     color: #fff;
 	border: 1px solid #ccc;
 }
-
-/* 成功下载弹窗 */
-.layui-layer-title{
-
+/* 下载对话框 */
+.down-over .layui-layer-content{
+    padding: 20px 0;
 }
-.down-box{
-    padding: 20px 20px;
+.layui-layer-content .layui-layer-ico1{
+    position: static !important;
+    margin-left: 60px;
 }
-.down-box span{
-    display: block;
+.layui-layer-content span{
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    margin-left: 40px;
     font-size: 14px;
     color: #777;
-    margin-bottom: 20px;
+}
+.layui-layer-content input{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 135px;
 }

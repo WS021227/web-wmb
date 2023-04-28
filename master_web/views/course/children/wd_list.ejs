@@ -1,4 +1,3 @@
-<% console.log(results,"评论") %>
 <% let wd_data_list=results.wd_data_list || [],wd_data_list_num=results.wd_data_list_num %>
 <div class="tw-box" id="pl_box">
     <img src="" alt="">
@@ -6,48 +5,22 @@
         <textarea type="text" placeholder="请输入内容吧..." id="pl_ipt_box"></textarea>
         <div>
             <span>提示：发布的评论需要审核后才能显示</span>
-            <a href="javascript:void(0);" onclick="post_pl(7)">发布评论</a>
+            <a href="javascript:void(0);" onclick="post_pl(this)" data-id="<%= results.id  %>">发布评论</a>
         </div>
     </div>
 </div>
-
-<% wd_data_list.forEach(function(item,index){ %>
-    <div class="tw-box zs-box">
-        <img src="" alt="">
-        <div class="right">
-           <span><%= item.contact %></span>
-           <span><%=  DATE_ZH_DAY(new Date(item.create_time)) %></span>
-           <p><%= item.content %></p>
+<div id="wd_data_lists">
+    <% wd_data_list.forEach(function(item,index){ %>
+        <div class="tw-box zs-box">
+            <img src="" alt="">
+            <div class="right">
+                <span><%= item.contact %></span>
+                <span><%=  DATE_ZH_DAY(new Date(item.create_time)) %></span>
+                <p><%= item.content %></p>
+            </div>
         </div>
-    </div>
-<% }) %>
-
-
-
-<% if(wd_data_list_num) {%>
-    <span class="pl-more" data-id="7">点击加载更多...</span>
+    <% }) %>
+</div>
+<% if(wd_data_list_num > 10) {%>
+    <span class="pl-more" data-id="<%= results.id %>">点击加载更多...</span>
 <% } %>
-
-<script>
-    // 发布评论
-function post_pl(id){
-    let pl_text=$("#pl_ipt_box").val()
-    console.log(pl_text)
-    if(pl_text=="") {
-        layer.msg("请输入您的评论")
-        $("#pl_ipt_box").focus()
-    }else{
-        $.loadajax('/async/post_pl', {
-            datatype: 'text',
-            method:'POST',
-            data: {id:id,content:pl_text},
-            success: function (result) {
-                if(result.state==0){
-                    layer.msg("提交成功!")
-                    $("#pl_ipt_box").val('')
-                }
-            }
-        })
-    }
-}
-</script>

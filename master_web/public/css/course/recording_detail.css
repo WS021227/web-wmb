@@ -129,14 +129,14 @@ position: relative;
 .recording-detail-bottom .tw-content{
     padding: 20px 20px;
 }
+
+/* tab课程介绍 */
 .tw-content .kc-js{
     padding: 40px 0;
     text-align: center;
 }
-.kc-js>span{
-    display: block;
-    padding: 100px 0;
-}
+
+
 .tw-content .tw-box{
     display: flex;
     justify-content: space-between;
@@ -198,4 +198,26 @@ position: relative;
     display: block;
     text-align: center;
     padding: 40px 0;
+}
+
+/* 下载对话框 */
+.down-over .layui-layer-content{
+    padding: 20px 0;
+}
+.layui-layer-content .layui-layer-ico1{
+    position: static !important;
+    margin-left: 60px;
+}
+.layui-layer-content span{
+    display: inline-block;
+    line-height: 30px;
+    height: 30px;
+    margin-left: 40px;
+    font-size: 14px;
+    color: #777;
+}
+.layui-layer-content input{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 135px;
 }

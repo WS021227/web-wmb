@@ -1,0 +1,11 @@
+<% let wd_data_list=results.wd_data_list || [] %>
+<% wd_data_list.forEach(function(item,index){ %>
+    <div class="tw-box zs-box">
+        <img src="" alt="">
+        <div class="right">
+           <span><%= item.contact %></span>
+           <span><%=  DATE_ZH_DAY(new Date(item.create_time)) %></span>
+           <p><%= item.content %></p>
+        </div>
+    </div>
+<% }) %>
