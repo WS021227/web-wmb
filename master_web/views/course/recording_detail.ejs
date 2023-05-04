@@ -11,6 +11,7 @@
 <body>
     <% let xq_data=results.xq_data,wd_data_list=results.wd_data_list,wd_data_list_num=results.wd_data_list_num %>
     <%- include('../global/head.ejs') %>
+    <% console.log(xq_data,"详情数据") %>
     <div class="recording-detail-container">
         <div class="recording-detail-head">
             <h1>【官方录制】<%= xq_data.name %></h1>
@@ -18,9 +19,16 @@
         </div>
         <div class="recording-detail-video">
             <div class="video-content">
-                <div class="content-top">
+                <div class="content-top <%= !xq_data.is_receive ? 'content-top-show' : '' %>">
                     <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                    <a href="">立即领取</a>
+                    <% if(!wglobals.user.id){ %>
+                        <a href="/login" >立即领取</a>
+                    <%} else if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
+                        <a href='javascript:void(0);' onclick="get_class(this)" data-id="<%= xq_data.id %>">立即领取</a>
+                    <% } else{ %>
+                        <!-- 提示购买黄钻 -->
+                        <a href="javascript:void(0);" onclick="share_authority_failure('yd')">立即领取</a>
+                    <% } %>
                 </div>
                 <div class="content-video">
                     <video width="940" height="530" src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4">

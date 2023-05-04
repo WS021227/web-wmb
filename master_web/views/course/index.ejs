@@ -17,7 +17,7 @@
             <div class="header-left">
                 <h1>《<%= top_live_data.name %>》直播课预约</h1>
                 <p><%= top_live_data.des %></p>
-                <div class="header-time">时间：<span><%= top_live_data.live_time %></span><font>|</font>时长：<span>预计<%= top_live_data.live_dur %></span><font>|</font>平台：微信视频号</div>
+                <div class="header-time"><span>时间：<%= top_live_data.live_time %></span><font>|</font><span>时长：预计<%= top_live_data.live_dur %></span><font>|</font><span>平台：微信视频号</span></div>
                 <div class="header-left-user">
                     <img src="https://static.52wmb.com/wmb_course/2023/images/<%= top_live_data.lecturer_avatar %>" alt="">
                     <div>
@@ -31,7 +31,6 @@
                 <img src="https://static.52wmb.com/wmb_course/2023/images/<%=top_live_data.reserve_qrcode%>" alt="">
             </div>
         </div>
-
         <div class="course-gf">
             <h2><span>官方出品</span><span id="num">共计2个</span></h2>
             <div>
@@ -63,7 +62,6 @@
                 </div>
             </div>
         </div>
-
         <div class="course-gf course-zy">
             <h2>
                 <div class="course-zy-h2-left">
@@ -98,7 +96,6 @@
                 <% }) %>
             </div>
         </div>
-
         <div class="course-gf course-lb">
             <h2>
                 <span>录播课程</span>
@@ -131,7 +128,6 @@
            <% } %>
         </div>
     </div>
-
     <%- include('../global/foot_script.ejs') %>
     <script src="<%= STATIC %>javascripts/course/pagination.js?v=<%=VERSION%>"></script>
     <script src="<%= STATIC %>javascripts/course/index.js?v=<%=VERSION%>"></script>

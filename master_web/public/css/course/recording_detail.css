@@ -29,6 +29,9 @@
     margin: 0 auto;
 }
 .video-content .content-top{
+    display: none;  
+}
+.video-content>.content-top-show{
     display: flex;
     align-items: center;
     justify-content: space-between;

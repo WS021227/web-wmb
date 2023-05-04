@@ -55,6 +55,17 @@ router.recording_detail = function(req,res){
         );
 }
 
+// 课程领取
+router.course_2023_receive=function(req,res){
+    let id = req.body.id
+    console.log(id,"0000")
+    tools.postMasterApiQuery(`/course/2023/receive/${id}`, {}, req, res,
+        function (result) {
+            res.send(result)
+        }
+    )
+}
+
 // 课程介绍
 router.get_kcjs=function(req,res){
     let results={},id=req.query.id

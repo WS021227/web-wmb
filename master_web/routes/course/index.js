@@ -130,8 +130,6 @@ router.download_zy=function(req,res){
                     return cb(null,down)
                 }
             }
-
-            
             let url = "https://static.52wmb.com/wmb_course/2023/courseware/" + fileName;
             let stream = fs.createWriteStream(path.join(dirPath, fileName));
             request(url,function(error, response, body){

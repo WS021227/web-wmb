@@ -15,6 +15,19 @@ $(function(){
     })
 })
 
+// 领取课程
+function get_class(event){
+    let id=$(event).data("id")
+    $.loadajax(`/async/course/2023/receive`, {
+        datatype: 'text',
+        method:'POST',
+        data: {id:id},
+        success: function (result) {
+            console.log(result,"课程领取")
+        }
+    })
+}
+
 // 发布评论
 function post_pl(event){
     let id=$(event).data("id")
@@ -76,6 +89,7 @@ function get_js_data(){
 
 // 下载ppt
 function down_ppt(event){
+    if (!verify_sign({login: true, only_return: true})) return false
     let id=$(event).data("id")
     $.loadajax('/async/down_ppt', {
         datatype: 'text',
