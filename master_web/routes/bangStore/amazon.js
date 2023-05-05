@@ -52,6 +52,12 @@ router.add_service = function (req, res) {
 
 router.js_trial_post = function (req, res) {
     let key=req.body
+    key.use_type=""
+    if(key.use_type1) key.use_type = key.use_type+key.use_type1
+    if(key.use_type2) key.use_type = key.use_type+key.use_type2
+    if(key.use_type3) key.use_type = key.use_type+key.use_type3
+    if(key.use_type4) key.use_type = key.use_type+key.use_type4
+    key.use_type=key.use_type.split('').join('|')
     if(key.fb){
         if(key.fb=='Facebook'){
             key.fb=key.fb_value
@@ -61,8 +67,8 @@ router.js_trial_post = function (req, res) {
             key.whatapp=key.fb_value
         }
     }
-    let {fb_value,...new_key} = key
-    console.log(new_key,"提交")
+    let {fb_value,use_type1,use_type2,use_type3,use_type4,...new_key} = key
+    if(new_key.use_type.includes('4') && new_key.use_other=='') return res.send({state:10000})
     tools.postMasterApiQuery('/common/js/trial', new_key, req, res, function (result){
         res.send(result)
     })

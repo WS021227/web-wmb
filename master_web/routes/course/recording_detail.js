@@ -61,6 +61,12 @@ router.course_2023_receive=function(req,res){
     console.log(id,"0000")
     tools.postMasterApiQuery(`/course/2023/receive/${id}`, {}, req, res,
         function (result) {
+            tools.getMasterApiQuery(`/course/2023/detail/${id}`, {}, req, res,
+                function (result) {
+                    results.xq_data = result || {};
+                    callback(null,1)
+                }
+            )
             res.send(result)
         }
     )

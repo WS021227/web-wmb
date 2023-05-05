@@ -448,7 +448,7 @@
     padding: 5px 55px;
 }
 .jungle_scout_experience_box>.js_experience_upload{
-    margin-top: 20px !important;
+    margin-top:10px !important;
     width: 526px;
     display: block;
     margin: 0 auto;
@@ -460,10 +460,40 @@
     padding: 5px 0;
     font-weight: 600;
 }
+
+/* 使用用途 */
+.js_experience_upload>.check-group{
+    margin-bottom: 10px;
+}
+.js_experience_upload>.check-group>div{
+    padding:1px 0;
+    display: inline-block;
+    width: 260px;
+}
+.js_experience_upload div>input{
+    margin-right: 10px;
+}
+.js_experience_upload .checkbox-name{
+    display: inline-block !important;font-size:13.4px;
+}
+.js_experience_upload .checkbox-name-en{
+    font-size: 13.4px;
+}
+.js_experience_upload .textarea{
+    display: none;
+    margin-top: 10px;
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
+}
 .js_experience_upload>input{
     box-sizing: border-box;
 }
-.js_experience_upload>input,select{
+.js_experience_upload>input,select,div>.social-box{
     display: block;
     width: 100%;
     margin-bottom: 10px;
@@ -545,7 +575,7 @@
 }
 .js-ytj>span{
     display: block;
-    font-size: 14.4px;
+    font-size: 15.4px;
     text-align: center;
 }
 .js-ytj>span:nth-child(3){padding:8px;}

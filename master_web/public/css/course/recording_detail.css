@@ -3,7 +3,7 @@
     margin: 0;
 }
 .recording-detail-container{
-    width: 1440px;
+    width: 100%;
     margin: 0 auto;
 }
 .recording-detail-container .recording-detail-head{
@@ -13,16 +13,24 @@
     color: #101010;
 }
 .recording-detail-head h1{
+    display: block;
+    width: 1440px;
     font-size: 18px;
     padding: 10px 0;
+    margin: 0 auto;
 }
-.recording-detail-head>h2{
+.recording-detail-head>p{
+    display: block;
+    width: 1440px !important;
     font-size: 33px;
     padding: 10px 0;
+    margin: 0 auto;
 }
 .recording-detail-container .recording-detail-video{
     background-color: #fff;
     padding: 20px 0;
+    text-align: center;
+    font-weight: 600;
 }
 .recording-detail-video .video-content{
     width: 940px;

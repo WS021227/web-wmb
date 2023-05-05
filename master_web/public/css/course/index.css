@@ -5,6 +5,7 @@
 .course-container{
     width: 940px;
     margin: 0 auto;
+    padding-top: 60px;
 }
 .course-container .course-header{
     background-color: #8CA2AA;
@@ -95,6 +96,7 @@
 
 .course-gf>h2>:nth-child(2){
     color: #999;
+    font-size: 13px;
 }
 .course-gf>div{
     display: flex;
@@ -154,7 +156,7 @@
 
 /* 资源 */
 .course-zy h2>a>span{
-    font-size: 18px;
+    font-size: 13px !important;
     font-weight: 600;
     color: #999 !important;
 }
@@ -179,8 +181,9 @@
 }
 .course-zy-list .zy-box{
     padding: 20px 20px;
-    width: 156px;
+    width: 225px;
     background-color: #eee;
+    box-sizing: border-box;
 }
 .zy-box>img{
     width: 50px;
@@ -239,12 +242,13 @@
     flex-direction: column;
 }
 .course-lb .course-lb-list .lb-box{
-    width: 100%;
+    width: 940px;
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
     background-color: #eee;
+    box-sizing: border-box;
 }
 .lb-box>a>img{
     width: 180px;
