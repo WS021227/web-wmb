@@ -1,12 +1,13 @@
 <% let phone=results.phone,email=results.email,show_flag=results.show_flag %>
 <!-- 未填写过表单 -->
+<div class="jungle-scout-trial jungle-scout-trial-<%=show_flag%>">
 <% if(show_flag==0){ %>
     <%if(wglobals.lang=='cn'){%>
-        <div class="jungle_scout_experience_box">
+        <div class="jungle-scout-experience-box">
             <h2>Jungle Scout 插件+网页版免费试用表单填写</h2>
             <span>申请开通后您可以免费体验插件和网页版3天，以开通时间为准。</span>
 
-            <form id="js_experience_upload" method="post" action="/async/common/js/trial" class="js_experience_upload" target="targetIfr" onsubmit="setMyText()">
+            <form id="js_experience_upload" method="post" action="/async/common/js/trial" class="js-experience-upload" target="targetIfr" onsubmit="setMyText()">
 
                 <label for="">公司(个人)类型</label>
                 <select id="company_type" name="company_type" required oninput="this.setCustomValidity('')">
@@ -34,10 +35,10 @@
 
                 <label for="">申请试用Jungle Scout主要用途是：</label>
                 <div class="check-group">
-                    <div><input type="checkbox" value="1" name="use_type1" id="use_type" ><span class="checkbox-name">亚马竞品数据分析</span></div>
-                    <div><input type="checkbox" value="2" name="use_type2" id="use_type" ><span class="checkbox-name">跨境市场调研</span></div>
-                    <div><input type="checkbox" value="3" name="use_type3" id="use_type" ><span class="checkbox-name">跨境关键词反查</span></div>
-                    <div><input type="checkbox" value="4" name="use_type4" id="use_type" onclick="other_check(this)"><span class="checkbox-name">其他</span></div>
+                    <div><label><input type="checkbox" value="1" name="use_type1" id="use_type" ><span class="checkbox-name">亚马竞品数据分析</span></label></div>
+                    <div><label><input type="checkbox" value="2" name="use_type2" id="use_type" ><span class="checkbox-name">跨境市场调研</span></label></div>
+                    <div><label><input type="checkbox" value="3" name="use_type3" id="use_type" ><span class="checkbox-name">跨境关键词反查</span></label></div>
+                    <div><label><input type="checkbox" value="4" name="use_type4" id="use_type" onclick="other_check(this)"><span class="checkbox-name">其他</span></label></div>
                     <textarea maxlength="120" name="use_other" id="use_other" placeholder="请输入使用用途" class="textarea"></textarea>
                 </div>
                 
@@ -73,10 +74,10 @@
             <iframe name="targetIfr" id="targetIfr" style="display:none"></iframe> 
         </div>
     <%}else{%>
-        <div class="jungle_scout_experience_box">
+        <div class="jungle-scout-experience-box">
             <h2>Free Trial Form of Jungle Scount Plugin + Web</h2>
             <span style="font-size:13.4px;">After activating, you can experience the plug-in and web version 3 days for free.</span>
-            <form id="js_experience_upload" method="post" action="/async/common/js/trial" class="js_experience_upload" target="targetIfr" autocomplete='off'>
+            <form id="js_experience_upload" method="post" action="/async/common/js/trial" class="js-experience-upload" target="targetIfr" autocomplete='off'>
                 <label for="">Company (personal) type</label>
                 <select id="company_type" name="company_type" required oninput="this.setCustomValidity('')">
                     <option style="display: none;" value="0">please choose...</option>
@@ -111,7 +112,7 @@
                 </div>
 
                 <!-- 社媒邮箱账号 -->
-                <label for="">Social media email account</label>
+                <label for="">Social media account</label>
                 <select id="Social_media" name="fb" style="width:30%;float:left;">
                     <option disabled></option>
                     <option value="Whatsapp">Whatsapp</option>
@@ -120,7 +121,7 @@
                     <option disabled></option>
                 </select>
                 <div style="width: 358px;float:right;">
-                    <input class="social-box" style="float:right;width:100%;padding:10px 0;padding-left:5px;margin-right: 0 !important;" id="Social_media_text" name="fb_value" type="text" class="no-margin" placeholder="Please enter a social media account" autoComplete ='off'/>
+                    <input class="social-box" style="float:right;width:98%;padding:11px 0;padding-left:5px;margin-right: 0 !important;border: 1px solid #ccc;border-radius:5px;box-shadow: 0 2px 8px rgb(0 0 0 / 4%);" id="Social_media_text" name="fb_value" type="text" class="no-margin" placeholder="Please enter a social media account" autoComplete ='off'/>
                 </div>
 
                 <label for="" style="clear:both;">Main Products</label>
@@ -149,7 +150,7 @@
             <i><svg t="1681969092562" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" width="50" height="50"><path d="M513.550821 60.225663c-248.290923 0-449.579345 201.299679-449.579345 449.625394 0 248.296039 201.288422 449.594695 449.579345 449.594695 248.285806 0 449.640744-201.299679 449.640744-449.594695C963.192587 261.525342 761.836627 60.225663 513.550821 60.225663zM513.671571 917.673369c-225.166249 0-407.696446-182.53736-407.696446-407.706679S288.505321 102.254895 513.671571 102.254895c225.173412 0 407.703609 182.541453 407.703609 407.710772S738.844983 917.673369 513.671571 917.673369z" fill="#040000" p-id="1882"></path><path d="M366.566188 453.597869c0 7.726985-9.203616 13.995759-20.559245 13.995759l0 0c-11.347442 0-20.551058-6.268774-20.551058-13.995759L325.455885 336.364841c0-7.726985 9.203616-13.995759 20.551058-13.995759l0 0c11.355629 0 20.559245 6.268774 20.559245 13.995759L366.566188 453.597869z" fill="#040000" p-id="1883"></path><path d="M701.708178 453.597869c0 7.726985-9.203616 13.995759-20.560268 13.995759l0 0c-11.346419 0-20.550035-6.268774-20.550035-13.995759L660.597875 336.364841c0-7.726985 9.203616-13.995759 20.550035-13.995759l0 0c11.356652 0 20.560268 6.268774 20.560268 13.995759L701.708178 453.597869z" fill="#040000" p-id="1884"></path><path d="M194.375477 516.844332c5.372358 171.733293 146.171104 309.314765 319.206042 309.314765 173.028798 0 313.831638-137.580448 319.203996-309.314765L194.375477 516.844332zM513.58152 791.890618c-149.042501 0-274.939863-123.655298-274.939863-240.83716l549.877679 0C774.690376 669.841911 662.617881 791.890618 513.58152 791.890618z" fill="#040000" p-id="1885"></path></svg></i>
             <h2>恭喜！你已成功提交申请!</h2>
             <span>微信扫码入群,群里提交申请的邮箱账号即时开通。同时可获得一对一<br/>Jungle Scount使用指导和专业解答！</span>
-            <span style="padding-top:5px;"><img style="width:180px;height:auto;padding:2px;box-shadow:0 0 7px 7px rgb(0 0 0 / 4%);" src="https://img.ltyears.com/editor/7980/20230424/dbaf06a9ae0698bf5218ea6fdb550135.png"/></span>
+            <span style="padding-top:5px;"><img style="width:180px;height:180px;padding:2px;box-shadow:0 0 7px 7px rgb(0 0 0 / 4%);" src="https://img.ltyears.com/editor/7980/20230424/dbaf06a9ae0698bf5218ea6fdb550135.png"/></span>
             <span class="last" style="padding-top:5px;">(如已入群&开通，请忽视此条提示)</span>
         </div>
     <% }else{ %>
@@ -157,12 +158,13 @@
             <i><svg t="1681969092562" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" width="50" height="50"><path d="M513.550821 60.225663c-248.290923 0-449.579345 201.299679-449.579345 449.625394 0 248.296039 201.288422 449.594695 449.579345 449.594695 248.285806 0 449.640744-201.299679 449.640744-449.594695C963.192587 261.525342 761.836627 60.225663 513.550821 60.225663zM513.671571 917.673369c-225.166249 0-407.696446-182.53736-407.696446-407.706679S288.505321 102.254895 513.671571 102.254895c225.173412 0 407.703609 182.541453 407.703609 407.710772S738.844983 917.673369 513.671571 917.673369z" fill="#040000" p-id="1882"></path><path d="M366.566188 453.597869c0 7.726985-9.203616 13.995759-20.559245 13.995759l0 0c-11.347442 0-20.551058-6.268774-20.551058-13.995759L325.455885 336.364841c0-7.726985 9.203616-13.995759 20.551058-13.995759l0 0c11.355629 0 20.559245 6.268774 20.559245 13.995759L366.566188 453.597869z" fill="#040000" p-id="1883"></path><path d="M701.708178 453.597869c0 7.726985-9.203616 13.995759-20.560268 13.995759l0 0c-11.346419 0-20.550035-6.268774-20.550035-13.995759L660.597875 336.364841c0-7.726985 9.203616-13.995759 20.550035-13.995759l0 0c11.356652 0 20.560268 6.268774 20.560268 13.995759L701.708178 453.597869z" fill="#040000" p-id="1884"></path><path d="M194.375477 516.844332c5.372358 171.733293 146.171104 309.314765 319.206042 309.314765 173.028798 0 313.831638-137.580448 319.203996-309.314765L194.375477 516.844332zM513.58152 791.890618c-149.042501 0-274.939863-123.655298-274.939863-240.83716l549.877679 0C774.690376 669.841911 662.617881 791.890618 513.58152 791.890618z" fill="#040000" p-id="1885"></path></svg></i>
             <h2>Congratulations! Successfully submitted!</h2>
             <span>Scan the WhatsApp code to join the group The email account submited<br/>in the groupwill be activated immediately.</span>
-            <span style="padding-top:3px;"><img style="width:159;height:auto;padding:7px;box-shadow:0 0 7px 7px rgb(0 0 0 / 4%);background:#fff;" src="https://static.52wmb.com/wmb_new/images/tan_imgs/js_whatsapp.png"/></span>
+            <span style="padding-top:3px;"><img style="width:159px;height:159px;padding:7px;box-shadow:0 0 7px 7px rgb(0 0 0 / 4%);background:#fff;" src="https://static.52wmb.com/wmb_new/images/tan_imgs/js_whatsapp.png"/></span>
             <span class="last" style="padding-top:5px;">(If it has already been created<br/>please ignore this prompt)</span>
         </div>
     <% } %>
 <% } %>
-    <script>
+</div>
+<script>
         $(function(){
             $("#targetIfr").on('load',(function(){
                 var text = $(this).contents().find("body").text(); //获取到的是json的字符串

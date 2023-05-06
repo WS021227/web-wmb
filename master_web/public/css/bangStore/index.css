@@ -423,37 +423,37 @@
 
 
 /* js体验弹窗 */
-.jungle_scout_experience_box{width:650px;}
-.layui-layer-experience {
-    min-width: 650px !important;border-radius:5px;
-}
-.layui-layer-experience .layui-layer-content {
+/*.jungle_scout_experience_box{width:650px;}*/
+/*.layui-layer-experience {*/
+/*    min-width: 650px !important;border-radius:5px;*/
+/*}*/
+.jungle-scout-trial {
     margin-top:35px;
     padding-bottom: 20px;
 }
-.layui-layer-experience .layui-layer-content .jungle_scout_experience_box>h2{
+.jungle-scout-trial .jungle-scout-experience-box>h2{
     text-transform:capitalize;
     text-align: center;
     font-size: 22.4px;
     color: #333;
 }
-.jungle_scout_experience_box span{
+.jungle-scout-experience-box span{
     display: block;
 }
-.jungle_scout_experience_box>span{
+.jungle-scout-experience-box>span{
     font-size: 14.4px;
     color: #333;
     font-weight:500;
     text-align: center;
     padding: 5px 55px;
 }
-.jungle_scout_experience_box>.js_experience_upload{
+.jungle-scout-experience-box>.js-experience-upload{
     margin-top:10px !important;
     width: 526px;
     display: block;
     margin: 0 auto;
 }
-.js_experience_upload>label{
+.js-experience-upload>label{
     display: block;
     color: #333;
     font-size: 15.4px;
@@ -462,24 +462,24 @@
 }
 
 /* 使用用途 */
-.js_experience_upload>.check-group{
+.js-experience-upload>.check-group{
     margin-bottom: 10px;
 }
-.js_experience_upload>.check-group>div{
+.js-experience-upload>.check-group>div{
     padding:1px 0;
     display: inline-block;
     width: 260px;
 }
-.js_experience_upload div>input{
+.js-experience-upload div>label>input{
     margin-right: 10px;
 }
-.js_experience_upload .checkbox-name{
+.js-experience-upload .checkbox-name{
     display: inline-block !important;font-size:13.4px;
 }
-.js_experience_upload .checkbox-name-en{
+.js-experience-upload .checkbox-name-en{
     font-size: 13.4px;
 }
-.js_experience_upload .textarea{
+.js-experience-upload .textarea{
     display: none;
     margin-top: 10px;
     width: 100%;
@@ -490,10 +490,10 @@
     outline: none;
     box-shadow: 0 2px 8px rgb(0 0 0 / 4%);
 }
-.js_experience_upload>input{
+.js-experience-upload>input{
     box-sizing: border-box;
 }
-.js_experience_upload>input,select,div>.social-box{
+.js-experience-upload>input,select,div>.social-box{
     display: block;
     width: 100%;
     margin-bottom: 10px;
@@ -507,28 +507,28 @@
     outline:none;
     box-shadow: 0 2px 8px rgb(0 0 0 / 4%);    
 }
-.js_experience_upload>select>option{
+.js-experience-upload>select>option{
     font-size: 16px;
     padding: 5px 0px !important;
 }
-.js_experience_upload>.disabled{
+.js-experience-upload>.disabled{
     background-color: #fafafa;
     color: #333 !important;
 }
-.js_experience_upload>.text{
+.js-experience-upload>.text{
     font-size: 12.4px;
     color: #F90;
 }
-.js_experience_upload>.no-margin{
+.js-experience-upload>.no-margin{
     margin-bottom: 0 !important;
 }
-.js_experience_upload>.margin-20{
+.js-experience-upload>.margin-20{
     margin-bottom: 10px;
 }
-.js_experience_upload>.margin-10{
+.js-experience-upload>.margin-10{
     margin-top: 5px;
 }
-.js_experience_upload>a{
+.js-experience-upload>a{
     display: inline-block;
     min-width: 84px;
     font-size: 12px;
@@ -539,10 +539,10 @@
     top: -30px;
     left: 425px;
 }
-.js_experience_upload>.yfs{
+.js-experience-upload>.yfs{
     color: #999;
 }
-.js_experience_upload>.button{
+.js-experience-upload>.button{
     color: #ffffff;
     margin-top:20px;
     background-color: #005FB9;
@@ -553,10 +553,7 @@
 }
 
 /* js已体验 */
-.layui-layer-ytj{
-    min-width: 650px !important;
-}
-.layui-layer-ytj>.layui-layer-content{
+.jungle-scout-trial-1{
     margin-top: 50px;
     padding-bottom:40px;
 }

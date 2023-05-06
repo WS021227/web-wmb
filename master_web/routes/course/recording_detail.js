@@ -16,7 +16,7 @@ router.recording_detail = function(req,res){
                 // 直播课预约数据
                 tools.getMasterApiQuery(`/course/2023/detail/${id}`, {}, req, res,
                     function (result) {
-                        results.xq_data = result || {};
+                        results.xq_data = result.data || {};
                         callback(null,1)
                     }
                 )
@@ -47,7 +47,6 @@ router.recording_detail = function(req,res){
             }
         ],
             function (err, str) {
-                console.log(str,"7887")
               return res.wrender("./course/recording_detail.ejs", {
                 results:results
               });
@@ -58,16 +57,12 @@ router.recording_detail = function(req,res){
 // 课程领取
 router.course_2023_receive=function(req,res){
     let id = req.body.id
-    console.log(id,"0000")
+    // 领取课程
     tools.postMasterApiQuery(`/course/2023/receive/${id}`, {}, req, res,
         function (result) {
-            tools.getMasterApiQuery(`/course/2023/detail/${id}`, {}, req, res,
-                function (result) {
-                    results.xq_data = result || {};
-                    callback(null,1)
-                }
-            )
-            res.send(result)
+            console.log(result,"领取课程")
+            if(result.state!=0) return res.send({state:1})
+            res.send({state:0})
         }
     )
 }

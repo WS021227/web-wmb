@@ -35,7 +35,7 @@
 
 
 /*覆盖*/
-.seach-Box{padding:25px 0;}
+.seach-Box{padding:30px 0;}
 .tab-pane{padding:0;}
 .ecahrt-box .tab-pane{padding-left:30px;}
 .company-list-des{border-top:none;margin-top:0;padding-top:10px;padding-bottom:5px;}
@@ -353,7 +353,7 @@ table.dataTable tbody tr:hover td:nth-child(4) font{
 }
 .summarize h2 {
     font-weight:600;
-    font-size: 16.5px;
+    font-size: 15.4px;
     color: #333333;
     margin-bottom:5px;
     text-transform: capitalize;

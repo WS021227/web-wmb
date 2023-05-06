@@ -128,16 +128,17 @@ function unity_company_detail(req, res, company_id, company_type, callback) {
         {}, req, res,
         function (resp) {
             var data = resp.data || {}, mm = resp.mmm || ''
-            if(resp.state != 0 || data.type != company_type){
-                return res.wabort(404, req, '接口状态不等于0或者公司类型错误，' + resp.state + ', ' + data.type)
-            }
-            // if (data.type != company_type){
-            //     // console.log(' >>>> 接口状态不等于0或者公司类型错误!! 公司id：'+ company_id +'； 接口报文： ', resp)
-            //     // return res.wabort(404, req, '接口状态不等于0或者公司类型错误，' + resp.state + ', ' + data.type)
-            //     res.writeHead(301, {'Location': req.protocol + '://' + req.get('host') + '/' + (data.type==0?'buyer':'supplier') + '/' +company_id});
-            //     res.end();
-            //     return
+            // if(resp.state != 0 || data.type != company_type){
+            //     return res.wabort(404, req, '接口状态不等于0或者公司类型错误，' + resp.state + ', ' + data.type)
             // }
+            if(resp.state != 0){
+                return res.wabort(404, req, '接口状态不等于0,' + resp.state + ', ' + data.type)
+            }
+            if (data.type != company_type){
+                res.writeHead(301, {'Location': req.protocol + '://' + req.get('host') + '/' + (data.type==0?'buyer':'supplier') + '/' +company_id});
+                res.end();
+                return
+            }
             if(data.url_301) {
                 res.writeHead(301, {'Location': req.protocol + '://' + req.get('host') + '/' + (company_type==0?'buyer':'supplier') + '/' +data.url_301});
                 res.end();

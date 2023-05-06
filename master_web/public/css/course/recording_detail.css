@@ -4,7 +4,6 @@
 }
 .recording-detail-container{
     width: 100%;
-    margin: 0 auto;
 }
 .recording-detail-container .recording-detail-head{
     padding: 100px 0;
@@ -13,7 +12,6 @@
     color: #101010;
 }
 .recording-detail-head h1{
-    display: block;
     width: 1440px;
     font-size: 18px;
     padding: 10px 0;
@@ -26,11 +24,17 @@
     padding: 10px 0;
     margin: 0 auto;
 }
-.recording-detail-container .recording-detail-video{
+.recording-detail-container .recording-detail-content{
+    width: 1440px;
+    margin: 0 auto;
+}
+.recording-detail-content .recording-detail-video{
+    width: 940px;
     background-color: #fff;
     padding: 20px 0;
     text-align: center;
     font-weight: 600;
+    margin: 0 auto;
 }
 .recording-detail-video .video-content{
     width: 940px;
@@ -61,6 +65,17 @@
 
 .video-content .content-video{
     padding: 20px 0;
+    position: relative;
+}
+.content-video .no-url-box{
+    display: block;
+    width: 940px !important;
+    height: 530px !important;
+
+    position: absolute;
+    top: 20px;
+    left: 0;
+    z-index: 10;
 }
 .video-content .content-bottom{
     display: flex;
@@ -104,8 +119,10 @@
     margin-top: 5px;
     box-sizing: border-box;
 }
-.recording-detail-container .recording-detail-bottom{
+.recording-detail-content .recording-detail-bottom{
     background-color: #ffffff;
+    box-shadow: 0 0 4px #ccc;
+    border-radius: 5px;
 
     width: 940px;
     margin: 0 auto;
@@ -113,6 +130,9 @@
 }
 .recording-detail-bottom .tabbar{
     padding: 20px 20px;
+    width: 940px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 .tabbar>span{
     font-size: 18px;
@@ -122,9 +142,8 @@
     margin-right: 20px;
 }
 .tabbar>.active{
-font-weight: 600;
-
-position: relative;
+    font-weight: 600;
+    position: relative;
 }
 .tabbar>.active::after{
     content: "";
@@ -139,21 +158,25 @@ position: relative;
 }
 .recording-detail-bottom .tw-content{
     padding: 20px 20px;
+    width: 940px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 /* tab课程介绍 */
 .tw-content .kc-js{
-    padding: 40px 0;
+    width: 850px;
+    padding: 145px 0;
     text-align: center;
+    margin: 0 auto;
 }
-
-
+.tw-content .tw-box-list{
+}
 .tw-content .tw-box{
     display: flex;
     justify-content: space-between;
 
-    padding-bottom: 30px;
-    padding-top: 50px;
+    padding: 40px 0;
     border-bottom: 1px solid #ccc;
 }
 .tw-box>img{
@@ -184,7 +207,7 @@ position: relative;
 .zs-box>.right{
     width: 800px;
 }
-.zs-box>.right>span,p{
+.zs-box>.right>span,.zs-box-content{
     display: block;
     max-width: 800px;
     overflow: hidden;
@@ -212,23 +235,25 @@ position: relative;
 }
 
 /* 下载对话框 */
-.down-over .layui-layer-content{
-    padding: 20px 0;
+.layui-layer-ico1{
+    margin-left: 180px;
 }
-.layui-layer-content .layui-layer-ico1{
-    position: static !important;
-    margin-left: 60px;
-}
-.layui-layer-content span{
-    display: inline-block;
+.down-yes span{
     line-height: 30px;
     height: 30px;
-    margin-left: 40px;
+    margin-left: 190px;
     font-size: 14px;
     color: #777;
 }
-.layui-layer-content input{
-    display: inline-block;
+.down-yes input{
     margin-top: 20px;
-    margin-left: 135px;
+    margin-left: 160px;
+}
+
+/* 提示点击立即领取按钮对话框 */
+.ts-content >span{
+    display: block;
+    text-align: center;
+    margin: 0;
+    margin-top: 40px;
 }

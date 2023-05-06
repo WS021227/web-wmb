@@ -17,49 +17,56 @@
             <h1>【官方录制】<%= xq_data.name %></h1>
             <p><%= xq_data.des %></p>
         </div>
-        <div class="recording-detail-video">
-            <div class="video-content">
-                <div class="content-top <%= !xq_data.is_receive ? 'content-top-show' : '' %>">
-                    <span>邦友福利视频免费领取，一次领取终身享有！</span>
-                    <% if(!wglobals.user.id){ %>
-                        <a href="/login" >立即领取</a>
-                    <%} else if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
-                        <a href='javascript:void(0);' onclick="get_class(this)" data-id="<%= xq_data.id %>">立即领取</a>
-                    <% } else{ %>
-                        <!-- 提示购买黄钻 -->
-                        <a href="javascript:void(0);" onclick="share_authority_failure('yd')">立即领取</a>
-                    <% } %>
-                </div>
-                <div class="content-video">
-                    <video width="940" height="530" src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4">
-                    </video>
-                </div>
-                <div class="content-bottom">
-                    <img src="https://static.52wmb.com/wmb_course/2023/images/<%= xq_data.lecturer_avatar %>" alt="">
-                    <div>
-                        <span>正在主讲：《<%= xq_data.name %>》</span>
-                        <span>主讲人：<%= xq_data.lecturer %>(资深数据专家、大客户经理、金牌讲师)</span>
+        <div class="recording-detail-content">
+            <div class="recording-detail-video">
+                <div class="video-content">
+                    <div class="content-top <%= !xq_data.is_receive ? 'content-top-show' : '' %>">
+                        <span>邦友福利视频免费领取，一次领取终身享有！</span>
+                        <% if(!wglobals.user.id){ %>
+                            <a href="/login" onclick="return referrer_link(this)">立即领取</a>
+                        <%} else { %>
+                            <a href='javascript:void(0);' onclick="get_class(this)" data-id="<%= xq_data.id %>">立即领取</a>
+                        <% } %>
                     </div>
-                    <div>
-                        <span>
-                            <i>
-                                <svg t="1682409358523" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4926" width="16" height="16"><path d="M523.52 598.4C593.28 552.32 640 473.6 640 384c0-141.44-114.56-256-256-256C242.56 128 128 242.56 128 384c0 89.6 46.72 168.32 116.48 214.4C101.76 645.12 0 765.44 0 928 0 945.92 14.08 960 32 960S64 945.92 64 928C64 751.36 207.36 640 384 640c176.64 0 320 111.36 320 288 0 17.92 14.08 32 32 32 17.92 0 32-14.08 32-32C768 765.44 666.24 645.12 523.52 598.4zM384 576C278.4 576 192 489.6 192 384s86.4-192 192-192c105.6 0 192 86.4 192 192S489.6 576 384 576zM804.48 602.24C878.08 556.8 928 476.8 928 384c0-141.44-114.56-256-256-256C654.08 128 640 142.08 640 160 640 177.92 654.08 192 672 192c105.6 0 192 86.4 192 192 0 71.04-38.4 132.48-96 165.76-56.32 34.56-71.68 83.2 0 109.44 111.36 39.68 192 144 192 269.44 0 17.92 14.08 32 32 32 17.92 0 32-14.08 32-32C1024 780.8 933.12 654.72 804.48 602.24z" p-id="4927" fill="#101010"></path></svg>
-                            </i>
-                            <%= xq_data.reveive_users %>人已学习
-                        </span>
-                        <a href="javascript:void(0);" onclick="down_ppt(this)" data-id="<%= xq_data.ppt_file %>">下载课件PPT</a>
+                    <div class="content-video">
+                        <video width="940" height="530" autoplay controls src="<%= xq_data.video_url %>"></video>
+                        <% if(!wglobals.user.id){ %>
+                            <a class="<%= !xq_data.video_url ? 'no-url-box' : '' %>" href="/login" onclick="return referrer_link(this)">
+                                <img src="https://static.52wmb.com/wmb_course/2023/images/<%= xq_data.cover %>" alt="">
+                            </a>
+                        <%} else { %>
+                            <a class="<%= !xq_data.video_url ? 'no-url-box' : '' %>" href='javascript:void(0);' onclick="video_yz()">
+                                <img src="https://static.52wmb.com/wmb_course/2023/images/<%= xq_data.cover %>" alt="">
+                            </a>
+                        <% } %>
+                    </div>
+                    <div class="content-bottom">
+                        <img src="https://static.52wmb.com/wmb_course/2023/images/<%= xq_data.lecturer_avatar %>" alt="">
+                        <div>
+                            <span>正在主讲：《<%= xq_data.name %>》</span>
+                            <span>主讲人：<%= xq_data.lecturer %>(资深数据专家、大客户经理、金牌讲师)</span>
+                        </div>
+                        <div>
+                            <span>
+                                <i>
+                                    <svg t="1682409358523" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4926" width="16" height="16"><path d="M523.52 598.4C593.28 552.32 640 473.6 640 384c0-141.44-114.56-256-256-256C242.56 128 128 242.56 128 384c0 89.6 46.72 168.32 116.48 214.4C101.76 645.12 0 765.44 0 928 0 945.92 14.08 960 32 960S64 945.92 64 928C64 751.36 207.36 640 384 640c176.64 0 320 111.36 320 288 0 17.92 14.08 32 32 32 17.92 0 32-14.08 32-32C768 765.44 666.24 645.12 523.52 598.4zM384 576C278.4 576 192 489.6 192 384s86.4-192 192-192c105.6 0 192 86.4 192 192S489.6 576 384 576zM804.48 602.24C878.08 556.8 928 476.8 928 384c0-141.44-114.56-256-256-256C654.08 128 640 142.08 640 160 640 177.92 654.08 192 672 192c105.6 0 192 86.4 192 192 0 71.04-38.4 132.48-96 165.76-56.32 34.56-71.68 83.2 0 109.44 111.36 39.68 192 144 192 269.44 0 17.92 14.08 32 32 32 17.92 0 32-14.08 32-32C1024 780.8 933.12 654.72 804.48 602.24z" p-id="4927" fill="#101010"></path></svg>
+                                </i>
+                                <%= xq_data.reveive_users %>人已学习
+                            </span>
+                            <a href="javascript:void(0);" onclick="down_ppt(this)" data-id="<%= xq_data.ppt_file %>">下载课件PPT</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="recording-detail-bottom">
-            <div class="tabbar" data-id="<%= xq_data.id %>">
-                <span class="active">课程介绍</span>
-                <span>课程提问(<span><%= wd_data_list_num %></span>)</span>
-            </div>
-            <div class="tw-content">
-                <%- results.content %>
-                <div class="tw-box-list"></div>
+            <div class="recording-detail-bottom">
+                <div class="tabbar" data-id="<%= xq_data.id %>">
+                    <span class="active">课程介绍</span>
+                    <span>课程提问(<span><%= wd_data_list_num %></span>)</span>
+                </div>
+                <div class="tw-content">
+                    <%- results.content %>
+                    <div class="tw-box-list"></div>
+                </div>
             </div>
         </div>
     </div>

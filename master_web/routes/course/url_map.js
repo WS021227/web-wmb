@@ -11,7 +11,7 @@ router.get("/async/download_zy",course.download_zy)
 
 // 录播课详情页面
 const recording_detail = require('./recording_detail')
-router.get('/recording_detail/:id', recording_detail.recording_detail)
+router.get('/course/:id', recording_detail.recording_detail)
 // 课程领取
 router.post('/async/course/2023/receive',recording_detail.course_2023_receive)
 router.get("/async/get_kcwd",recording_detail.get_kcwd)

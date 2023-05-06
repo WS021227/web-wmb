@@ -217,7 +217,7 @@ module.exports = {
                     fn != undefined && fn(_data);
                 } catch (e) {
                     if(baseConfig.config.api_error) console.error(' >>>>>> 数据处理异常，getMasterApiQuery >> ', api, e)
-                    res.wabortApi(404, req, e)
+                    // res.wabortApi(404, req, e)
                 }
             },
             options
@@ -521,9 +521,9 @@ module.exports = {
                 }
             }catch (e){
                 promote = 'auto'
-
             }
         }
+        promote = promote || 'auto'
         this.setCookie(req, res, 'promote', promote, 86400)
 
     },
@@ -575,7 +575,7 @@ module.exports = {
     india_offline: function (res, country, scene) {
         if (country) {
             var lower_country = country.toLocaleLowerCase()
-            if (lower_country != 'india' || lower_country != 'india new') return 0
+            if(!(lower_country == 'india' || lower_country == 'india new')) return 0
         }
         //  如果为登陆用户，则判断是否开通了特殊权限， 没有特殊权限且没有登陆的则无法看到
         let _user = this.unity_merger_user(res)
@@ -713,7 +713,7 @@ module.exports = {
         let bd_accounts = baseConfig.common.baidu_account, bd_index = baseConfig.common.bd_index,
             bd_account = bd_accounts[bd_index[Math.round(Math.random() * bd_index.length)]],
             salt = Date.now()
-        // bd_account = bd_accounts[0]
+        // bd_account = bd_accounts[2]
         var parameters = {
                 'q': words,
                 'from': translate_from,

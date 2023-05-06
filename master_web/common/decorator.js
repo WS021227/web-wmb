@@ -118,7 +118,8 @@ module.exports = {
                 // return res.wrender('./home/line/not_open.ejs', {results: result.data})
             })
         }
-    }
+    },
+
 }
 
 

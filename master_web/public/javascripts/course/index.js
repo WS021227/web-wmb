@@ -104,12 +104,13 @@ function download_zy(event){
             // 1 下载失败
             if(result.fun_cb.state!=1) {
                 let box=`
-                    <span>文件保存地址：${result.fun_cb.url}</span>
-                    <input type="file" id="fileipt"/>
+                    <div class=down-yes>
+                        <span>文件保存地址：${result.url}</span>
+                        <input type="file" id="fileipt"/>
+                    </div>
                 `
                 layer.open({
-                    title:`${result.fun_cb.title}`,
-                    skin:'down-over',
+                    title:`${result.title}`,
                     area: ['600px', 'auto'], // 配置长高
                     shadeClose: true, //点击遮罩关闭
                     maxmin: false,

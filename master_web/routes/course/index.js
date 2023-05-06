@@ -47,6 +47,16 @@ router.index = function (req, res) {
                     }
                 )
             },
+            function (callback) {
+                // 开发课更新节数
+                tools.getMasterApiQuery(`/cdc/class/total/1`, {}, req, res,
+                    function (result) {
+                        console.log(result,"课程节数")
+                        results.kc_num = result.data.total || 0;
+                        callback(null, 1)
+                    }
+                )
+            },
         ],
         function (err, _) {
             return res.wrender("./course/index.ejs", {
@@ -59,7 +69,6 @@ router.index = function (req, res) {
 // 录播课程列表点击加载更多
 router.get_lbkc=function(req,res){
     let start=req.query.start
-    console.log(start)
     let key={
         start:start,
         size:10
@@ -67,7 +76,6 @@ router.get_lbkc=function(req,res){
     let results={}
     tools.getMasterApiQuery('/course/2023/list', key, req, res,
         function (result) {
-            console.log(result,"点击加载")
             results.lb_list = result.data.list || [];
             result.state = result.state
             res.send(results)

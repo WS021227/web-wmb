@@ -52,5 +52,5 @@
 
 .report-box .report-tab a{font-size:13.4px;}
 .member-order-list li.df2022-credit-show::after{content:"Valid Until 12/31/2022 23:59:59";}
-.js_experience_upload>a{left:350px;}
-.jungle_scout_experience_box>span{font-size:13.4px;}
+.js-experience-upload>a{left:350px;}
+.jungle-scout-experience-box>span{font-size:13.4px;}

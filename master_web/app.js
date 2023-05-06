@@ -158,7 +158,7 @@ app.use((req, res, next) => {
 
 // 自定义一个next
 app.use((req, res, next) => {
-    // res.locals.wglobals.ip_area = 'ID';
+    // res.locals.wglobals.ip_area = 'IN';
     // return next();
     try {
         util.wIpArea(req, res, function (area) {
@@ -218,7 +218,7 @@ app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   // var error = new Error('502')
   res.locals.message = err.message;
-  // console.log(error, req, res, next, req.app.get('env'))
+  console.log(err.message, req, res)
   res.locals.error = req.app.get("env") === "development" ? err : {};
   // let _wg = {};
   // try {
@@ -244,7 +244,11 @@ app.use(function (err, req, res, next) {
 
 app.response.wabortApi = function (status=404, req, ext_err){
     if(req.async) {
-        this.status(status).send({state: 20000, 'message': 'error'});
+        try {
+            this.status(status).send({state: 20000, 'message': 'error'});
+        }catch (e){
+
+        }
     }else{
         this.status(status).render("error");
     }

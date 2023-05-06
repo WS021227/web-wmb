@@ -4,20 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>开发课&资料包</title>
+    <title>客户开发课程&外贸资源-外贸邦</title>
     <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%= VERSION %>">
     <link href="<%= STATIC %>css/course/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <% console.log(results.zyb_list.list,"页面数据") %>
-    <% let top_live_data = results.top_live_data,zyb_list=results.zyb_list.list,zyb_list_num=results.zyb_list.total,lb_list=results.lb_list.list,lb_list_num=results.lb_list.total %>
+    <% let kc_num=results.kc_num,top_live_data = results.top_live_data,zyb_list=results.zyb_list.list,zyb_list_num=results.zyb_list.total,lb_list=results.lb_list.list,lb_list_num=results.lb_list.total %>
     <%- include('../global/head.ejs') %>
-    <div class="course-container">
-        <div class="course-header">
+    <div class="course-header">
+        <div class="course-header-k">
             <div class="header-left">
-                <h1>《<%= top_live_data.name %>》直播课预约</h1>
+                <h1>【直播预约】<%= top_live_data.name %></h1>
                 <p><%= top_live_data.des %></p>
-                <div class="header-time"><span>时间：<%= top_live_data.live_time %></span><font>|</font><span>时长：预计<%= top_live_data.live_dur %></span><font>|</font><span>平台：微信视频号</span></div>
+                <div class="header-time"><span>直播时间：<%= top_live_data.live_time %></span><font>|</font><span>时长：预计<%= top_live_data.live_dur %>分</span><font>|</font><span>平台：微信视频号</span></div>
                 <div class="header-left-user">
                     <img src="https://static.52wmb.com/wmb_course/2023/images/<%= top_live_data.lecturer_avatar %>" alt="">
                     <div>
@@ -27,35 +27,35 @@
                 </div>
             </div>
             <div class="header-right">
-                <span>微信扫码预约直播课</span>
+                <span class="jump">微信扫码预约直播课↓↓↓</span>
                 <img src="https://static.52wmb.com/wmb_course/2023/images/<%=top_live_data.reserve_qrcode%>" alt="">
             </div>
-        </div>
+        </div>  
+    </div>
+    <div class="course-container">
         <div class="course-gf">
             <h2><span>官方出品</span><span id="num">共计2个</span></h2>
             <div>
                 <div class="gf-left">
-                    <img src="" alt="">
-                    <span class="tol over">已完毕</span>
+                    <a href="/customs-data-course" target="_blank">
+                       <img src="https://static.52wmb.com/wmb_new/images/channel_imgs/video_course_old.jpg" alt="《海关数据客户开发》系列课程场景篇">
+                    </a>
+                    <span class="tol over">课程已完毕</span>
                     <div>
-                        <img src="" alt="">
                         <div class="text">
-                            <span>《海关数据客户开发》系列课程场景篇</span>
+                            <a href="/customs-data-course" target="_blank">《海关数据客户开发》系列课程场景篇</a>
                             <span>面向初次使用，对数据使用场景不够熟悉的用户</span>
                         </div>
                     </div>
                 </div>
                 <div class="gf-left">
-                    <a href="/customs-data-course">
-                        <img src="" alt="">
+                    <a href="/customs-data-course" target="_blank">
+                        <img src="https://static.52wmb.com/wmb_new/images/channel_imgs/video_course_new.png" alt="《海关数据客户开发》使用问题系列">
                     </a>
-                    <span class="tol updata">更新至47节</span>
+                    <span class="tol updata">更新至<span><%= kc_num %></span>节</span>
                     <div>
-                        <img src="" alt="">
                         <div class="text">
-                            <a href="/customs-data-course">
-                                <span>《海关数据客户开发》使用问题系列</span>
-                            </a>
+                            <a href="/customs-data-course" target="_blank">《海关数据客户开发》使用问题系列</a>
                             <span>有一定的使用基础，使用过程中遇到的问题聚焦、难点、疑点。</span>
                         </div>
                     </div>
@@ -65,14 +65,12 @@
         <div class="course-gf course-zy">
             <h2>
                 <div class="course-zy-h2-left">
-                    <span class="active">推荐资源</span>
+                    <span class="active">推荐</span>
                     <span>最新</span>
                 </div>
                 <a href="<%= wglobals.user.id?'javascript:void(0);':'login' %>" id="<%= wglobals.user.id?'course_zy_num':"" %>" data-sum="<%= zyb_list_num %>">
                     共计<span><%= zyb_list_num %></span>个
-                    <i>
-                        <svg t="1682405529782" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2579" width="18" height="18"><path d="M332.501333 183.168a42.666667 42.666667 0 0 1 57.621334-2.496l2.709333 2.496 298.666667 298.666667a42.666667 42.666667 0 0 1 2.496 57.621333l-2.496 2.709333-298.666667 298.666667a42.666667 42.666667 0 0 1-62.826667-57.621333l2.496-2.709334L600.96 512 332.501333 243.498667a42.666667 42.666667 0 0 1-2.496-57.621334l2.496-2.709333z" fill="#999999" p-id="2580"></path></svg>
-                    </i>
+                    <i></i>
                 </a>
             </h2>
             <div class="course-zy-list">
@@ -80,7 +78,7 @@
                     <div class="zy-box">
                         <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.icon %>" alt="">
                         <span><%= item.name %></span>
-                        <div><span>大小：<%= (item.size/8/1024).toFixed(2) %>k</span><font>|</font><span>格式：<%= item.format %></span></div>
+                        <div><span><%= (item.size/8/1024).toFixed(2) %>k</span><font>|</font><span><%= item.format %></span></div>
                         <% console.log(wglobals.user.id,"7777") %>
                         <% if(!wglobals.user.id) {%>
                             <a href="/login">下载</a>
@@ -88,7 +86,6 @@
                             <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
                                 <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>">下载</a>
                             <% } else { %>
-                                <!-- 提示购买黄钻 -->
                                 <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
                             <% } %>
                         <% } %>
@@ -98,37 +95,33 @@
         </div>
         <div class="course-gf course-lb">
             <h2>
-                <span>录播课程</span>
+                <span>客户开发课</span>
                 <span id="num">共计<%= lb_list_num %>个</span>
             </h2>
             <div class="course-lb-list">
                 <% lb_list.forEach(function(item,index){ %>
                     <div class="lb-box">
-                        <a href="/recording_detail/<%= item.id %>">
-                            <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="">
-                        </a>
+                        <img class="lb-box-fenmian" src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="<%= item.name %>">
                         <div class="content">
-                            <a href="/recording_detail/<%= item.id %>">
-                                <span><%= item.name %></span>
-                            </a>
+                            <a href="/course/<%= item.id %>" target="_blank"><%= item.name %></a>
                             <span><%= item.lecturer_des %></span>
-                            <div>时间：<span><%= item.live_dur %></span><font>|</font><span><%= item.reveive_users %><span>人已学习</div>
-                            <a class="gkkc" href="/recording_detail/<%= item.id %>">观看课程</a>
+                            <span>时间:<%= item.live_dur %>分<font>|</font><%= item.reveive_users %>人已学习</span>
+                            <a class="gkkc" href="/course/<%= item.id %>" target="_blank">观看课程</a>
                         </div>
                         <div class="right">
                             <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.lecturer_avatar %>" alt="">
-                            <span>讲师：<%= item.lecturer %></span>
+                            <span>讲师:<%= item.lecturer %></span>
                             <span><%= item.lecturer_des %></span>
                         </div>
                     </div>
                 <% }) %>
             </div>
             <% if(lb_list_num>10) {%>
-                <span class="lbkc-more" id="lbkc_more">点击加载更多...</span>
+                <span class="lbkc-more" id="lbkc_more">加载更多</span>
            <% } %>
         </div>
     </div>
-    <%- include('../global/foot_script.ejs') %>
+    <%- include('../global/foot.ejs') %>
     <script src="<%= STATIC %>javascripts/course/pagination.js?v=<%=VERSION%>"></script>
     <script src="<%= STATIC %>javascripts/course/index.js?v=<%=VERSION%>"></script>
 </body>

@@ -15,15 +15,34 @@ $(function(){
     })
 })
 
+// video验证
+function video_yz(){
+    if(!verify_vip_level(wg.user.vip_level, 'yd', wg.user.experience)) return share_authority_failure('yd')
+    layer.open({
+        type: 1,
+        btn:"确定",
+        shade: false,
+        title: ['提示'], //不显示标题
+        content: '<div class="ts-content"><span>点击立即领取按钮,获取开发课程</span></div>',
+        area:['500px','200px']
+      });
+}
+
 // 领取课程
 function get_class(event){
     let id=$(event).data("id")
+    if(!verify_vip_level(wg.user.vip_level, 'yd', wg.user.experience)) return share_authority_failure('yd')
     $.loadajax(`/async/course/2023/receive`, {
         datatype: 'text',
         method:'POST',
         data: {id:id},
         success: function (result) {
             console.log(result,"课程领取")
+            if(result.state!=0) return layer.msg("领取失败")
+            layer.msg("成功领取")
+            setTimeout(function(){
+                window.location.reload()
+            },1000)
         }
     })
 }
@@ -96,12 +115,13 @@ function down_ppt(event){
         data: {id:id},
         success: function (result) {
                 let box=`
-                    <span>文件保存地址：${result.url}</span>
-                    <input type="file" id="fileipt"/>
+                    <div class=down-yes>
+                        <span>文件保存地址：${result.url}</span>
+                        <input type="file" id="fileipt"/>
+                    </div>
                 `
                 layer.open({
                     title:`${result.title}`,
-                    skin:'down-over',
                     area: ['600px', 'auto'], // 配置长高
                     shadeClose: true, //点击遮罩关闭
                     maxmin: false,

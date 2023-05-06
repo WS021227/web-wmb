@@ -522,11 +522,21 @@ function build_line_ad(key, ad_pos, fn) {
                     var dt = result.data, _list = dt.list || [],
                         _html = '<div class="product-show"><div class="tips"><a href="' + unity_lang('bangline_list_link') + '" target="_blank">' + unity_lang('bline_ad_title') + '</a></div>'
                     $.each(_list, function (a, data){
+                        var images = data.images, tp_image = '', image_count = 0
+                        if(images){
+                            var images_list = images.split(',')
+                            image_count = images_list.length
+                            tp_image = images_list[0]
+                        }else{
+                            image_count = data.image_count
+                            tp_image = data.image
+                        }
 
                          _html += '<div class="product-item">' +
                             '<div class="product-item-pics">' +
-                            '<a href="' + line_route + '/topic/' + data.id + '" target="_blank"><img src="https://static.52wmb.com/bangline/upload/images/' + data.image + '">' +
-                            '<span>' + data.image_count + '</span></a></div>' +
+                            '<a href="' + line_route + '/topic/' + data.id + '" target="_blank">' +
+                             '<img src="https://static.52wmb.com/bangline/upload/images/' + tp_image + '">' +
+                            '<span>' + image_count + '</span></a></div>' +
                             '<div class="product-item-des">' +
                             '<div class="content">' +
                             '<p><a href="' + line_route + '/topic/' + data.id + '" target="_blank"><b>[' + data.verb + ']</b> ' + str_fuck(data.contents, 150) + '</a></p>' +

@@ -14,8 +14,8 @@ const router = express.Router();
 const search_default_params = {
     key: "*",
     hs: "*",
-    sort: "default",
-    // sort: "bill_count",
+    // sort: "default",
+    sort: "bill_count",
     start: 0,
     size: 10,
     company_type: 0,

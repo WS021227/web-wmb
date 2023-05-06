@@ -70,40 +70,48 @@ router.js_trial_post = function (req, res) {
     let {fb_value,use_type1,use_type2,use_type3,use_type4,...new_key} = key
     if(new_key.use_type.includes('4') && new_key.use_other=='') return res.send({state:10000})
     tools.postMasterApiQuery('/common/js/trial', new_key, req, res, function (result){
+        if(result.state == 0) {
+            tools.setCookie(req, res, '_JS_TRL',1, 86400)
+        }
         res.send(result)
     })
 }
 
 router.js_trial_toast = function (req, res) {
-    let _user=req.query
-    let results={
-        phone:_user.phone,
-        email:_user.email
+    let _user = req.query
+    let results = {
+        phone: _user.phone,
+        email: _user.email
     }
-    async.waterfall([
-        function (callback) {
-            tools.getMasterApiQuery('/common/js/trial',
-                {}, req, res,
-                function (result) {
-                    let flag=result.state
-                    callback(null, flag);
+
+    async.waterfall(
+        [
+            function (callback) {
+                let js_trl = tools.getCookie(req,'_JS_TRL')
+                if(js_trl != '') {
+                    results.show_flag = Number(js_trl)
+                    return callback(null, 1);
                 }
-            )
-        }
-    ],
-    function (err, a) {
-        results.show_flag=a
+                tools.getMasterApiQuery('/common/js/trial',
+                    {}, req, res,
+                    function (result) {
+                        results.show_flag = result.state == 0?0:1
+                        tools.setCookie(req, res, '_JS_TRL', results.show_flag, 86400)
+                        callback(null, 1);
+                    }
+                )
+            }
+        ],
+        function (err, a) {
             return res.wrender('./full_pop/jungle_scout_experience.ejs', {
                 results: results
             }, function (err, str) {
-                res.send({
-                    content:str,
-                    state:a
-                })
+                res.send({content: str})
             })
         }
     )
 }
+
 
 // 邮箱校验 send_type=5
 router.email=function(req,res){
@@ -118,16 +126,16 @@ router.email=function(req,res){
     })
 }
 // 手机校验 send_type=5
-router.phone=function(req,res){
-    let key={
-        picture_code:"",
-        phone:req.body.phone || "",
-        send_type:5
+router.phone=function(req,res) {
+    let key = {
+        picture_code: "",
+        phone: req.body.phone || "",
+        send_type: 5
     }
     tools.postMasterApiQuery('/account/send/phone/code', key, req, res,
         function (result) {
             res.send(result)
-    })
+        })
 }
 
 module.exports = router;

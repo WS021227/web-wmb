@@ -24,13 +24,13 @@
             <div class="mall-banner-button mall-banner-button-js">
                 <% var tips = '提示：钻石会员增值服务，以上2版本有效期12个月',buyer_level=-1 %>
                 <%if(user.id==null){%>
-                    <a href="/login" class="js-trip" id="js_trip"><b>免费体验3天</b><br/>立即申请<span>&gt;</span></a>
                     <%results.add_service.forEach(function (item){%>
-                    <a target="_blank" href="/login" onclick="return referrer_link(this)"><b><%=item.alias%></b><br/><%=item.amount_rmb%>元/年<font>|</font>购买<span>&gt;</span></a>
+                    <a href="/login" onclick="return referrer_link(this)"><b><%=item.alias%></b><br/><%=item.amount_rmb%>元/年<font>|</font>购买<span>&gt;</span></a>
                     <%})%>
+                    <a href="/login" onclick="return referrer_link(this)"  class="js-trip" id="js_trip"><b>免费体验3天</b><br/>立即申请<span>&gt;</span></a>
                 <%}else{%>
                     <% var buyer_url = verify_real_vip('bd')?'/product?adds=jungle_scout&product=':'/Alipay?v=yd&ra=' %>
-                    <a href="javascript:void(0);" class="js-trip js-display-none" id="js_trip"><b>免费体验3天</b><br/>立即申请<span>&gt;</span></a>
+
                     <%results.add_service.forEach(function (item){%>
                     <%if(item.buyer_level >-1 && item.buyer_level <= item.product_level){%>
                         <%
@@ -38,10 +38,12 @@
                             buyer_level=item.buyer_level
                         %>
                     <%}else if(item.product_level  > buyer_level){%>
-                        <% console.log(item,"js购买") %>
-                    <a target="_blank" href="/product?product=<%= item.id %>&adds=<%= item.product_master %>"><b><%=item.alias%></b><br/><%=item.amount_rmb%>元/年<font>|</font>购买<span>&gt;</span></a>
+                        <a target="_blank" href="/product?product=<%= item.id %>&adds=<%= item.product_master %>"><b><%=item.alias%></b><br/><%=item.amount_rmb%>元/年<font>|</font>购买<span>&gt;</span></a>
                     <%}%>
                     <%})%>
+                    <%if(buyer_level <=-1){%>
+                        <a href="javascript:void(0);" class="js-trip" onclick="show_toast()"><b>免费体验3天</b><br/>立即申请<span>&gt;</span></a>
+                    <%}%>
                 <%}%>
             </div>
             <div class="mall-banner-tips"><%=tips%></div>
@@ -368,13 +370,12 @@
                 <div class="mall-banner-button mall-banner-button-js">
                 <% var tips = 'Tip: Diamond membership value-added service, above 2 versions valid for 12 months',buyer_level=-1 %>
                 <%if(user.id==null){%>
-                    <a href="/login" class="js-trip" id="js_trip"><b>3 days free trial</b><br/>Apply now<span>&gt;</span></a>
                     <%results.add_service.forEach(function (item){%>
                     <a href="/login" onclick="return referrer_link(this)"><b><%=item.alias%></b><br/>$<%=item.amount_usd%><font>|</font>Buy<span>&gt;</span></a>
                     <%})%>
+                    <a href="/login" onclick="return referrer_link(this)" class="js-trip"><b>3 days free trial</b><br/>Apply now<span>&gt;</span></a>
                 <%}else{%>
                     <% var buyer_url = verify_real_vip('bd')?'/product?adds=jungle_scout&product=':'/Alipay?v=yd&pg=' %>
-                    <a href="javascript:void(0);" class="js-trip js-display-none" id="js_trip"><b>3 days free trial</b><br/>Apply now<span>&gt;</span></a>
                     <%results.add_service.forEach(function (item){%>
                     <%if(item.buyer_level >-1 && item.buyer_level <= item.product_level){%>
                         <%
@@ -386,6 +387,9 @@
                     <a href="/product?product=<%= item.id %>&adds=<%= item.product_master %>"><b><%=item.alias%></b><br/>$<%=item.amount_usd%><font>|</font>Buy<span>&gt;</span></a>
                     <%}%>
                     <%})%>
+                        <%if(buyer_level <=-1){%>
+                            <a href="javascript:void(0);" class="js-trip" onclick="show_toast()"><b>3 days free trial</b><br/>Apply now<span>&gt;</span></a>
+                        <%}%>
                 <%}%>
                 </div>
                 <div class="mall-banner-tips"><%=tips%></div>
@@ -727,22 +731,21 @@
 // 2023.4 js体验
 $(function(){
     // 1、判断是否购买过js
-    (function(){
-        $.ajax('/async/add_service', {
-            datatype: 'json',
-            type: 'get',
-            success: function (result) {
-                if(!result.data.account){
-                    $("#js_trip").removeClass("js-display-none")
-                }
-            }
-        })
-    })()
+
+    //     $.ajax('/async/add_service', {
+    //         datatype: 'json',
+    //         type: 'get',
+    //         success: function (result) {
+    //             if(!result.data.account){
+    //                 $("#js_trip").removeClass("js-display-none")
+    //             }
+    //         }
+    //     })
 
     // 弹窗
-    $("#js_trip").click(function(){
-        show_toast()
-    })
+    // $("#js_trip").click(function(){
+    //     show_toast()
+    // })
 })
 
 function show_toast(){
@@ -760,13 +763,14 @@ function show_toast(){
                 layer.closeAll()
                 layer.open({
                     type: 1,
-                    skin: `${show==0?'layui-layer-experience':'layui-layer-ytj'}`,
+                    skin: 'layui-layer-rim',
                     scrollbar: false,
                     title:"",
                     shadeClose: false, //点击遮罩关闭
                     maxmin: false,
                     closeBtn: 1,
                     content: $box,
+                    area: ['650px', ''], // 配置长高
                     success: function (layero, index, that) {
 
                     }

@@ -60,7 +60,7 @@
             type: "post",
             datatype: "json",
             async: true,
-            data: { "yue_api": "<%= api %>", "code": code, "state": state, "source": 0, 'promote': promote},
+            data: { "yue_api": "<%= api %>", "code": code, "state": state, "source": 0},
             success: function (result) {
                 if(result.state == 20000) {
                     let extra_data = result.data.extra_data;

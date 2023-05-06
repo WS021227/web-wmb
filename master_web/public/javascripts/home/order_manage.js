@@ -33,7 +33,7 @@ function get_order_list() {
                         if (this.status == -1) {
                             order_list += '<span><input type="checkbox" class="check"  onclick="check()" name="order_id" value="' + this.payment_id + '" /> ' + this.payment_content + '</span>\n'
                         }else{
-                            order_list += '<span><input type="checkbox" disabled="disabled"  /> ' + this.payment_content + '</span>\n'
+                            order_list += '<span>' + this.payment_content + '</span>\n'
                         }
                         order_list += ' <span>￥' + this.total_amount + '</span>\n'
                         if (this.status == -1) {

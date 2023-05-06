@@ -71,6 +71,30 @@ function get_ben_js_data(req, res, callback) {
     })
 }
 
+
+function vfd_pop(dp, dp_ck){
+    if(!dp) return false
+    return dp == dp_ck
+
+}
+
+function pop_lead_experience(res, pop_page_mark, zd){
+    var _lang = res.locals.wglobals.lang
+    if (config.common.experience_lead_mark[pop_page_mark] != 1) return res.send({})
+    // let _mark = user_functional[pop_page_mark]
+    // if (_mark && !zd) return res.send({})
+    return res.wrender('./full_pop/pop_lead_experience_' + pop_page_mark + '_' + _lang + '.ejs', {},
+        function (err, str) {
+            res.send({
+                content: str,
+                state: 0,
+                mark: 'experience_ing',
+                zd: zd,
+            })
+        })
+}
+
+
 /**
  * 登录且有效的弹窗
  * 按照弹窗权重依次判断，
@@ -88,7 +112,6 @@ function login_valid_user_pop(req, res) {
         is_df = res.locals.wglobals.is_df,
         designation_pop = req.query.designation_pop || '',
         pop_module = req.query.pop_module || '' // 弹窗模块
-
     // 获取用户价格包含等级
     var user_stage = _user['user_stage']
     async.waterfall([
@@ -101,11 +124,9 @@ function login_valid_user_pop(req, res) {
                     function (callback){callback(null, 1)},
                     // 买一增二弹窗
                     function (data, callback) {
-                        console.log("买一增二")
                         let _dty = tools.getCookie(req, '_DTY')
                         if (_dty) return callback(null, 1)
                         var dty = tools.three_year(_user)
-                        console.log(dty,"ppp")
                         if (dty == 0) return callback(null, 1)
                         tools.getMasterApiQuery('/payment/dty/price', {}, req, res, function (result) {
                             if (result.state != 0) return callback(null, 1)
@@ -138,8 +159,7 @@ function login_valid_user_pop(req, res) {
                     },
                     // 服务确认单弹窗验证
                     function (data, callback) {
-                        console.log('服务确认单')
-                        if (designation_pop && designation_pop != 'sc_pop') return callback(null, 1)
+                        if(vfd_pop(designation_pop, 'sc_pop')) return callback(null, 1)
                         if (_lang == 'en') return callback(null, 1)
                         let _sc = parseInt(user_functional.sc || 0);
                         if (!_sc) return callback(null, 1)
@@ -168,48 +188,51 @@ function login_valid_user_pop(req, res) {
                         var experience = parseInt(user_functional.experience);
                         // 1 已开通未体验
                         if (experience == 1) {
-                            if (designation_pop && designation_pop != 'experience_pop') return callback(null, 1)
-                            return res.wrender('./full_pop/experience.ejs', {}, function (err, str) {
+                            if(vfd_pop(designation_pop, 'experience_pop')) return callback(null, 1)
+                            res.wrender('./full_pop/experience.ejs', {}, function (err, str) {
                                 res.send({
                                     content: str,
                                     state: 0,
                                     mark: 'experience_pop'
                                 })
                             })
+                            return
                         }
                         // # 4 体验完成需要弹窗
                         if (experience == 4) {
-                            if (designation_pop && designation_pop != 'experience_end') return callback(null, 1)
+                            if(vfd_pop(designation_pop, 'experience_end')) return callback(null, 1)
                             // 修改功能参数 experience 为 5 关闭体验结束的弹窗，
-                            return tools.change_functional(req, res, 'experience', 5, function (_) {
+                            tools.change_functional(req, res, 'experience', 5, function (_) {
                                 res.send({
                                     content: '',
                                     state: 0,
                                     mark: 'experience_end'
                                 })
                             })
+                            return
                         }
-                        callback(null, 1)
+                        if(experience == 6) return res.send({})
+                        return callback(null, 1)
                     },
-                    // 体验中
+                    // 体验中 自主弹窗
                     function (data, callback) {
-                        if (designation_pop && designation_pop != 'experience_ing') return callback(null, 1)
+                        if(vfd_pop(designation_pop, 'experience_ing')) return callback(null, 1)
                         var experience = parseInt(user_functional.experience);
                         if (experience != 2) return callback(null, 1)
-                        let zd = designation_pop && designation_pop == 'experience_lead_video_pop'
-                        if ((zd || !designation_pop) && pop_page_mark) {
-                            if (config.common.experience_lead_mark[pop_page_mark] != 1) res.send({})
-                            let _mark = user_functional[pop_page_mark]
-                            if (_mark && !zd) return res.send({})
-                            return res.wrender('./full_pop/pop_lead_experience_' + pop_page_mark + '_' + _lang + '.ejs', {},
-                                function (err, str) {
-                                    res.send({
-                                        content: str,
-                                        state: 0,
-                                        mark: 'experience_ing',
-                                        zd: zd,
-                                    })
-                                })
+                        if(pop_page_mark){
+                            pop_lead_experience(res, pop_page_mark, false)
+                            return
+                        }
+                        // 没有引导弹窗，体验中不弹其他弹窗
+                        return res.send({})
+                    },
+                    function (data, callback){
+                        if(designation_pop != 'experience_lead_video_pop') return callback(null, 1)
+                        var experience = parseInt(user_functional.experience);
+                        if (experience != 2) return callback(null, 1)
+                        if(pop_page_mark){
+                            pop_lead_experience(res, pop_page_mark, true)
+                            return
                         }
                         // 没有引导弹窗，体验中不弹其他弹窗
                         return res.send({})
@@ -418,8 +441,9 @@ function login_valid_user_pop(req, res) {
                     function (data, callback) {
                         if (designation_pop && designation_pop != 'emp_cs') return callback(null, 1)
                         if (user_functional.emp_cs != 1) return callback(null, 1)
+                        // callback(null, 1)
                         tools.getMasterApiQuery('/user/emp', {}, req, res, function (result) {
-                            if (result.state != 0) return callback(null, 1)
+                            if (result. state != 0) return callback(null, 1)
                             res.wrender('./full_pop/emp_cs.ejs', {
                                 results: result.data
                             }, function (err, str) {
