@@ -96,44 +96,15 @@ function get_lbkc_list_more(lb_num){
 // 下载资源包
 function download_zy(event){
     let id = $(event).data("id")
-    $.loadajax('/async/download_zy', {
-        datatype: 'text',
+    $.ajax('/async/download_zy', {
         data: {pack_id:id},
+        responseType: 'blob',
         success: function (result) {
-            console.log(result,"下载")
-            // 1 下载失败
-            if(result.fun_cb.state!=1) {
-                let box=`
-                    <div class=down-yes>
-                        <span>文件保存地址：${result.url}</span>
-                        <input type="file" id="fileipt"/>
-                    </div>
-                `
-                layer.open({
-                    title:`${result.title}`,
-                    area: ['600px', 'auto'], // 配置长高
-                    shadeClose: true, //点击遮罩关闭
-                    maxmin: false,
-                    closeBtn: 1,
-                    content:box,
-                    icon:1,
-                    success:function(){
-                        open_file()
-                    }
-                })    
-            }else{
-                layer.msg("下载失败")
-            }
+            console.log(result,"下载文件")
+            let url = result.url,name=result.name
+            if(result.state!=0) return layer.msg("下载失败")
+            download(url)
         }
     })
 }
 
-function open_file(){
-    var  inputObj=document.createElement( 'input' )
-    inputObj.setAttribute( 'id' , '_ef' );
-    inputObj.setAttribute( 'type' , 'file' );
-    inputObj.setAttribute( "style" , 'visibility:hidden' );
-    document.body.appendChild(inputObj);
-    // inputObj.click();
-    inputObj.value ;
-}

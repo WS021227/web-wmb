@@ -60,7 +60,6 @@ router.course_2023_receive=function(req,res){
     // 领取课程
     tools.postMasterApiQuery(`/course/2023/receive/${id}`, {}, req, res,
         function (result) {
-            console.log(result,"领取课程")
             if(result.state!=0) return res.send({state:1})
             res.send({state:0})
         }
@@ -92,37 +91,6 @@ router.get_kcjs=function(req,res){
         }
     )
 }
-
-// 下载ppt
-router.down_ppt=function(req,res){
-    // let fileName = data
-    let fileName = "483524.rar" ;
-    let x_url="C:\\"
-    var dirPath = path.join(x_url, "wmb");
-    if (!fs.existsSync(dirPath)) {
-        fs.mkdirSync(dirPath);
-    } else {
-        if(fs.existsSync(path.join(dirPath,fileName))){
-            let down={state:0,url:dirPath,title:"已下载该资源"}
-            return res.send(down)
-        }
-    }
-
-    let url = "https://static.52wmb.com/wmb_course/2023/courseware/" + fileName;
-    let stream = fs.createWriteStream(path.join(dirPath, fileName));
-    request(url,function(error, response, body){
-        if (error) {
-            return res.send({
-                staet:1,
-                title:"下载失败"
-            })
-          }
-    }).pipe(stream).on("close", function (err) {
-        let down={state:0,url:dirPath,title:"下载完成"}
-        res.send(down)
-    });
-}
-
 //课程问答
 router.get_kcwd=function(req,res){
     console.log(req.query.id)

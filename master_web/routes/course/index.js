@@ -1,8 +1,7 @@
 const express = require('express');
 const async = require('async');
 const fs = require("fs");
-const path = require("path");
-const request = require("request");
+const http = require("http")
 const tools = require('../../common/util.js')
 const router = express.Router();
 
@@ -113,47 +112,15 @@ router.get_tj_or_new=function(req,res){
 // 下载资源包
 router.download_zy=function(req,res){
     let id = parseInt(req.query.pack_id)
-    async.waterfall([
-        function (cb) {
-        // 获取资源包地址(文件名)
-        tools.getMasterApiQuery(`/course/2023/information-pack/${id}`, {}, req, res,
-            function(result){
-                console.log(result)
-                if(result.state != 0) return cb(null,1)
-                let url = result.data.file
-                cb(null,url)
-            }
-        )
-        },
-        function (data, cb) {
-            // let fileName = data
-            let fileName = "483524.rar" ;
-            let x_url="C:\\"
-            var dirPath = path.join(x_url, "wmb");
-            if (!fs.existsSync(dirPath)) {
-                fs.mkdirSync(dirPath);
-            } else {
-                if(fs.existsSync(path.join(dirPath,fileName))){
-                    let down={state:0,url:dirPath,title:"已下载该资源"}
-                    return cb(null,down)
-                }
-            }
-            let url = "https://static.52wmb.com/wmb_course/2023/courseware/" + fileName;
-            let stream = fs.createWriteStream(path.join(dirPath, fileName));
-            request(url,function(error, response, body){
-                if (error) {
-                    return cb(null,1)
-                  }
-            }).pipe(stream).on("close", function (err) {
-                let down={state:0,url:dirPath,title:"下载完成"}
-                cb(null,down)
-            });
+    // 获取资源包地址(文件名)
+    tools.getMasterApiQuery(`/course/2023/information-pack/${id}`, {}, req, res,
+        function(result){
+            console.log(result,"下载ppt")
+            if(result.state != 0) return res.send({state:1})
+            let name = result.data.file
+            let url = 'https://static.52wmb.com/wmb_course/2023/courseware/' + name
+            res.send({url:url,name:name,state:0})
         }
-      ], function (err, fun_cb) {
-        return res.send({
-            fun_cb
-        });
-      }
     )
 }
 

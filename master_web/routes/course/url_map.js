@@ -17,8 +17,6 @@ router.post('/async/course/2023/receive',recording_detail.course_2023_receive)
 router.get("/async/get_kcwd",recording_detail.get_kcwd)
 router.get("/async/get_kcwd_children",recording_detail.get_kcwd_children)
 router.get("/async/get_kcjs",recording_detail.get_kcjs)
-// 下载ppt
-router.get('/async/down_ppt',recording_detail.down_ppt)
 // 发布评论
 router.post("/async/post_pl",recording_detail.post_pl)
 

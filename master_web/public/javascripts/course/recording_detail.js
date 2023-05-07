@@ -108,41 +108,12 @@ function get_js_data(){
 
 // 下载ppt
 function down_ppt(event){
-    if (!verify_sign({login: true, only_return: true})) return false
-    let id=$(event).data("id")
-    $.loadajax('/async/down_ppt', {
-        datatype: 'text',
-        data: {id:id},
-        success: function (result) {
-                let box=`
-                    <div class=down-yes>
-                        <span>文件保存地址：${result.url}</span>
-                        <input type="file" id="fileipt"/>
-                    </div>
-                `
-                layer.open({
-                    title:`${result.title}`,
-                    area: ['600px', 'auto'], // 配置长高
-                    shadeClose: true, //点击遮罩关闭
-                    maxmin: false,
-                    closeBtn: 1,
-                    content:box,
-                    icon:1,
-                    success:function(){
-                        open_file()
-                    }
-                })    
-            }
-    })
+    let name = $(event).data("id")
+    let url='https://static.52wmb.com/wmb_course/2023/courseware/' + name
+    console.log(url)
+    download(url)
 }
 
-function open_file(){
-    var  inputObj=document.createElement( 'input' )
-    inputObj.setAttribute( 'id' , '_ef' );
-    inputObj.setAttribute( 'type' , 'file' );
-    inputObj.setAttribute( "style" , 'visibility:hidden' );
-    document.body.appendChild(inputObj);
-    // inputObj.click();
-    inputObj.value ;
-}
+
+
 
