@@ -1,7 +1,8 @@
 <% let list=results.list || [] %>
 <% list.forEach(function(item,index){ %>
+    <% console.log(item) %>
     <div class="lb-box" id="xz_lb_box">
-        <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="">
+        <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.icon %>" alt="">
         <div class="content">
             <span><%= item.name %></span>
             <div>大小：<span><%= (item.size/1024).toFixed(2) %></span>M<font>|</font>格式：<span><%= item.format %><span></div>

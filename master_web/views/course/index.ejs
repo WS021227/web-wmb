@@ -83,7 +83,7 @@
                         <% if(!wglobals.user.id) {%>
                             <a href="/login">下载</a>
                         <% } else { %>
-                            <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>" data-vip="<%= item.download_level %>">下载</a>
+                            <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>" data-vip="<%= item.download_level %>" data-name="<%= item.name  %>">下载</a>
                         <% } %>
                     </div>
                 <% }) %>

@@ -5,6 +5,7 @@ $(function(){
         var text = $(this).contents().find("body").text(); //获取到的是json的字符串
         var j = $.parseJSON(text);  //json字符串转换成json对象
         console.log(j,"表单回调")
+        if(j.state!=0) return layer.msg("下载失败")
     }))
     // 推荐资源、最新资源
     $(".course-zy-h2-left span").click(function(){
@@ -48,7 +49,7 @@ function put_tj_or_new(list,more){
     list.list.forEach(function(item,index){
         let $box=$(`
             <div class="zy-box">
-                <img src="${item.icon}" alt="">
+                <img src="https://static.52wmb.com/wmb_course/2023/images/${item.icon}" alt="">
                 <span>${item.name}</span>
                 <div><span>大小：${(item.size/1024).toFixed(2)}M</span><font>|</font><span>格式：${item.format}</span></div>
                 ${!wg.user.id?`<a href="/login">下载</a>`:
@@ -100,38 +101,17 @@ function get_lbkc_list_more(lb_num){
 // 下载资源包
 function download_zy(event){
     let vip_jy = {
-        "":'',
-        'v':'v',
-        'bd':'bd',
-        'yd':'yd'
+        "":0,
+        'v':1,
+        'bd':2,
+        'yd':3
     }
     let id = $(event).data("id")
     let vip = $(event).data("vip")
-    if(vip_jy[wg.user.vip_level]<vip_jy[vip]) return share_authority_failure(vip_jy[vip])
-    $(event).text('下载中...')
+    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
 
     document.zy_download.method = 'post'
     document.zy_download.action = `/async/download_zy/${id}`
     document.zy_download.submit()
-    // $.ajax('/async/download_zy', {
-    //     data: {pack_id:id},
-    //     responseType: 'blob',
-    //     success: function (result) {
-    //         if(JSON.parse(result).state!=0) return layer.msg("下载失败"),$(event).text('下载')
-    //         //将响应回来的数据下载为文件，固定代码
-    //         //将响应数据处理为Blob类型
-    //         var blob = new Blob([result.data]);
-    //         // 创建一个URL对象
-    //         var url = window.URL.createObjectURL(blob);
-    //         // 创建一个a标签
-    //         var a = document.createElement("a");
-    //         a.href = url;
-    //         a.download = JSON.parse(result).name;// 这里指定下载文件的文件名
-    //         a.click();
-    //         // 释放之前创建的URL对象
-    //         window.URL.revokeObjectURL(url);
-    //         $(event).text('下载')
-    //     }
-    // })
 }
 

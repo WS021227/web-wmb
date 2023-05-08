@@ -59,7 +59,8 @@
                                 </i>
                                 <%= xq_data.reveive_users || 0 %>人已学习
                             </span>
-                            <a href="javascript:void(0);" onclick="down_ppt(this)" data-name="<%= xq_data.ppt_file %>" data-id="<%= xq_data.id %>" data-vip="<%= xq_data.receive_level %>">下载课件PPT</a>
+                            <%=  %>
+                            <a href="javascript:void(0);" onclick="down_ppt(this)" data-name="<%= xq_data.ppt_file %>" data-id="<%= xq_data.id %>" data-vip="<%= xq_data.receive_level %>"  data-fname="<%= xq_data.name  %>">下载课件PPT</a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +80,6 @@
     <form name="ppt_download" target="_self"></form>
     <iframe name="form" id="ppt_download" style="display:none"></iframe>
     <%- include('../global/foot_script.ejs') %>
-    <script src="<%= STATIC %>javascripts/course/download.js?v=<%=VERSION%>"></script>
     <script src="<%= STATIC %>javascripts/course/recording_detail.js?v=<%=VERSION%>"></script>
 </body>
 </html>

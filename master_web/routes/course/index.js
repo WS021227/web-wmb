@@ -3,7 +3,8 @@ const async = require('async');
 const fs = require("fs");
 const urlencode = require("urlencode")
 const mime=require("mime")
-const tools = require('../../common/util.js')
+const tools = require('../../common/util.js');
+const { cache } = require('ejs');
 const router = express.Router();
 
 router.index = function (req, res) {
@@ -112,21 +113,34 @@ router.get_tj_or_new=function(req,res){
 
 // 下载资源包
 router.download_zy=function(req,res){
+    // 权限验证
     let id = parseInt(req.params.pack_id)
     // 获取资源包地址(文件名)
     tools.getMasterApiQuery(`/course/2023/information-pack/${id}`, {}, req, res,
         function(result){
+            console.log(result)
             if(result.state != 0) return res.send({state:1})
             var name = result.data.file// 待下载的文件名
-            let f_name = urlencode(name, "utf-8");
+            let kzm = name.substring(name.lastIndexOf("."))
+            let xz_name = result.data.name + kzm
+            let f_name = urlencode(xz_name, "utf-8");
             let filePath = '\\\\10.20.53.222\\static_no_cdn\\wmb_course\\2023\\courseware\\' + name
             // 查询文件类型
             var mimetype = mime.lookup(name);
             res.setHeader('Content-Disposition', "attachment; filename* = UTF-8''" + f_name);
             res.setHeader('Content-type', mimetype);
             var filestream = fs.createReadStream(filePath);
-            console.log(res)
             filestream.pipe(res);
+            filestream.on('data', (data) => {
+                console.log(data,'传输中');
+            }); 
+            filestream.on('error', function() {
+                
+            });
+            filestream.on('end', () => {
+                console.log('下载结束');
+                
+            }); 
         }
     )
 }

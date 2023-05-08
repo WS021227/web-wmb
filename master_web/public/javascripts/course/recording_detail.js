@@ -124,22 +124,17 @@ function get_js_data(){
 // 下载ppt
 function down_ppt(event){
     let vip_jy = {
-        "":'',
-        'v':'v',
-        'bd':'bd',
-        'yd':'yd'
+        "":0,
+        'v':1,
+        'bd':2,
+        'yd':3
     }
     let vip = $(event).data("vip")
     let name = $(event).data("name")
-    if(vip_jy[wg.user.vip_level]<vip_jy[vip]) return share_authority_failure(vip_jy[vip])
-    $(event).text('下载中...')
+    let fname = $(event).data("fname")
+    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
 
     document.ppt_download.method = 'post'
-    document.ppt_download.action = `/async/down_ppt/${name}`
+    document.ppt_download.action = `/async/down_ppt?name=${name}&fname=${fname}`
     document.ppt_download.submit()
 }
-
-
-
-
-down_ppt

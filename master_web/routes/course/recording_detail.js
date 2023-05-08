@@ -94,7 +94,6 @@ router.get_kcjs=function(req,res){
 }
 //课程问答
 router.get_kcwd=function(req,res){
-    console.log(req.query.id)
     let results={},id=req.query.id
     let key={
         start:0,
@@ -121,7 +120,6 @@ router.get_kcwd=function(req,res){
 
 //课程问答
 router.get_kcwd_children=function(req,res){
-    console.log(req.query.id,req.query.num)
     let results={},id=req.query.id,num=parseInt(req.query.num)
     let key={
         start:num,
@@ -162,8 +160,12 @@ router.post_pl=function(req,res){
 
 // 下载ppt
 router.down_ppt=function(req,res){
-    let file_name=req.params.ppt_name
-    let f_name = urlencode(file_name, "utf-8");
+    let file_name=req.query.name,fname=req.query.fname
+    let kzm = file_name.substring(file_name.lastIndexOf("."))
+    fname = fname + kzm
+    let f_name = urlencode(fname, "utf-8");
+    
+
     let filePath = '\\\\10.20.53.222\\static_no_cdn\\wmb_course\\2023\\courseware\\' + file_name
     // 查询文件类型
     var mimetype = mime.lookup(file_name);

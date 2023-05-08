@@ -20,6 +20,6 @@ router.get("/async/get_kcjs",recording_detail.get_kcjs)
 // 发布评论
 router.post("/async/post_pl",recording_detail.post_pl)
 // 下载ppt
-router.post("/async/down_ppt/:ppt_name",recording_detail.down_ppt)
+router.post("/async/down_ppt",recording_detail.down_ppt)
 
 module.exports = router;
