@@ -78,21 +78,21 @@
             <div class="default-search-chanel">
                 <ul>
                     <a href="/buyer" target="_blank">
-                        <li class="default-search-chanel-1"> 
+                        <li class="default-search-chanel-1">
                             <span><b>1345</b><font><%=translate('share_text_m')%></font><br/><%=translate('search_enter_buyer')%></span>
                             <span>&gt;</span>
                             <i></i>
                         </li>
                     </a>
-                    <a href="/supplier" target="_blank"> 
-                        <li class="default-search-chanel-2"> 
+                    <a href="/supplier" target="_blank">
+                        <li class="default-search-chanel-2">
                             <span><b>1175</b><font><%=translate('share_text_m')%></font><br/><%=translate('search_enter_supplier')%></span>
                             <span>&gt;</span>
                             <i></i>
                         </li>
                     </a>
                     <a href="/billsearch" target="_blank">
-                        <li class="default-search-chanel-3">  
+                        <li class="default-search-chanel-3">
                             <span><b>34</b><font><%=translate('share_text_ge')%></font><br/><%=translate('search_enter_datacountry')%></span>
                             <span>&gt;</span>
                             <i></i>
@@ -104,7 +104,7 @@
             <div class="default-search-link">
                 <font><%=translate('search_tips')%>:</font>
                 <a href="/new/category-czsc" target="_blank">《<%=translate('class_name_brochure')%>》 </a>
-                <%if(wglobals.lang == 'cn'){%>                   
+                <%if(wglobals.lang == 'cn'){%>
                 <a href="course" target="_blank">《数据开发课程》</a>
                 <%}%>
                 <a href="/new/category-wenda" target="_blank">《<%=translate('class_name_ask')%>》</a>
@@ -134,7 +134,7 @@
             </ul>
             <%}%>
             <%if(search_company_supply_records.length>0){%>
-            <ul id="search_company_supply" style="display: none;"> 
+            <ul id="search_company_supply" style="display: none;">
                 <%search_company_supply_records.forEach(function(item,index){%>
                     <li><span><%=index+1%></span><a href="/supplier/<%=item.id%>" target="_blank"><%=ucfirst(item.name)%></a></li>
                 <%})%>
@@ -144,7 +144,7 @@
         <%}%>
         <% var search_log_buyer_key= results.search_log_buyer_key, search_log_supply_key=results.search_log_supply_key;%>
         <%if(search_log_buyer_key.length>0 || search_log_supply_key.length>0){%>
-        <div id="user_attention">           
+        <div id="user_attention">
             <h3>
                 <%=translate('home_hot_product')%>
                 <span id="user_attention_title">
@@ -155,7 +155,7 @@
                     <a href="javascript:void(0);" data-type="1" class="<%= search_log_buyer_key.length>0?'':'active' %>"><%=translate('home_hot_supply')%></a>
                     <%}%>
                 </span>
-            </h3>        
+            </h3>
             <%if(search_log_buyer_key.length > 0){%>
                 <ul id="search_log_list_0" style="display:block;">
                     <%search_log_buyer_key.forEach(function(item,index){%>
@@ -178,18 +178,18 @@
             <h3><%=translate('home_hot_dataupdate')%><span><a href="/billsearch" target="_blank"><%=translate('share_text_all')%></a></span></h3>
             <ul>
                 <%countries_list.forEach(function(item,index){%>
-                   <%if(wglobals.lang == 'cn'){%> 
+                   <%if(wglobals.lang == 'cn'){%>
                     <li><span><%=index+1%></span><a href="/customs-data/<%=item.country.toFix()%>" target="_blank"><%=item.country_cn%><%=translate('home_hot_dataupdate_des')%></a></li>
                     <%}else{%>
                     <li><span><%=index+1%></span><a href="/customs-data/<%=item.country.toFix()%>" target="_blank"><%=ucfirst(item.country)%><%=translate('home_hot_dataupdate_des')%></a></li>
-                    <%}%>                  
+                    <%}%>
                 <%})%>
             </ul>
         </div>
         <%}%>
         <br class="clear"/>
-    </div>  
-    
+    </div>
+
     <div class="bangline default-title">
         <h2><%=translate('home_bline_name')%><a href="<%=LINE_ROUTE()%>" target="_blank"><%=translate('home_bline_website')%><font>&gt;</font></a></h2>
         <%if(results.line_group.length > 0){%>
@@ -235,7 +235,7 @@
     </div>
 
     <div class="bang-mall default-title">
-        <h2><%=translate('store_name')%><a href="/mall" target="_blank"><%=translate('share_text_more')%><font>&gt;</font></a></h2>        
+        <h2><%=translate('store_name')%><a href="/mall" target="_blank"><%=translate('share_text_more')%><font>&gt;</font></a></h2>
         <%if(wglobals.lang == 'cn'){%>
         <%if(results.yuekt){%>
         <div>
@@ -263,13 +263,13 @@
             <p><%=translate('store_product_soso_des')%></p>
             <i></i>
             <a href="/social-media" target="_blank"><%=translate('share_text_detail')%><font>&gt;</font></a>
-        </div>       
+        </div>
         <div>
             <h3><%=translate('store_product_js')%></h3>
             <p><%=translate('store_product_js_des')%></p>
             <i></i>
             <a href="/amazon" target="_blank"><%=translate('share_text_detail')%><font>&gt;</font></a>
-        </div>        
+        </div>
         <br class="clear"/>
     </div>
 
@@ -284,11 +284,11 @@
                     <h3><a href="/new/<%=item.id%>"><%=(item.title || '').substring(0, wglobals.lang == 'cn'?78:58)%></a></h3>
                     <span><font><%=item.update_time.split(' ')[0]%></font><font><%=item.view_count%><%=translate('share_text_view')%></font></span>
                 </li>
-                <%})%>            
+                <%})%>
             <br class="clear"/>
         </ul>
     </div>
-    <%}%>        
+    <%}%>
     <div class="default-foot">
         <div class="default-foot-content">
             <div class="default-foot-left">
@@ -302,17 +302,17 @@
                             <b><%=translate('help_name')%></b>
                             <a href="/help/aboutus"><%=translate('help_nav_aboutus')%></a>
                             <a href="/help/contactus"><%=translate('help_nav_contact')%></a>
-                            <%if(wglobals.lang == 'cn'){%>                            
+                            <%if(wglobals.lang == 'cn'){%>
                             <a href="/help/joboffers">招聘信息</a>
                             <%}%>
-                            <a href="/help/user_agreement"><%=translate('help_nav_user_agreement')%></a>                            
+                            <a href="/help/user_agreement"><%=translate('help_nav_user_agreement')%></a>
                             <a href="/help/privacy_policy"><%=translate('help_nav_privacy_policy')%></a>
                             <a href="/help/price"><%=translate('help_nav_ad')%></a>
                         </li>
                         <li>
                             <b><%=translate('solutions_name')%></b>
                             <a href="/companies" target="_blank"><%=translate('solutions_company')%></a>
-                            <a href="/industry" target="_blank"><%=translate('solutions_industry')%></a>                       
+                            <a href="/industry" target="_blank"><%=translate('solutions_industry')%></a>
                             <a href="/tradedata" target="_blank"><%=translate('solutions_data')%></a>
                             <a href="/usergroups" target="_blank"><%=translate('solutions_usergroups')%></a>
                             <a href="/sucess" target="_blank"><%=translate('solutions_success')%></a>
@@ -348,47 +348,47 @@
                     </ul>
                     <ul style="display:none;">
                         <li>
-                            <a href="http://waimaoquan.alibaba.com/" class="moudle-a" target="_blank">外贸圈</a>  
+                            <a href="http://waimaoquan.alibaba.com/" class="moudle-a" target="_blank">外贸圈</a>
                             <a href="https://yaozh.com/" class="moudle-a" target="_blank">药智网</a>
                             <a href="https://www.cnwallb.com/" class="moudle-a" target="_blank">墙布</a>
                         </li>
                         <li>
                             <a href="http://shuidi.cn" class="moudle-a" target="_blank">水滴信用</a>
-                            <a href="https://www.phbang.cn/" class="moudle-a" target="_blank">中国排行</a>                       
+                            <a href="https://www.phbang.cn/" class="moudle-a" target="_blank">中国排行</a>
                             <a href="https://www.jcz001.com/" class="moudle-a" target="_blank">集成灶</a>
                         </li>
-                        <li> 
+                        <li>
                             <a href="http://www.globalimporter.net/" class="moudle-a" target="_blank">跨国采购</a>
                             <a href="https://www.xhd.cn/" class="moudle-a" target="_blank">新航道雅思</a>
                             <a href="http://www.czvv.com/" class="moudle-a" target="_blank">传众网</a>
                         </li>
-                        <li> 
-                            <a href="http://www.912688.com/" class="moudle-a" target="_blank">搜好货</a> 
-                            <a href="https://www.ic37.com/" class="moudle-a" target="_blank">ic37网</a> 
+                        <li>
+                            <a href="http://www.912688.com/" class="moudle-a" target="_blank">搜好货</a>
+                            <a href="https://www.ic37.com/" class="moudle-a" target="_blank">ic37网</a>
                             <a href="http://www.91beijian.com/" class="moudle-a" target="_blank">MRO</a>
                         </li>
-                        <li> 
+                        <li>
                             <a href="http://fuwu.huangye88.com/" class="moudle-a" target="_blank">商务服务网</a>
                             <a href="https://www.hcggzy.cn/" class="moudle-a" target="_blank">跨境达人</a>
                             <a href="http://www.china-nengyuan.com/" class="moudle-a" target="_blank">新能源</a>
                         </li>
-                        <li> 
-                            <a href="http://www.juda.cn/" class="moudle-a" target="_blank">锂电池</a> 
-                            <a href="http://www.tx7878.cn/" class="moudle-a" target="_blank">压力变送器</a> 
-                            <a href="http://www.tx7878.cn/" class="moudle-a" target="_blank">压力变送器</a> 
+                        <li>
+                            <a href="http://www.juda.cn/" class="moudle-a" target="_blank">锂电池</a>
+                            <a href="http://www.tx7878.cn/" class="moudle-a" target="_blank">压力变送器</a>
+                            <a href="http://www.tx7878.cn/" class="moudle-a" target="_blank">压力变送器</a>
                         </li>
                         <li>
-                            <a href="http://www.ynshangji.com/" class="moudle-a" target="_blank">云商网</a> 
+                            <a href="http://www.ynshangji.com/" class="moudle-a" target="_blank">云商网</a>
                             <a href="http://www.jszhaobiao.com/" class="moudle-a" target="_blank">建设招标网</a>
-                            
+
                         </li>
                         <li>
                             <a href="https://www.ctoy.com.cn/" class="moudle-a" target="_blank">中外玩具网</a>
-                            <a href="https://www.pvc123.com/" class="moudle-a" target="_blank">环球塑化</a>                             
+                            <a href="https://www.pvc123.com/" class="moudle-a" target="_blank">环球塑化</a>
                         </li>
                         <br class="clear"/>
                     </ul>
-                </div>                
+                </div>
             </div>
             <div class="default-foot-right">
                 <div>
@@ -414,9 +414,10 @@
             <%if(wglobals.lang == 'cn'){%>&copy;2010-<%=new Date().getFullYear()%> 上海义缘网络科技有限公司 版权所有<font>|</font><a target="_blank" href="https://beian.miit.gov.cn/">沪ICP备16029834号-2</a><font>|</font><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402001557">沪公网安备 31010402001557号</a><%}%>
             <%if(wglobals.lang == 'en'){%>&copy;2010-<%=new Date().getFullYear()%> 52wmb.com all rights reserved<font>|</font><a target="_blank" href="https://beian.miit.gov.cn/">沪ICP备16029834号-2</a><font>|</font><a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31010402001557">沪公网安备 31010402001557号</a><%}%>
         </div>
-    </div> 
+    </div>
 <%- include('../global/foot_script.ejs') %>
 <script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"></script>
 <script src="<%= STATIC %>javascripts/index/index.js?v=<%=VERSION%>"></script>
+
 </body>
 </html>

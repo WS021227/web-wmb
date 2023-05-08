@@ -1,13 +1,14 @@
 const express = require('express');
 const async = require('async');
 const fs = require("fs");
-const path = require("path");
-const request = require("request");
+const urlencode = require("urlencode")
+const mime=require("mime")
 const tools = require('../../common/util.js')
 const router = express.Router();
 
 // 课程详情页
 router.recording_detail = function(req,res){
+    res.locals.wglobals.nav_active='course'
     let id=req.params.id
     let results={}
     async.series(
@@ -157,6 +158,19 @@ router.post_pl=function(req,res){
        res.send(result)
     }
     )
+}
+
+// 下载ppt
+router.down_ppt=function(req,res){
+    let file_name=req.params.ppt_name
+    let f_name = urlencode(file_name, "utf-8");
+    let filePath = '\\\\10.20.53.222\\static_no_cdn\\wmb_course\\2023\\courseware\\' + file_name
+    // 查询文件类型
+    var mimetype = mime.lookup(file_name);
+    res.setHeader('Content-Disposition', "attachment; filename* = UTF-8''" + f_name);
+    res.setHeader('Content-type', mimetype);
+    var filestream = fs.createReadStream(filePath);
+    filestream.pipe(res);
 }
 
 module.exports = router;

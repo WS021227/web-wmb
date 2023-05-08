@@ -7,7 +7,7 @@ router.get('/async/get_tj_or_new',course.get_tj_or_new)
 router.get('/async/get_side',course.get_side)
 router.get("/async/get_lbkc",course.get_lbkc)
 // 下载资源包
-router.get("/async/download_zy",course.download_zy)
+router.post("/async/download_zy/:pack_id",course.download_zy)
 
 // 录播课详情页面
 const recording_detail = require('./recording_detail')
@@ -19,5 +19,7 @@ router.get("/async/get_kcwd_children",recording_detail.get_kcwd_children)
 router.get("/async/get_kcjs",recording_detail.get_kcjs)
 // 发布评论
 router.post("/async/post_pl",recording_detail.post_pl)
+// 下载ppt
+router.post("/async/down_ppt/:ppt_name",recording_detail.down_ppt)
 
 module.exports = router;

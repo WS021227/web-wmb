@@ -1,6 +1,18 @@
 let wd_num=0
+let vip_jy = {
+    '': 1,
+    'v': 2,
+    'bd': 3,
+    'yd': 4
+}
 
 $(function(){
+    $("#ppt_download").on('load',(function(){
+        var text = $(this).contents().find("body").text(); //获取到的是json的字符串
+        var j = $.parseJSON(text);  //json字符串转换成json对象
+        console.log(j,"表单回调")
+    }))
+
     $(".recording-detail-bottom .tabbar span").click(function(){
         let id=$(this).parent().data("id")
         $(this).addClass("active").siblings().removeClass("active")
@@ -16,8 +28,10 @@ $(function(){
 })
 
 // video验证
-function video_yz(){
-    if(!verify_vip_level(wg.user.vip_level, 'yd', wg.user.experience)) return share_authority_failure('yd')
+function video_yz(event){
+    let vip = $(event).data("vip")
+    console.log(vip_jy[wg.user.vip_level],vip_jy[vip],"所需等级")
+    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
     layer.open({
         type: 1,
         btn:"确定",
@@ -30,8 +44,9 @@ function video_yz(){
 
 // 领取课程
 function get_class(event){
-    let id=$(event).data("id")
-    if(!verify_vip_level(wg.user.vip_level, 'yd', wg.user.experience)) return share_authority_failure('yd')
+    let vip = $(event).data("vip")
+    let id = $(event).data("id")
+    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
     $.loadajax(`/async/course/2023/receive`, {
         datatype: 'text',
         method:'POST',
@@ -108,12 +123,23 @@ function get_js_data(){
 
 // 下载ppt
 function down_ppt(event){
-    let name = $(event).data("id")
-    let url='https://static.52wmb.com/wmb_course/2023/courseware/' + name
-    console.log(url)
-    download(url)
+    let vip_jy = {
+        "":'',
+        'v':'v',
+        'bd':'bd',
+        'yd':'yd'
+    }
+    let vip = $(event).data("vip")
+    let name = $(event).data("name")
+    if(vip_jy[wg.user.vip_level]<vip_jy[vip]) return share_authority_failure(vip_jy[vip])
+    $(event).text('下载中...')
+
+    document.ppt_download.method = 'post'
+    document.ppt_download.action = `/async/down_ppt/${name}`
+    document.ppt_download.submit()
 }
 
 
 
 
+down_ppt

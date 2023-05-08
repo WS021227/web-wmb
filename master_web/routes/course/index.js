@@ -1,7 +1,8 @@
 const express = require('express');
 const async = require('async');
 const fs = require("fs");
-const http = require("http")
+const urlencode = require("urlencode")
+const mime=require("mime")
 const tools = require('../../common/util.js')
 const router = express.Router();
 
@@ -111,15 +112,21 @@ router.get_tj_or_new=function(req,res){
 
 // 下载资源包
 router.download_zy=function(req,res){
-    let id = parseInt(req.query.pack_id)
+    let id = parseInt(req.params.pack_id)
     // 获取资源包地址(文件名)
     tools.getMasterApiQuery(`/course/2023/information-pack/${id}`, {}, req, res,
         function(result){
-            console.log(result,"下载ppt")
             if(result.state != 0) return res.send({state:1})
-            let name = result.data.file
-            let url = 'https://static.52wmb.com/wmb_course/2023/courseware/' + name
-            res.send({url:url,name:name,state:0})
+            var name = result.data.file// 待下载的文件名
+            let f_name = urlencode(name, "utf-8");
+            let filePath = '\\\\10.20.53.222\\static_no_cdn\\wmb_course\\2023\\courseware\\' + name
+            // 查询文件类型
+            var mimetype = mime.lookup(name);
+            res.setHeader('Content-Disposition', "attachment; filename* = UTF-8''" + f_name);
+            res.setHeader('Content-type', mimetype);
+            var filestream = fs.createReadStream(filePath);
+            console.log(res)
+            filestream.pipe(res);
         }
     )
 }

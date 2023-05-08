@@ -1,6 +1,11 @@
 let lb_num=0
 let sum=$("#course_zy_num").data("sum")
 $(function(){
+    $("#zy_download").on('load',(function(){
+        var text = $(this).contents().find("body").text(); //获取到的是json的字符串
+        var j = $.parseJSON(text);  //json字符串转换成json对象
+        console.log(j,"表单回调")
+    }))
     // 推荐资源、最新资源
     $(".course-zy-h2-left span").click(function(){
         $(this).addClass("active").siblings().removeClass("active")
@@ -45,10 +50,9 @@ function put_tj_or_new(list,more){
             <div class="zy-box">
                 <img src="${item.icon}" alt="">
                 <span>${item.name}</span>
-                <div><span>大小：${(item.size/8/1024).toFixed(2)}k</span><font>|</font><span>格式：${item.format}</span></div>
+                <div><span>大小：${(item.size/1024).toFixed(2)}M</span><font>|</font><span>格式：${item.format}</span></div>
                 ${!wg.user.id?`<a href="/login">下载</a>`:
-                              !verify_vip_level(wg.user.vip_level, 'yd', wg.user.experience)?`<a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>`:
-                              `<a href="javascript:void(0);" onclick="download_zy(this)" data-id="${item.id}">下载</a>`
+                              `<a href="javascript:void(0);" onclick="download_zy(this)" data-id="${ item.id }" data-vip="${ item.download_level }">下载</a>`
                 }
                 
             </div>
@@ -95,16 +99,39 @@ function get_lbkc_list_more(lb_num){
 
 // 下载资源包
 function download_zy(event){
+    let vip_jy = {
+        "":'',
+        'v':'v',
+        'bd':'bd',
+        'yd':'yd'
+    }
     let id = $(event).data("id")
-    $.ajax('/async/download_zy', {
-        data: {pack_id:id},
-        responseType: 'blob',
-        success: function (result) {
-            console.log(result,"下载文件")
-            let url = result.url,name=result.name
-            if(result.state!=0) return layer.msg("下载失败")
-            download(url)
-        }
-    })
+    let vip = $(event).data("vip")
+    if(vip_jy[wg.user.vip_level]<vip_jy[vip]) return share_authority_failure(vip_jy[vip])
+    $(event).text('下载中...')
+
+    document.zy_download.method = 'post'
+    document.zy_download.action = `/async/download_zy/${id}`
+    document.zy_download.submit()
+    // $.ajax('/async/download_zy', {
+    //     data: {pack_id:id},
+    //     responseType: 'blob',
+    //     success: function (result) {
+    //         if(JSON.parse(result).state!=0) return layer.msg("下载失败"),$(event).text('下载')
+    //         //将响应回来的数据下载为文件，固定代码
+    //         //将响应数据处理为Blob类型
+    //         var blob = new Blob([result.data]);
+    //         // 创建一个URL对象
+    //         var url = window.URL.createObjectURL(blob);
+    //         // 创建一个a标签
+    //         var a = document.createElement("a");
+    //         a.href = url;
+    //         a.download = JSON.parse(result).name;// 这里指定下载文件的文件名
+    //         a.click();
+    //         // 释放之前创建的URL对象
+    //         window.URL.revokeObjectURL(url);
+    //         $(event).text('下载')
+    //     }
+    // })
 }
 

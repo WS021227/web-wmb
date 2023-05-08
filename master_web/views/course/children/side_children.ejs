@@ -4,13 +4,8 @@
         <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="">
         <div class="content">
             <span><%= item.name %></span>
-            <div>大小：<span><%= (item.size/8/1024).toFixed(2) %></span>k<font>|</font>格式：<span><%= item.format %><span></div>
+            <div>大小：<span><%= (item.size/1024).toFixed(2) %></span>M<font>|</font>格式：<span><%= item.format %><span></div>
         </div>
-        <% if(verify_vip_level(wglobals.simple_user.vip_level, 'yd', wglobals.simple_user.experience)){ %>
-            <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>">下载</a>
-        <% } else { %>
-            <!-- 提示购买黄钻 -->
-            <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
-        <% } %>
+        <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>" data-vip="<%= item.download_level %>">下载</a>
     </div>
 <% }) %>

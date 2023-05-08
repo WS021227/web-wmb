@@ -78,16 +78,12 @@
                     <div class="zy-box">
                         <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.icon %>" alt="">
                         <span><%= item.name %></span>
-                        <div><span><%= (item.size/8/1024).toFixed(2) %>k</span><font>|</font><span><%= item.format %></span></div>
-                        <% console.log(wglobals.user.id,"7777") %>
+                        <div><span><%= (item.size/1024).toFixed(2) %>M</span><font>|</font><span><%= item.format %></span></div>
+                        <% console.log(item.size,"录播课详情") %>
                         <% if(!wglobals.user.id) {%>
                             <a href="/login">下载</a>
                         <% } else { %>
-                            <% if(verify_vip_level(wglobals.user.vip_level, 'yd', wglobals.user.experience)){ %>
-                                <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>">下载</a>
-                            <% } else { %>
-                                <a href="javascript:void(0);" onclick="share_authority_failure('yd')">下载</a>
-                            <% } %>
+                            <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>" data-vip="<%= item.download_level %>">下载</a>
                         <% } %>
                     </div>
                 <% }) %>
@@ -104,8 +100,8 @@
                         <img class="lb-box-fenmian" src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="<%= item.name %>">
                         <div class="content">
                             <a href="/course/<%= item.id %>" target="_blank"><%= item.name %></a>
-                            <span><%= item.lecturer_des %></span>
-                            <span>时间:<%= item.live_dur %>分<font>|</font><%= item.reveive_users %>人已学习</span>
+                            <span><%= item.des %></span>
+                            <span>时间:<%= item.live_dur %>分<font>|</font><%= item.reveive_users || 0  %>人已学习</span>
                             <a class="gkkc" href="/course/<%= item.id %>" target="_blank">观看课程</a>
                         </div>
                         <div class="right">
@@ -121,9 +117,10 @@
            <% } %>
         </div>
     </div>
+    <form name="zy_download" target="targetIfr"></form>
+    <iframe name="targetIfr" id="zy_download" style="display:none"></iframe>
     <%- include('../global/foot.ejs') %>
     <script src="<%= STATIC %>javascripts/course/pagination.js?v=<%=VERSION%>"></script>
-    <script src="<%= STATIC %>javascripts/course/download.js?v=<%=VERSION%>"></script>
     <script src="<%= STATIC %>javascripts/course/index.js?v=<%=VERSION%>"></script>
 </body>
 </html>
