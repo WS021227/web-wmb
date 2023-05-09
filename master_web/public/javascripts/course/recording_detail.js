@@ -30,16 +30,22 @@ $(function(){
 // video验证
 function video_yz(event){
     let vip = $(event).data("vip")
+    let id = $(event).data("id")
     console.log(vip_jy[wg.user.vip_level],vip_jy[vip],"所需等级")
     if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
     layer.open({
         type: 1,
-        btn:"确定",
-        shade: false,
+        shadeClose: true,
+        shade:0.3,
+        btn:"领取课件",
         title: ['提示'], //不显示标题
-        content: '<div class="ts-content"><span>点击立即领取按钮,获取开发课程</span></div>',
-        area:['500px','200px']
-      });
+        content: '<div class="ts-content"><span>免费领取课件后，可观看视频/下载视频PPT</span></div>',
+        area:['500px',''],
+        yes:function(index,layero){
+            get_kc(id)
+            layer.close(index); //关闭弹出框
+        }
+    });
 }
 
 // 领取课程
@@ -47,6 +53,11 @@ function get_class(event){
     let vip = $(event).data("vip")
     let id = $(event).data("id")
     if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
+    get_kc(id)
+}
+
+// 领取课程
+function get_kc(id){
     $.loadajax(`/async/course/2023/receive`, {
         datatype: 'text',
         method:'POST',
@@ -131,8 +142,24 @@ function down_ppt(event){
     }
     let vip = $(event).data("vip")
     let name = $(event).data("name")
+    let url= $(event).data("url")
+    let id = $(event).data("id")
     let fname = $(event).data("fname")
     if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
+
+    if(url=="") return layer.open({
+                            type: 1,
+                            shade:0.3,
+                            shadeClose: true,
+                            btn:"领取课件",
+                            title: ['提示'], //不显示标题
+                            content: '<div class="ts-content"><span>免费领取课件后，可观看视频/下载视频PPT</span></div>',
+                            area:['500px',''],
+                            yes:function(index,layero){
+                                get_kc(id)
+                                layer.close(index); //关闭弹出框
+                            }
+                        });
 
     document.ppt_download.method = 'post'
     document.ppt_download.action = `/async/down_ppt?name=${name}&fname=${fname}`

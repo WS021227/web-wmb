@@ -48,4 +48,7 @@ router.get('/async/surprise/coupon/close', payment.surprise_coupon_close)
 router.get('/async/payment/df/coupon', payment.df_coupon)
 router.post('/async/payment/df/coupon', payment.df_coupon_receive)
 
+// 24小时 30元优惠券
+router.get('/async/surprise/30_coupon/close', payment.surprise_30_coupon_close)
+
 module.exports = router;

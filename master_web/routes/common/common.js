@@ -7,7 +7,6 @@ const multiparty = require("multiparty");
 const util = require("../../common/util");
 const router = express.Router();
 
-
 /**
  *  benchmark / Jungle Scout亚马逊工具 资料完善  获取 购买数据
  * @param req
@@ -78,11 +77,18 @@ function vfd_pop(dp, dp_ck){
 
 }
 
+/**
+ *
+ * @param res
+ * @param pop_page_mark
+ * @param zd 是否为指定弹窗（主动点击弹窗）
+ * @returns {*}
+ */
 function pop_lead_experience(res, pop_page_mark, zd){
     var _lang = res.locals.wglobals.lang
     if (config.common.experience_lead_mark[pop_page_mark] != 1) return res.send({})
-    // let _mark = user_functional[pop_page_mark]
-    // if (_mark && !zd) return res.send({})
+    let _mark = user_functional[pop_page_mark]
+    if (_mark && !zd) return res.send({})
     return res.wrender('./full_pop/pop_lead_experience_' + pop_page_mark + '_' + _lang + '.ejs', {},
         function (err, str) {
             res.send({
@@ -110,7 +116,7 @@ function login_valid_user_pop(req, res) {
         user_functional = _user.user_functional || {},
         _lang = res.locals.wglobals.lang,
         is_df = res.locals.wglobals.is_df,
-        designation_pop = req.query.designation_pop || '',
+        designation_pop = req.query.designation_pop || '',//弹窗名
         pop_module = req.query.pop_module || '' // 弹窗模块
     // 获取用户价格包含等级
     var user_stage = _user['user_stage']
@@ -227,7 +233,7 @@ function login_valid_user_pop(req, res) {
                         return res.send({})
                     },
                     function (data, callback){
-                        if(designation_pop != 'experience_lead_video_pop') return callback(null, 1)
+                        if(designation_pop && designation_pop != 'experience_lead_video_pop') return callback(null, 1)
                         var experience = parseInt(user_functional.experience);
                         if (experience != 2) return callback(null, 1)
                         if(pop_page_mark){
@@ -479,6 +485,7 @@ function login_valid_user_pop(req, res) {
                         // })
                     },
                     /***
+                     * 30元优惠券
                      * 普通注册用户
                      * 当日注册： 浏览第4个页面    引导购买会员，发放10元优惠券（注册时已发放），当日有效！
                      * 非当日注册： 提示每日可查阅3家公司，引导购买会员。
@@ -487,6 +494,40 @@ function login_valid_user_pop(req, res) {
                      * @returns {*}
                      */
                     function (data, callback) {
+                        // 无付费记录且注册时间小于6个月
+                        let coupon_30_flag = user_functional.spc_2023
+                        // 过期不弹
+                        if(new Date().getTime() - new Date(_user.create_time).getTime() > 86400000) return callback(null, 1)
+                        // 关闭不弹
+                        if(!coupon_30_flag || coupon_30_flag=='1') return callback(null, 1)
+                        // 不是日期格式不弹
+                        if(!isNaN(coupon_30_flag) || isNaN(Date.parse(coupon_30_flag))) return callback(null, 1)
+
+                        if (designation_pop && designation_pop != 'register_user') return callback(null, 1)
+                        if (pop_mark != 'company_lock') return callback(null, 1)
+                        let _reg = tools.getCookie(req, '30_REG')
+                        if (_reg) return callback(null, 1)
+                        tools.setCookie(req, res, '30_REG', '1', 86400)
+                        if (_user.vip_level) return callback(null, 1)
+                        if (user_functional.mv) return callback(null, 1)
+                        res.wrender('./full_pop/register_user.ejs', { end_time : coupon_30_flag }, function (err, str) {
+                            res.send({
+                                content: str,
+                                state: 0,
+                                mark: 'register_user'
+                            })
+                        })
+                    },
+                        /***
+                     * 普通注册用户
+                     * 当日注册： 浏览第4个页面    引导购买会员，发放10元优惠券（注册时已发放），当日有效！
+                     * 非当日注册： 提示每日可查阅3家公司，引导购买会员。
+                     * @param data
+                     * @param callback
+                     * @returns {*}
+                     */
+                    function (data, callback) {
+                        return callback(null, 1)
                         if (designation_pop && designation_pop != 'register_user') return callback(null, 1)
                         if (pop_mark != 'company_lock') return callback(null, 1)
                         let _reg = tools.getCookie(req, '_REG')

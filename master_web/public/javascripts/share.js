@@ -2065,7 +2065,7 @@ function full_top() {
     let tpn = getCookies('_TNOTICE_0002')
     if (tpn) return;
     let html = '',
-        $top_notice = $('#top_notice')
+        $top_notice = $('#top_notice_close')
     if ($top_notice.length <= 0) return;
     if (_lang == 'cn') {
         html = '<p class="notice">' +
@@ -2234,6 +2234,12 @@ function full_pop(designation_pop = '') {
                         open_options['closeBtn'] = 1
                         open_options['area'] = ['600px', '']
                         open_options['title'] = unity_lang('tan_tips_title')
+                        open_options.cancel= function (index) {
+                            $.wajax('/async/surprise/30_coupon/close', {
+                                type: 'get'
+                            })
+                            layer.close(index)
+                        }
                         break
                     case 'yq_open_line':
                         open_options['closeBtn'] = 1

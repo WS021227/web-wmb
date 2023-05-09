@@ -1,6 +1,6 @@
 
 let static_path = $('meta[name="static_path"]').attr('content')
-
+let url_flag = window.location.pathname.charAt(window.location.pathname.length - 1)
 
 $(function (){
     load_class_list($('.catalog-item:eq(0) .header'), function (){
@@ -19,9 +19,9 @@ $(function (){
     })
 })
 
-function load_reply_list(page) {
+function load_reply_list(page,series_id) {
     $.ajax('/async/cdc/reply?a=1', {
-        data: {page: page},
+        data: {page: page,series_id:series_id},
         datatype: 'json',
         type: 'get',
         success: function (result) {
@@ -42,7 +42,7 @@ function load_reply_list(page) {
             })
             $('#reply_list').append(html)
             if (result.has_next) {
-                $('#more_reply').attr('onclick', 'more_reply(this)').data('page', page + 1)
+                $('#more_reply').attr('onclick', 'more_reply(this)').data('page', page + 1).data("series_id",url_flag)
             } else {
                 $('#more_reply').removeAttr('onclick').html('暂无更多')
             }
@@ -52,13 +52,14 @@ function load_reply_list(page) {
 
 function more_reply(elem){
     let page = $(elem).data('page')
-    load_reply_list(page)
+    let series_id = $(elem).data('series_id')
+    load_reply_list(page,series_id)
 }
 function reply_add(){
     let content = $('#reply_content').val()
     if(!content) return $.alert('请输入您的评论内容')
     $.ajax('/async/cdc/reply', {
-        data: {content: content},
+        data: {content: content,series_id:url_flag},
         datatype: 'json',
         type: 'post',
         success: function (result){
@@ -67,9 +68,6 @@ function reply_add(){
         }
     })
 }
-
-
-
 function load_class_list($catalog, fn){
     let id = $catalog.data('id'),
         $class_item = $catalog.siblings('.class-item')

@@ -684,10 +684,12 @@ $(function () {
     });
     //选择top 国家
     $(document).on('click', '#country_list a:not(.multiple)', function () {
+        console.log(this)
         search_params['country'] = $(this).data('value');
         selected_countries = {}
         selected_countries[search_params['country']] = 1
         search_recommend = 1
+        console.log(search_params, 'search_params')
         build_country_selected()
         submit_filter()
     })
@@ -1023,8 +1025,8 @@ function hot_countries() {
                 $country_list = $('#country_list'),
                 _screen = $country_list.data('screen'),
                 _select = $country_list.data('select')
-            $country_list.append('<a class=" ' + (_select && _select != '*' ? '' : 'active') + ' tab" value="*">' + unity_lang('tags_country_all') + '</a>')
-            $country_list.append('<a class="display-none multiple tab" value="">' + unity_lang('country_list_countriest_more') + '</a>')
+            $country_list.append('<a class=" ' + (_select && _select != '*' ? '' : 'active') + ' tab" data-value="*">' + unity_lang('tags_country_all') + '</a>')
+            $country_list.append('<a class="display-none multiple tab" data-value="">' + unity_lang('country_list_countriest_more') + '</a>')
             if (result.top_country) {
                 has_count = result.top_country.length
                 $.each(result.top_country, function () {
@@ -1719,14 +1721,15 @@ function init_search_country() {
 }
 
 function build_country_selected() {
-
+    console.log(selected_countries, 'selected_countries')
     // 处理国家选项
     let cts = Object.keys(selected_countries),
         sc_len = cts.length
     if (sc_len == 1) {
         $('.country-selected').html('').addClass('display-none');
         $('#country_list .multiple').removeClass('active').addClass('display-none')
-        let stcountry = cts[0];
+        var stcountry = cts[0];
+        console.log(stcountry, 'stcountry')
         // 选择国家是否存在top列中
         if ($('#country_list .tab[data-value="' + stcountry + '"]').length <= 0) {
             $(".pitch-on").html(country_data_item[stcountry]['country_' + _lang + '_show']).data('value', stcountry)

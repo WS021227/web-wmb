@@ -41,13 +41,12 @@
 
 .class-category div h3{font-size:15.4px;color:#333;font-weight:bold;margin-top:8px;}
 .class-category div p{font-size:12.4px;color:#666;padding-top:4px;padding-bottom:12px;line-height:140%;}
-.class-category div a{display:inline-block;height:30px;padding:0 10px;border:1px #005FB9 solid;line-height:30px;color:#005FB9;text-align: center;font-size:13.4px;border-radius:2px;}
+.class-category div a{display:inline-block;height:28px;padding:0 10px;border:1px #005FB9 solid;line-height:28px;color:#005FB9;text-align: center;font-size:12.4px;border-radius:100px;}
 .class-category div a font{font-family:fangsong;padding-left:4px;}
 
 .class-jiqiao{width:940px;margin:0 auto;margin-bottom:40px;}
 .class-jiqiao-left{float:left;width:680px;}
 .class-jiqiao-right{float:right;width:225px;}
-
 .class-jiqiao-nav{
     font-size: 13.4px;
     color: #999;

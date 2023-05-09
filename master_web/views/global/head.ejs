@@ -5,7 +5,7 @@
             <div class="leftsidebar" id="left_sidebar">                
                 <div><a href="/"><img src="<%= STATIC %>/images/logo.png" class="logo" alt="<%=translate('share_text_sitename')%>"></a></div>
                 <div class="leftsidebar-mine">
-                    <a href="/user/datacenter/home" class="line-ms <%=nav_active=='datacenter'?'nav-active':'' %>"  rel="nofllow">
+                    <a href="/user/datacenter/home" class="line-ms <%=nav_active=='datacenter'?'nav-active':'' %>" rel="nofllow">
                        <%=translate('share_nav_mine')%><font class="count display-none"></font>
                     </a>
                     <i></i>
@@ -18,7 +18,7 @@
                 <div><a href="/supplier" <%=nav_active=='supplier'?'class=nav-active':'' %>><%=translate('share_nav_supplier')%></a></div>
                 <div><a href="/billsearch" <%=nav_active=='customs'?'class=nav-active':'' %>><%=translate('share_nav_tradedata')%></a></div>
                 <%if(wglobals.lang == 'cn'){%>
-                <div><a href="/course" <%=nav_active=='course'?'class=nav-active':'' %>>开发课</a></div>
+                <div><a href="/course" <%=nav_active=='course'?'class=nav-active':'' %>>开发课</a><span class="course jump">外贸客户</span></div>
                 <%}%>    
                 <div><a href="/loft_HD" <%=nav_active=='loft_hd'?'class=nav-active':'' %>><%=translate('share_nav_price')%></a></div>
             </div>
@@ -40,11 +40,4 @@
         </div>
     </div>    
     <div id="top_notice" class="notice-content display-none"></div>
-    <script>
-    </script>
-
-
-
-
-    
-
+    <script></script>

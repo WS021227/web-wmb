@@ -10,17 +10,18 @@ router.index = function (req, res) {
 
 
 router.custom_data_course = function (req, res) {
+    let series_id = req.params.id
     res.locals.wglobals.nav_active = 'course'
     let results = {}
     async.series([
             function (cb){
-                tools.getMasterApiQuery('/cdc/catalog', {start: 0, size: 100}, req, res, function (result){
+                tools.getMasterApiQuery('/cdc/catalog', {start: 0, size: 100 ,series: series_id}, req, res, function (result){
                     results.data = result.data
                     cb(null, 1)
                 })
             },
             function (cb){
-                unity_reply_list(req, res, 1, function (result){
+                unity_reply_list(req, res, 1,series_id, function (result){
                     results.reply = result
                     cb(null, 1)
                 })
@@ -48,10 +49,10 @@ router.custom_data_course_url = function (req, res) {
         })
 }
 
-function unity_reply_list(req, res, page, callback) {
+function unity_reply_list(req, res, page,series_id, callback) {
     let size = 15, start = (page - 1) * size
 
-    tools.getMasterApiQuery('/cdc/reply', {start: start, size: size}, req, res,
+    tools.getMasterApiQuery('/cdc/reply', {start: start, size: size,series:series_id}, req, res,
         function (result) {
             let _list = (result.data || {}).list || [], total = _list.length > 0 ? _list[0].total : 0
             result.total = total
@@ -61,14 +62,14 @@ function unity_reply_list(req, res, page, callback) {
 }
 
 router.custom_data_course_reply_list = function (req, res) {
-    let page = Number(req.query.page || 1)
-    unity_reply_list(req, res, page, function (result){
+    let page = Number(req.query.page || 1),series_id = Number(req.query.series_id)
+    unity_reply_list(req, res, page,series_id, function (result){
         res.send(result)
     })
 }
 router.custom_data_course_reply_add = function (req, res) {
-    let content = req.body.content
-    tools.postMasterApiQuery('/cdc/reply', {content: content}, req, res,
+    let content = req.body.content,series_id=req.body.series_id
+    tools.postMasterApiQuery('/cdc/reply', {content: content,series:series_id}, req, res,
         function (result) {
             res.send(result)
         })

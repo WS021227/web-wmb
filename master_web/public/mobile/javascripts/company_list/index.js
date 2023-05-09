@@ -513,7 +513,6 @@ $(function () {
     $(".select-country-options").empty();
     $(this).addClass("active").siblings().removeClass("active");
     list[$(this).index()].country_list.forEach((item5) => {
-      console.log(item5.country_en)
       if(turkey_ip_area == 'TR' &&  item5.country_en == 'Turkey' ) return true
       if(turkey_ip_area == 'IN' &&  item.country == 'india' ) return true
       if(turkey_ip_area == 'IN' &&  item.country == 'india new' ) return true
@@ -1007,6 +1006,7 @@ function cl_zy_gs() {
 
 // 搜索函数
 function search(key_value, country_type, more_flag) {
+  console.log(key_value,country_type)
   return new Promise((resolve, reject) => {
     if (more_flag !== undefined || key_value !== "") {
       // 加载
@@ -1025,8 +1025,8 @@ function search(key_value, country_type, more_flag) {
         )
         .then((res) => {
           if (res.data.content) {
+            console.log(res)
             delloadding();
-            console.log(res.data.content)
             if ($(res.data.content).data("id") == "no-data") {
               $(".container .search-context .company-more").css("display", "none")
             }

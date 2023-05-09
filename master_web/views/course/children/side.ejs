@@ -29,7 +29,7 @@
     $("#pagination").pagination(sum, {
         num_edge_entries: 1,
         num_display_entries: 3,
-        items_per_page:5,
+        items_per_page:8,
         prev_text:"<",
         next_text:">",
         callback: pageselectCallback,
@@ -37,8 +37,8 @@
     function pageselectCallback(){
         let num = parseInt($("#pagination span[class='current']").text())
         if(num){
-            let end = num * 5
-            let start = end - 5
+            let end = num * 8
+            let start = end - 8
             $.loadajax('/async/get_side', {
                 datatype: 'text',
                 data: {start:start,end:end},

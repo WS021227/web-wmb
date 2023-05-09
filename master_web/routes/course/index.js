@@ -8,6 +8,7 @@ const { cache } = require('ejs');
 const router = express.Router();
 
 router.index = function (req, res) {
+    if (res.locals.wglobals.lang != 'cn') return res.status(404).render('error')
     res.locals.wglobals.nav_active='course'
     let results={}
     async.series(
@@ -123,6 +124,7 @@ router.download_zy=function(req,res){
             var name = result.data.file// 待下载的文件名
             let kzm = name.substring(name.lastIndexOf("."))
             let xz_name = result.data.name + kzm
+
             let f_name = urlencode(xz_name, "utf-8");
             let filePath = '\\\\10.20.53.222\\static_no_cdn\\wmb_course\\2023\\courseware\\' + name
             // 查询文件类型
@@ -150,7 +152,7 @@ router.get_side=function(req,res){
     // 资源包列表
     let key={
         start:0,
-        size:5,
+        size:8,
     }
     key.start=req.query.start
     key.end=req.query.end

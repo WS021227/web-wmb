@@ -15,7 +15,7 @@
     <div class="course-header">
         <div class="course-header-k">
             <div class="header-left">
-                <h1>【直播预约】<%= top_live_data.name %></h1>
+                <h1>预约《<%= top_live_data.name %>》直播课</h1>
                 <p><%= top_live_data.des %></p>
                 <div class="header-time"><span>直播时间：<%= top_live_data.live_time %></span><font>|</font><span>时长：预计<%= top_live_data.live_dur %>分</span><font>|</font><span>平台：微信视频号</span></div>
                 <div class="header-left-user">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <span class="jump">微信扫码预约直播课↓↓↓</span>
+                <span>微信扫码预约直播课↓↓↓</span>
                 <img src="https://static.52wmb.com/wmb_course/2023/images/<%=top_live_data.reserve_qrcode%>" alt="">
             </div>
         </div>  
@@ -37,25 +37,25 @@
             <h2><span>官方出品</span><span id="num">共计2个</span></h2>
             <div>
                 <div class="gf-left">
-                    <a href="/customs-data-course" target="_blank">
+                    <a href="/customs-data-course/1" target="_blank">
                        <img src="https://static.52wmb.com/wmb_new/images/channel_imgs/video_course_old.jpg" alt="《海关数据客户开发》系列课程场景篇">
                     </a>
                     <span class="tol over">课程已完毕</span>
                     <div>
                         <div class="text">
-                            <a href="/customs-data-course" target="_blank">《海关数据客户开发》系列课程场景篇</a>
+                            <a href="/customs-data-course/1" target="_blank">《海关数据客户开发》系列课程场景篇</a>
                             <span>面向初次使用，对数据使用场景不够熟悉的用户</span>
                         </div>
                     </div>
                 </div>
                 <div class="gf-left">
-                    <a href="/customs-data-course" target="_blank">
+                    <a href="/customs-data-course/2" target="_blank">
                         <img src="https://static.52wmb.com/wmb_new/images/channel_imgs/video_course_new.png" alt="《海关数据客户开发》使用问题系列">
                     </a>
                     <span class="tol updata">更新至<span><%= kc_num %></span>节</span>
                     <div>
                         <div class="text">
-                            <a href="/customs-data-course" target="_blank">《海关数据客户开发》使用问题系列</a>
+                            <a href="/customs-data-course/2" target="_blank">《海关数据客户开发》使用问题系列</a>
                             <span>有一定的使用基础，使用过程中遇到的问题聚焦、难点、疑点。</span>
                         </div>
                     </div>
@@ -69,8 +69,7 @@
                     <span>最新</span>
                 </div>
                 <a href="<%= wglobals.user.id?'javascript:void(0);':'login' %>" id="<%= wglobals.user.id?'course_zy_num':"" %>" data-sum="<%= zyb_list_num %>">
-                    共计<span><%= zyb_list_num %></span>个
-                    <i></i>
+                    <!--共计<span><%= zyb_list_num %></span>个-->更多资料<font>&gt;</font>           
                 </a>
             </h2>
             <div class="course-zy-list">
@@ -97,6 +96,7 @@
             <div class="course-lb-list">
                 <% lb_list.forEach(function(item,index){ %>
                     <div class="lb-box">
+                        <font class="course-tips">免费</font>
                         <img class="lb-box-fenmian" src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="<%= item.name %>">
                         <div class="content">
                             <a href="/course/<%= item.id %>" target="_blank"><%= item.name %></a>

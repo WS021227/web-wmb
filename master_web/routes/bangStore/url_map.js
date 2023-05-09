@@ -6,7 +6,7 @@ const bangStore = require('./bangStore')
 //邦商城
 router.get('/mall', decorator.only_cn(), bangStore.index)
 //海关数据教程
-router.get('/customs-data-course', decorator.only_cn(), bangStore.custom_data_course)
+router.get('/customs-data-course/:id?', decorator.only_cn(), bangStore.custom_data_course)
 router.get('/async/cdc/class/:id?', decorator.only_cn(), bangStore.custom_data_course_list)
 router.get('/async/cdc/class/url/:id?', decorator.only_cn(), bangStore.custom_data_course_url)
 router.get('/async/cdc/reply', decorator.only_cn(), bangStore.custom_data_course_reply_list)

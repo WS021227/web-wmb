@@ -304,8 +304,6 @@ app.response.wcerti = function (code, results) {
     this.status(404).render("certi_expire", {results: results });
     this.end();
 };
-　　
-　
 
 // ejs 使用的全局变量
 app.locals["url_stringify"] = util.url_stringify;

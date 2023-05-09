@@ -3,9 +3,10 @@
     margin: 0;
 }
 body{background:#F7F8FA;}
+.company-foot-k{width:940px;}
 .recording-detail-container{width: 100%;background:#F7F8FA;}
 .recording-detail-container .recording-detail-head{
-    padding: 50px 0;
+    padding:60px 0;
     background-color: #EAEDF2;
     text-align: center;
     color: #333;
@@ -20,9 +21,10 @@ body{background:#F7F8FA;}
 }
 .recording-detail-head>p{
     display: block;
-    width: 940px !important;
-    font-size: 33px;
+    width:700px !important;
+    font-size: 34.4px;
     margin: 0 auto;
+    font-weight:bold;
 }
 .recording-detail-container .recording-detail-content{
     width: 1440px;
@@ -33,35 +35,32 @@ body{background:#F7F8FA;}
     padding: 20px 0;
     text-align: center;
     font-weight: 600;
-    margin: 0 auto;
+    margin:5px auto;
 }
-.recording-detail-video .video-content{
-    width: 940px;
-    margin: 0 auto;
-}
-.video-content .content-top{
-    display: none;  
-}
+.recording-detail-video .video-content{width: 940px;margin: 0 auto;}
+.video-content .content-top{display:none;}
 .video-content>.content-top-show{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    box-shadow: 0 0 8px #ccc;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:17px 20px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 2%);
+    margin-top:20px;
+    background:#fff;
+    border-radius:3px;
 }
-.content-top span{
-    font-size: 15px;
-    color: #4f4f4f;
-}
+.content-top span{font-size: 16.4px;color:#333;margin-top:-14px;}
+.content-top span b{color:#ff3300;font-size:31.4px;}
+.content-top font{font-size:14.4px;color:#333;font-weight:normal;width:650px;text-align:left;}
 .content-top a{
-    padding: 10px 30px;
-    background-color: #4095E5;
-    font-size: 16px;
+    padding:0 20px;
+    background-color: #005FB9;
+    font-size: 14.4px;
     color: #ffffff;
     font-weight: 600;
-    border-radius: 20px;
+    border-radius:100px;
+    height:38px;line-height:38px;
 }
-
 .video-content .content-video{
     margin-top:20px;
     position: relative;
@@ -70,21 +69,19 @@ body{background:#F7F8FA;}
     display: block;
     width: 940px !important;
     height: 510px !important;
-
     position: absolute;
     top: 0px;
     left: 0;
     z-index: 10;
 }
-.no-url-box img{
-    width: 940px;
-    height: 533px;
-}
-.content-video .icon{
+.no-url-box img{width: 940px;height:530px;}
+.content-video i{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
+    display:inline-block;width:80px;height:80px;background:#fff;border-radius:100px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 25%);
 }
 .content-video .no-url-box-display-none{
     display: none;
@@ -94,11 +91,13 @@ body{background:#F7F8FA;}
     justify-content: space-between;
     align-items: center;
     background:#fff;
-    padding:10px 15px;margin-top:-5px;
+    padding:20px 20px;margin-top:-5px;
 }
 .content-bottom>img{
-    width:60px;
-    height:60px;
+    width:53px;
+    height:53px;
+    padding:2px;
+    box-shadow: 0 0 10px rgb(0 0 0 / 15%);
     border-radius: 50%;
 }
 .content-bottom>:nth-child(2){
@@ -108,12 +107,12 @@ body{background:#F7F8FA;}
 .content-bottom>:nth-child(2)>span{
     display: block;
     font-size:20.4px;
-    color: #333;
+    color: #1f3a5f;
     font-weight:600;
 }
 .content-bottom>:nth-child(2)>:nth-child(2){
     font-size: 13.4px;
-    color: #999;
+    color: #1f3a5f;
     padding-top: 5px;
     font-weight:normal;
 }
@@ -122,12 +121,13 @@ body{background:#F7F8FA;}
     font-size: 13.4px;
     color: #333;
     text-align: center;
+    font-weight:normal;
 }
 .content-bottom>:nth-child(3)>a{
-    font-size: 14px;
-    color: #333;
+    font-size: 12.4px;
+    color: #005FB9;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #005FB9;
     padding: 5px 10px;
     text-decoration: none;
     display: block;
@@ -139,9 +139,10 @@ body{background:#F7F8FA;}
 .recording-detail-content .recording-detail-bottom{
     background-color: #ffffff;
     border-radius: 5px;
-    min-height: 436px;
+    height:auto;
     width: 940px;
-    margin: 20px auto;
+    margin:0 auto;
+    margin-bottom:50px;
 }
 .recording-detail-bottom .tabbar{
     padding: 20px 20px;
@@ -150,8 +151,10 @@ body{background:#F7F8FA;}
     box-sizing: border-box;
 }
 .tabbar>span{
-    font-size: 18px;
-    color: #101010;
+    font-size: 16.4px;
+    color:#333;
+    cursor:pointer;
+    font-weight:bold;
 }
 .tabbar>:nth-child(1){
     margin-right: 20px;
@@ -159,20 +162,19 @@ body{background:#F7F8FA;}
 .tabbar>.active{
     font-weight: 600;
     position: relative;
+    color:#005FB9;
 }
 .tabbar>.active::after{
     content: "";
-    width: 36px;
-    border: 2px solid #4095E5;
-    border-radius: 5px;
-
+    width:90%;
+    border:2px solid #005FB9;  
     position: absolute;
-    top: 36px;
-    left: 50%;
+    top:35px;
+    left:50%;
     transform: translateX(-50%);
 }
 .recording-detail-bottom .tw-content{
-    padding: 20px 20px;
+    padding:10px 20px;
     width: 940px;
     margin: 0 auto;
     box-sizing: border-box;
@@ -180,9 +182,6 @@ body{background:#F7F8FA;}
 
 /* tab课程介绍 */
 .tw-content .kc-js{
-    width: 850px;
-    padding: 145px 0;
-    text-align: center;
     margin: 0 auto;
 }
 .tw-content .tw-box-list{
@@ -266,9 +265,56 @@ body{background:#F7F8FA;}
 }
 
 /* 提示点击立即领取按钮对话框 */
+.ts-content{padding-top:30px;}
 .ts-content >span{
     display: block;
     text-align: center;
     margin: 0;
-    margin-top: 40px;
+    font-size:14.4px;color:#333;
 }
+.layui-layer-btn .layui-layer-btn0{margin-bottom:18px;}
+/*课程详情*/
+.course-danyou{margin-bottom:40px;padding-bottom:45px;border-bottom:1px #eee solid;}
+.course-danyou h2{font-size:18.4px;margin-bottom:20px;font-weight:bold;text-align:center;}
+.course-danyou div{display:flex;justify-content: space-between;}
+.course-danyou div span{display:block;font-size:14.4px;line-height:150%;color:#333;text-align:center;
+width:100%;height:auto;border-radius:10px;padding:30px 20px;box-sizing: border-box;text-align:center;background:#fbfbfb
+}
+.course-danyou div span font{display:block;height:40px;width:40px;line-height:40px;text-align:center;
+    color:#E98B0C;border-radius:100px;background:#fff;box-shadow: 2px 2px 10px rgb(0 0 0 / 5%);
+    font-size:16.4px;font-weight:bold;margin:0 auto;margin-bottom:5px;}
+.course-danyou div span:nth-child(2){margin:0 25px;}
+.course-danyou div span b{display:block;font-size:15.4px;font-weight:normal;padding:8px 5px;font-weight:bold;}
+.course-danyou-top{padding-bottom:30px;margin-bottom:30px;}
+.course-danyou-top h2{margin:0;font-weight:normal;font-size:24.4px;color:#1f3a5f;margin-bottom:10px;}
+.course-danyou-top div{display:block;background: rgba(244, 206, 152, .20);padding:40px 20px;border-radius:10px;}
+.course-danyou-top div span{text-align:center;line-height:180%;background:none;padding:0;color:#1f3a5f;}
+.course-danyou-top{border-bottom:none;}
+.course-danyou-top div span:nth-child(2){margin:0;font-size:16.4px;font-weight:bold;}
+
+.course-tearch{margin-bottom:40px;padding-bottom:45px;border-bottom:1px #eee solid;}
+.course-tearch h2{font-size:18.4px;margin-bottom:20px;font-weight:bold;text-align:center;}
+.course-tearch div{font-size:14.4px;text-align:center;padding:30px 30px;border-radius:8px;background:#fbfbfb;}
+.course-tearch div b{font-size:14.4px;}
+.course-tearch div img{left:0;top:0;width:100px;border-radius:90px;padding:3px;box-shadow: 0 0 10px rgb(0 0 0 / 4.5%);border:1px #f0f0f0 solid;background:#fff;}
+.course-tearch div span{display:block;padding:2px;line-height:150%;}
+.course-tearch div span font{color:#666;font-size:12.4px;padding-left:5px;}
+
+.course-list{margin-bottom:40px;padding-bottom:45px;border-bottom:1px #eee solid;}
+.course-list h2{font-size:18.4px;margin-bottom:20px;font-weight:bold;text-align:center;}
+.course-list div span{display:block;height:36px;line-height:36px;margin-bottom:8px;
+    font-size:14.4px;border-radius:5px;color:#333;background:#fbfbfb;}
+.course-list div span:last-child{margin-bottom:0;}
+.course-list div span font{display:inline-block;height:36px;width:36px;text-align:center;background:#f5f5f5;margin-right:12px;
+color:#999;font-size:14.4px;font-weight:bold;}
+
+.course-group{margin-bottom:40px;padding-bottom:10px;}
+.course-group h2{font-size:18.4px;margin-bottom:20px;font-weight:bold;text-align:center;}
+.course-group div{display:flex;justify-content: space-between;}
+.course-group div span{display:block;font-size:14.4px;line-height:150%;color:#333;text-align:center;
+width:100%;height:auto;border-radius:10px;padding:30px 20px;box-sizing: border-box;text-align:center;background:#fbfbfb;
+}
+.course-group div span font{display:block;height:60px;width:60px;line-height:40px;text-align:center;border-radius:100px;
+    font-size:16.4px;font-weight:bold;margin:0 auto;margin-bottom:-10px;}
+.course-group div span:nth-child(2){margin:0 25px;}
+.course-group div span b{display:block;font-weight:normal;font-size:14.4px;font-weight:bold;padding:8px 5px;}

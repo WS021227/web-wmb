@@ -8,6 +8,7 @@ const router = express.Router();
 
 // 课程详情页
 router.recording_detail = function(req,res){
+    if (res.locals.wglobals.lang != 'cn') return res.status(404).render('error')
     res.locals.wglobals.nav_active='course'
     let id=req.params.id
     let results={}

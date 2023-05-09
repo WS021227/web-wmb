@@ -14,7 +14,6 @@ router.index = function (req, res) {
                     {is_payment: false, all: true},
                     req, res,
                     function (result) {
-                        console.log(result.data,"价格数据node")
                         let list = (result.data || {}).list || [];
                         if(list.length > 0) {
                             for (let i = 0; i <list.length; i++) {

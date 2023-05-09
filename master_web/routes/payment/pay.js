@@ -594,10 +594,16 @@ router.surprise_coupon_close = function (req, res) {
     })
 }
 
+router.surprise_30_coupon_close = function (req, res) {
+    tools.putMasterApiQuery('/user/functional', {
+        key: 'spc_2023',
+        value: 1
+    }, req, res, function (result) {
+        res.send(result)
+    })
+}
 
 router.df_coupon = function (req, res) {
-
-
     tools.getMasterApiQuery('/coupon/df/receive', {}, req, res, function (result) {
         res.send(result)
     })
