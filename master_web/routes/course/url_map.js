@@ -8,6 +8,8 @@ router.get('/async/get_side',course.get_side)
 router.get("/async/get_lbkc",course.get_lbkc)
 // 下载资源包
 router.post("/async/download_zy/:pack_id",course.download_zy)
+// 权限校验
+router.post("/async/jy_down_zy",course.jy_down_zy)
 
 // 录播课详情页面
 const recording_detail = require('./recording_detail')

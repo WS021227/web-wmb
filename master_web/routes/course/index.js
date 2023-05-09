@@ -171,4 +171,23 @@ router.get_side=function(req,res){
     })
 }
 
+// 校验
+router.jy_down_zy=function(req,res){
+    let vip = req.body.vip || "",user_level = res.locals.wglobals.simple_user.vip_level
+    let vip_jy = {
+        "":0,
+        'v':1,
+        'bd':2,
+        'yd':3
+    }
+    let vip_jy1 = {
+        0:"",
+        1:'v',
+        2:'bd',
+        3:'yd'
+    }
+    if(vip_jy[user_level] < vip_jy[vip]) return res.send({state:1,v:vip_jy1[vip_jy[vip]]})
+    res.send({state:0})
+}
+
 module.exports = router;

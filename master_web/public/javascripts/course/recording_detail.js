@@ -1,10 +1,4 @@
 let wd_num=0
-let vip_jy = {
-    '': 1,
-    'v': 2,
-    'bd': 3,
-    'yd': 4
-}
 
 $(function(){
     $("#ppt_download").on('load',(function(){
@@ -52,25 +46,7 @@ function video_yz(event){
 function get_class(event){
     let vip = $(event).data("vip")
     let id = $(event).data("id")
-    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
-    get_kc(id)
-}
-
-// 领取课程
-function get_kc(id){
-    $.loadajax(`/async/course/2023/receive`, {
-        datatype: 'text',
-        method:'POST',
-        data: {id:id},
-        success: function (result) {
-            console.log(result,"课程领取")
-            if(result.state!=0) return layer.msg("领取失败")
-            layer.msg("成功领取")
-            setTimeout(function(){
-                window.location.reload()
-            },1000)
-        }
-    })
+    jy_down_zy1(vip,id)
 }
 
 // 发布评论
@@ -134,34 +110,68 @@ function get_js_data(){
 
 // 下载ppt
 function down_ppt(event){
-    let vip_jy = {
-        "":0,
-        'v':1,
-        'bd':2,
-        'yd':3
-    }
     let vip = $(event).data("vip")
     let name = $(event).data("name")
     let url= $(event).data("url")
     let id = $(event).data("id")
     let fname = $(event).data("fname")
-    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
-
-    if(url=="") return layer.open({
-                            type: 1,
-                            shade:0.3,
-                            shadeClose: true,
-                            btn:"领取课件",
-                            title: ['提示'], //不显示标题
-                            content: '<div class="ts-content"><span>免费领取课件后，可观看视频/下载视频PPT</span></div>',
-                            area:['500px',''],
-                            yes:function(index,layero){
-                                get_kc(id)
-                                layer.close(index); //关闭弹出框
-                            }
-                        });
-
-    document.ppt_download.method = 'post'
-    document.ppt_download.action = `/async/down_ppt?name=${name}&fname=${fname}`
-    document.ppt_download.submit()
+    jy_down_zy(vip,name,fname,url,id)
 }
+
+// 权限校验
+function jy_down_zy(vip,name,fname,url,id){
+    $.ajax('/async/jy_down_zy', {
+        datatype: 'text',
+        method: "post",
+        data: {vip:vip},
+        success: function (result) {
+            if(result.state != 0) return share_authority_failure(result.v)
+            if(url == "") {return layer.open({
+                                    type: 1,
+                                    shade:0.3,
+                                    shadeClose: true,
+                                    btn:"领取课件",
+                                    title: ['提示'], //不显示标题
+                                    content: '<div class="ts-content"><span>免费领取课件后，可观看视频/下载视频PPT</span></div>',
+                                    area:['500px',''],
+                                    yes:function(index,layero){
+                                        get_kc(id)
+                                        layer.close(index); //关闭弹出框
+                                    }
+                                });}
+            document.ppt_download.method = 'post'
+            document.ppt_download.action = `/async/down_ppt?name=${name}&fname=${fname}`
+            document.ppt_download.submit()
+        }
+    })
+}
+
+function jy_down_zy1(vip,id){
+    $.ajax('/async/jy_down_zy', {
+        datatype: 'text',
+        method: "post",
+        data: {vip:vip},
+        success: function (result) {
+           if(result.state != 0) return share_authority_failure(result.v)
+           get_kc(id)
+        }
+    })
+}
+
+// 领取课程
+function get_kc(id){
+    $.loadajax(`/async/course/2023/receive`, {
+        datatype: 'text',
+        method:'POST',
+        data: {id:id},
+        success: function (result) {
+            console.log(result,"课程领取")
+            if(result.state!=0) return layer.msg("领取失败")
+            layer.msg("成功领取")
+            setTimeout(function(){
+                window.location.reload()
+            },1000)
+        }
+    })
+}
+

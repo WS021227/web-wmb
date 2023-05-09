@@ -100,18 +100,23 @@ function get_lbkc_list_more(lb_num){
 
 // 下载资源包
 function download_zy(event){
-    let vip_jy = {
-        "":0,
-        'v':1,
-        'bd':2,
-        'yd':3
-    }
     let id = $(event).data("id")
     let vip = $(event).data("vip")
-    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
+    jy_down_zy(vip,id)
+}
 
-    document.zy_download.method = 'post'
-    document.zy_download.action = `/async/download_zy/${id}`
-    document.zy_download.submit()
+// 权限校验
+function jy_down_zy(vip,id){
+    $.ajax('/async/jy_down_zy', {
+        datatype: 'text',
+        method: "post",
+        data: {vip:vip},
+        success: function (result) {
+           if(result.state != 0) return share_authority_failure(result.v)
+           document.zy_download.method = 'post'
+           document.zy_download.action = `/async/download_zy/${id}`
+           document.zy_download.submit()
+        }
+    })
 }
 

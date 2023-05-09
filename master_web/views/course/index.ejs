@@ -9,13 +9,12 @@
     <link href="<%= STATIC %>css/course/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <% console.log(results.zyb_list.list,"页面数据") %>
     <% let kc_num=results.kc_num,top_live_data = results.top_live_data,zyb_list=results.zyb_list.list,zyb_list_num=results.zyb_list.total,lb_list=results.lb_list.list,lb_list_num=results.lb_list.total %>
     <%- include('../global/head.ejs') %>
     <div class="course-header">
         <div class="course-header-k">
             <div class="header-left">
-                <h1>预约《<%= top_live_data.name %>》直播课</h1>
+                <h1>【直播预约】<%= top_live_data.name %></h1>
                 <p><%= top_live_data.des %></p>
                 <div class="header-time"><span>直播时间：<%= top_live_data.live_time %></span><font>|</font><span>时长：预计<%= top_live_data.live_dur %>分</span><font>|</font><span>平台：微信视频号</span></div>
                 <div class="header-left-user">
@@ -27,7 +26,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <span>微信扫码预约直播课↓↓↓</span>
+                <span class="jump">微信扫码预约直播课↓↓↓</span>
                 <img src="https://static.52wmb.com/wmb_course/2023/images/<%=top_live_data.reserve_qrcode%>" alt="">
             </div>
         </div>  
@@ -69,7 +68,8 @@
                     <span>最新</span>
                 </div>
                 <a href="<%= wglobals.user.id?'javascript:void(0);':'login' %>" id="<%= wglobals.user.id?'course_zy_num':"" %>" data-sum="<%= zyb_list_num %>">
-                    <!--共计<span><%= zyb_list_num %></span>个-->更多资料<font>&gt;</font>           
+                    共计<span><%= zyb_list_num %></span>个
+                    <i></i>
                 </a>
             </h2>
             <div class="course-zy-list">
@@ -82,7 +82,7 @@
                         <% if(!wglobals.user.id) {%>
                             <a href="/login">下载</a>
                         <% } else { %>
-                            <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>" data-vip="<%= item.download_level %>" data-name="<%= item.name  %>">下载</a>
+                            <a href="javascript:void(0);" onclick="download_zy(this)" data-id="<%= item.id %>" data-vip="<%= item.download_level %>">下载</a>
                         <% } %>
                     </div>
                 <% }) %>
@@ -96,7 +96,6 @@
             <div class="course-lb-list">
                 <% lb_list.forEach(function(item,index){ %>
                     <div class="lb-box">
-                        <font class="course-tips">免费</font>
                         <img class="lb-box-fenmian" src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="<%= item.name %>">
                         <div class="content">
                             <a href="/course/<%= item.id %>" target="_blank"><%= item.name %></a>
