@@ -3,6 +3,7 @@ let sum=$("#course_zy_num").data("sum")
 $(function(){
     $("#zy_download").on('load',(function(){
         var text = $(this).contents().find("body").text(); //获取到的是json的字符串
+        console.log(text,"表单回调")
         var j = $.parseJSON(text);  //json字符串转换成json对象
         console.log(j,"表单回调")
         if(j.state!=0) return layer.msg("下载失败")

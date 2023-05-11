@@ -51,7 +51,7 @@ router.index = function (req, res) {
             },
             function (callback) {
                 // 开发课更新节数
-                tools.getMasterApiQuery(`/cdc/class/total/1`, {}, req, res,
+                tools.getMasterApiQuery(`/cdc/class/total/2`, {}, req, res,
                     function (result) {
                         console.log(result,"课程节数")
                         results.kc_num = result.data.total || 0;
@@ -119,7 +119,6 @@ router.download_zy=function(req,res){
     // 获取资源包地址(文件名)
     tools.getMasterApiQuery(`/course/2023/information-pack/${id}`, {}, req, res,
         function(result){
-            console.log(result)
             if(result.state != 0) return res.send({state:1})
             var name = result.data.file// 待下载的文件名
             let kzm = name.substring(name.lastIndexOf("."))
@@ -134,14 +133,13 @@ router.download_zy=function(req,res){
             var filestream = fs.createReadStream(filePath);
             filestream.pipe(res);
             filestream.on('data', (data) => {
-                console.log(data,'传输中');
+                console.log('传输中');
             }); 
             filestream.on('error', function() {
-                
+                console.log('下载失败');
             });
             filestream.on('end', () => {
                 console.log('下载结束');
-                
             }); 
         }
     )

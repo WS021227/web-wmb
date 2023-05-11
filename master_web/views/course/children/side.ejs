@@ -1,4 +1,3 @@
-<% console.log(results,"侧拉数据ejs") %>
 <% let list=results.list,num=results.total%>
 <div class='side-box' data-sum="<%= num %>">
     <div class="side-box-head">
@@ -43,7 +42,6 @@
                 datatype: 'text',
                 data: {start:start,end:end},
                 success: function (result) {
-                    console.log(result,"more")
                     $(".side-box-content").html($(result.content))
                 }
             })

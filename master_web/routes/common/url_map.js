@@ -54,4 +54,8 @@ router.get('/async/close/df-dec', decorator.sign_required(), common.close_df_dec
 router.post('/async/receive/ty', common.receive_ty)
 router.get('/async/wstats/ccs', common.wstats_ccs)
 
+// 体验引导 
+// 放弃体验、修改引导节点
+router.post("/user/functional",common.ty_node_revise)
+
 module.exports = router;

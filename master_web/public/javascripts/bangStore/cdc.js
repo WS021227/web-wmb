@@ -153,6 +153,7 @@ function open_auth() {
     if (!verify_sign({login: true, only_return: true}, null)) return
     $.ajax('/async/cdc/open', {
         type: 'post',
+        data:{series:url_flag},
         success: function (result) {
             if (result.state != 0) return $.alert(result.message)
             layer.alert('恭喜，课件领取成功！', {

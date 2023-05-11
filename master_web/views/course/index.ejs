@@ -14,7 +14,7 @@
     <div class="course-header">
         <div class="course-header-k">
             <div class="header-left">
-                <h1>【直播预约】<%= top_live_data.name %></h1>
+                <h1>预约《<%= top_live_data.name %>》直播课</h1>
                 <p><%= top_live_data.des %></p>
                 <div class="header-time"><span>直播时间：<%= top_live_data.live_time %></span><font>|</font><span>时长：预计<%= top_live_data.live_dur %>分</span><font>|</font><span>平台：微信视频号</span></div>
                 <div class="header-left-user">
@@ -68,8 +68,7 @@
                     <span>最新</span>
                 </div>
                 <a href="<%= wglobals.user.id?'javascript:void(0);':'login' %>" id="<%= wglobals.user.id?'course_zy_num':"" %>" data-sum="<%= zyb_list_num %>">
-                    共计<span><%= zyb_list_num %></span>个
-                    <i></i>
+                   更多资源<font>&gt;</font>                   
                 </a>
             </h2>
             <div class="course-zy-list">
@@ -78,7 +77,6 @@
                         <img src="https://static.52wmb.com/wmb_course/2023/images/<%= item.icon %>" alt="">
                         <span><%= item.name %></span>
                         <div><span><%= (item.size/1024).toFixed(2) %>M</span><font>|</font><span><%= item.format %></span></div>
-                        <% console.log(item.size,"录播课详情") %>
                         <% if(!wglobals.user.id) {%>
                             <a href="/login">下载</a>
                         <% } else { %>
@@ -96,6 +94,7 @@
             <div class="course-lb-list">
                 <% lb_list.forEach(function(item,index){ %>
                     <div class="lb-box">
+                        <font class="course-tips">免费</font>
                         <img class="lb-box-fenmian" src="https://static.52wmb.com/wmb_course/2023/images/<%= item.cover %>" alt="<%= item.name %>">
                         <div class="content">
                             <a href="/course/<%= item.id %>" target="_blank"><%= item.name %></a>

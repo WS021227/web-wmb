@@ -5,9 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="static_path" content="<%=STATIC %>">
+    <% if(results.series_id == 1){ %>
     <meta name="keywords" content="海关数据,开发课程,外贸邦,视频课"/>
     <meta name="description" content="《海关数据开发》系列课程历时一年精心筹划制作，全网最系统全面的海关数据开发课程，金牌讲师李宾主讲。34节数据开发课程，多方位掌握海关数据使用技巧!"/>
     <title>《海关数据客户开发》系列视频课程，官方出品-外贸邦</title>
+    <% } else { %>
+    <meta name="keywords" content="海关数据,开发课程,外贸邦,视频课,问题篇"/>
+    <meta name="description" content="《海关数据开发》问题篇系列课程在场景篇的基础上面向有一定海关数据使用基础的用户，从数据开发理论到实操，获得更深层的商业价值和精准的外贸客户！"/>
+    <title>《海关数据客户开发》使用问题系列视频课程，持续更新-外贸邦</title>    
+    <% } %>    
     <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
     <link rel="stylesheet" href="<%= STATIC %>css/bangStore/cdc.css?v=<%=VERSION%>">
 </head>
@@ -17,8 +23,13 @@
     <div class="content-head">
         <div class="content-head-context">
             <div class="left">
-                <h1 class="text1">《海关数据客户开发》系列课程，官方出品。</h1>
-                <p class="text2">学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</p>
+                <% if(results.series_id == 1){ %>
+                    <h1 class="text1">《海关数据客户开发》场景篇系列课程，官方出品。</h1>
+                    <p class="text2">学会一套完整的海外客户开发新技能，掌握拓展外贸业务好渠道！</p>
+                <% } else { %>
+                    <h1 class="text1">《海关数据客户开发》问题篇系列课程，持续更新。</h1>
+                    <p class="text2">从数据开发理论到实操，获得更深层的商业价值和精准的外贸客户！</p>
+                <% } %>
             </div>
         </div>
     </div>
@@ -31,7 +42,7 @@
                 <div class="lbox">
                     <text class="text1"><span>限时免费:</span>0<font>元</font></text>
                 </div>
-                <div class="cbox">截止3月31号23:59免费领取，《海关数据开发》34节课时全套开发课程终身观看。</div>
+                <div class="cbox">截止3月31号23:59免费领取，《海关数据开发》全套开发课程终身观看。</div>
                 <a href="javascript:void(0)" class="rbox" onclick="open_auth()">立即领取</a>
             <%}else{%>
                 <%if(wglobals.user.vip_level){%>
@@ -44,7 +55,7 @@
                     <div class="lbox">
                         <text class="text1"><span>全套课程&VIP会员:</span>99<font>元</font></text>
                     </div>
-                    <div class="cbox">99元=数据VIP会员一个月+《海关数据开发》34节课时全套课程终身观看。</div>
+                    <div class="cbox">99元=数据VIP会员一个月+《海关数据开发》全套课程终身观看。</div>
                     <a href="/Alipay?v=v&m=1" class="rbox" target="_blank">立即购买</a>
                 <%}%>
             <%}%>

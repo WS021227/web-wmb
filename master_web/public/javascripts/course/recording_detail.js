@@ -25,28 +25,15 @@ $(function(){
 function video_yz(event){
     let vip = $(event).data("vip")
     let id = $(event).data("id")
-    console.log(vip_jy[wg.user.vip_level],vip_jy[vip],"所需等级")
-    if(vip_jy[wg.user.vip_level] < vip_jy[vip]) return share_authority_failure(vip_jy[vip])
-    layer.open({
-        type: 1,
-        shadeClose: true,
-        shade:0.3,
-        btn:"领取课件",
-        title: ['提示'], //不显示标题
-        content: '<div class="ts-content"><span>免费领取课件后，可观看视频/下载视频PPT</span></div>',
-        area:['500px',''],
-        yes:function(index,layero){
-            get_kc(id)
-            layer.close(index); //关闭弹出框
-        }
-    });
+    let url = $(event).data("url")
+    jy_down_zy1(vip,id,url)
 }
 
 // 领取课程
 function get_class(event){
     let vip = $(event).data("vip")
     let id = $(event).data("id")
-    jy_down_zy1(vip,id)
+    jy_down_zy2(vip,id)
 }
 
 // 发布评论
@@ -146,14 +133,39 @@ function jy_down_zy(vip,name,fname,url,id){
     })
 }
 
-function jy_down_zy1(vip,id){
+function jy_down_zy1(vip,id,url){
     $.ajax('/async/jy_down_zy', {
         datatype: 'text',
         method: "post",
         data: {vip:vip},
         success: function (result) {
+            console.log(result,url)
            if(result.state != 0) return share_authority_failure(result.v)
-           get_kc(id)
+           if(url == "") {return layer.open({
+            type: 1,
+            shade:0.3,
+            shadeClose: true,
+            btn:"领取课件",
+            title: ['提示'], //不显示标题
+            content: '<div class="ts-content"><span>免费领取课件后，可观看视频/下载视频PPT</span></div>',
+            area:['500px',''],
+            yes:function(index,layero){
+                get_kc(id)
+                layer.close(index); //关闭弹出框
+            }
+        });}
+        }
+    })
+}
+
+function jy_down_zy2(vip,id){
+    $.ajax('/async/jy_down_zy', {
+        datatype: 'text',
+        method: "post",
+        data: {vip:vip},
+        success: function (result) {
+            if(result.state != 0) return share_authority_failure(result.v)
+            get_kc(id)
         }
     })
 }

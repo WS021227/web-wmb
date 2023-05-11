@@ -13,9 +13,11 @@ router.custom_data_course = function (req, res) {
     let series_id = req.params.id
     res.locals.wglobals.nav_active = 'course'
     let results = {}
+    results.series_id = series_id
     async.series([
             function (cb){
                 tools.getMasterApiQuery('/cdc/catalog', {start: 0, size: 100 ,series: series_id}, req, res, function (result){
+                    console.log(result.data,"88888")
                     results.data = result.data
                     cb(null, 1)
                 })
@@ -23,6 +25,7 @@ router.custom_data_course = function (req, res) {
             function (cb){
                 unity_reply_list(req, res, 1,series_id, function (result){
                     results.reply = result
+                    console.log(result,"课程列表")
                     cb(null, 1)
                 })
             }
@@ -76,10 +79,12 @@ router.custom_data_course_reply_add = function (req, res) {
 }
 router.custom_data_course_open_auth = function (req, res) {
     var series = req.body.series || 1
+    console.log(series,"222")
     tools.postMasterApiQuery('/cdc/open/permission', {series: series}, req, res,
         function (result) {
+            console.log(result)
             res.send(result)
-        })
+    })
 }
 
 

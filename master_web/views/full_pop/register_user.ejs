@@ -1,35 +1,34 @@
 <style>
     .new-register{padding:35px 50px;}
     .new-register h2{font-size:21.4px;color:#333;text-align:center;display: block;}
-    .new-register p{font-size:15.4px;}
-    .new-register-1{line-height:150%;padding-bottom:20px;padding-top:10px;}
+    .new-register p{font-size:14.4px;}
+    .new-register-1{line-height:150%;padding-bottom:20px;padding-top:10px;text-align:center;}
     .new-register-2{text-align: center;}
     .new-register-2 span{display:block;}
-    .new-register-2 span b{color:#f30;font-size:18.4px;}
-    .new-register-2 span:nth-child(2){font-size:14.4px;color:#999;padding-top:2px;}
+    .new-register-2 span font{text-decoration:line-through;color:#999;}
+    .new-register-2 span b{color:#f60;font-size:21.4px;}
+    .new-register-2 span:nth-child(2){font-size:12.4px;color:#f60;padding-top:2px;font-weight:normal;}
     .new-register-3{text-align:center;padding-top:8px;}
     .new-register-3 a{display:inline-block;height:42px;line-height:42px;color:#fff;font-size:15.4px;background:#007FFF;width:280px;border-radius:3px;}
 </style>
 <% if(wglobals.lang == 'cn'){ %>
     <div class="new-register">
-        <h2>新人惊喜券</h2>
-        <p class="new-register-1">您当前等级是普通会员，每天可查阅2家公司数据。建议您升级至付费会员，付费VIP会员每天可查阅200家公司贸易报告及其联系方式。疫情期间，我们建议您更多的尝试线上积累客户资源。</p>
+        <h2>送您一张30元VIP惊喜券</h2>
+        <p class="new-register-1">您当前等级是普通会员，每天可查阅2家公司数据。建议您升级至付费会员，付费VIP会员每天可查阅200家公司贸易报告及其联系方式。后疫情时代，我们建议您更加积极地积累客户池。</p>
         <p class="new-register-2">
-            <span>VIP会员低至<b>69元</b>/首月&nbsp;<font>(原价99元/月)</font></span>
-            <span>新人券:30元(注册后24小时内)</span>
-            <span><%= end_time || "" %></span>
+            <span>VIP券后价仅：<b>69元</b>/首月&nbsp;<font>(原价99元/月)</font></span>
+            <span>惊喜券有效期至 <%= end_time || "" %>(24小时内)</span>
         </p>
-        <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">现在，购买会员</a></p>
+        <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">现在，购买会员 →</a></p>
     </div>
 <% } else { %>
     <div class="new-register">
-        <h2>Surprise coupons for newcomers</h2>
-        <p class="new-register-1">You are currently a regular member and have access to 2 companies per day. We recommend that you upgrade to VIP membership, which gives you access to 200 companies and their contact details per day.</p>
+        <h2>Get a $9 VIP surprise coupon</h2>
+        <p class="new-register-1">Your current account is a general member that can access 2 companies' data per day. We recommend you upgrade to a paid membership. The VIP members can access 200 company trade reports and their contact information per day.</p>
         <p class="new-register-2">
-            <span>VIP as low as<b>$20.9</b>/First month&nbsp;<font>(Original price $29.9)</font></span>
-            <span>Newcomer Voucher:$9(Within 24 hours)</span>
-            <span><%= end_time || "" %></span>
+            <span>VIP is only <b>$20.9</b>/first month&nbsp;<font>(Original price $29.9)</font></span>
+            <span>Valid until <%= end_time || "" %> (Within 24 hours)</span>
         </p>
-        <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">Now，Buy membership</a></p>
+        <p class="new-register-3"><a href="/Alipay?v=v&m=1&s=register_tanchuang_tips" target="_blank">Now，Buy membership →</a></p>
     </div>
 <% } %>

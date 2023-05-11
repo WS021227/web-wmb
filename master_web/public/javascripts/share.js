@@ -1991,8 +1991,8 @@ window.onmouseout = function (e) {
     if (no_full_pop == 'yes') return false
     //  当前逻辑
     if (e.clientY > 0) return false;
-    let _qp = getCookies('_QP')
-    if (_qp) return false
+    // let _qp = getCookies('_QP')
+    // if (_qp) return false
     // 未登录不弹
     if (!wg.user.id) return false
     //if(wg.user.user_functional.qp) return
@@ -2015,11 +2015,12 @@ window.onmouseout = function (e) {
         _qidian3.src = (document.location.protocol + "//wp.qiye.qq.com/qidian/2885855166/73d8670e139f21286d483d2e8f3b55d1");
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_qidian3);
 
-        content = '<div class="yaoqing"><h2>邀请您免费体验黄钻会员权限</h2><div class="yaoqing-content">尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a href="/new/797?s=leave-tanchuang" target="_blank" class="yaoqing-link">← 观看视频课程</a><a id="wmb_qidian_3" href="javascript:void(0)" class="yaoqing-link-right">在线申请体验 →</a></div>'
+        content = '<div class="yaoqing"><h2>邀请您免费体验黄钻会员权限</h2><div class="yaoqing-content">尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a class="yaoqing-link" onclick="abandon_experience("experience",7)">← 放弃体验</a><a id="wmb_qidian_3" href="javascript:void(0)" class="yaoqing-link-right">在线申请体验 →</a></div>'
     } else {
         content = '<div class="yaoqing"><h2>To experience yellow diamond member service</h2><div class="yaoqing-content">We have global 30 million companies reports and there will be your competitor and business partners within it...Free experience it right now!</div><a href="https://api.whatsapp.com/send?phone=+8616621075894&text=Hello" target="_blank" class="yaoqing-link">Free experience it →</a></div>'
     }
 
+    layer.closeAll()
     layer.open({
         content: content,
         title: unity_lang('layer_tips'),
@@ -2027,10 +2028,10 @@ window.onmouseout = function (e) {
         skin: 'layui-layer-rim',
         area: ['600px', ''], // 配置长高
         shadeClose: false, //点击遮罩关闭
-        closeBtn: 1
+        closeBtn: false
     })
 
-    $.wSetCookie('_QP', '1', 86400)
+    // $.wSetCookie('_QP', '1', 86400)
 };
 
 
@@ -2044,6 +2045,23 @@ function wstats(code, ext) {
         "collect": code,
         t: Math.random()
     });
+}
+
+// 放弃体验
+function abandon_experience(key,id){
+    console.log("78788787899999")
+    $.ajax('/user/functional', {
+        data: {
+            key:key,
+            node_id: id
+        },
+        datatype: 'text/json',
+        type: 'post',
+        success: function (result) {
+            if (result.state != 0) return $.alert(result.message)
+            layer.closeAll()
+        }
+    })
 }
 
 function unity_child_perms(mark, fn) {
