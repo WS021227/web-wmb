@@ -36,6 +36,11 @@ router.get('/benchmark',decorator.only_cn(), benchmark.index)
 const amazon = require('./amazon');
 router.get('/amazon',amazon.index)
 router.get('/async/add_service',amazon.add_service)
+
+// xorder 新添加
+const xorder = require('./xorder');
+router.get('/xorder',xorder.index)
+
 // 提交表单
 router.post('/async/common/js/trial',amazon.js_trial_post)
 // 弹窗

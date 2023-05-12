@@ -496,7 +496,6 @@ function login_valid_user_pop(req, res) {
                     function (data, callback) {
                         // 无付费记录且注册时间小于6个月
                         let coupon_30_flag = user_functional.spc_2023
-                        console.log(coupon_30_flag,"7777")
                         // 关闭不弹
                         if(!coupon_30_flag || coupon_30_flag=='1') return callback(null, 1)
                         // 不是日期格式不弹
@@ -1363,8 +1362,8 @@ router.prize_research=function (req, res) {
 // 放弃体验、体验流程节点修改
 router.ty_node_revise = function(req,res){
     console.log(req.body,"8787887")
-    let node_id = req.body.node_id,key = req.body.key
-    tools.putMasterApiQuery('/user/functional', {key: key,value: node_id}, req, res, function (result) {
+    let ty_flag = req.body.ty_flag,key = req.body.key
+    tools.putMasterApiQuery('/user/functional', {key: key,value: ty_flag}, req, res, function (result) {
         res.send(result)
     })
 }

@@ -571,7 +571,6 @@ let hot_company_country = [{
         is_new: 1
     }
 ]
-console.log(wg,hot_company_country,"789789789")
 let turkey_ip_area=wg.ip_area || ""
 
 // 默认搜索国家
@@ -1044,7 +1043,6 @@ function hot_countries() {
                     if (!has_country[this.country]) {
                         has_country[this.country] = 1
                         let online_new = this.is_new ? '<font>new</font>' : ''
-                        console.log(this.country,"44444444444444444444")
                         $country_list.append('<a class="tab ' + (_select == this.country ? 'active' : '') + '" data-value="' + this.country + '">' + this['country_' + _lang + '_show'] + online_new + '</a>')
                     }
                 })

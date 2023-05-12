@@ -8,7 +8,7 @@
             <div data-value="3" data-pla="<%=translate('search_input_tis_3')%>" data-wstats="hscode_typetab_button" class="search-tab <%=st==3?'active':''%>"><%=translate('search_type_hscode')%></div>
             <input type="hidden" id="text_search_type" value="<%=st%>">
         </div>
-        <form class="slider-search-form" onsubmit="return false;">
+        <form id="process_node_2" class="slider-search-form" onsubmit="return false;">
             <div class="slider-search-box">
                 <input type="text"  value="<%=((results.search_type==3?results.search_hs:results.search_key) || '').toKey()%>" autocomplete="off" placeholder="<%=translate('search_input_tis_' + st)%>" class="seaech-text open-pop clear-target" id="text_global_search"><i class="clear-txt">×</i>
             </div>
