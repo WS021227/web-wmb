@@ -24,5 +24,5 @@ body{background:#F7F8FA;}
 .mall-list li span{display:block;color:#666;font-size:15.4px;}
 .mall-list li span font{color:#333;font-size:18.4px;font-weight:bold;}
 .mall-list li a{display:inline-block;height:36px;line-height:36px;width:120px;border:1px #005FB9 solid;color:#005FB9;text-align:center;margin-top:4px;font-size:14.4px;border-radius:4px;margin-top:5px;}
-.mall-list li:nth-child(6) font{color:#999;line-height:250px;display:block;}
+.mall-list li:nth-child(7) font{color:#999;line-height:250px;display:block;}
 .mall-list li u{text-decoration: none;position:absolute;left:7px;top:7px;background:#f40;color:#fff;font-size:12.4px;height:24px;line-height:24px;padding:0 8px;}

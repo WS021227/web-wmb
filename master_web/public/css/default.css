@@ -1575,7 +1575,6 @@ table.dataTable thead .sorting_desc i{background:url(https://static.52wmb.com/wm
 
 
 /* 体验引导蒙层 */
-/* 提示框header */
 .introjs-overlay{position:absolute;box-sizing:content-box;z-index:999999;opacity:0;transition:all .3s ease-out}
 .introjs-showElement{z-index:9999999!important}
 tr.introjs-showElement>td{z-index:9999999!important;position:relative}
@@ -1618,8 +1617,8 @@ tr.introjs-showElement>th{z-index:9999999!important;position:relative}
 .introjs-button::-moz-focus-inner{padding:0;border:0}
 .introjs-skipbutton{position:absolute;top:0;right:0;display:inline-block;width:45px;height:45px;line-height:45px;color:#616161;font-size:22px;cursor:pointer;font-weight:700;text-align:center;text-decoration:none}
 .introjs-skipbutton:focus,.introjs-skipbutton:hover{color:#212121;outline:0;text-decoration:none}
-.introjs-prevbutton{float:left}
-.introjs-nextbutton{float:right}
+.introjs-prevbutton{float:left;display: none;}
+.introjs-nextbutton{float:right;}
 .introjs-disabled{color:#9e9e9e;border-color:#bdbdbd;box-shadow:none;cursor:default;background-color:#f4f4f4;background-image:none;text-decoration:none}
 .introjs-disabled:focus,.introjs-disabled:hover{color:#9e9e9e;border-color:#bdbdbd;box-shadow:none;cursor:default;background-color:#f4f4f4;background-image:none;text-decoration:none}
 .introjs-hidden{display:none}
@@ -1642,3 +1641,11 @@ tr.introjs-showElement>th{z-index:9999999!important;position:relative}
 .introjs-hint-pulse{box-sizing:content-box;width:15px;height:15px;border-radius:30px;background-color:rgba(136,136,136,.24);z-index:10;position:absolute;transition:all .2s ease-out;animation:introjspulse 2s infinite}
 .introjs-hint-no-anim .introjs-hint-pulse{animation:none}
 .introjs-hint-dot{box-sizing:content-box;background:0 0;border-radius:60px;height:50px;width:50px;position:absolute;top:-18px;left:-18px;z-index:1;opacity:0}
+/* 自定义提示文本框样式 */
+.introjs-toast{
+    /* background-color: #005FB9; */
+}
+/* 自定义提示选择高亮样式 */
+.introjs-light{
+    /* border: 1px red #009f95; */
+}

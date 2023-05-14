@@ -1243,7 +1243,6 @@ function put_hs(count) {
     }
   }
 
-  console.log("789789789789789")
   // 显示当前查询的公司个数
   $(".trade-hs").text(`(${c_flag})`);
 

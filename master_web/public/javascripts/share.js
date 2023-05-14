@@ -731,7 +731,56 @@ var globalData = {
         'yd': '黄钻用户'
     }
 }
-
+var experience_process_flag = {
+    "1" : {
+        'url' : "buyer",
+        'node_id' : 1,
+        'title' : "一",
+        'content' : `<div class="content">第一步</div>`
+    },
+    "2" : {
+        'url' : "buyer",
+        'node_id' : 2,
+        'title' : "二",
+        'content' : `<div class="content">第二步</div>`
+    },
+    "3" : {
+        'url' : "buyer",
+        'node_id' : 3,
+        'title' : "三",
+        'content' : `<div class="content">第三步</div>`
+    },
+    "4" : {
+        'url' : "buyer",
+        'node_id' : 4,
+        'title' : "四",
+        'content' : `<div class="content">第四步</div>`
+    },
+    "5" : {
+        'url' : "buyer",
+        'node_id' : 5,
+        'title' : "五",
+        'content' : `<div class="content">第五步</div>`
+    },
+    "6" : {
+        'url' : "buyer",
+        'node_id' : 6,
+        'title' : "六",
+        'content' : `<div class="content">第六步</div>`
+    },
+    "7" : {
+        'url' : "buyer",
+        'node_id' : 7,
+        'title' : "七",
+        'content' : `<div class="content">第七步</div>`
+    },
+    "8" : {
+        'url' : "buyer",
+        'node_id' : 8,
+        'title' : "八",
+        'content' : `<div class="content">第八步</div>`
+    },
+}
 // 标识不弹窗
 let no_full_pop = $('meta[name="no_full_pop"]').attr('content')
 // 指定弹窗模块， 为空则弹所有
@@ -807,8 +856,6 @@ var _hmt = _hmt || [];
     var s = document.getElementsByTagName("script")[0];
     s.parentNode.insertBefore(hm, s);
 })();
-
-
 
 if (wg.user.vip_level == '') {
     // 普通用户
@@ -1058,6 +1105,9 @@ $(function () {
             '    </a>\n' +
             '</div>')
     }
+    // 体验引导
+    experience_process()
+
     wmb_cf()
     full_top()
     full_pop()
@@ -1986,8 +2036,88 @@ function show_time(str_date) {
     return '刚刚'
 }
      
+// 体验流程
+function experience_process(){
+    // 是否体验过
+    let experience_flag = wg.user.user_functional.experience || 0
+    let process_flag = wg.user.user_functional.enode || 1
+    let _static = wg.static
+    console.log("体验引导",experience_flag,process_flag,_static)
+    // 校验权限
+    // 未登录不出现
+    if(!wg.user.id) return false
+    // 已开通体验且不在体验中出现
+    if(experience_flag != 1) return false
+    // 体验引导流程未走完出现
+    if(process_flag == -1) return false
+    // 体验流程中，其他所有弹窗不弹
+    if(!document.getElementsByTagName('meta')['no_full_pop']){
+        const meta = document.createElement('meta');
+        meta.content = 'yes';
+        meta.name = 'no_full_pop';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(meta);
+    }else{
+        document.getElementsByTagName('meta')['no_full_pop'].setAttribute("content","yes")
+    }
+    no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
+    //异步加载引导插件js
+    // document.write(`<script type=\"text/javascript\" src=\"${_static}plugins/intro.js\"></script>`);
+    let node_id = experience_process_flag[process_flag].node_id,url = experience_process_flag[process_flag].url,step_title = experience_process_flag[process_flag].title,step_content = experience_process_flag[process_flag].content
+    if(!node_id) return false
+    add_process_node(url,node_id,step_title,step_content)
+}
+
+/**
+ * 添加体验流程节点
+ * @param  url 路由
+ * @param  node 节点id
+ */
+function add_process_node(url,node,step_title,step_content){
+    // 流程
+    let steps_list=[]
+    let node_url = url,node_id = node
+    let node_step = document.getElementById(`process_node_2`) || null
+    if(node_step){
+        let node_stepnode = {
+            element: node_step,
+            intro: step_content,
+        }
+        steps_list.push(node_stepnode)
+    }
+    // window.location.pathname = node_url
+    introJs().setOptions({
+            prevLabel:false,
+            nextLabel: "下一步",
+            doneLabel: "结束",
+            /* 引导说明框相对高亮说明区域的位置 */
+            tooltipPosition: 'auto',
+            // tooltipPosition: 'auto',
+            /* 是否使用点点点显示进度 */
+            showBullets: false,
+            /* 是否允许点击空白处退出 */
+            exitOnOverlayClick: false,
+            /* 遮罩层的透明度 */
+            overlayOpacity: 0.6,
+            /* 当位置选择自动的时候，位置排列的优先级 */
+            positionPrecedence: ["right", "bottom", "top", "left"],
+            // 引导说明文本框的样式
+	        tooltipClass: 'introjs-toast',
+	        // 说明高亮区域的样式
+	        highlightClass: 'introjs-light',
+            // 配置内容 steps数组,内部一个对象代表一个步骤
+            steps: steps_list,
+          }).start()
+
+          introJs().onchange(function(obj){
+            // 切换上下按钮step发生变化时触发
+            const num = parseInt($(obj).attr('data-step').match(/\d+/)[0]);// 当前的下标  
+            console.log(num,"步骤")
+          })
+}
+
 // 鼠标移动轨迹判断
 window.onmouseout = function (e) {
+    console.log(wg,"6666")
     if (no_full_pop == 'yes') return false
     //  当前逻辑
     if (e.clientY > 0) return false;
@@ -2016,7 +2146,7 @@ window.onmouseout = function (e) {
         _qidian3.src = (document.location.protocol + "//wp.qiye.qq.com/qidian/2885855166/73d8670e139f21286d483d2e8f3b55d1");
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_qidian3);
 
-        content = '<div class="yaoqing"><h2>邀请您免费体验黄钻会员权限</h2><div class="yaoqing-content">尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a class="yaoqing-link" onclick="abandon_experience("experience",7)">← 放弃体验</a><a id="wmb_qidian_3" href="javascript:void(0)" class="yaoqing-link-right">在线申请体验 →</a></div>'
+        content = `<div class='yaoqing'><h2>邀请您免费体验黄钻会员权限</h2><div class='yaoqing-content'>尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a id='wmb_qidian_3' href='javascript:void(0)' class='yaoqing-link-right'>← 在线申请体验 </a><a class='yaoqing-link' href='javascript:void(0)' onclick='abandon_experience("experience",7)'>放弃体验 →</a></div>`
     } else {
         content = '<div class="yaoqing"><h2>To experience yellow diamond member service</h2><div class="yaoqing-content">We have global 30 million companies reports and there will be your competitor and business partners within it...Free experience it right now!</div><a href="https://api.whatsapp.com/send?phone=+8616621075894&text=Hello" target="_blank" class="yaoqing-link">Free experience it →</a></div>'
     }
@@ -2049,12 +2179,15 @@ function wstats(code, ext) {
 }
 
 // 放弃体验
+/*
+key 要修改的字段
+id 字段值
+*/
 function abandon_experience(key,id){
-    console.log("78788787899999")
     $.ajax('/user/functional', {
         data: {
             key:key,
-            node_id: id
+            ty_flag: id
         },
         datatype: 'text/json',
         type: 'post',
@@ -2849,8 +2982,6 @@ function unity_authority(vip, call, to_login = false, $elem) {
 }
 
 function verify_vip_level(vip, need_vip) {
-    console.log(vip,need_vip,"9909")
-    console.log(vip,need_vip,globalData,"9909")
     if (!vip) return false;
     return globalData.vipMarkLevel[vip] >= globalData.vipMarkLevel[need_vip]
 }
