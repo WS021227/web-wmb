@@ -59,6 +59,8 @@
 </div>
 <%- include('../global/foot.ejs') %>
 <input type="hidden" id="wMask_js" value="<%= STATIC %>plugins/mask.js">
+<!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
+<input type="hidden" id="intro_js" value="<%= STATIC %>plugins/intro.js">
 <%if(wglobals.user.id){%>
 <script src="<%= STATIC %>js/foundation-datepicker.min.js"></script>
 <%}%>

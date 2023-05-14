@@ -731,56 +731,58 @@ var globalData = {
         'yd': '黄钻用户'
     }
 }
-var experience_process_flag = {
-    "1" : {
-        'url' : "buyer",
-        'node_id' : 1,
-        'title' : "一",
-        'content' : `<div class="content">第一步</div>`
+var experience_process_flag = [
+    {
+        url : "/buyer",
+        node_id : 1,
+        title : "一",
+        element: document.getElementById(`process_node_1`) || null,
+        intro: `<div class="content">第一步</div>`,
     },
-    "2" : {
-        'url' : "buyer",
-        'node_id' : 2,
-        'title' : "二",
-        'content' : `<div class="content">第二步</div>`
+    {
+        url : "/buyer",
+        node_id : 2,
+        title : "二",
+        element: document.getElementById(`process_node_2`) || null,
+        intro: `<div class="content">第二步</div>`,
     },
-    "3" : {
-        'url' : "buyer",
-        'node_id' : 3,
-        'title' : "三",
-        'content' : `<div class="content">第三步</div>`
-    },
-    "4" : {
-        'url' : "buyer",
-        'node_id' : 4,
-        'title' : "四",
-        'content' : `<div class="content">第四步</div>`
-    },
-    "5" : {
-        'url' : "buyer",
-        'node_id' : 5,
-        'title' : "五",
-        'content' : `<div class="content">第五步</div>`
-    },
-    "6" : {
-        'url' : "buyer",
-        'node_id' : 6,
-        'title' : "六",
-        'content' : `<div class="content">第六步</div>`
-    },
-    "7" : {
-        'url' : "buyer",
-        'node_id' : 7,
-        'title' : "七",
-        'content' : `<div class="content">第七步</div>`
-    },
-    "8" : {
-        'url' : "buyer",
-        'node_id' : 8,
-        'title' : "八",
-        'content' : `<div class="content">第八步</div>`
-    },
-}
+    // {
+    //     'url' : "buyer1",
+    //     'node_id' : 3,
+    //     'title' : "三",
+    //     'content' : `<div class="content">第三步</div>`
+    // },
+    // {
+    //     'url' : "buyer1",
+    //     'node_id' : 4,
+    //     'title' : "四",
+    //     'content' : `<div class="content">第四步</div>`
+    // },
+    // {
+    //     'url' : "buyer1",
+    //     'node_id' : 5,
+    //     'title' : "五",
+    //     'content' : `<div class="content">第五步</div>`
+    // },
+    // {
+    //     'url' : "buyer1",
+    //     'node_id' : 6,
+    //     'title' : "六",
+    //     'content' : `<div class="content">第六步</div>`
+    // },
+    // {
+    //     'url' : "buyer1",
+    //     'node_id' : 7,
+    //     'title' : "七",
+    //     'content' : `<div class="content">第七步</div>`
+    // },
+    // {
+    //     'url' : "buyer1",
+    //     'node_id' : 8,
+    //     'title' : "八",
+    //     'content' : `<div class="content">第八步</div>`
+    // },
+]
 // 标识不弹窗
 let no_full_pop = $('meta[name="no_full_pop"]').attr('content')
 // 指定弹窗模块， 为空则弹所有
@@ -2060,11 +2062,17 @@ function experience_process(){
         document.getElementsByTagName('meta')['no_full_pop'].setAttribute("content","yes")
     }
     no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
-    //异步加载引导插件js
-    // document.write(`<script type=\"text/javascript\" src=\"${_static}plugins/intro.js\"></script>`);
-    let node_id = experience_process_flag[process_flag].node_id,url = experience_process_flag[process_flag].url,step_title = experience_process_flag[process_flag].title,step_content = experience_process_flag[process_flag].content
+    let node_id = experience_process_flag[process_flag].node_id,url = experience_process_flag[process_flag].url,now_url = window.location.pathname
     if(!node_id) return false
-    add_process_node(url,node_id,step_title,step_content)
+    // 跳转指定的流程引导页面
+    if(now_url != url){
+        window.location.replace(url)
+    }
+    //异步加载引导插件js
+    load_js_file('intro', function () {
+        console.log(node_id,"4444444444")
+        add_process_node(node_id)
+    })
 }
 
 /**
@@ -2072,19 +2080,14 @@ function experience_process(){
  * @param  url 路由
  * @param  node 节点id
  */
-function add_process_node(url,node,step_title,step_content){
-    // 流程
-    let steps_list=[]
-    let node_url = url,node_id = node
-    let node_step = document.getElementById(`process_node_2`) || null
-    if(node_step){
-        let node_stepnode = {
-            element: node_step,
-            intro: step_content,
-        }
-        steps_list.push(node_stepnode)
+function add_process_node(id){
+    console.log(id,"4444444444")
+    // 流程节点列表
+    let steps_list=[],node_id = Number(id)
+    // 根据当前记录的节点值构建页面引导流程
+    if(node_id <= 2){
+        steps_list = experience_process_flag.slice(0,2)
     }
-    // window.location.pathname = node_url
     introJs().setOptions({
             prevLabel:false,
             nextLabel: "下一步",
@@ -3807,12 +3810,13 @@ function load_js_file(call, callback) {
         callback()
         return false;
     }
-
+    console.log("4444444444")
     var js_dom = document.createElement('script');
     js_dom.type = 'text/javascript';
     js_dom.async = true;
     js_dom.src = $('#' + call + '_js').val();
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(js_dom);
+    console.log("44444444441111111111111111111111111")
     js_file_interval[call] = window.setInterval(function () {
         if (typeof window[call] !== 'undefined' || typeof $.fn[call] !== 'undefined') {
             window.clearInterval(js_file_interval[call])
