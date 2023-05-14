@@ -1993,6 +1993,7 @@ window.onmouseout = function (e) {
     if (e.clientY > 0) return false;
     // let _qp = getCookies('_QP')
     // if (_qp) return false
+    // 新用户在线申请体验
     // 未登录不弹
     if (!wg.user.id) return false
     //if(wg.user.user_functional.qp) return
@@ -3301,7 +3302,7 @@ function topFunction() {
 
 /**
  * 邀约体验黄钻
- * 首次购买超7天
+ * 首次购买超7天(vip)
  * @returns {any}
  */
 function experience_invite_entrance() {
