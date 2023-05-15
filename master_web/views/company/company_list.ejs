@@ -33,12 +33,12 @@
         <div class="sousou-data-left">
             <div class="sousou-data mgall-l">
                 <div class="company-list-filter">
-                    <div class="sousou-screen">
+                    <div class="sousou-screen" id="process_node_3" data-step="3">
                         <b><%=translate('search_select_country')%></b>
                         <p class="screen-state tabs" id="country_list" data-screen="<%=results.screen %>" data-select="<%=results.country%>"></p>
                         <a class="screen-more" data-tab="" data-country="" id="allCountries"><%=translate('share_text_all')%><font>&gt;</font></a>
                     </div>
-                    <div class="company-search-tags company-category display-none">
+                    <div class="company-search-tags company-category display-none"  id="process_node_4" data-step="4">
                         <div class="company-category-name"><%=translate('search_select_category')%></div>
                         <div class="company-category-item">
                             <div class="tab-list tabs">
@@ -147,7 +147,7 @@
 <!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
 <input type="hidden" id="mark_js" value="<%= STATIC %>plugins/jquery.mark.min.js">
 <!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
-<input type="hidden" id="intro_js" value="<%= STATIC %>plugins/intro.js">
+<!-- <input type="hidden" id="intro_js" value="<%= STATIC %>plugins/intro.js"> -->
 <%- include('../global/foot.ejs') %>
 <script src="<%= STATIC %>javascripts/globals.js?v=<%=VERSION%>"></script>
 <script src="<%= STATIC %>javascripts/company/search.js?v=<%=VERSION%>"></script>

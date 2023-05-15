@@ -1465,16 +1465,17 @@ function render_filter_modules(_params) {
     // let has_auth = 1
 
     filter_des = []
+    let idx = 0
     // 选中模块
     $.each(filter_modules, function (name, moptions) {
         let $m = this,
             $ul, _exists = {};
         // 没有预定义 则只是从 get_params_des 拿到字段描述
         if (moptions.default) {
-            let $module = $('<div class="module"><h2>' + (has_auth ? '' : '<i></i>') + moptions.name + '</h2></div>').appendTo($filter_modules)
+            let $module = $('<div class="module"' + (idx == 0  ? 'id = "process_node_5"' : "") + (idx == 0  ? 'data-step = "5"' : "") + '><h2>' + (has_auth ? '' : '<i></i>') + moptions.name + '</h2></div>').appendTo($filter_modules)
             $ul = $('<ul class="screen-e"></ul>').appendTo($module)
         }
-
+        idx++;
         // 先获取该在url参数中或者在自定义选项中存在的值
         get_params_des(name, _params, function (data) {
             if (has_auth) {

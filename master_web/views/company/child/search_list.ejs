@@ -1,7 +1,7 @@
 <% var search_data = results.search_data ;%>
 <% if(search_data && search_data.list && search_data.list.length > 0){ %>
-<% search_data.list.forEach(function(item){%>
-<li>
+<% search_data.list.forEach(function(item,index){%>
+<li id="<%= index==0 ? 'process_node_6' : '' %>" data-step="<%= index==0 ? '6' : '' %>">
   <% var company_name=item.name.trims('.','left'), has_jz = false %>
     <h2><a href="/<%= ['buyer','supplier'][item.type] %>/<%=item.id%>" title="<%=company_name%>" class="company-link" data-key="<%= results.search_type=='2'?results.search_key:results.search_hs %>" target="_blank"><%= company_name %></a>
         <% if(item.is_view) { %><span class="seach-list-span-view"><%=translate('company_viewed')%></span><% } %>

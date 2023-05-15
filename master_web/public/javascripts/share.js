@@ -738,6 +738,7 @@ var experience_process_flag = [
         title : "一",
         element: document.getElementById(`process_node_1`) || null,
         intro: `<div class="content">第一步</div>`,
+        step: 1,
     },
     {
         url : "/buyer",
@@ -745,43 +746,80 @@ var experience_process_flag = [
         title : "二",
         element: document.getElementById(`process_node_2`) || null,
         intro: `<div class="content">第二步</div>`,
+        step: 2,
     },
-    // {
-    //     'url' : "buyer1",
-    //     'node_id' : 3,
-    //     'title' : "三",
-    //     'content' : `<div class="content">第三步</div>`
-    // },
-    // {
-    //     'url' : "buyer1",
-    //     'node_id' : 4,
-    //     'title' : "四",
-    //     'content' : `<div class="content">第四步</div>`
-    // },
-    // {
-    //     'url' : "buyer1",
-    //     'node_id' : 5,
-    //     'title' : "五",
-    //     'content' : `<div class="content">第五步</div>`
-    // },
-    // {
-    //     'url' : "buyer1",
-    //     'node_id' : 6,
-    //     'title' : "六",
-    //     'content' : `<div class="content">第六步</div>`
-    // },
-    // {
-    //     'url' : "buyer1",
-    //     'node_id' : 7,
-    //     'title' : "七",
-    //     'content' : `<div class="content">第七步</div>`
-    // },
-    // {
-    //     'url' : "buyer1",
-    //     'node_id' : 8,
-    //     'title' : "八",
-    //     'content' : `<div class="content">第八步</div>`
-    // },
+    {
+        url : "/buyer",
+        node_id : 3,
+        title : "三",
+        element: document.getElementById(`process_node_3`) || null,
+        intro: `<div class="content">第三步</div>`,
+        step: 3,
+    },
+    {
+        url : "/buyer",
+        node_id : 4,
+        title : "三",
+        element: document.getElementById(`process_node_4`) || null,
+        intro: `<div class="content">第四步</div>`,
+        step: 4,
+    },
+    {
+        url : "/buyer",
+        node_id : 5,
+        title : "五",
+        element: document.getElementById(`process_node_5`) || null,
+        intro: `<div class="content">第五步</div>`,
+        step: 5,
+    },
+    {
+        url : "/buyer",
+        node_id : 6,
+        title : "六",
+        element: document.getElementById(`process_node_6`) || null,
+        intro: `<div class="content">第六步</div>`,
+        step: 6,
+    },
+    {
+        url : "/buyer/90446787",
+        node_id : 7,
+        title : "七",
+        element: document.getElementById(`btn_social_media`) || null,
+        intro: `<div class="content">第七步</div>`,
+        step: 7,
+    },
+    {
+        url : "/buyer/90446787",
+        node_id : 8,
+        title : "二",
+        element: document.getElementById(`process_node_8`) || null,
+        intro: `<div class="content">第八步</div>`,
+        step: 8,
+    },
+    {
+        url : "/buyer/90446787",
+        node_id : 9,
+        title : "三",
+        element: document.getElementById(`company_contact`) || null,
+        intro: `<div class="content">第九步</div>`,
+        step: 9,
+    },
+    {
+        url : "/buyer/90446787",
+        node_id : 10,
+        title : "三",
+        element: document.getElementById(`partner_pane`) || null,
+        intro: `<div class="content">第十步</div>`,
+        step: 10,
+    },
+    {
+        url : "/buyer/90446787",
+        node_id : 11,
+        title : "五",
+        element: document.getElementById(`left_menu`) || null,
+        intro: `<div class="content">第十一步</div>`,
+        step: 11,
+    },
 ]
 // 标识不弹窗
 let no_full_pop = $('meta[name="no_full_pop"]').attr('content')
@@ -2063,16 +2101,19 @@ function experience_process(){
     }
     no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
     let node_id = experience_process_flag[process_flag].node_id,url = experience_process_flag[process_flag].url,now_url = window.location.pathname
+    console.log(now_url,"2222222222222200000000000")
     if(!node_id) return false
     // 跳转指定的流程引导页面
-    if(now_url != url){
-        window.location.replace(url)
-    }
+    // if(now_url != url){
+    //     window.location.replace(url)
+    // }
+    console.log("异步加载前")
     //异步加载引导插件js
-    load_js_file('intro', function () {
-        console.log(node_id,"4444444444")
-        add_process_node(node_id)
-    })
+    // load_js_file('intro', function () {
+    //     add_process_node(node_id)
+    // })
+    console.log(document.getElementById("btn_social_media"),"85858555555")
+    add_process_node(node_id)
 }
 
 /**
@@ -2081,42 +2122,59 @@ function experience_process(){
  * @param  node 节点id
  */
 function add_process_node(id){
-    console.log(id,"4444444444")
-    // 流程节点列表
-    let steps_list=[],node_id = Number(id)
-    // 根据当前记录的节点值构建页面引导流程
-    if(node_id <= 2){
-        steps_list = experience_process_flag.slice(0,2)
+        console.log(document.getElementById("btn_social_media"),"85858555555")
+        let that = introJs()
+        // 流程节点列表
+        let steps_list=[],node_id = Number(id)
+        // 根据当前记录的节点值构建页面引导流程
+        
+        console.log(node_id,"44444")
+        if(node_id<7){
+            steps_list = experience_process_flag.slice(0,5)
+        }
+        else if(node_id<12){
+            steps_list = experience_process_flag.slice(6,11)
+        }
+        console.log(steps_list,"流程")
+            
+        that.setOptions({
+                prevLabel:false,
+                nextLabel: "下一步",
+                doneLabel: "结束",
+                /* 引导说明框相对高亮说明区域的位置 */
+                tooltipPosition: 'auto',
+                /* 是否使用点点点显示进度 */
+                showBullets: false,
+                /* 是否允许点击空白处退出 */
+                exitOnOverlayClick: false,
+                /* 遮罩层的透明度 */
+                overlayOpacity: 0.6,
+                /* 当位置选择自动的时候，位置排列的优先级 */
+                positionPrecedence: ["right", "bottom", "top", "left"],
+                // 引导说明文本框的样式
+                tooltipClass: 'introjs-toast',
+                // 说明高亮区域的样式
+                highlightClass: 'introjs-light',
+                // 配置内容 steps数组,内部一个对象代表一个步骤
+                steps: steps_list,
+              }).oncomplete(function () {
+                // 点击跳过按钮后执行的事件
+                console.log("555")
+              }).onexit(function () {
+                // 点击结束按钮后,执行的事件
+                console.log("666")
+              }).onchange(function(obj){
+                // // 改流程节点 (已完成的节点)
+                // let node_id = $(obj).data("step")
+                // abandon_experience("enode",node_id)
+              }).onstart(function(){
+                // 样式有问题
+                // that.goToStepNumber(node_id)
+              }).start()
+        // that.nextStep(function(){
+        //     console.log("下一步")
+        // })
     }
-    introJs().setOptions({
-            prevLabel:false,
-            nextLabel: "下一步",
-            doneLabel: "结束",
-            /* 引导说明框相对高亮说明区域的位置 */
-            tooltipPosition: 'auto',
-            // tooltipPosition: 'auto',
-            /* 是否使用点点点显示进度 */
-            showBullets: false,
-            /* 是否允许点击空白处退出 */
-            exitOnOverlayClick: false,
-            /* 遮罩层的透明度 */
-            overlayOpacity: 0.6,
-            /* 当位置选择自动的时候，位置排列的优先级 */
-            positionPrecedence: ["right", "bottom", "top", "left"],
-            // 引导说明文本框的样式
-	        tooltipClass: 'introjs-toast',
-	        // 说明高亮区域的样式
-	        highlightClass: 'introjs-light',
-            // 配置内容 steps数组,内部一个对象代表一个步骤
-            steps: steps_list,
-          }).start()
-
-          introJs().onchange(function(obj){
-            // 切换上下按钮step发生变化时触发
-            const num = parseInt($(obj).attr('data-step').match(/\d+/)[0]);// 当前的下标  
-            console.log(num,"步骤")
-          })
-}
 
 // 鼠标移动轨迹判断
 window.onmouseout = function (e) {
@@ -2187,6 +2245,7 @@ key 要修改的字段
 id 字段值
 */
 function abandon_experience(key,id){
+    console.log(key,id,"2322323232323232323")
     $.ajax('/user/functional', {
         data: {
             key:key,
@@ -3810,19 +3869,23 @@ function load_js_file(call, callback) {
         callback()
         return false;
     }
-    console.log("4444444444")
+
     var js_dom = document.createElement('script');
     js_dom.type = 'text/javascript';
     js_dom.async = true;
     js_dom.src = $('#' + call + '_js').val();
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(js_dom);
-    console.log("44444444441111111111111111111111111")
+
     js_file_interval[call] = window.setInterval(function () {
         if (typeof window[call] !== 'undefined' || typeof $.fn[call] !== 'undefined') {
             window.clearInterval(js_file_interval[call])
             callback()
         }
     }, 1000)
+
+    setTimeout(function(){
+        callback()
+    },1000)
 }
 
 

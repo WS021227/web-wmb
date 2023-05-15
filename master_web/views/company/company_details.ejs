@@ -47,7 +47,7 @@
 					</span>
                     <% if(company_detail.address){%><span class="site"><%=translate('detail_address')%>: <%=company_detail.address%></span><%}%>
                     <span class="button-link">
-                        <a href="javascript:void(0)" id="btn_social_media" class="display-none" data-keywords="<%=clear_company_name%>" data-scene="detail" data-wstats="mailbox_hunting_button"><%=translate('detail_active')%></a>
+                        <a href="javascript:void(0)" id="btn_social_media" class="display-none" data-step="7" data-keywords="<%=clear_company_name%>" data-scene="detail" data-wstats="mailbox_hunting_button"><%=translate('detail_active')%></a>
                         <%if(wglobals.lang == 'cn'){%><a href="/benchmark" target="_blank" data-wstats="mailbox_spent_button">群发邮件</a><%}%>
                         <%if(!verify_real_vip('bd')){%><a href="/loft_HD?s=company_detail" target="_blank"><%=translate('detail_detail')%></a><%}%>
                     </span>
@@ -64,7 +64,7 @@
         <div class="result-box">
             <div class="sousou-data-left">
                 <div class="sousou-data mgall-l">
-                    <div class="sousou-screen">
+                    <div class="sousou-screen" id="process_node_8" data-step="8">
                         <b><%=translate('detail_company_tags')%>：</b>
                         <p>
                             <a href="javascript:void(0)" class="active open" data-value="*" data-wstats="main_product_button"><%=translate('share_text_all')%></a>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="sousou-list">
                         <div class="hint display-none" id="report_hint" data-txt="<%=translate('detail_company_tags_tips')%>"><font class="show"></font><span id="blank">×<%=translate('detail_company_tips_nodisply')%></span></div>
-                        <ul class="left-menu" id="left_menu">
+                        <ul class="left-menu" id="left_menu" data-step="11">
                             <li id="menu_overview" class="active" onclick="left_menu_shift(this)" data-target="#detail_tab_con" data-nv="guest" data-pos="#tab_pane_overview"><a><%=translate('detail_nav_overview')%></a><span>&gt;</span></li>
                             <%if(company_detail.weight>=1000){%>
                             <li id="menu_contact" class="left-tab left-v " onclick="tab_contact(this)" data-nv="v" data-target="#detail_tab_con" data-pos="#tab_pane_contact"><a><%=translate('detail_nav_contact')%></a></li>
@@ -160,7 +160,7 @@
                                     </div>
                                     
                                    <!-------------contact--------------> 
-                                    <div class="trade-contact summarize display-none" id="company_contact"></div>
+                                    <div class="trade-contact summarize display-none" id="company_contact" data-step="9"></div>
 
                                     <!-------------B/Ls-------------->
                                     <% if(bill_count > 0){%>
@@ -279,7 +279,7 @@
 
                                     <!-------------Partners------------->
                                     <% if(pta_count >= 2){%>
-                                    <div class="summarize" id="partner_pane">
+                                    <div class="summarize" id="partner_pane" data-step="10">
                                         <h2><%=translate('detail_module_partners')%></h2>
                                         <div class="detail-tab-content perms-mask">
                                             <ul class="sketch-partner">
