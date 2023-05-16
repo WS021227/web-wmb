@@ -67,10 +67,9 @@
                             <% var update_list = results.data.list || []; %>
                             <% update_list.forEach(function(item){ %>
                                 <!-- 屏蔽入口 -->
-                                <% console.log(results.screen,results.screen_new,"国家字段") %>
                                 <% if (item.country == results.screen || item.country==results.screen_new ) return true %>
                                 <% if (item.country == 'indonesia' && !verify_real_vip('bd') && !extended_auth('unlock_indonesia_data')) return true %>
-                                <li class="customs-countries-form" data-country="<%= JSON.stringify(item) %>">
+                                <li class="customs-countries-form" data-country="<%= JSON.stringify(item) %>" <%= item.country.replace(/\ /g, "_") == 'united_states' ? 'id = process_node_12 data-step = 12' : "" %>>
                                     <%if(item.is_new){%><div class="new-country"><% if(wglobals.lang == 'cn'){ %>上新<% }else{ %>new<% } %></div><%}%>
                                     <a class="customs-countries-box" href="/customs-data/<%= item.country.replace(/\ /g, "_") %>"  target="_blank">
                                         <% if(wglobals.lang == 'cn'){ %>

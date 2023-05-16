@@ -1645,7 +1645,16 @@ tr.introjs-showElement>th{z-index:9999999!important;position:relative}
 .introjs-toast{
     /* background-color: #005FB9; */
 }
-/* 自定义提示选择高亮样式 */
+/* 自定义选择区域高亮样式 */
 .introjs-light{
     /* border: 1px red #009f95; */
+    
+}
+/* 引导过程中，任何操作不生效 */
+.introjs-showElement{
+    pointer-events: none;
+}
+
+.djs-dom{
+    pointer-events: none
 }

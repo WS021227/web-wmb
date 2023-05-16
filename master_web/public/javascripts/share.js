@@ -732,6 +732,7 @@ var globalData = {
     }
 }
 var experience_process_flag = [
+    // 页面一
     {
         url : "/buyer",
         node_id : 1,
@@ -739,6 +740,7 @@ var experience_process_flag = [
         element: document.getElementById(`process_node_1`) || null,
         intro: `<div class="content">第一步</div>`,
         step: 1,
+        node_dom: 'process_node_1',
     },
     {
         url : "/buyer",
@@ -747,6 +749,7 @@ var experience_process_flag = [
         element: document.getElementById(`process_node_2`) || null,
         intro: `<div class="content">第二步</div>`,
         step: 2,
+        node_dom: 'process_node_2',
     },
     {
         url : "/buyer",
@@ -755,22 +758,25 @@ var experience_process_flag = [
         element: document.getElementById(`process_node_3`) || null,
         intro: `<div class="content">第三步</div>`,
         step: 3,
+        node_dom: 'process_node_3',
     },
     {
         url : "/buyer",
         node_id : 4,
-        title : "三",
+        title : "四",
         element: document.getElementById(`process_node_4`) || null,
         intro: `<div class="content">第四步</div>`,
         step: 4,
+        node_dom: 'process_node_4',
     },
     {
         url : "/buyer",
         node_id : 5,
         title : "五",
-        element: document.getElementById(`process_node_5`) || null,
+        element: document.getElementById("process_node_5") || null,
         intro: `<div class="content">第五步</div>`,
         step: 5,
+        node_dom: 'process_node_5',
     },
     {
         url : "/buyer",
@@ -779,46 +785,91 @@ var experience_process_flag = [
         element: document.getElementById(`process_node_6`) || null,
         intro: `<div class="content">第六步</div>`,
         step: 6,
+        node_dom: 'process_node_6',
     },
+    // 页面2
     {
-        url : "/buyer/90446787",
+        url : "/buyer/35303167",
         node_id : 7,
         title : "七",
         element: document.getElementById(`btn_social_media`) || null,
         intro: `<div class="content">第七步</div>`,
         step: 7,
+        node_dom: 'btn_social_media',
     },
     {
-        url : "/buyer/90446787",
+        url : "/buyer/35303167",
         node_id : 8,
         title : "二",
         element: document.getElementById(`process_node_8`) || null,
         intro: `<div class="content">第八步</div>`,
         step: 8,
+        node_dom: 'process_node_8',
     },
     {
-        url : "/buyer/90446787",
+        url : "/buyer/35303167",
         node_id : 9,
         title : "三",
         element: document.getElementById(`company_contact`) || null,
         intro: `<div class="content">第九步</div>`,
         step: 9,
+        node_dom: 'company_contact',
     },
     {
-        url : "/buyer/90446787",
+        url : "/buyer/35303167",
         node_id : 10,
         title : "三",
         element: document.getElementById(`partner_pane`) || null,
         intro: `<div class="content">第十步</div>`,
         step: 10,
+        node_dom: 'partner_pane',
     },
     {
-        url : "/buyer/90446787",
+        url : "/buyer/35303167",
         node_id : 11,
         title : "五",
         element: document.getElementById(`left_menu`) || null,
         intro: `<div class="content">第十一步</div>`,
         step: 11,
+        node_dom: 'left_menu',
+    },
+    // 页面3
+    {
+        url : "/billsearch",
+        node_id : 12,
+        title : "十二",
+        element: document.getElementById(`process_node_12`) || null,
+        intro: `<div class="content">第十二步</div>`,
+        step: 12,
+        node_dom: 'process_node_12',
+    },
+    // 页面4
+    {
+        url : "/customs-data/united_states",
+        node_id : 13,
+        title : "十三",
+        element: document.getElementById(`process_node_13`) || null,
+        intro: `<div class="content">第十三步</div>`,
+        step: 13,
+        node_dom: 'process_node_13',
+    },
+    {
+        url : "/customs-data/united_states",
+        node_id : 14,
+        title : "十四",
+        element: document.getElementById(`process_node_14`) || null,
+        intro: `<div class="content">第十四步</div>`,
+        step: 14,
+        node_dom: 'process_node_14',
+    },
+    {
+        url : "/customs-data/united_states",
+        node_id : 15,
+        title : "十五",
+        element: document.getElementById(`report_tab`) || null,
+        intro: `<div class="content">第十五步</div>`,
+        step: 15,
+        node_dom: 'report_tab',
     },
 ]
 // 标识不弹窗
@@ -2078,6 +2129,7 @@ function show_time(str_date) {
      
 // 体验流程
 function experience_process(){
+    console.log(wg.user.user_functional.enode,"..453456123......")
     // 是否体验过
     let experience_flag = wg.user.user_functional.experience || 0
     let process_flag = wg.user.user_functional.enode || 1
@@ -2100,20 +2152,23 @@ function experience_process(){
         document.getElementsByTagName('meta')['no_full_pop'].setAttribute("content","yes")
     }
     no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
-    let node_id = experience_process_flag[process_flag].node_id,url = experience_process_flag[process_flag].url,now_url = window.location.pathname
-    console.log(now_url,"2222222222222200000000000")
-    if(!node_id) return false
-    // 跳转指定的流程引导页面
-    // if(now_url != url){
-    //     window.location.replace(url)
-    // }
-    console.log("异步加载前")
+
+    url_tz(process_flag)
     //异步加载引导插件js
     // load_js_file('intro', function () {
     //     add_process_node(node_id)
     // })
-    console.log(document.getElementById("btn_social_media"),"85858555555")
-    add_process_node(node_id)
+    // add_process_node(node_id)
+}
+
+function url_tz(process_flag,id){
+    let node_id = experience_process_flag[(id || process_flag) - 1].node_id,url = experience_process_flag[(id || process_flag) - 1].url,now_url = window.location.pathname
+    if(!node_id) return false
+    // 跳转指定的流程引导页面
+    console.log(node_id,url,now_url)
+    if(now_url != url){
+        window.location.replace(url)
+    }
 }
 
 /**
@@ -2122,23 +2177,15 @@ function experience_process(){
  * @param  node 节点id
  */
 function add_process_node(id){
-        console.log(document.getElementById("btn_social_media"),"85858555555")
+    console.log(id,"当前node_id")
         let that = introJs()
-        // 流程节点列表
-        let steps_list=[],node_id = Number(id)
-        // 根据当前记录的节点值构建页面引导流程
-        
-        console.log(node_id,"44444")
-        if(node_id<7){
-            steps_list = experience_process_flag.slice(0,5)
-        }
-        else if(node_id<12){
-            steps_list = experience_process_flag.slice(6,11)
-        }
-        console.log(steps_list,"流程")
-            
+         // 流程节点列表
+        let steps_list=[],node_id = Number(id),max_id = [6,11,12,15].includes(node_id) ? [6,11,12,15].slice([6,11,12,15].indexOf(node_id),1)[0] : node_id
+        console.log(max_id,"796413")
+        steps_list = get_dom_node(experience_process_flag,node_id)
+
+        console.log(steps_list,'new_list')
         that.setOptions({
-                prevLabel:false,
                 nextLabel: "下一步",
                 doneLabel: "结束",
                 /* 引导说明框相对高亮说明区域的位置 */
@@ -2157,24 +2204,61 @@ function add_process_node(id){
                 highlightClass: 'introjs-light',
                 // 配置内容 steps数组,内部一个对象代表一个步骤
                 steps: steps_list,
-              }).oncomplete(function () {
-                // 点击跳过按钮后执行的事件
-                console.log("555")
-              }).onexit(function () {
-                // 点击结束按钮后,执行的事件
-                console.log("666")
+              }).onafterchange(function(obj){
+                let node_id = $(obj).data("step")
+                if(max_id == node_id){
+                    that.onexit(function () {
+                        abandon_experience("enode",max_id+1)
+                        url_tz(max_id+1)
+                    })
+                }
+                 djs_5s()
               }).onchange(function(obj){
-                // // 改流程节点 (已完成的节点)
-                // let node_id = $(obj).data("step")
-                // abandon_experience("enode",node_id)
-              }).onstart(function(){
-                // 样式有问题
-                // that.goToStepNumber(node_id)
+                 // 改流程节点 (已完成的节点)
+                let node_id = $(obj).data("step")
+                abandon_experience("enode",node_id)
+                document.body.style.overflow='hidden'
+              }).onstart(function(obj){
+                that.goToStepNumber(node_id)
               }).start()
-        // that.nextStep(function(){
-        //     console.log("下一步")
-        // })
+}
+
+// 解决异步
+function get_dom_node(node_list,node_id){
+    let new_list=[]
+    new_list=node_list
+    new_list.forEach(function(item,index){
+        if(!item.element){
+            item.element = document.getElementById(item.node_dom)
+            new_list.splice(index,1,item)
+        }
+    })
+    // 根据当前记录的节点值构建页面引导流程
+    if(node_id<7){
+        new_list = new_list.slice(0,6)
+    }else if(node_id<12){
+        new_list = new_list.slice(6,11)
+    }else if(node_id == 12){
+        new_list = new_list.slice(11,12)
+    }else if(node_id<15){
+        new_list = new_list.slice(12,15)
     }
+    return new_list
+}
+
+// 倒计时5秒后才能点击下一步
+function djs_5s(){
+    let $next_btn = $(".introjs-nextbutton")
+    $next_btn.addClass("djs-dom")
+    $next_btn.text("5 s")
+    
+    let time = 5
+    let timer = setInterval(function(){
+        time--
+        if(time <= 0) return clearInterval(timer),$next_btn.text("下一步"),$next_btn.removeClass("djs-dom")
+        $next_btn.text(`${time} s`)
+    },1000)
+}
 
 // 鼠标移动轨迹判断
 window.onmouseout = function (e) {

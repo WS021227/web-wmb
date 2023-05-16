@@ -9,7 +9,7 @@
     <link href="<%= STATIC %>css/course/index.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-    <% let kc_num=results.kc_num,top_live_data = results.top_live_data,zyb_list=results.zyb_list.list,zyb_list_num=results.zyb_list.total,lb_list=results.lb_list.list,lb_list_num=results.lb_list.total %>
+    <% let kc_num=results.kc_num,top_live_data = results.top_live_data,zyb_list=results.zyb_list.list,zyb_list_num=results.zyb_list.total,lb_list=results.lb_list.list || [],lb_list_num=results.lb_list.total %>
     <%- include('../global/head.ejs') %>
     <div class="course-header">
         <div class="course-header-k">

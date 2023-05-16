@@ -17,6 +17,7 @@ router.index = function (req, res) {
                 // 直播课预约数据
                 tools.getMasterApiQuery('/course/2023/live', {}, req, res,
                     function (result) {
+                        console.log(result,"77777")
                         results.top_live_data = result.data || {};
                         callback(null, 1)
                     }

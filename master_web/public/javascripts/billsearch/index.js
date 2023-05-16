@@ -1,6 +1,9 @@
 let curr_lang_json = {}
 let bang_classroom = $("#operate_box"),
     right_bang_classroom = bang_classroom.offset().top +$(".module-content").height()+50
+$(function(){
+    add_process_node(12)
+})
 $(window).on('scroll', function () {
     var top = $(window).scrollTop();
     if (top > right_bang_classroom) {

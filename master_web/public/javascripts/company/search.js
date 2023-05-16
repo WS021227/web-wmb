@@ -991,6 +991,10 @@ $(function () {
     description_with(search_params)
     get_search_tags(search_params)
 
+    let node_id = wg.user.user_functional.enode || 1
+    setTimeout(function(){
+        add_process_node(node_id)
+    },500)
 })
 
 function clear_filter_params(){

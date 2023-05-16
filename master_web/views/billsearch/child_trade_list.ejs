@@ -13,14 +13,14 @@
     </tr>
     </thead>
 
-    <% _list.forEach(function (item){%>
+    <% _list.forEach(function (item,index){%>
         <tr data-billid="<%= raw_bill_encrypt(item.billid || item.bill_id) %>" data-date="<%=item.date%>" onclick="bill_detail(this)">
             <%field_title.forEach(function(name){ %>
             <%if(name.is_mark == 0){%>
                 <td><%= item[name.field_title]%></td>
             <%}%>
             <% }) %>
-            <td><font>&gt;</font></td>
+            <td <%= index==0 ? 'id=process_node_14 data-step=14' : "" %>><font>&gt;</font></td>
         </tr>
     <%})%>
 </table>

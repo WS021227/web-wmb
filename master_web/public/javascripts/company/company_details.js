@@ -503,6 +503,10 @@ $(function () {
         $('.market-trends').after(data)
     })
 
+    let node_id = wg.user.user_functional.enode || 1
+    setTimeout(function(){
+        add_process_node(node_id)
+    },500)
 })
 
 //公众号二维码显示
