@@ -336,7 +336,7 @@ module.exports = {
                 if (this.statusCode == 200) {
                     try {
                         result = JSON.parse(_data)
-                        // if(result.state != 0 && baseConfig.config.api_error) console.error('《not error is info》 state != 0', result, url)
+                        if(result.state != 0 && baseConfig.config.api_error) console.log(' state != 0', result, url)
                     } catch (e) {
                         if(baseConfig.config.api_error) console.error('request JSON parse error', e, url)
                     }

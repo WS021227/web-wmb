@@ -1,0 +1,149 @@
+<%var user=wglobals.user%>
+<div class="pop-xorder-trial">
+    <h2 class="title">免费申请体验“迁移阿里国际站，快速创建独立站”</h2>
+    <span class="des">申请通过后，您有5天时间免费体验此智能建站。</span>
+    <form id="form_xorder_trial" class="form-xorder-trial" method="post" >
+        <label for="">贵司对于独立站的意向？</label>
+        <div id="xorder_intention" class="dropdown-container default-select">
+            <div class="dropdown-btn">
+                <font class="show">请您选择...</font><i></i>
+            </div>
+            <ul class="dropdown-menu">
+                <li class="item " data-value="1">公司已做海外独立站</li>
+                <li class="item " data-value="2">有意向，正在了解独立站</li>
+                <li class="item " data-value="3">已确认，正在做产品调研</li>
+            </ul>
+            <input type="hidden" name="intention" data-tips="请选择贵公司对于独立站的意向" value="">
+        </div>
+
+        <label for="">贵司是否开通阿里国际站</label>
+        <div class="check-group">
+            <div><label><input type="radio" value="1"  name="is_open_ali"><span class="checkbox-name">已开通阿里国际站</span></label></div>
+            <div><label><input type="radio" value="0" name="is_open_ali" ><span class="checkbox-name">未开通阿里国际站</span></label></div>
+        </div>
+        <div id="ali_url_box" class="display-none">
+            <label for="">请输入阿里国际站地址</label>
+            <input id="ali_url" name="ali_url" data-tips="请输入贵公司阿里国际站地址" type="text" class="no-margin itxt" placeholder="请输入贵公司阿里国际站地址" autoComplete ='off'/>
+        </div>
+
+        <label for="">公司主营产品</label>
+        <input name="products" data-tips="请输入公司主营产品关键词" type="text" class="no-margin itxt" placeholder="产品关键字，中英文皆可..." autoComplete ='off'/>
+        <span class="margin-10 margin-20 text">多个产品请用"|"分割...</span>
+
+        <label for="">您的姓名或昵称</label>
+        <input name="name" type="text" data-tips="姓名或是昵称" placeholder="姓名或是昵称" class=" itxt"  autoComplete ='off'/>
+        
+        <% if(!user.user_phone){ %>
+            <label for="" style="margin-top:15px;">您的手机号</label>
+            <input id="phone" name="phone" data-tips="请输入手机号" pattern="^1(3|4|5|6|7|8|9)\d{9}$" type="tel" class="no-margin itxt <%= user.user_phone?'disabled':''%>"  placeholder="<%= user.user_phone?user.user_phone:"请输入您的手机号" %>" <%= user.user_phone?'disabled':"" %> required oninput="this.setCustomValidity('')" autoComplete ='off'/>
+            <a href="javascript:void(0);" id="get_phone">获取手机验证码</a>
+            <input name="phone_code" data-tips="请输入手机验证码" class="no-margin itxt" type="text" placeholder="手机验证码"  autoComplete ='off'/>
+            <span class="margin-10 margin-20 text">用于作为账号使用，请认真填写。..</span>
+        <% }else{%>
+            <!--
+            <input style="margin-bottom:20px;width:100%;border:1px #ccc solid;height:30px;line-height:30px;" class="disabled" disabled />
+            -->  
+        <%} %>
+    </form>
+    <a class="button" onclick="submit_trial()">提交申请</a>
+</div>
+<script>
+    $(function(){
+        $('#xorder_intention').wdropdown({
+            selected: function (e) {
+                $('[name="intention"]').val(e.value)
+            }
+        })
+        $('[name="is_open_ali"]').click(function (){
+            var val = $(this).val()
+            if(val == '1'){
+                $('#ali_url_box').removeClass('display-none')
+                $('#ali_url').attr('name', 'ali_url')
+            }else {
+                $('#ali_url_box').addClass('display-none')
+                $('#ali_url').attr('name', '')
+            }
+        })
+        // 手机验证码
+        $("#get_phone").click(function(){
+            var phone =$("#phone").val()
+            if(!phone) return $.alert('请输入手机号')
+            let reg=/^(\+\d{2}-)?(\d{2,3}-)?([1][3-9][0-9]\d{8})$/;
+            if(!reg.test(phone)) return $.alert('手机号格式不正确')//
+            var $this = $(this)
+            $.ajax('/async/account/send/phone/code', {
+                datatype: 'text/json',
+                type: 'post',
+                data:{
+                    phone:phone
+                },
+                success: function (result) {
+                    if(result.state == 100) return $.alert('手机号格式不正确')
+                    if(result.state !=0) return $.alert('验证码发送失败')
+                    $.alert('验证码已发送')
+                    $this.attr("disabled", 'true').css("pointer-events","none");
+                    _timeout($this)
+                }
+            })
+        })
+
+    })
+
+    var state_message = {1300:'已开通111', 1102: '验证码错误'}
+    function submit_trial() {
+        var fail = 0
+        $.each($('#form_xorder_trial').serializeArray(), function () {
+            if (this.value == "") {
+                $.alert($('[name="' + this.name + '"]').data('tips'))
+                fail = 1
+                return false
+            }
+        })
+        if (fail) return;
+        var is_open_ali = $('[name="is_open_ali"]:checked').val()
+        if (is_open_ali == null) return $.alert('请选择贵公司是否开通阿里国际站')
+        let formdata = new FormData($('#form_xorder_trial')[0])
+        $.ajax('/async/xorder', {
+            data: formdata,
+            type: "POST",
+            processData: false,
+            contentType: false,
+            datatype: 'text/json',
+            success: function (result) {
+                if (result.state == 0) {
+                    return unity_success()
+                }
+                var msg = state_message[result.state]
+                if (msg) return $.alert(msg)
+                $.alert(`请求错误(${result.state})`)
+            }
+        })
+    }
+
+    function _timeout(event) {
+        event.addClass("yfs")
+        let time1 = 59
+        let timer = setInterval(function () {
+            if (time1 >= 1) {
+                event.text(`已发送(${time1--})`)
+            } else {
+                window.clearInterval(timer)
+                event.removeClass("yfs").removeAttr("disabled").css('pointer-events', "auto").text('重新发送')
+            }
+        }, 1000)
+    }
+
+    // 其他选项
+    function other_check(event){
+        let flag=$(event).prop("checked")
+        if(flag){
+            $(".textarea").val("")
+            $(".textarea").css("display","block")
+            $(".textarea").focus()
+        }else{
+            $(".textarea").val("")
+            $(".textarea").css("display","none")
+            $(".textarea").focus()
+        }
+    }
+</script>

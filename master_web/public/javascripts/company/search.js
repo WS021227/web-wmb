@@ -991,11 +991,17 @@ $(function () {
     description_with(search_params)
     get_search_tags(search_params)
 
+    // 引导流程
+    show_experience_process()
+})
+
+function show_experience_process(){
+    if(!get_experience_process()) return false
     let node_id = wg.user.user_functional.enode || 1
     setTimeout(function(){
         add_process_node(node_id)
     },500)
-})
+}
 
 function clear_filter_params(){
     $('#screen_message .params-des').html('')

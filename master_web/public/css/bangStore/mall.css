@@ -8,15 +8,16 @@ body{background:#F7F8FA;}
 .channel-name h1{font-size:34.4px;color:#333;}
 .channel-name p{font-size:15.4px;color:#888;padding-top:4px;}
 
-.mall-list{width:940px;margin:0 auto;}
+.mall-list{width:940px;margin:0 auto;margin-bottom:40px;}
 .mall-list li{position:relative;float:left;background:#fff;width:365px;padding:50px 45px;margin-right:30px;margin-bottom:30px;border-radius:3px;box-shadow: 2px 2px 7px 7px rgb(0 0 0 / 1%);text-align:center;}
 .mall-list li:nth-child(2n){margin-right:0;}
 .mall-list li i{display:inline-block;height:65px;width:65px;border-radius:100px;margin-bottom:20px;}
-.mall-list li i.changtingka-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -446px -373px #f5f5f5 no-repeat;}
-.mall-list li i.shemei-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -270px -375px #f5f5f5 no-repeat;}
-.mall-list li i.sanjianke-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -218px -376px #f5f5f5 no-repeat;}
-.mall-list li i.bem-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -324px -376px #f5f5f5 no-repeat;}
-.mall-list li i.js-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -381px -376px #f5f5f5 no-repeat;}
+.mall-list li i.changtingka-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230512) -446px -373px #f5f5f5 no-repeat;}
+.mall-list li i.shemei-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230512) -270px -375px #f5f5f5 no-repeat;}
+.mall-list li i.sanjianke-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230512) -218px -376px #f5f5f5 no-repeat;}
+.mall-list li i.bem-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230512) -324px -376px #f5f5f5 no-repeat;}
+.mall-list li i.js-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230512) -381px -376px #f5f5f5 no-repeat;}
+.mall-list li i.xorder-ico{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230512) -511px -374px #f5f5f5 no-repeat;}
 
 
 .mall-list li h2{font-size:18.4px;color:#333;}

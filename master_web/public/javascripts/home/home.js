@@ -334,7 +334,7 @@ function bang_line_spread(){
                         '              <p class="bang-line-number"><span><b>'+ result.data.user_count +'</b>'+unity_lang('bangline_noopen_members')+'</span><font>|</font><span><b>'+ result.data.topic_count +'</b>'+unity_lang('bangline_noopen_posts')+'</span></p>\n' +
                         '              <p>'+unity_lang('bangline_noopen_des')+'</p>\n' +
                         '              <a class="bang-line-sumbit" href="/user/line/edit">'+unity_lang('bangline_noopen_button')+'</a>\n' +
-                        '              <a class="bang-line-link" href="'+ line_route +'" target="_blank">'+unity_lang('bangline_noopen_link')+'</a>\n' +
+                        '              <a class="bang-line-link" href="https://line.52wmb.com" target="_blank">'+unity_lang('bangline_noopen_link')+'</a>\n' +
                         '           </div></div>\n' +
                         '        </div>'
                 }

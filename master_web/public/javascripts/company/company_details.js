@@ -503,11 +503,17 @@ $(function () {
         $('.market-trends').after(data)
     })
 
+    show_experience_process()
+})
+
+
+function show_experience_process(){
+    if(!get_experience_process()) return false
     let node_id = wg.user.user_functional.enode || 1
     setTimeout(function(){
         add_process_node(node_id)
-    },500)
-})
+    },1000)
+}
 
 //公众号二维码显示
 function  get_applets_code() {

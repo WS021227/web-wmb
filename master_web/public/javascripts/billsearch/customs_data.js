@@ -350,8 +350,16 @@ $(function () {
         })
     })
 
-    add_process_node(13)
+    show_experience_process()
 })
+
+function show_experience_process(){
+    if(!get_experience_process()) return false
+    let node_id = wg.user.user_functional.enode || 1
+    setTimeout(function(){
+        add_process_node(node_id)
+    },1000)
+}
 
 function get_path(){
     let path_key=window.location.pathname

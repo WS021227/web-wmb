@@ -169,19 +169,6 @@ app.use((req, res, next) => {
         next();
     }
 });
-// // 自定义一个next 邦阅单点登录
-// app.use((req, res, next) => {
-//     try {
-//         if(req.path.indexOf('/login') >= 0) return next();
-//         if (req.path.indexOf('/sign') >= 0) return next();
-//         if (req.headers['x-requested-with'] === 'XMLHttpRequest') return next();
-//         if(req.path == baseConfig.common.prov_filename) return next()
-//
-//         next();
-//     } catch (e) {
-//         next();
-//     }
-// });
 
 // 加载路由管理模块
 app.use("/", require("./routes/admin.js"));

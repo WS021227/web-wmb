@@ -4,39 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Benchmark,Email,邮件群发,邮箱" />
-    <meta name="description" content="Benchmark Email邮件群发工具，无限量邮件群发！赠送10GB图片存储+1000组邮箱有效性验证，1000收件人邮件直发平台、隐私、个人信息安全有保障。" />
-    <title>Benchmark Email邮件群发工具-外贸邦</title>
+    <meta name="keywords" content="Xorder,阿里巴巴,国际站,独立站" />
+    <meta name="description" content="仅10分钟，将您的阿里巴巴国际站平移至Xorder!<br/>快速创建一个可持续更新、运维、面向全球业务的独立站。" />
+    <title>奇单(Xorder)独立站系统-外贸邦</title>
     <link rel="stylesheet" href="<%= STATIC %>css/default.css?v=<%=VERSION%>">
-    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/index.css?v=<%=VERSION%>">
+    <link rel="stylesheet" href="<%= STATIC %>css/bangStore/xorder.css?v=<%=VERSION%>">
 </head>
 <body>
 <%- include('../global/head.ejs') %>
-<% var user=wglobals.user, adds = results.add_service||[], adds_item = adds.length>0?adds[0]:{}; console.log(results, 'results')%>
-
-
+<% var user=wglobals.user || {}%>
 <div class="mall-banner">
     <div class="mall-banner-k">
         <div class="mall-banner-l">
-            <h1>Benchmark Email满客邮件</h1>
-            <p>全球覆盖，海外无限量群发。服务出海企业15年，到达率90%!</p>
-            <% var tips = '提示：钻石会员增值服务，有效期12个月'%>
+            <h1>奇单独立站系统(创优版)</h1>
+            <p>仅10分钟，将您的阿里巴巴国际站平移至Xorder!<br/>快速创建一个可持续更新、运维、面向全球业务的独立站。</p>
             <div class="mall-banner-button">
-                   <%if(user.id==null){%>
-                    <a href="/login">专享价：<b><%=adds_item.amount_rmb%></b>元/年<font>|</font>立即购买<span>&gt;</span></a>
-                    <%}else if(adds_item.buyer_level >-1){%>
-                    <% tips = '提示：你已购买"Benchmark邮件群发",有效期至' + adds_item.expired_time%>
-                    <a target="_blank" href="https://ui.benchmarkemail.com/cn/login">进入系统<span>&gt;</span></a>
-                    <%}else if(verify_real_vip('bd')){%>
-                    <a href="/product?product=6&adds=benchmark">专享价：<b><%=adds_item.amount_rmb%></b>元/年<font>|</font>立即购买<span>&gt;</span></a>
-                    <%}else{%>
-                    <a href="/Alipay?v=yd&ra=6&adds=benchmark">专享价：<b><%=adds_item.amount_rmb%></b>元/年<font>|</font>立即购买<span>&gt;</span></a>
-                    <%}%>
+                <%if(user.id){%>
+                    <a href="javascript:void(0)" onclick="pop_trial()">申请免费体验，快速创建独立站→</a>
+                <%}else{%>
+                    <a href="/login" onclick="return referrer_link(this)">申请免费体验，快速创建独立站→<br/></a>
+                <%}%>
             </div>
-            <div class="mall-banner-tips"><%=tips%></div>
+            <div class="mall-banner-tips">申请通过后，您可以免费试用5天。</div>
         </div>
-        <div class="mall-banner-r bem-banner"><img src="<%= STATIC %>images/channel_imgs/bem_banner.png"/></div> 
-        <br class="clear"/>   
     </div>
 </div>
 
@@ -44,149 +34,98 @@
 <div class="mall-vedio-all">
     <div class="mall-c mall-vedio">
         <div class="mall-vedio-title">
-            <h2>5分钟完成邮件群发，与客户建立贸易关系！</h2>
-            <p>通过以下视频，您可以了解到Benchmark是如何群发和营销。</p>
+            <h2>基于阿里国际站，快速创建独立站的演示！</h2>
+            <p>公司阿里国际站，如有更新的产品、视频等相关信息可同步至独立站。</p>
         </div>
         <div class="mall-vedio-c">
             <video class="editor" controls="controls" autoplay="autoplay" width="100%">
-                <source src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/03633d93387702300962078925/4XOn5wJ1BdkA.mp4" type="video/mp4">
+                <source src="http://1254062548.vod2.myqcloud.com/71cf0de4vodgzp1254062548/d0c2fbe33270835009068456174/FKWNnVGNeUMA.mp4" type="video/mp4">
             </video>
-        </div>
-        <div class="mall-success">
-            <div class="use-example">
-                <div class="example-item active">
-                    <div class="head">
-                        <img src="https://static.52wmb.com/wmb_new/images/channel_imgs/store_bem_2.png" alt="Carling">
-                    </div>
-                    <div class="example-info">
-                        <div class="name">Ian</div>
-                        <div class="translate">销售</div>
-                        <div class="use-time">使用3年</div>
-                    </div>
-                    <div class="example-des">
-                        <div class="example-des-main">
-                            Ian（销售）
-                        </div>
-                        <div class="example-des-sub">
-                            对于做食品的 B2C 行业外贸公司，能实时追踪到送达率、打开率、点击率、退件率，精准分析客户的喜好，能很大的提高获客能力。
-                        </div>
-                    </div>
-                </div>
-                <div class="example-item">
-                    <div class="head">
-                        <img src="<%= STATIC %>/images/channel_imgs/store_bem_1.png" alt="Brandon Beechler">
-                    </div>
-                    <div class="example-info">
-                        <div class="name">Alice</div>
-                        <div class="translate">SOHO</div>
-                        <div class="use-time">使用5年</div>
-                    </div>
-                    <div class="example-des">
-                        <div class="example-des-main">
-                            Alice（SOHO）
-                        </div>
-                        <div class="example-des-sub">
-                            每逢国外营销节日，如：黑色星期五、圣诞节，就用 Benchmark 满客邮件的模板库发送营销邮件，专业又快速，效果还非常显著，是相当好的邮件营销软件。
-                        </div>
-                    </div>
-                </div>
-                <div class="example-item">
-                    <div class="head">
-                        <img src="<%= STATIC %>/images/channel_imgs/store_bem_3.png" alt="Jerry Rice">
-                    </div>
-                    <div class="example-info">
-                        <div class="name">小李</div>
-                        <div class="translate">批发</div>
-                        <div class="use-time">使用2年</div>
-                    </div>
-                    <div class="example-des">
-                        <div class="example-des-main">
-                            小李（批发）
-                        </div>
-                        <div class="example-des-sub">整合后客户名单会自动上传至系统分类，无需人工实时跟进操作也减少错误率，Benchmark 满客邮件营销系统稳定而强大，特别的好用。</div>
-                    </div>
-                </div>
-                <div class="example-item">
-                    <div class="head">
-                        <img src="<%= STATIC %>/images/channel_imgs/store_bem_5.png" alt="Marcy Feldman">
-                    </div>
-                    <div class="example-info">
-                        <div class="name">咏哥</div>
-                        <div class="translate">外贸人</div>
-                        <div class="use-time">使用3年</div>
-                    </div>
-                    <div class="example-des">
-                        <div class="example-des-main">
-                            咏哥（外贸人）
-                        </div>
-                        <div class="example-des-sub">
-                            主动分类高消费客户与普通客户，替企业主动节省营销成本。电子产品的购买门槛比较高，我会再对高消费的客户名单做再营销，转单率也是不断提升。
-                        </div>
-                    </div>
-                </div>
-                <div class="example-item">
-                    <div class="head">
-                        <img src="<%= STATIC %>/images/channel_imgs/store_bem_4.png" alt="Larry Walkemeyer">
-                    </div>
-                    <div class="example-info">
-                        <div class="name">Lynn</div>
-                        <div class="translate">亚马逊卖家</div>
-                        <div class="use-time">使用9年</div>
-                    </div>
-                    <div class="example-des">
-                        <div class="example-des-main">
-                            Lynn（亚马逊卖家）
-                        </div>
-                        <div class="example-des-sub">
-                            用 Benchmark 满客邮件做邮件营销用户体验很好，功能很强大，有个性化邮件设置，还能主动提醒忘记结帐购物物品的客户，做外贸电子商务的很需要 Benchmark 满客邮件。
-                        </div>
-                    </div>
-                </div>
-            </div>        
         </div>
     </div>
 </div>
 
 
-<div class="mall-solution">
+<div class="mall-solution">  
+  <div class="mall-solution-title">
+       <h2>一站式智能外贸电商解决方案</h2>
+       <p>
+        只需一个平台，就可轻松将您的品牌产品推广到更广阔的全球线上交易市场，满足随时随地接单需求<br/>
+        <a href="/new/875" target="_blank">查看Xorder建站系统(创优版)功能清单 →</a>
+       </p>
+  </div>
   <div class="mall-solution-item">
-      <div class="mall-solution-img mall-left"><img src="<%= STATIC %>images/channel_imgs/bem_sou_1.png" class="bem-pic"/></div>
-      <div class="mall-solution-text mall-right" style="padding-top:130px;">
-          <h2><font>1</font>提升开发信获客能力，分析报表落实订单</h2>
-          <p>绩效数据化呈现：独家邮件追踪技术，邮件发送效果有迹可寻，即发即追踪，完整分析各项指标如开启，点击，退件等数据，了解成功的邮件要素，指引下次发送优化方向。</p>
+      <div class="mall-solution-img mall-left"><img src="https://www.xorder.com.cn/new_index/img/index/element_2.png?a=01" class="bem-pic" style="margin-top:25px;"/></div>
+      <div class="mall-solution-text mall-right" style="padding-top:30px;">
+          <h2><font>1</font>便捷的智能建站、运维</h2>
+          <p>无论您当前使用的Amazon、国际站、Shopify、速卖通等哪个平台，都可以将您的业务带到 Xorder，使用一个平台面向全球</p>
+          <ul>
+            <li>
+                <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo2.png"/>
+                <h3>个性化建站</h3>
+                <div>海量模板、个性化定制建站，产品一键搬家，极速完成搭建。</div>
+            </li>
+            <li>
+                <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo1.png"/>
+                <h3>新技术提升转化</h3>
+                <div>社媒会员登陆、社媒在线聊天、社媒分销裂变、个性化价格体系、B2B购物车、可视化在线定制等社媒应用建站技术。</div>
+            </li>
+            <li>
+                <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo4.png"/>
+                <h3>社媒联动AI视频</h3>
+                <div>专属视频+直播，优质的视频化销售，高转化电商功能一应俱全。</div>
+            </li>
+          </ul>
+          <%if(user.id){%>
+            <a href="javascript:void(0)" onclick="pop_trial()" class="xorder-open">开通免费体验→</a>
+          <%}else{%>
+            <a href="/login" onclick="return referrer_link(this)" rel="nofollow" class="xorder-open">开通免费体验→</a>
+          <%}%>    
         </div>
       <br class="clear"/>
   </div>
   <div class="mall-solution-item">
-    <div class="mall-solution-img mall-right"><img src="<%= STATIC %>images/channel_imgs/bem_sou_2.png" class="bem-pic"/></div>
-    <div class="mall-solution-text mall-left" style="padding-top:130px;">
-        <h2><font>2</font>个性化主旨精细化运营，懂客户促转化</h2>
-        <p>设定变量个性化发送：根据现有客户的详细资料，定制高度个性化主旨，显示客户名称等，精准发送目标客户群，无形中缩短与客户的距离感，懂邮件内容更懂客户需求。</p>
-      </div>
+    <div class="mall-solution-img mall-right"><img src="https://www.xorder.com.cn/new_index/img/index/element_03.png" class="bem-pic" style="margin-top:80px;"/></div>
+    <div class="mall-solution-text mall-left" style="padding-top:30px;">
+        <h2><font>2</font>全域智能营销获客</h2>
+        <p>自动化社媒运营、智能广告等全渠道营销，货找人+人找货，多维度打造国际化品牌形象，获得源源不断的询盘和订单</p>
+        <ul>
+            <li>
+                <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo6.png"/>
+                <h3>对接全球主流平台</h3>
+                <div>对接Google、Facebook、TikTok官方平台，自主管理，傻瓜式投流获客，更有广告创意团队助力，轻松触达海外买家，提升广告ROI</div>
+            </li>
+            <li>
+                <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo7.png"/>
+                <h3>友好的SEO架构</h3>
+                <div>符合谷歌友好的SEO架构、代码优化，原创内容自动创建，自动化SEO营销引流；自研系统高性能优化页面加速。</div>
+            </li>
+          </ul>
+          <%if(user.id){%>
+            <a href="javascript:void(0)" onclick="pop_trial()" class="xorder-open">开通免费体验→</a>
+          <%}else{%>
+            <a href="/login" onclick="return referrer_link(this)" rel="nofollow" class="xorder-open">开通免费体验→</a>
+          <%}%>      
+    </div>
     <br class="clear"/>
   </div>
   <div class="mall-solution-item">
-    <div class="mall-solution-img mall-left"><img src="<%= STATIC %>images/channel_imgs/bem_sou_3.png" class="bem-pic"/></div>
-    <div class="mall-solution-text mall-right" style="padding-top:110px;">
-        <h2><font>3</font>外贸名单轻松分众，精准营销提升转单</h2>
-        <p>名单品质再分类区隔：发送前借助专业平台评估名单品质，自动剔除无效 Email，多群组区隔管理不同类型外贸客群，譬如新老客户群组，充分利用数据，转化新客户，唤醒沉睡客户，提升老客户复购率。</p>
-      </div>
-    <br class="clear"/>
-   </div> 
-   <div class="mall-solution-item">
-    <div class="mall-solution-img mall-right"><img src="<%= STATIC %>images/channel_imgs/bem_sou_4.png" class="bem-pic"/></div>
-    <div class="mall-solution-text mall-left" style="padding-top:120px;">
-        <h2><font>4</font>万笔名单一键同步，集合价值数据</h2>
-        <p>平台串接无压力：整合多家大牌跨境电商平台，API 密钥轻松展开数据互通，统整保留有价值海量数据，即汇即用，省去手动上传下载操作，高效利用数据展开业务分析。</p>
-      </div>
-    <br class="clear"/>
-  </div>
-  <div class="mall-solution-item">
-    <div class="mall-solution-img mall-left"><img src="<%= STATIC %>images/channel_imgs/bem_sou_5.png" class="bem-pic"/></div>
-    <div class="mall-solution-text mall-right" style="padding-top:130px;">
-        <h2><font>5</font>免设计背景，庞大的专业邮件模板库</b></h2>
-        <p>零基础设计可入门：不会 PS 没关系，省去P图繁琐事，免费各行邮件模板任你挑，一键套用精美版式，简易式编辑器可在线微调图片尺寸效果，制定与品牌风格相符的邮件内容。</p>
-      </div>
+    <div class="mall-solution-img mall-left"><img src="https://www.xorder.com.cn/new_index/img/index/element_4.png" class="bem-pic" style="margin-top:20px;"/></div>
+    <div class="mall-solution-text mall-right" style="padding-top:30px;">
+        <h2><font>3</font>便捷的询盘、用户管理</h2>
+        <p>智能化、系统化的线上线下统一融合管理，有效提升企业工作效率，进一步留存优质客户</p>
+        <ul style="font-size:14.4px;color:#666;">
+            <li><img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo11.png" style="height:16px;width:auto;"/>全流程订单线上管理，实时掌握订单信息，团队工作更加轻松</li>
+            <li><img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo11.png" style="height:16px;width:auto;"/>核心数据分析，访客数、会员数、销售额等全站数据全面洞察</li>
+            <li><img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo11.png" style="height:16px;width:auto;"/>智能管客户，自动化勾勒精准用户画像，千人千面精准营销</li>
+            <li><img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo11.png" style="height:16px;width:auto;"/>30+以及持续更新的应用集成，解决网站营销管理一系列需求</li>
+        </ul>
+        <%if(user.id){%>
+            <a href="javascript:void(0)" onclick="pop_trial()" class="xorder-open">开通免费体验→</a>
+          <%}else{%>
+            <a href="/login" onclick="return referrer_link(this)" rel="nofollow" class="xorder-open">开通免费体验→</a>
+          <%}%>      
+    </div>
     <br class="clear"/>
    </div> 
 </div>
@@ -194,40 +133,34 @@
 <div class="mall-bg">
     <div class="mall-v">
         <div class="mall-share-title">
-            <h2>Benchmark群发功能亮点</h2>
-            <p>功能强大，使用Benchmark邮件群发开发外贸客户效率提升不止10倍!</p>
+            <h2>您将获得更多售后服务</h2>
+            <p>更“低成本”帮助您和您的企业获取更多的海外客户！</p>
         </div>
         <div class="bme-gn-list">
             <ul>
                 <li class="bme-gn-list-1">
-                    <font>AB测试</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_1.png"/></i>
+                    <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo12.png"/>
+                    <font><b>快速建立</b>5分钟建立一个跨境品牌营销系统，更快开始销售。</font>                    
                 </li>
                 <li class="bme-gn-list-2">
-                    <font>忠实名单分析</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_2.png"/></i>
+                    <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo13.png"/>
+                    <font><b>无缝升级</b>不断创新的功能，服务，使系统满足变化的市场需求。</font>                    
                 </li>
                 <li class="bme-gn-list-3">
-                    <font>拖拉式编辑器</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_3.png"/></i>
+                    <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo14.png"/>
+                    <font><b>课堂培训</b>最新的0-1跨境电商B2B运营实操书，小白秒变专家</font>                    
                 </li>
                 <li class="bme-gn-list-4">
-                    <font>使用订阅表格</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_4.png"/></i>
+                    <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo17.png"/>
+                    <font><b>专家支持</b>通过市场领先合作伙伴推动你的业务关键需求。</font>                    
                 </li>
                 <li class="bme-gn-list-5">
-                    <font>清除名单</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_5.png"/></i>
+                    <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo15.png"/>
+                    <font><b>技术支持</b>最安全的网络防护，保障每个客户的业务核心数据安全。</font>                    
                 </li>
                 <li class="bme-gn-list-6">
-                    <font>邮件发送管理</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_6.png"/></i>
-                </li>
-                <li class="bme-gn-list-7">
-                    <font>响应式模板</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_7.png"/></i>
-                </li>
-                <li class="bme-gn-list-8">
-                    <font>子账户功能</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_8.png"/></i>
-                </li>
-                <li class="bme-gn-list-9">
-                    <font>安全PIN码</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_9.png"/></i>
-                </li>
-                <li class="bme-gn-list-10">
-                  <font>营销规划流程图</font><br><i><img src="<%= STATIC %>images/channel_imgs/bem_fun_10.png"/></i>
+                    <img src="https://xorder.oss-cn-beijing.aliyuncs.com/20221115/homepage/logo16.png"/>
+                    <font><b>生态支持</b>一个后台集成开放的第三方应用市场，满足企业持续发展。</font>                    
                 </li>
                 <br class="clear">
             </ul>
@@ -237,51 +170,45 @@
 
 <div class="mall-ask">
     <div class="mall-share-title">
-        <h2>社媒邮箱采集常见问答</h2>
-        <p>为您整理了关于该工具用户咨询最多、关注最多的一些问题。</p>
+        <h2>奇单(Xorder)独立站系统常见问答</h2>
+        <p>为您整理了关于独立站系统用户咨询最多、关注最多的一些问题。</p>
     </div>
     <div id="questions">
         <ul>
             <li class="clearfix">
-                <h3><b class="UI-ask"></b>支持那些付款方式?</h3>
+                <h3><b class="UI-ask"></b>用Xorder可以购买域名吗?</h3>
                 <div class="foldContent">
-                    <p>目前支持支付宝，微信，paypal，以及对公转账。</p>
+                    <p>目前可以通过第三方购买域名（如万网，Godaddy)，全部支持绑定到Xorder。我们的后台支持域名的托管服务，包括设置域名SSL加密，及域名解析服务。</p>
                 </div>
             </li>
             <li class="clearfix">
-                <h3><b class="UI-ask"></b>联系人数超过方案规定方案限制怎么办？</h3>
+                <h3><b class="UI-ask"></b>我该如何选择Xorder网站模版？</h3>
                 <div class="foldContent">
-                    <p>Benchmark Email满客邮件有多种弹性方案可以选择，若联络人数超出方案人数，您可以升级方案或是洽询官方客服，亲切的客服将协助选择最适合您的邮件群发方案。 </p>
+                    <p>我们推荐您在Xorder官方的模版商城内选择模版。我们会对商城内上架的所有模版进行严格的质量及表现评估，并为所有上架模版提供官方客服支持。此外，您在Xorder模版商城所获取的的模版是可以永久使用的，无论免费或者付费版本。商户也可根据模版提供者的通知自行升级模版。我们不建议您使用未被Xorder官方审核并发布的第三方模版，使用者需自行承担风险。</p>
                 </div>
             </li>
             <li class="clearfix">
-                <h3><b class="UI-ask"></b>购买后帐号多久开通？</h3>
+                <h3><b class="UI-ask"></b>如何从其他平台迁入数据至Xorder?</h3>
                 <div class="foldContent">
-                    <p>即刻开通，确认订单信息发送正式账号。</p>
+                    <p>Xorde支持从任何平台迁入用户企业数据。后台提供了批量导入工具，可以支持邮件，客户，产品等批量导入。也支持不同的平台（Shopify,ueeshop，富通天下等）无缝迁移，具体可以咨询Xorder客服。</p>
                 </div>
             </li>
             <li class="clearfix">
-                <h3><b class="UI-ask"></b>BME界面支持那些语言?</h3>
+                <h3><b class="UI-ask"></b>Xorder的模版可以修改吗？</h3>
                 <div class="foldContent">
-                    <p> Benchmark Email 满客邮件支援英语，西班牙语，德语，繁体中文，简体中文，日语，意大利语，葡萄牙语和法语这9 种不同语言。 </p>
+                    <p>当然可以。您可以通过后台内的模版编辑功能设置简单便捷地修改您的模版，我们的所有模板都支持模块自定义，通过简单的拖拽实现个性化的模板。同时也可以通过编辑模版代码实现更多改动。如果您需要额外帮助，也可以联系我们的客服人员。 </p>
                 </div>
             </li>
             <li class="clearfix">
-                <h3><b class="UI-ask"></b>如何透过触发邮件建立自动化营销？</h3>
+                <h3><b class="UI-ask"></b>用Xorder 如何开通外贸邮箱 ?</h3>
                 <div class="foldContent">
-                    <p>根据指定条件在触发邮件里面建立名单触发；您也可以根据链接点击或开启，建立邮件互动触发机制。当联络人触发以下条件，可向他们发送邮件。</p>
+                    <p>Xorder支持自动绑定所有主流邮箱系统，包括腾讯邮箱，阿里云邮箱，阿里国际邮箱，网易邮箱，Outlook等。在初始化界面中，输入邮箱账户和密码即可实现自动配置绑定，用Xorder全面实现外贸邮件收发，客户归档，团队管理等外贸功能。</p>
                 </div>
             </li>
             <li class="clearfix">
-                <h3><b class="UI-ask"></b>什么行业适合?</h3>
+                <h3><b class="UI-ask"></b>Xorder支持哪些支付网关？</h3>
                 <div class="foldContent">
-                    <p>外贸，跨境电商，物流，教育等行业皆可使用 Benchmark Email 满客邮件。</p>
-                </div>
-            </li>
-            <li class="clearfix">
-                <h3><b class="UI-ask"></b>平台发送限制、能发送内容?</h3>
-                <div class="foldContent">
-                    <p>用户需要遵守 7 天规则规定，邮件发送七天后才能从账户删除名单。设定发送的邮件都需要经过 Benchmark 审核程序，对含有危险性或恶意性的邮件内容持有保留发送权利。</p>
+                    <p>我们支持大部分主流支付公司，如PayPal, WorldPay,PingPong，2checkout等。Xorder是PayPal，PingPong等主流支付公司战略合作伙伴，提供更优质的服务体验和费率优惠。同时Xorder也是国内领先的B2B支付支持平台，为全球买家提供一流的B2B交易服务。</p>
                 </div>
             </li>
         </ul>
@@ -291,32 +218,52 @@
 <%- include('../global/foot.ejs') %>
 <script>
     $(function () {
+        $('.example-item').on({
+            mouseover: function () {
+                $(this).addClass('active').siblings().removeClass('active');
+            }
+        });
 
-    $('.example-item').on({
-        mouseover: function () {
-            $(this).addClass('active').siblings().removeClass('active');
-        }
+        $('.banner-float').addClass('show');
+        $("li>h3", "#questions").bind("click", function () {
+            var li = $(this).parent();
+            if (li.hasClass("fold")) {
+                li.removeClass("fold");
+                $(this).find("b").removeClass("UI-bubble").addClass("UI-ask");
+                //li.find(".foldContent").slideDown();
+            } else {
+                li.addClass("fold");
+                $(this).find("b").removeClass("UI-ask").addClass("UI-bubble");
+                //li.find(".foldContent").slideUp();
+            }
+        });
     });
-
-    $('.banner-float').addClass('show');
-});
-
-
-$(function(){    
-$("li>h3","#questions").bind("click",function(){
-    var li=$(this).parent();
-    if(li.hasClass("fold")){
-        li.removeClass("fold");
-        $(this).find("b").removeClass("UI-bubble").addClass("UI-ask");
-        //li.find(".foldContent").slideDown();
-    }else{
-        li.addClass("fold");
-        $(this).find("b").removeClass("UI-ask").addClass("UI-bubble");
-        //li.find(".foldContent").slideUp();
+    function pop_trial(){
+        $.wajax('/async/xorder/pop', {
+            type: 'get',
+            datatype: 'json/text',
+            success: function (result){
+                if(result.state == 1300) return unity_success()
+                if(result.state != 0) return $.alert('请求异常')
+                layer.open({
+                    type: 1,
+                    skin: 'layui-layer-rim',
+                    scrollbar: false,
+                    title:"",
+                    shadeClose: false, //点击遮罩关闭
+                    maxmin: false,
+                    closeBtn: 1,
+                    content: result.content,
+                    area: ['700px', ''], // 配置长高
+                });
+            }
+        })
     }
-});
 
-})
+    function unity_success(){
+        layer.closeAll()
+        $.alert('<span style="line-height:150%;display:block;font-size:14.4px;padding-top:5px;">您的申请已提交,Xorder平台客服将会联系您！<br/>如有疑问请致电：166 2107 5894</span><font style="color:#999;">(如已开通，请忽略此条信息)</font>')
+    }
 </script>
 </body>
 </html>

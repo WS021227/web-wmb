@@ -9,8 +9,8 @@ var baseconfig = {
         config: {
             // master_api: "http://192.168.1.113:8042/api/v2",
             // master_api: "http://192.168.1.111:8043/api/v2",
-            master_api: "http://127.0.0.1:8043/api/v2",
-             // master_api: "https://paytest.52wmb.com/api/v2",
+            // master_api: "http://127.0.0.1:8043/api/v2",
+             master_api: "https://paytest.52wmb.com/api/v2",
              // master_api: "http://10.20.57.110:8435/api/v2",
             // master_api: "http://10.20.53.222:18400/api/v2",
             //  master_api: "http://10.20.57.110:18449/api/v2",

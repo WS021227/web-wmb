@@ -800,7 +800,7 @@ var experience_process_flag = [
     {
         url : "/buyer/35303167",
         node_id : 8,
-        title : "二",
+        title : "八",
         element: document.getElementById(`process_node_8`) || null,
         intro: `<div class="content">第八步</div>`,
         step: 8,
@@ -869,6 +869,16 @@ var experience_process_flag = [
         element: document.getElementById(`report_tab`) || null,
         intro: `<div class="content">第十五步</div>`,
         step: 15,
+        node_dom: 'report_tab',
+    },
+    //test
+    {
+        url : "/customs-data/united_states",
+        node_id : 16,
+        title : "十六",
+        element: document.getElementById(`report_tab`) || null,
+        intro: `<div class="content">第十六步</div>`,
+        step: 16,
         node_dom: 'report_tab',
     },
 ]
@@ -2126,15 +2136,14 @@ function show_time(str_date) {
     if (old_time > 60) return Math.floor(old_time / 60) + '' + unity_lang('line_minutes_ago') + ''
     return '刚刚'
 }
-     
-// 体验流程
-function experience_process(){
-    console.log(wg.user.user_functional.enode,"..453456123......")
+
+// 体验引导流程相关权限
+function get_experience_process(){
     // 是否体验过
     let experience_flag = wg.user.user_functional.experience || 0
     let process_flag = wg.user.user_functional.enode || 1
-    let _static = wg.static
-    console.log("体验引导",experience_flag,process_flag,_static)
+    console.log("体验开通情况",experience_flag,"引导节点",process_flag)
+
     // 校验权限
     // 未登录不出现
     if(!wg.user.id) return false
@@ -2142,18 +2151,31 @@ function experience_process(){
     if(experience_flag != 1) return false
     // 体验引导流程未走完出现
     if(process_flag == -1) return false
+    return true
+}
+     
+// 体验流程
+function experience_process(){
+    let process_flag = wg.user.user_functional.enode || 1
+    if(!get_experience_process()) return false
     // 体验流程中，其他所有弹窗不弹
-    if(!document.getElementsByTagName('meta')['no_full_pop']){
-        const meta = document.createElement('meta');
-        meta.content = 'yes';
-        meta.name = 'no_full_pop';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(meta);
-    }else{
-        document.getElementsByTagName('meta')['no_full_pop'].setAttribute("content","yes")
-    }
-    no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
+    // if(!document.getElementsByTagName('meta')['no_full_pop']){
+    //     const meta = document.createElement('meta');
+    //     meta.content = 'yes';
+    //     meta.name = 'no_full_pop';
+    //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(meta);
+    // }else{
+    //     document.getElementsByTagName('meta')['no_full_pop'].setAttribute("content","yes")
+    // }
+    // no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
 
-    url_tz(process_flag)
+    // let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+    // if(!node_id) return false
+    // 跳转指定的流程引导页面
+    // process_toast_jx(url)
+
+    // url_tz(process_flag)
+
     //异步加载引导插件js
     // load_js_file('intro', function () {
     //     add_process_node(node_id)
@@ -2161,15 +2183,16 @@ function experience_process(){
     // add_process_node(node_id)
 }
 
-function url_tz(process_flag,id){
-    let node_id = experience_process_flag[(id || process_flag) - 1].node_id,url = experience_process_flag[(id || process_flag) - 1].url,now_url = window.location.pathname
-    if(!node_id) return false
-    // 跳转指定的流程引导页面
-    console.log(node_id,url,now_url)
-    if(now_url != url){
-        window.location.replace(url)
-    }
-}
+// function url_tz(process_flag){
+//     let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+//     if(!node_id) return false
+//     // 跳转指定的流程引导页面
+//     console.log(node_id,url,now_url)
+//     process_toast_jx(url)
+//     // if(now_url != url){
+//     //     window.location.replace(url)
+//     // }
+// }
 
 /**
  * 添加体验流程节点
@@ -2177,14 +2200,24 @@ function url_tz(process_flag,id){
  * @param  node 节点id
  */
 function add_process_node(id){
-    console.log(id,"当前node_id")
+        console.log(id,"当前流程节点id")
         let that = introJs()
          // 流程节点列表
-        let steps_list=[],node_id = Number(id),max_id = [6,11,12,15].includes(node_id) ? [6,11,12,15].slice([6,11,12,15].indexOf(node_id),1)[0] : node_id
-        console.log(max_id,"796413")
+        let steps_list=[],node_id = Number(id),max_idx,node_index,max_id,next_url="",num_id=0
         steps_list = get_dom_node(experience_process_flag,node_id)
-
+        max_idx = steps_list.length
+        max_id = steps_list[max_idx -1].node_id
+        console.log(max_idx,max_id,steps_list,"maxmaxmaxmaxmaxmaxmaxmaxmaxm")
+        next_url = experience_process_flag[max_id].url
+        
+        // 拿到对应的indx
+        steps_list.forEach(function(item,index){
+            if(item.node_id == node_id){
+                node_index = index + 1
+            }
+        })
         console.log(steps_list,'new_list')
+
         that.setOptions({
                 nextLabel: "下一步",
                 doneLabel: "结束",
@@ -2195,7 +2228,7 @@ function add_process_node(id){
                 /* 是否允许点击空白处退出 */
                 exitOnOverlayClick: false,
                 /* 遮罩层的透明度 */
-                overlayOpacity: 0.6,
+                overlayOpacity: 0.8,
                 /* 当位置选择自动的时候，位置排列的优先级 */
                 positionPrecedence: ["right", "bottom", "top", "left"],
                 // 引导说明文本框的样式
@@ -2205,25 +2238,34 @@ function add_process_node(id){
                 // 配置内容 steps数组,内部一个对象代表一个步骤
                 steps: steps_list,
               }).onafterchange(function(obj){
-                let node_id = $(obj).data("step")
-                if(max_id == node_id){
-                    that.onexit(function () {
-                        abandon_experience("enode",max_id+1)
-                        url_tz(max_id+1)
-                    })
-                }
-                 djs_5s()
-              }).onchange(function(obj){
-                 // 改流程节点 (已完成的节点)
-                let node_id = $(obj).data("step")
-                abandon_experience("enode",node_id)
-                document.body.style.overflow='hidden'
+                    let now_node_id = $(obj).data("step")
+                    // 改流程节点 (已完成的节点)
+                    console.log(now_node_id,"改变后")
+                    abandon_experience("enode",now_node_id)
+                    document.body.style.overflow='hidden'
+                    // djs_5s()
+              }).onchange(function(obj){ 
+                    console.log("改变时")
+              }).oncomplete(function(obj) {
+                    num_id++
+                    if(obj + 1 == max_idx){
+                        // 改流程节点 (已完成的节点)
+                        if(num_id!==1){
+                            console.log(num_id,"结束")
+                            if(max_id == 15){
+                                abandon_experience("enode", -1)
+                            }else{
+                                abandon_experience("enode",max_id + 1)
+                            }
+                            console.log(next_url,max_id,"next_url")
+                            window.location.href = next_url
+                        }
+                    }
               }).onstart(function(obj){
-                that.goToStepNumber(node_id)
+                    that.goToStepNumber(node_index)
               }).start()
 }
 
-// 解决异步
 function get_dom_node(node_list,node_id){
     let new_list=[]
     new_list=node_list
@@ -2240,7 +2282,7 @@ function get_dom_node(node_list,node_id){
         new_list = new_list.slice(6,11)
     }else if(node_id == 12){
         new_list = new_list.slice(11,12)
-    }else if(node_id<15){
+    }else if(node_id<=15){
         new_list = new_list.slice(12,15)
     }
     return new_list
@@ -2260,9 +2302,25 @@ function djs_5s(){
     },1000)
 }
 
+// 引导没走完提示继续引导弹窗
+function process_toast_jx(url){
+    let content = ''
+    content = `<div class='yaoqing'><h2>继续引导</h2><div class='yaoqing-content'></div><a id='wmb_qidian_3' href='${url}' class='yaoqing-link-right'> 继续引导 </a></div>`
+
+    layer.closeAll()
+    layer.open({
+        content: content,
+        title: unity_lang('layer_tips'),
+        type: 1,
+        skin: 'layui-layer-rim',
+        area: ['600px', ''], // 配置长高
+        shadeClose: false, //点击遮罩关闭
+        closeBtn: false
+    })
+}
+
 // 鼠标移动轨迹判断
 window.onmouseout = function (e) {
-    console.log(wg,"6666")
     if (no_full_pop == 'yes') return false
     //  当前逻辑
     if (e.clientY > 0) return false;
@@ -2309,7 +2367,6 @@ window.onmouseout = function (e) {
 
     // $.wSetCookie('_QP', '1', 86400)
 };
-
 
 /**
  * 外贸邦埋点统计
@@ -2363,14 +2420,14 @@ function full_top() {
     let tpn = getCookies('_TNOTICE_0002')
     if (tpn) return;
     let html = '',
-        $top_notice = $('#top_notice_close')
+        $top_notice = $('#top_notice')
     if ($top_notice.length <= 0) return;
     if (_lang == 'cn') {
         html = '<p class="notice">' +
-            '<font>【邦友福利日】免费体验Jungle Scout(亚马逊选品工具)高级版3天时间，实时获取跨境终端产品价格、销量，成就跨境热销爆款！<a href="/amazon?s=nav_top" target="_blank" style="color:#06c;padding-left:10px;">了解产品并申请体验→</a></font>' +
+            '<font>【商城推荐】仅10分钟，将阿里国际站店铺平移至Xorder，快速创建一个面向全球用户的外贸独立站。现申请可免费试用5天！<a href="/xorder?s=nav_top" target="_blank" style="color:#06c;padding-left:20px;text-decoration:none;">了解产品并申请试用 →</a></font>' +
             '<a class="notice-close">× 关闭</a></p>'
     } else {
-        html = '<p class="notice">' +
+        html = '<p class="notice" style="display:none;">' +
             '<font>[Welfare Day] 3 days free trial of Jungle Scout (Amazon tool), and get the product price and sales volume of the end side, and achieve hot sales! <a href="/amazon?s=nav_top" target="_blank" style="padding-left:10px;color:#06c">To learn more or try it →</a></font>' +
             '<a class="notice-close">× close</a></p>'
     }
@@ -2408,6 +2465,12 @@ function full_pop(designation_pop = '') {
             if (result.state == 0) {
                 open_options['content'] = result.content
                 switch (result.mark) {
+                    // 引导弹窗
+                    case 'process_toast_jx':
+                        open_options['area'] = ['600px', '']
+                        open_options['title'] = '继续引导'
+                        open_options['closeBtn'] = false
+                        break
                     case 'big_class_exchange':
                         open_options['area'] = ['600px', '']
                         open_options['title'] = unity_lang('big_class_exchange')
@@ -3609,7 +3672,7 @@ function experience_invite_entrance() {
     })
 }
 
-function pop_experience_invite_entrance() {
+function pop_experience_invite_entrance() {layui-layer2
     let vip_start_time = wg.user.vip_start_time || ''
     if (!vip_start_time) return
     // console.log(new Date(vip_start_time) < $.date_change(-7, null, 'd'))
