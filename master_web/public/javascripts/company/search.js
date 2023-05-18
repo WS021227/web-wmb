@@ -992,7 +992,11 @@ $(function () {
     get_search_tags(search_params)
 
     // 引导流程
-    show_experience_process()
+     load_js_file('intro', function () {
+        // 折叠
+        show_experience_process()
+    })
+    
 })
 
 function show_experience_process(){

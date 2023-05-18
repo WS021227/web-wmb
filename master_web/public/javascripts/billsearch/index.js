@@ -2,7 +2,10 @@ let curr_lang_json = {}
 let bang_classroom = $("#operate_box"),
     right_bang_classroom = bang_classroom.offset().top +$(".module-content").height()+50
 $(function(){
-    show_experience_process()
+    load_js_file('intro', function () {
+        // 折叠
+        show_experience_process()
+    })
 })
 $(window).on('scroll', function () {
     var top = $(window).scrollTop();

@@ -350,7 +350,10 @@ $(function () {
         })
     })
 
-    show_experience_process()
+    load_js_file('intro', function () {
+        // 折叠
+        show_experience_process()
+    })
 })
 
 function show_experience_process(){

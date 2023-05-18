@@ -128,6 +128,8 @@
     </div>
 </div>
 <%- include('../global/foot.ejs') %>
+<!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
+<input type="hidden" id="intro_js" value="<%= STATIC %>plugins/intro.js">
 <script  src="<%= STATIC %>javascripts/billsearch/index.js?v=<%=VERSION%>"></script>
 </body>
 </html>

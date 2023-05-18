@@ -2136,6 +2136,19 @@ function show_time(str_date) {
     if (old_time > 60) return Math.floor(old_time / 60) + '' + unity_lang('line_minutes_ago') + ''
     return '刚刚'
 }
+     
+// 体验流程
+function experience_process(){
+    let process_flag = wg.user.user_functional.enode || 1
+    if(!get_experience_process()) return false
+
+    let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+    if(!node_id) return false
+    console.log(now_url,url,"xxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    if(now_url != url){
+        return full_pop("process_toast_jx")
+    }
+}
 
 // 体验引导流程相关权限
 function get_experience_process(){
@@ -2153,46 +2166,14 @@ function get_experience_process(){
     if(process_flag == -1) return false
     return true
 }
-     
-// 体验流程
-function experience_process(){
+
+// 获取断点的地址
+function get_process_url(){
     let process_flag = wg.user.user_functional.enode || 1
-    if(!get_experience_process()) return false
-    // 体验流程中，其他所有弹窗不弹
-    // if(!document.getElementsByTagName('meta')['no_full_pop']){
-    //     const meta = document.createElement('meta');
-    //     meta.content = 'yes';
-    //     meta.name = 'no_full_pop';
-    //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(meta);
-    // }else{
-    //     document.getElementsByTagName('meta')['no_full_pop'].setAttribute("content","yes")
-    // }
-    // no_full_pop = document.getElementsByTagName('meta')['no_full_pop'].getAttribute("content")
-
-    // let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
-    // if(!node_id) return false
-    // 跳转指定的流程引导页面
-    // process_toast_jx(url)
-
-    // url_tz(process_flag)
-
-    //异步加载引导插件js
-    // load_js_file('intro', function () {
-    //     add_process_node(node_id)
-    // })
-    // add_process_node(node_id)
+    let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+    if(!node_id) return false
+    return url
 }
-
-// function url_tz(process_flag){
-//     let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
-//     if(!node_id) return false
-//     // 跳转指定的流程引导页面
-//     console.log(node_id,url,now_url)
-//     process_toast_jx(url)
-//     // if(now_url != url){
-//     //     window.location.replace(url)
-//     // }
-// }
 
 /**
  * 添加体验流程节点
@@ -2201,69 +2182,84 @@ function experience_process(){
  */
 function add_process_node(id){
         console.log(id,"当前流程节点id")
-        let that = introJs()
+
+        let process_flag = wg.user.user_functional.enode || 1
+        let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+        if(!get_experience_process()) return false
+
+        // if(now_url != url) return window.location.pathname = url
+
+        let show_flag = true
          // 流程节点列表
-        let steps_list=[],node_id = Number(id),max_idx,node_index,max_id,next_url="",num_id=0
+        let steps_list=[],node_id = Number(id),max_idx,node_index,max_id,next_url=""
         steps_list = get_dom_node(experience_process_flag,node_id)
         max_idx = steps_list.length
         max_id = steps_list[max_idx -1].node_id
-        console.log(max_idx,max_id,steps_list,"maxmaxmaxmaxmaxmaxmaxmaxmaxm")
         next_url = experience_process_flag[max_id].url
-        
-        // 拿到对应的indx
+
         steps_list.forEach(function(item,index){
-            if(item.node_id == node_id){
-                node_index = index + 1
+            if(!item.element){
+                return show_flag=false
             }
         })
-        console.log(steps_list,'new_list')
 
-        that.setOptions({
-                nextLabel: "下一步",
-                doneLabel: "结束",
-                /* 引导说明框相对高亮说明区域的位置 */
-                tooltipPosition: 'auto',
-                /* 是否使用点点点显示进度 */
-                showBullets: false,
-                /* 是否允许点击空白处退出 */
-                exitOnOverlayClick: false,
-                /* 遮罩层的透明度 */
-                overlayOpacity: 0.8,
-                /* 当位置选择自动的时候，位置排列的优先级 */
-                positionPrecedence: ["right", "bottom", "top", "left"],
-                // 引导说明文本框的样式
-                tooltipClass: 'introjs-toast',
-                // 说明高亮区域的样式
-                highlightClass: 'introjs-light',
-                // 配置内容 steps数组,内部一个对象代表一个步骤
-                steps: steps_list,
-              }).onafterchange(function(obj){
-                    let now_node_id = $(obj).data("step")
+        if(!show_flag) return false
+        introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url)
+}
+
+function introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url){
+    let that = introJs(),num_id=0
+    // 拿到对应的indx
+    steps_list.forEach(function(item,index){
+        if(item.node_id == node_id){
+            node_index = index + 1
+        }
+    })
+    console.log(steps_list,'new_list')
+
+    that.setOptions({
+            nextLabel: "下一步",
+            doneLabel: "结束",
+            /* 引导说明框相对高亮说明区域的位置 */
+            tooltipPosition: 'auto',
+            /* 是否使用点点点显示进度 */
+            showBullets: false,
+            /* 是否允许点击空白处退出 */
+            exitOnOverlayClick: false,
+            /* 遮罩层的透明度 */
+            overlayOpacity: 0.8,
+            /* 当位置选择自动的时候，位置排列的优先级 */
+            positionPrecedence: ["right", "bottom", "top", "left"],
+            // 引导说明文本框的样式
+            tooltipClass: 'introjs-toast',
+            // 说明高亮区域的样式
+            highlightClass: 'introjs-light',
+            // 配置内容 steps数组,内部一个对象代表一个步骤
+            steps: steps_list,
+          }).onafterchange(function(obj){
+                let now_node_id = $(obj).data("step")
+                // 改流程节点 (已完成的节点)
+                abandon_experience("enode",now_node_id)
+                document.body.style.overflow='hidden'
+                djs_5s()
+          }).oncomplete(function(obj) {
+                num_id++
+                console.log(obj,max_idx,num_id)
+                if(obj + 1 == max_idx && num_id!==1){
                     // 改流程节点 (已完成的节点)
-                    console.log(now_node_id,"改变后")
-                    abandon_experience("enode",now_node_id)
-                    document.body.style.overflow='hidden'
-                    // djs_5s()
-              }).onchange(function(obj){ 
-                    console.log("改变时")
-              }).oncomplete(function(obj) {
-                    num_id++
-                    if(obj + 1 == max_idx){
-                        // 改流程节点 (已完成的节点)
-                        if(num_id!==1){
-                            console.log(num_id,"结束")
-                            if(max_id == 15){
-                                abandon_experience("enode", -1)
-                            }else{
-                                abandon_experience("enode",max_id + 1)
-                            }
-                            console.log(next_url,max_id,"next_url")
-                            window.location.href = next_url
-                        }
+                    //引导结束
+                    if(max_id == 15){
+                        abandon_experience('enode',-1)
+                        return process_toast_over()
+                    }else{
+                        abandon_experience("enode",max_id + 1)
                     }
-              }).onstart(function(obj){
-                    that.goToStepNumber(node_index)
-              }).start()
+                    console.log(next_url,max_id,"next_url")
+                    window.location.href = next_url
+                }
+          }).onstart(function(obj){
+                that.goToStepNumber(node_index)
+          }).start()
 }
 
 function get_dom_node(node_list,node_id){
@@ -2302,12 +2298,16 @@ function djs_5s(){
     },1000)
 }
 
-// 引导没走完提示继续引导弹窗
-function process_toast_jx(url){
-    let content = ''
-    content = `<div class='yaoqing'><h2>继续引导</h2><div class='yaoqing-content'></div><a id='wmb_qidian_3' href='${url}' class='yaoqing-link-right'> 继续引导 </a></div>`
+// 引导已完成弹窗
+function process_toast_over(){
+    document.body.style.overflow='auto'
 
-    layer.closeAll()
+    let content = ""
+    content = `<div class='yaoqing'>
+                    <h2>引导已完成</h2>
+                    <div class='yaoqing-content'>
+                    </div>
+                </div>`
     layer.open({
         content: content,
         title: unity_lang('layer_tips'),
@@ -2315,7 +2315,11 @@ function process_toast_jx(url){
         skin: 'layui-layer-rim',
         area: ['600px', ''], // 配置长高
         shadeClose: false, //点击遮罩关闭
-        closeBtn: false
+        btn:["确定"],
+        yes:function(index, layero){
+            window.location.pathname = window.location.pathname
+            layer.close(index)
+        }
     })
 }
 
@@ -2349,7 +2353,7 @@ window.onmouseout = function (e) {
         _qidian3.src = (document.location.protocol + "//wp.qiye.qq.com/qidian/2885855166/73d8670e139f21286d483d2e8f3b55d1");
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_qidian3);
 
-        content = `<div class='yaoqing'><h2>邀请您免费体验黄钻会员权限</h2><div class='yaoqing-content'>尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a id='wmb_qidian_3' href='javascript:void(0)' class='yaoqing-link-right'>← 在线申请体验 </a><a class='yaoqing-link' href='javascript:void(0)' onclick='abandon_experience("experience",7)'>放弃体验 →</a></div>`
+        content = `<div class='yaoqing'><h2>邀请您免费体验黄钻会员权限</h2><div class='yaoqing-content'>尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a id='wmb_qidian_3' href='javascript:void(0)' class='yaoqing-link-right'>← 在线申请体验 </a><a class='yaoqing-link' href='javascript:void(0)' onclick='revise_experience("experience",7)'>放弃体验 →</a></div>`
     } else {
         content = '<div class="yaoqing"><h2>To experience yellow diamond member service</h2><div class="yaoqing-content">We have global 30 million companies reports and there will be your competitor and business partners within it...Free experience it right now!</div><a href="https://api.whatsapp.com/send?phone=+8616621075894&text=Hello" target="_blank" class="yaoqing-link">Free experience it →</a></div>'
     }
@@ -2368,6 +2372,12 @@ window.onmouseout = function (e) {
     // $.wSetCookie('_QP', '1', 86400)
 };
 
+function revise_experience(key,id){
+    let ekey = key,eid = id
+    abandon_experience(ekey,eid)
+    layer.closeAll()
+}
+
 /**
  * 外贸邦埋点统计
  * @param code
@@ -2382,21 +2392,19 @@ function wstats(code, ext) {
 
 // 放弃体验
 /*
-key 要修改的字段
-id 字段值
+* key 要修改的字段
+* id 字段值
 */
 function abandon_experience(key,id){
     console.log(key,id,"2322323232323232323")
     $.ajax('/user/functional', {
         data: {
-            key:key,
+            key: key,
             ty_flag: id
         },
         datatype: 'text/json',
         type: 'post',
         success: function (result) {
-            if (result.state != 0) return $.alert(result.message)
-            layer.closeAll()
         }
     })
 }
@@ -2465,10 +2473,10 @@ function full_pop(designation_pop = '') {
             if (result.state == 0) {
                 open_options['content'] = result.content
                 switch (result.mark) {
-                    // 引导弹窗
+                    // 继续引导弹窗
                     case 'process_toast_jx':
                         open_options['area'] = ['600px', '']
-                        open_options['title'] = '继续引导'
+                        open_options['title'] = '提示'
                         open_options['closeBtn'] = false
                         break
                     case 'big_class_exchange':
@@ -3672,7 +3680,7 @@ function experience_invite_entrance() {
     })
 }
 
-function pop_experience_invite_entrance() {layui-layer2
+function pop_experience_invite_entrance() {
     let vip_start_time = wg.user.vip_start_time || ''
     if (!vip_start_time) return
     // console.log(new Date(vip_start_time) < $.date_change(-7, null, 'd'))

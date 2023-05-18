@@ -143,15 +143,13 @@
         line-height: 160%;
     }
 </style>
-<% console.log(node_id,"888888888888888888") %>
-<% let id =  node_id %>
 <div id="experience_pop">
     <div class="guide-content">
         <%if(wglobals.lang == 'cn'){%>
         <div class="guide-topic">
-            <h2><%= id ==1 ? "开始引导" : "继续引导流程" %></h2>
+            <h2>引导已结束</h2>
             <p style="text-align:left;"></p>
-            <a class="guide-btn" id="btn_experience_start" href="javascript:void(0);" onclick="goto_node()"><%= id ==1 ? "开始" : "继续" %></a>
+            <a class="guide-btn" id="btn_experience_start" href="">确定</a>
         </div>
         <%}else{%>
         <!-- <div class="guide-topic">
@@ -165,10 +163,6 @@
 </div>
 <script type="application/javascript">
     // 跳转至流程节点
-    function goto_node(){
-        console.log("12312312")
-        let url = get_process_url()
-        window.location.pathname = url
-    }
+    console.log("继续引导")
 </script>
 

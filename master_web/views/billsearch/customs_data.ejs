@@ -137,6 +137,8 @@
 <!--<script src="<%= STATIC %>js/jquery.datatables.min.js"></script>-->
 
 <script  src="<%= STATIC %>js/dcalendar.picker.js?v=2"></script>
+<!-- 延迟加载js   id: 调用方法名 + _js  value: 路径 -->
+<input type="hidden" id="intro_js" value="<%= STATIC %>plugins/intro.js">
 <script  src="<%= STATIC %>javascripts/billsearch/customs_data.js?v=<%=VERSION%>"></script>
 </body>
 </html>
