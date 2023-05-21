@@ -52,7 +52,8 @@ var baseconfig = {
             df_pet: new Date('2022-12-12 14:59:59'),
             cj_start_time: new Date('2023-03-16 10:00:00'),
             cj_end_time: new Date('2023-03-31 23:59:59'),
-            cj_user_start_time: new Date('2023-01-01 00:00:00')
+            cj_user_start_time: new Date('2023-01-01 00:00:00'),
+            plugins_static: 'http://www.wmb.com:3000/plugins/'
         }
     },
     // 开发环境(PC)
@@ -99,7 +100,8 @@ var baseconfig = {
             df_pet: new Date('2022-12-12 14:59:59'),
             cj_start_time: new Date('2023-03-16 10:00:00'),
             cj_end_time: new Date('2023-03-31 23:59:59'),
-            cj_user_start_time: new Date('2023-01-01 00:00:00')
+            cj_user_start_time: new Date('2023-01-01 00:00:00'),
+            plugins_static: 'http://www.wmb.com:3000/plugins/'
         }
     },
     // 开发环境(移动)
@@ -146,7 +148,8 @@ var baseconfig = {
             df_pet: new Date('2022-12-12 14:59:59'),
             cj_start_time: new Date('2023-03-16 10:00:00'),
             cj_end_time: new Date('2023-03-31 23:59:59'),
-            cj_user_start_time: new Date('2023-01-01 00:00:00')
+            cj_user_start_time: new Date('2023-01-01 00:00:00'),
+            plugins_static: 'http://www.wmb.com:3000/plugins/'
         }
     },
     // 开发环境
@@ -190,7 +193,8 @@ var baseconfig = {
             df_pet: new Date('2022-12-12 14:59:59'),
             cj_start_time: new Date('2023-03-16 10:00:00'),
             cj_end_time: new Date('2023-03-31 23:59:59'),
-            cj_user_start_time: new Date('2023-01-01 00:00:00')
+            cj_user_start_time: new Date('2023-01-01 00:00:00'),
+            plugins_static: 'http://www.wmb.com:3000/plugins/'
         }
     },
     // 测试环境
@@ -224,7 +228,8 @@ var baseconfig = {
             df_pet: new Date('2023-01-04 23:59:59'),
             cj_start_time: new Date('2023-03-20 10:00:00'),
             cj_end_time: new Date('2023-03-31 23:59:59'),
-            cj_user_start_time: new Date('2023-01-01 00:00:00')
+            cj_user_start_time: new Date('2023-01-01 00:00:00'),
+            plugins_static: 'https://static.52wmb.com/plugins/'
         }
     },
     // 生产环境
@@ -258,7 +263,8 @@ var baseconfig = {
             df_pet: new Date('2023-01-04 23:59:59'),
             cj_start_time: new Date('2023-03-20 09:00:00'),
             cj_end_time: new Date('2023-03-31 23:59:59'),
-            cj_user_start_time: new Date('2023-01-01 00:00:00')
+            cj_user_start_time: new Date('2023-01-01 00:00:00'),
+            plugins_static: 'https://static.52wmb.com/plugins/'
         }
     }
 }[_env];

@@ -731,6 +731,7 @@ var globalData = {
         'yd': '黄钻用户'
     }
 }
+// 引导节点
 var experience_process_flag = [
     // 页面一
     {
@@ -2141,27 +2142,35 @@ function show_time(str_date) {
 function experience_process(){
     let process_flag = wg.user.user_functional.enode || 1
     if(!get_experience_process()) return false
-
-    let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
-    if(!node_id) return false
-    console.log(now_url,url,"xxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    if(now_url != url){
-        return full_pop("process_toast_jx")
+    let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+    console.log(url,now_url)
+    let xflag = (process_flag == 1 || process_flag == 7 || process_flag == 12 || process_flag == 13)
+    if(url != now_url && xflag) return false
+    // if(process_flag == 1 || process_flag == 7 || process_flag == 12 || process_flag == 13) return false
+    // 引导流程中不显示其他弹窗
+    if(document.querySelector('meta[name="no_full_pop"]')){
+        document.querySelector('meta[name="no_full_pop"]').setAttribute('content',"yes")
+    }else{
+        let meta = document.createElement('meta');
+        meta.content="yes";
+        meta.name="no_full_pop";
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(meta);
     }
+    no_full_pop = document.querySelector('meta[name="no_full_pop"]').getAttribute('content')
 }
 
 // 体验引导流程相关权限
 function get_experience_process(){
     // 是否体验过
-    let experience_flag = wg.user.user_functional.experience || 0
-    let process_flag = wg.user.user_functional.enode || 1
+    let experience_flag = Number(wg.user.user_functional.experience) || 0
+    let process_flag = Number(wg.user.user_functional.enode) || 1
     console.log("体验开通情况",experience_flag,"引导节点",process_flag)
 
     // 校验权限
     // 未登录不出现
     if(!wg.user.id) return false
-    // 已开通体验且不在体验中出现
-    if(experience_flag != 1) return false
+    // 已申请通过或者后台开通 且 未不在体验中显示
+    if(experience_flag != 1 ) return false
     // 体验引导流程未走完出现
     if(process_flag == -1) return false
     return true
@@ -2170,8 +2179,7 @@ function get_experience_process(){
 // 获取断点的地址
 function get_process_url(){
     let process_flag = wg.user.user_functional.enode || 1
-    let node_id = experience_process_flag[process_flag - 1].node_id,url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
-    if(!node_id) return false
+    let url = experience_process_flag[process_flag - 1].url
     return url
 }
 
@@ -2180,14 +2188,16 @@ function get_process_url(){
  * @param  url 路由
  * @param  node 节点id
  */
-function add_process_node(id){
+function add_process_node(id,first){
         console.log(id,"当前流程节点id")
 
         let process_flag = wg.user.user_functional.enode || 1
         let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
         if(!get_experience_process()) return false
 
-        // if(now_url != url) return window.location.pathname = url
+        if(first){
+            window.location.pathname = url
+        }
 
         let show_flag = true
          // 流程节点列表
@@ -2244,18 +2254,16 @@ function introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url){
                 djs_5s()
           }).oncomplete(function(obj) {
                 num_id++
-                console.log(obj,max_idx,num_id)
+                console.log(obj,max_idx,num_id,next_url)
                 if(obj + 1 == max_idx && num_id!==1){
                     // 改流程节点 (已完成的节点)
                     //引导结束
                     if(max_id == 15){
-                        abandon_experience('enode',-1)
+                        abandon_experience_ty('enode',-1)
                         return process_toast_over()
                     }else{
-                        abandon_experience("enode",max_id + 1)
+                        abandon_experience_url("enode",(max_id + 1),next_url)
                     }
-                    console.log(next_url,max_id,"next_url")
-                    window.location.href = next_url
                 }
           }).onstart(function(obj){
                 that.goToStepNumber(node_index)
@@ -2320,7 +2328,18 @@ function process_toast_over(){
             window.location.pathname = window.location.pathname
             layer.close(index)
         }
+        
     })
+}
+
+//开通体验
+function active_yellow_ty(){
+    $.ajax("/async/experience/start", {
+        datatype: 'text/html',
+        type: 'get',
+        success: function (result) {
+        }
+    });
 }
 
 // 鼠标移动轨迹判断
@@ -2328,9 +2347,8 @@ window.onmouseout = function (e) {
     if (no_full_pop == 'yes') return false
     //  当前逻辑
     if (e.clientY > 0) return false;
-    // let _qp = getCookies('_QP')
-    // if (_qp) return false
-    // 新用户在线申请体验
+    let _qp = getCookies('_QP')
+    if (_qp) return false
     // 未登录不弹
     if (!wg.user.id) return false
     //if(wg.user.user_functional.qp) return
@@ -2353,12 +2371,11 @@ window.onmouseout = function (e) {
         _qidian3.src = (document.location.protocol + "//wp.qiye.qq.com/qidian/2885855166/73d8670e139f21286d483d2e8f3b55d1");
         (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_qidian3);
 
-        content = `<div class='yaoqing'><h2>邀请您免费体验黄钻会员权限</h2><div class='yaoqing-content'>尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a id='wmb_qidian_3' href='javascript:void(0)' class='yaoqing-link-right'>← 在线申请体验 </a><a class='yaoqing-link' href='javascript:void(0)' onclick='revise_experience("experience",7)'>放弃体验 →</a></div>`
+        content = '<div class="yaoqing"><h2>邀请您免费体验黄钻会员权限</h2><div class="yaoqing-content">尊敬的邦友，现在您有一次免费体验黄钻会员权限的机会，在线申请即时开通！开通体验后您可以使用HS编码搜索、公司高级筛选...更多等您来亲自体验尝鲜！</div><a href="/course" target="_blank" class="yaoqing-link">← 观看视频课程</a><a id="wmb_qidian_3" href="javascript:void(0)" class="yaoqing-link-right">在线申请体验 →</a></div>'
     } else {
-        content = '<div class="yaoqing"><h2>To experience yellow diamond member service</h2><div class="yaoqing-content">We have global 30 million companies reports and there will be your competitor and business partners within it...Free experience it right now!</div><a href="https://api.whatsapp.com/send?phone=+8616621075894&text=Hello" target="_blank" class="yaoqing-link">Free experience it →</a></div>'
+        content = '<div class="yaoqing"><h2>To experience yellow diamond member service</h2><div class="yaoqing-content">We have global 30 million companies reports and there will be your competitor and business partners within it...Free experience it right now!</div>< a href="https://api.whatsapp.com/send?phone=+8616621075894&text=Hello" target="_blank" class="yaoqing-link">Free experience it →</ a></div>'
     }
 
-    layer.closeAll()
     layer.open({
         content: content,
         title: unity_lang('layer_tips'),
@@ -2366,10 +2383,10 @@ window.onmouseout = function (e) {
         skin: 'layui-layer-rim',
         area: ['600px', ''], // 配置长高
         shadeClose: false, //点击遮罩关闭
-        closeBtn: false
+        closeBtn: 1
     })
 
-    // $.wSetCookie('_QP', '1', 86400)
+    $.wSetCookie('_QP', '1', 86400)
 };
 
 function revise_experience(key,id){
@@ -2396,7 +2413,6 @@ function wstats(code, ext) {
 * id 字段值
 */
 function abandon_experience(key,id){
-    console.log(key,id,"2322323232323232323")
     $.ajax('/user/functional', {
         data: {
             key: key,
@@ -2405,6 +2421,37 @@ function abandon_experience(key,id){
         datatype: 'text/json',
         type: 'post',
         success: function (result) {
+        }
+    })
+}
+
+function abandon_experience_url(key,id,url){
+    $.ajax('/user/functional', {
+        data: {
+            key: key,
+            ty_flag: id
+        },
+        datatype: 'text/json',
+        type: 'post',
+        success: function (result) {
+            if(result.state!=0) return layer.msg(`${result.message}`)
+            window.location.pathname = url
+        }
+    })
+}
+
+function abandon_experience_ty(key,id){
+    $.ajax('/user/functional', {
+        data: {
+            key: key,
+            ty_flag: id
+        },
+        datatype: 'text/json',
+        type: 'post',
+        success: function (result) {
+            console.log(result,"开通")
+            if(result.state!=0) return layer.msg(`${result.message}`)
+            active_yellow_ty()
         }
     })
 }
@@ -2533,11 +2580,12 @@ function full_pop(designation_pop = '') {
                     case 'experience_pop':
                         open_options['area'] = ['650px', '']
                         open_options['title'] = unity_lang('tan_tips_title_yellow')
-                        open_options.cancel = function (index) {
-                            close_experience(function () {
-                                layer.close(index)
-                            })
-                        }
+                        open_options['closeBtn'] = 0
+                        // open_options.cancel = function (index) {
+                        //     close_experience(function () {
+                        //         layer.close(index)
+                        //     })
+                        // }
                         break
                     case 'experience_ing':
                         open_options['area'] = ['750px', '']
@@ -3776,8 +3824,6 @@ function experience_ing() {
             '</div>' +
             '<a href="javascript:void(0)" onclick="experience_pause()" class="trip-button" title="暂停体验">' +
             '<i><svg t="1653280283655" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15462" width="25" height="25"><path d="M584.06738 657.815846H730.175589V365.74561H584.06738V657.815846zM291.997145 657.815846h146.035118V365.74561H291.997145V657.815846z m219.052677 292.143326c240.979872 0 438.105353-197.198572 438.105353-438.178444 0-240.906781-197.125482-438.105353-438.105353-438.105353-240.979872 0-438.105353 197.198572-438.105354 438.105353 0 240.979872 197.125482 438.178444 438.105354 438.178444zM0 512.365453c0-281.399001 230.235546-511.634547 511.634547-511.634547s511.634547 230.235546 511.634547 511.634547-230.235546 511.634547-511.634547 511.634547-511.634547-230.235546-511.634547-511.634547z" p-id="15463" fill="#ffffff"></path></svg></i> ' +
-            '</a><a href="javascript: void(0)" onclick="experience_demonstration()" class="trip-button" title="视频演示" style="margin-top:2px;">' +
-            '<i><svg t="1653283428100" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="30966" width="29" height="29"><path d="M888.832 743.014H138.445c-15.292 0-27.853-12.56-27.853-27.852V203.98c0-15.292 12.561-27.853 27.853-27.853h750.387c15.292 0 27.853 12.561 27.853 27.853v510.634c0 15.838-12.561 28.4-27.853 28.4zM166.298 687.31h694.681v-454.93H166.298v454.93z" p-id="30967" fill="#ffffff"></path><path d="M513.638 232.38c-15.291 0-27.852-12.561-27.852-27.853V138.99c0-15.292 12.56-27.853 27.852-27.853s27.853 12.561 27.853 27.853v64.99c0 15.838-12.56 28.399-27.853 28.399zM169.574 930.884c-7.1 0-13.653-2.73-19.114-7.646-10.923-10.922-11.47-28.399-0.546-39.321l170.94-178.04c10.922-10.922 28.398-11.468 39.32-0.546s11.47 28.4 0.547 39.322l-170.94 178.04c-6.007 4.914-13.107 8.191-20.207 8.191z m691.951 0c-7.1 0-14.745-2.73-20.207-8.738l-170.94-178.04c-10.922-10.922-10.376-28.944 0.547-39.32s28.945-10.377 39.321 0.545l170.94 178.04c10.923 10.922 10.377 28.945-0.546 39.321-5.461 5.462-12.561 8.192-19.115 8.192z m-405.23-354.44c-7.1 0-14.746-1.639-20.754-5.462-13.653-8.192-21.845-22.937-21.845-41.506V400.59c0-18.569 8.192-33.314 21.845-41.506s31.13-7.1 46.968 1.638l111.411 64.444c15.838 9.284 25.122 23.484 25.122 39.868s-9.284 30.583-25.122 39.867l-111.957 64.444c-8.738 4.915-17.477 7.1-25.669 7.1z m12.56-158.379v94.481l81.92-46.967-81.92-47.514z" p-id="30968" fill="#ffffff"></path></svg></i> ' +
             '</a>')
     } else {
         build_experience_top('<div class="trip-text"><font class="trip-title">Experience Yellow Diamond</font>' +
@@ -3785,8 +3831,6 @@ function experience_ing() {
             '</div>' +
             '<a href="javascript:void(0)" onclick="experience_pause()" class="trip-button" title="Stop">' +
             '<i><svg t="1653280283655" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15462" width="25" height="25"><path d="M584.06738 657.815846H730.175589V365.74561H584.06738V657.815846zM291.997145 657.815846h146.035118V365.74561H291.997145V657.815846z m219.052677 292.143326c240.979872 0 438.105353-197.198572 438.105353-438.178444 0-240.906781-197.125482-438.105353-438.105353-438.105353-240.979872 0-438.105353 197.198572-438.105354 438.105353 0 240.979872 197.125482 438.178444 438.105354 438.178444zM0 512.365453c0-281.399001 230.235546-511.634547 511.634547-511.634547s511.634547 230.235546 511.634547 511.634547-230.235546 511.634547-511.634547 511.634547-511.634547-230.235546-511.634547-511.634547z" p-id="15463" fill="#ffffff"></path></svg></i> ' +
-            '</a><a href="javascript: void(0)" onclick="experience_demonstration()" class="trip-button" title="Video presentation" style="margin-top:2px;">' +
-            '<i><svg t="1653283428100" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="30966" width="29" height="29"><path d="M888.832 743.014H138.445c-15.292 0-27.853-12.56-27.853-27.852V203.98c0-15.292 12.561-27.853 27.853-27.853h750.387c15.292 0 27.853 12.561 27.853 27.853v510.634c0 15.838-12.561 28.4-27.853 28.4zM166.298 687.31h694.681v-454.93H166.298v454.93z" p-id="30967" fill="#ffffff"></path><path d="M513.638 232.38c-15.291 0-27.852-12.561-27.852-27.853V138.99c0-15.292 12.56-27.853 27.852-27.853s27.853 12.561 27.853 27.853v64.99c0 15.838-12.56 28.399-27.853 28.399zM169.574 930.884c-7.1 0-13.653-2.73-19.114-7.646-10.923-10.922-11.47-28.399-0.546-39.321l170.94-178.04c10.922-10.922 28.398-11.468 39.32-0.546s11.47 28.4 0.547 39.322l-170.94 178.04c-6.007 4.914-13.107 8.191-20.207 8.191z m691.951 0c-7.1 0-14.745-2.73-20.207-8.738l-170.94-178.04c-10.922-10.922-10.376-28.944 0.547-39.32s28.945-10.377 39.321 0.545l170.94 178.04c10.923 10.922 10.377 28.945-0.546 39.321-5.461 5.462-12.561 8.192-19.115 8.192z m-405.23-354.44c-7.1 0-14.746-1.639-20.754-5.462-13.653-8.192-21.845-22.937-21.845-41.506V400.59c0-18.569 8.192-33.314 21.845-41.506s31.13-7.1 46.968 1.638l111.411 64.444c15.838 9.284 25.122 23.484 25.122 39.868s-9.284 30.583-25.122 39.867l-111.957 64.444c-8.738 4.915-17.477 7.1-25.669 7.1z m12.56-158.379v94.481l81.92-46.967-81.92-47.514z" p-id="30968" fill="#ffffff"></path></svg></i> ' +
             '</a>')
     }
     let total_seconds = wg.user.total_seconds

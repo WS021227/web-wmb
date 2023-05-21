@@ -175,13 +175,13 @@ table.dataTable tbody tr:hover td:nth-child(4) font{
     width:108px ;
     height:20px;
 }
-.star-50{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -160px no-repeat;}
-.star-45{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -120px no-repeat;}
-.star-40{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -140px no-repeat;}
-.star-35{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -80px no-repeat;}
-.star-30{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -100px no-repeat;}
-.star-25{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -40px no-repeat;}
-.star-20{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px 0px no-repeat;}
+.star-50{background:url(../../images/data_imgs/ico_share_data.png) -485px -160px no-repeat;}
+.star-45{background:url(../../images/data_imgs/ico_share_data.png) -485px -120px no-repeat;}
+.star-40{background:url(../../images/data_imgs/ico_share_data.png) -485px -140px no-repeat;}
+.star-35{background:url(../../images/data_imgs/ico_share_data.png) -485px -80px no-repeat;}
+.star-30{background:url(../../images/data_imgs/ico_share_data.png) -485px -100px no-repeat;}
+.star-25{background:url(../../images/data_imgs/ico_share_data.png) -485px -40px no-repeat;}
+.star-20{background:url(../../images/data_imgs/ico_share_data.png) -485px 0px no-repeat;}
 
 .details-head .briskV .grade{margin-left: 10px;line-height:20px;opacity:0.6;}
 .details-head .sources {

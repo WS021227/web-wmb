@@ -16,13 +16,13 @@ li{list-style-type:none;margin:0;}
 .user-c-left ul{margin-top:10px;margin-bottom:0;}
 .user-c-left ul li{margin-top:20px;}
 .user-c-left ul li fieldset{border:1px #ddd solid;height:48px;width:410px;padding:0;margin:0;padding-left:40px;position:relative;box-shadow: 0px 0px 6px rgb(0 0 0 / 7%);}
-.user-c-left ul li fieldset i{display:inline-block;height:20px;width:15px;background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) no-repeat;position:absolute;left:13px;top:14px;}
+.user-c-left ul li fieldset i{display:inline-block;height:20px;width:15px;background:url(../../images/data_imgs/ico_share_data.png) no-repeat;position:absolute;left:13px;top:14px;}
 .user-c-left ul li fieldset i.ico-account{background-position:-262px -9px;}
 .user-c-left ul li fieldset i.ico-password{background-position:-238px -9px;}
 .user-c-left ul li fieldset i.ico-phone{background-position:-190px -9px;}
 .user-c-left ul li fieldset i.ico-yzm{background-position:-215px -10px;}
 .user-c-left ul li fieldset i.ico-pic{background-position:-235px -8px;}
-.user-c-left ul li fieldset span.ico-see{display:none;height:15px;width:22px;background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -256px -47px no-repeat;position:absolute;right:15px;top:16px;}
+.user-c-left ul li fieldset span.ico-see{display:none;height:15px;width:22px;background:url(../../images/data_imgs/ico_share_data.png) -256px -47px no-repeat;position:absolute;right:15px;top:16px;}
 .user-c-left .picture-code{width: 20px;height: 20px;margin: 7px 10px 0 0}
 input{height:46px;border:none;border-left:1px #eee solid;width:230px;outline:none;padding-left:10px;}
 .get-code{float:right;font-size:14.4px;color:#57ACF8;margin-right:18px;margin-top:14px;cursor: pointer;}
@@ -54,13 +54,13 @@ input{height:46px;border:none;border-left:1px #eee solid;width:230px;outline:non
 .user-reset-pwd ul{margin-top:10px;margin-bottom:0;}
 .user-reset-pwd ul li{margin-top:20px;}
 .user-reset-pwd ul li fieldset{border:1px #ddd solid;height:48px;width:410px;padding:0;margin:0;padding-left:40px;position:relative;box-shadow: 0px 0px 6px rgb(0 0 0 / 7%);}
-.user-reset-pwd ul li fieldset i{display:inline-block;height:20px;width:15px;background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) no-repeat;position:absolute;left:13px;top:14px;}
+.user-reset-pwd ul li fieldset i{display:inline-block;height:20px;width:15px;background:url(../../images/data_imgs/ico_share_data.png) no-repeat;position:absolute;left:13px;top:14px;}
 .user-reset-pwd ul li fieldset i.ico-account{background-position:-262px -9px;}
 .user-reset-pwd ul li fieldset i.ico-password{background-position:-238px -9px;}
 .user-reset-pwd ul li fieldset i.ico-phone{background-position:-190px -9px;}
 .user-reset-pwd ul li fieldset i.ico-yzm{background-position:-215px -10px;}
 .user-reset-pwd ul li fieldset i.ico-pic{background-position:-235px -8px;}
-.user-reset-pwd ul li fieldset span.ico-see{display:none;height:15px;width:22px;background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -256px -47px no-repeat;position:absolute;right:15px;top:16px;}
+.user-reset-pwd ul li fieldset span.ico-see{display:none;height:15px;width:22px;background:url(../../images/data_imgs/ico_share_data.png) -256px -47px no-repeat;position:absolute;right:15px;top:16px;}
 .user-reset-pwd ul li fieldset img{float:right;}
 .user-reset-pwd .picture-code{width: 20px;height: 20px;margin: 7px 10px 0 0}
 

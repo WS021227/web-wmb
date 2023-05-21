@@ -195,27 +195,26 @@ function login_valid_user_pop(req, res) {
                         // 引导节点
                         let process_flag = parseInt(user_functional.enode) || 1
                         // 引导流程中不弹其他弹窗,中断引导流程的用户,弹窗提示继续引导
-
-                        // 继续体验
-                        if(experience == 1 && process_flag != -1){
-                            if(!vfd_pop(designation_pop, 'process_toast_jx')) return callback(null, 1)
-                            res.wrender('./full_pop/process_toast_jx.ejs', {node_id: process_flag}, function (err, str) {
-                                res.send({
-                                    content: str,
-                                    state: 0,
-                                    mark: 'process_toast_jx'
-                                })
-                            })
-                            return
-                        }
                         // 1 已开通未体验
-                        if (experience == 1 && process_flag == -1) {
+                        if (experience == 1 && process_flag == 1) {
                             if(vfd_pop(designation_pop, 'experience_pop')) return callback(null, 1)
                             res.wrender('./full_pop/experience.ejs', {}, function (err, str) {
                                 res.send({
                                     content: str,
                                     state: 0,
                                     mark: 'experience_pop'
+                                })
+                            })
+                            return
+                        }
+                         // 继续体验
+                        if(experience == 1 && process_flag != -1 && process_flag != 1){
+                            if(vfd_pop(designation_pop, 'process_toast_jx')) return callback(null, 1)
+                            res.wrender('./full_pop/process_toast_jx.ejs', {node_id: process_flag}, function (err, str) {
+                                res.send({
+                                    content: str,
+                                    state: 0,
+                                    mark: 'process_toast_jx'
                                 })
                             })
                             return

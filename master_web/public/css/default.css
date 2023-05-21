@@ -559,7 +559,7 @@ margin-top:15px;border-radius:100px;}
     display:inline-block;
     height:6px;
     width:10px;
-    background: url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -245px -53px no-repeat;
+    background: url(../../wmb_new/images/data_imgs/ico_share_data.png) -245px -53px no-repeat;
     margin-left:1px;
 }
 .leftsidebar .leftsidebar-mine ul{background:#fff;border:1px #eee solid;padding:0;box-shadow: 0 0 10px rgb(0 0 0 / 5%);
@@ -659,7 +659,7 @@ margin-top:15px;border-radius:100px;}
     text-align:left;
 }
 .dropdown-btn font{color:#333;font-weight:bold;}
-.dropdown-btn i{margin-top:10px;display:inline-block;height:6px;width:10px;background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -245px -53px no-repeat;margin-left:4px;}
+.dropdown-btn i{margin-top:10px;display:inline-block;height:6px;width:10px;background:url(../../wmb_new/images/data_imgs/ico_share_data.png) -245px -53px no-repeat;margin-left:4px;}
 .dropdown-menu {
     padding:10px 0;   
     display: inline-block;
@@ -884,8 +884,8 @@ html #layuicss-layer{display: none; position: absolute; width: 1989px;}
 .layui-layer-close{position:absolute;}
 .layui-layer-content{position:relative;}
 .layui-layer-border{border: 1px solid #B2B2B2; border: 1px solid rgba(0,0,0,.1); box-shadow: 1px 1px 5px rgba(0,0,0,.2);}
-.layui-layer-load{background:url(https://static.52wmb.com/wmb_new/plugins/img/loading-1.gif) #eee center center no-repeat;}
-.layui-layer-ico{ background:url(https://static.52wmb.com/wmb_new/plugins/img/icon.png) no-repeat;}
+.layui-layer-load{background:url(../../plugins/img/loading-1.gif) #eee center center no-repeat;}
+.layui-layer-ico{ background:url(../../plugins/img/icon.png) no-repeat;}
 .layui-layer-dialog .layui-layer-ico,
 .layui-layer-setwin a,
 .layui-layer-btn a{display:inline-block; *display:inline; *zoom:1; vertical-align:top;font-size:13.4px;}
@@ -974,9 +974,9 @@ html #layuicss-layer{display: none; position: absolute; width: 1989px;}
 .layui-layer-iframe iframe{display: block; width: 100%;}
 
 .layui-layer-loading{border-radius:100%; background:none;  box-shadow:none;  border:none;}
-.layui-layer-loading .layui-layer-content{width:60px; height:24px; background:url(https://static.52wmb.com/wmb_new/plugins/img/loading-0.gif) no-repeat;}
-.layui-layer-loading .layui-layer-loading1{width:37px; height:37px; background:url(https://static.52wmb.com/wmb_new/plugins/img/loading-1.gif) no-repeat;}
-.layui-layer-loading .layui-layer-loading2, .layui-layer-ico16{width:32px; height:32px; background:url(https://static.52wmb.com/wmb_new/plugins/img/loading-2.gif) no-repeat;}
+.layui-layer-loading .layui-layer-content{width:60px; height:24px; background:url(../../plugins/img/loading-0.gif) no-repeat;}
+.layui-layer-loading .layui-layer-loading1{width:37px; height:37px; background:url(../../plugins/img/loading-1.gif) no-repeat;}
+.layui-layer-loading .layui-layer-loading2, .layui-layer-ico16{width:32px; height:32px; background:url(../../plugins/img/loading-2.gif) no-repeat;}
 .layui-layer-tips{background: none; box-shadow:none; border:none;}
 .layui-layer-tips .layui-layer-content{position: relative; line-height: 22px; min-width: 12px; padding: 8px 15px; font-size: 12px; _float:left; border-radius: 2px; box-shadow: 1px 1px 3px rgba(0,0,0,.2); background-color: #000; color: #fff;}
 .layui-layer-tips .layui-layer-close{right:-2px; top:-1px;}
@@ -997,7 +997,7 @@ html #layuicss-layer{display: none; position: absolute; width: 1989px;}
 .layui-layer-molv .layui-layer-title{background: #009f95; color:#fff; border: none;}
 .layui-layer-molv .layui-layer-btn a{background: #009f95; border-color: #009f95;}
 .layui-layer-molv .layui-layer-btn .layui-layer-btn1{background:#92B8B1;}
-.layui-layer-iconext{background:url(https://static.52wmb.com/wmb_new//plugins/img/icon-ext.png) no-repeat;}
+.layui-layer-iconext{background:url(../../plugins/img/icon-ext.png) no-repeat;}
 
 
 
@@ -1145,10 +1145,10 @@ input:focus{outline:none}
 .operation-list li a:hover{color:#06c;}
 .operation-list li span {color: #999999;font-size: 13.4px;float:right;}
 .operation-list li span font{font-family:fangsong;padding-left:3px;}
- .data-tool .data-right-follow{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -5px -6px no-repeat;background-size:800px 800px;}
-.data-right-follow.active{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -33px -6px no-repeat; background-size:800px 800px; }
-.data-right-search-tags{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -5px -46px no-repeat;}
-.data-right-mail{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -27px -45px no-repeat;}
+ .data-tool .data-right-follow{ background:url(../../images/data_imgs/ico_share_data.png) -5px -6px no-repeat;background-size:800px 800px;}
+.data-right-follow.active{background:url(../../images/data_imgs/ico_share_data.png) -33px -6px no-repeat; background-size:800px 800px; }
+.data-right-search-tags{ background:url(../../images/data_imgs/ico_share_data.png) -5px -46px no-repeat;}
+.data-right-mail{ background:url(../../images/data_imgs/ico_share_data.png) -27px -45px no-repeat;}
 
 .tab-list.tabs .tab {
     list-style: none;
@@ -1228,9 +1228,9 @@ max-width:90px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;posi
 .update-btn-1{padding:0 30px;border-radius:3px;background:#007fff;color:#fff;font-size:13.4px;}
 .update-btn-2{font-size:13.4px;color:#007fff;}
 
-table.dataTable thead .sorting_asc i{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -283px -48px no-repeat;display:inline-block;height:13px;width:8px;margin-left:2px;margin-bottom:-1.5px;}
-table.dataTable thead .sorting i{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -269px -48px no-repeat;display:inline-block;height:13px;width:8px;margin-left:2px;margin-bottom:-1.5px;}
-table.dataTable thead .sorting_desc i{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -297px -48px no-repeat;display:inline-block;height:13px;width:8px;margin-left:2px;margin-bottom:-1.5px;}
+table.dataTable thead .sorting_asc i{background:url(../../images/data_imgs/ico_share_data.png) -283px -48px no-repeat;display:inline-block;height:13px;width:8px;margin-left:2px;margin-bottom:-1.5px;}
+table.dataTable thead .sorting i{background:url(../../images/data_imgs/ico_share_data.png) -269px -48px no-repeat;display:inline-block;height:13px;width:8px;margin-left:2px;margin-bottom:-1.5px;}
+table.dataTable thead .sorting_desc i{background:url(../../images/data_imgs/ico_share_data.png) -297px -48px no-repeat;display:inline-block;height:13px;width:8px;margin-left:2px;margin-bottom:-1.5px;}
 .load{
     position: fixed;
     top: 25px;

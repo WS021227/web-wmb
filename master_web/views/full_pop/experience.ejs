@@ -150,7 +150,7 @@
             <h2>钻石会员体验之旅即将开始...</h2>
             <p style="text-align:left;">开通体验后，您的账号将拥有黄钻权限。此次体验我们将采用“自主体验”和“远程演示”双模式，任何疑问请致电：021-64033826。祝您玩的开心^_^！</p>
             <a class="guide-btn btn-disabled" id="btn_experience_start">现在，开始在线体验<font>3s</font></a>
-            <% if((wglobals.user.user_functional||{}).exp_rt != 1){ %><a class="guide-btn-open" onclick="experience_start_to_remote()">申请远程演示</a><%}%>
+            <% if((wglobals.user.user_functional||{}).exp_rt != 1){ %><a class="guide-btn-open" onclick="experience_start_to_remote()">放弃体验</a><%}%>
             <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding:0 100px;padding-top:10px;">谨慎开通：自主体验仅一次机会，请确保有充足时间体验。</p>
         </div>
         <%}else{%>
@@ -169,42 +169,41 @@
     })
     // 体验弹窗 -开启体验倒计时弹窗
     function experience_pop_back() {
-        var objInterval, count = 0, end_count = 3,
+        var count = 0, end_count = 3,
             btn_experience_start = document.querySelector('#btn_experience_start')
-        objInterval = window.setInterval(function () {
-            count++;
-            if (count >= end_count) {
-                btn_experience_start.classList.remove("btn-disabled");
-                btn_experience_start.innerHTML = '<%=translate('pop_experience')%>'
-                btn_experience_start.setAttribute('onclick', 'start_experience(this)')
-                window.clearInterval(objInterval)
-            } else {
-                btn_experience_start.innerHTML = '<%=translate('pop_experience')%><font>' + (end_count - count) + 's</font>'
-            }
-        }, 1000)
+            btn_experience_start.classList.remove("btn-disabled");
+            btn_experience_start.innerHTML = '<%=translate('pop_experience')%>'
+            btn_experience_start.setAttribute('onclick', 'start_experience(this)')
     }
     function start_experience(elem) {
-        console.log("45444545454")
-        $.ajax("/async/experience/start", {
-            datatype: 'text/html',
-            type: 'get',
-            success: function (result) {
-                layer.closeByChild($(elem))
-                layer.open({
-                    type: 1,
-                    skin: 'layui-layer-rim',
-                    area: ['600px', '500px'], // 配置长高
-                    shadeClose: false, //点击遮罩关闭
-                    maxmin: false,
-                    closeBtn: 1,
-                    content: result,
-                    title: 'Tips'
-                })
-            }
-        });
+        console.log("开通")
+        // 先走流程，流程走完，点击了最后一个下一步才开始体验
+        let process_flag = wg.user.user_functional.enode || 1
+        add_process_node(process_flag,1)
+        // 开始体验
+        // $.ajax("/async/experience/start", {
+        //     datatype: 'text/html',
+        //     type: 'get',
+        //     success: function (result) {
+        //         if(result.state != 0) return layer.msg(`${result.message}`)
+        //         // layer.closeByChild($(elem))
+        //         // layer.open({
+        //         //     type: 1,
+        //         //     skin: 'layui-layer-rim',
+        //         //     area: ['600px', '500px'], // 配置长高
+        //         //     shadeClose: false, //点击遮罩关闭
+        //         //     maxmin: false,
+        //         //     closeBtn: 0,
+        //         //     content: result,
+        //         //     title: 'Tips'
+        //         // })
+        //     }
+        // });
     }
     function experience_start_to_remote(){
-        experience_remote()
+        abandon_experience("experience",7)
+        layer.closeAll()
+        // experience_remote()
         // 关闭体验
         // close_experience(function () {
         //     experience_remote()

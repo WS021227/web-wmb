@@ -502,24 +502,32 @@ router.third_bind_email = function (req, res) {
     })
 }
 
-
+// 开始体验
 router.experience_start=function (req,res) {
-    async.waterfall(
-        [
-            function (callback) {
-                tools.putMasterApiQuery('/account/experience/1', {}, req, res,
-                    function (_) {
-                        callback(null, 1)
-                    }
-                )
+
+    tools.putMasterApiQuery('/account/experience/1', {}, req, res,
+            function (result) {
+                console.log(result,"开始体验")
+                res.send(result)
             }
-        ],
-        function (err, _) {
-            tools.setCookie(req, res, 'su_token', '', 0, false)
-            res.wrender('./full_pop/experience_lead.ejs')
-        }
     )
+    // async.waterfall(
+    //     [
+    //         function (callback) {
+    //             tools.putMasterApiQuery('/account/experience/1', {}, req, res,
+    //                 function (_) {
+    //                     callback(null, 1)
+    //                 }
+    //             )
+    //         }
+    //     ],
+    //     function (err, _) {
+    //         tools.setCookie(req, res, 'su_token', '', 0, false)
+    //         res.wrender('./full_pop/experience_lead.ejs')
+    //     }
+    // )
 }
+// 体验中
 router.experience_close=function (req,res) {
     tools.login_verify(res, 2, function (){
         tools.putMasterApiQuery('/account/experience/2', {}, req, res,

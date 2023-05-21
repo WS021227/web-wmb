@@ -243,7 +243,7 @@
     width: 46px;
     height: 31px;
     float:left;
-    background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png?v=20230327) no-repeat;
+    background:url(../../images/data_imgs/ico_share_data.png?v=20230327) no-repeat;
     box-shadow: 2px 2px 7px rgb(0 0 0 / 3%);
 }
 .customs-countries-list li .new-country{position:absolute;left:-25px;height:100%;top:0;background:#2AAE67;text-align:center;line-height:190%;

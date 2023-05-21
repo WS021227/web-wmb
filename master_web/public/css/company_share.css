@@ -95,10 +95,10 @@ input:focus{outline:none}
 .operation-list li i { width: 18px;height: 20px;}
 .operation-list li span {color: #999999;font-size: 13.4px;}
 .operation-list li span font{font-family:fangsong;padding-left:3px;}
-.data-right-follow{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -7px -6px no-repeat}
-.data-right-follow.active{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -27px -6px no-repeat}
-.data-right-search-tags{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -5px -46px no-repeat;}
-.data-right-mail{ background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -27px -45px no-repeat;}
+.data-right-follow{ background:url(../../wmb_new/images/data_imgs/ico_share_data.png) -7px -6px no-repeat}
+.data-right-follow.active{ background:url(../..//wmb_new/images/data_imgs/ico_share_data.png) -27px -6px no-repeat}
+.data-right-search-tags{ background:url(../..//wmb_new/images/data_imgs/ico_share_data.png) -5px -46px no-repeat;}
+.data-right-mail{ background:url(../..//wmb_new/images/data_imgs/ico_share_data.png) -27px -45px no-repeat;}
 
 .tabs .tab {
     float: left;

@@ -32,7 +32,7 @@ $('#customs_country').autocomplete({
 
 function show_experience_process(){
     if(!get_experience_process()) return false
-    let node_id = wg.user.user_functional.enode || 1
+    let node_id = wg.user.user_functional.enode || 0
     setTimeout(function(){
         add_process_node(node_id)
     },1000)

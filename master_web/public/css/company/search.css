@@ -251,10 +251,10 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
 .list-company-like{position:absolute;right:20px;top:20px;font-size:13.4px;color:#666;display:inline-table;vertical-align: middle;cursor: pointer;}
 .list-company-like .like{
     display:inline-block;height:18px;width:18px;float:left;
-    background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -7px -6px no-repeat;opacity:0.6;
+    background:url(../../wmb_new/images/data_imgs/ico_share_data.png) -7px -6px no-repeat;opacity:0.6;
 }
 .list-company-like .like.active{
-    background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -26px -6px no-repeat;opacity:0.6;
+    background:url(../..//wmb_new/images/data_imgs/ico_share_data.png) -26px -6px no-repeat;opacity:0.6;
 }
 .list-company-like font{display:inline-block;height:18px;float:left;margin-left:5px;}
 .seach-list-p1{
@@ -273,14 +273,14 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
     margin-bottom:10px;
 }
 .seach-list-p2 span{display:inline-block;line-height:20px;height:20px;float:left;}
-.comany-share-star{display:inline-block;height:20px;width:108px;margin-right:8px;float:left;background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -120px no-repeat;}
-.star-50{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -160px no-repeat;}
-.star-45{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -120px no-repeat;}
-.star-40{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -140px no-repeat;}
-.star-35{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -80px no-repeat;}
-.star-30{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -100px no-repeat;}
-.star-25{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px -40px no-repeat;}
-.star-20{background:url(https://static.52wmb.com/wmb_new/images/data_imgs/ico_share_data.png) -485px 0px no-repeat;}
+.comany-share-star{display:inline-block;height:20px;width:108px;margin-right:8px;float:left;background:url(../../images/data_imgs/ico_share_data.png) -485px -120px no-repeat;}
+.star-50{background:url(../../images/data_imgs/ico_share_data.png) -485px -160px no-repeat;}
+.star-45{background:url(../../images/data_imgs/ico_share_data.png) -485px -120px no-repeat;}
+.star-40{background:url(../../images/data_imgs/ico_share_data.png) -485px -140px no-repeat;}
+.star-35{background:url(../../images/data_imgs/ico_share_data.png) -485px -80px no-repeat;}
+.star-30{background:url(../../images/data_imgs/ico_share_data.png) -485px -100px no-repeat;}
+.star-25{background:url(../../images/data_imgs/ico_share_data.png) -485px -40px no-repeat;}
+.star-20{background:url(../../images/data_imgs/ico_share_data.png) -485px 0px no-repeat;}
 .txt-shrink-open{color:#06c;padding-left:3px;opacity:0.6;text-transform: capitalize;}
 .txt-shrink-open:hover{opacity:1;}
 
