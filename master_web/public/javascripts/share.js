@@ -451,6 +451,32 @@ let share_lang = {
         en: 'Give up'
     },
 
+    // 体验流程
+    'introJs_next_step':{
+        cn: "下一步",
+        en: "Next"
+    },
+    'introJs_finish':{
+        cn: "结束",
+        en: "Finish"
+    },
+    'introjs_the_experience_is_over':{
+        cn: "体验已结束",
+        en: "The experience is over"
+    },
+    'introjs_confirm':{
+        cn: "确定",
+        en: "Confirm"
+    },
+    'introjs_continue_to_guide_the_process':{
+        cn: "继续引导流程",
+        en: "Continue to guide the process"
+    },
+    'introjs_continue':{
+        cn: "继续",
+        en: "Continue"
+    },
+ 
     //版本控制
     'web_lang_switch': {
         cn: 'Switch now',
@@ -737,54 +763,54 @@ var experience_process_flag = [
     {
         url : "/buyer",
         node_id : 1,
-        title : "一",
+        title : "",
         element: document.getElementById(`process_node_1`) || null,
-        intro: `<div class="content">第一步</div>`,
+        intro: `<div class="content">1111</div>`,
         step: 1,
         node_dom: 'process_node_1',
     },
     {
         url : "/buyer",
         node_id : 2,
-        title : "二",
+        title : "",
         element: document.getElementById(`process_node_2`) || null,
-        intro: `<div class="content">第二步</div>`,
+        intro: `<div class="content">2222</div>`,
         step: 2,
         node_dom: 'process_node_2',
     },
     {
         url : "/buyer",
         node_id : 3,
-        title : "三",
+        title : "",
         element: document.getElementById(`process_node_3`) || null,
-        intro: `<div class="content">第三步</div>`,
+        intro: `<div class="content">3333</div>`,
         step: 3,
         node_dom: 'process_node_3',
     },
     {
         url : "/buyer",
         node_id : 4,
-        title : "四",
+        title : "",
         element: document.getElementById(`process_node_4`) || null,
-        intro: `<div class="content">第四步</div>`,
+        intro: `<div class="content">4444</div>`,
         step: 4,
         node_dom: 'process_node_4',
     },
     {
         url : "/buyer",
         node_id : 5,
-        title : "五",
+        title : "",
         element: document.getElementById("process_node_5") || null,
-        intro: `<div class="content">第五步</div>`,
+        intro: `<div class="content">5555</div>`,
         step: 5,
         node_dom: 'process_node_5',
     },
     {
         url : "/buyer",
         node_id : 6,
-        title : "六",
+        title : "",
         element: document.getElementById(`process_node_6`) || null,
-        intro: `<div class="content">第六步</div>`,
+        intro: `<div class="content">66666</div>`,
         step: 6,
         node_dom: 'process_node_6',
     },
@@ -792,45 +818,45 @@ var experience_process_flag = [
     {
         url : "/buyer/35303167",
         node_id : 7,
-        title : "七",
+        title : "",
         element: document.getElementById(`btn_social_media`) || null,
-        intro: `<div class="content">第七步</div>`,
+        intro: `<div class="content">7777777</div>`,
         step: 7,
         node_dom: 'btn_social_media',
     },
     {
         url : "/buyer/35303167",
         node_id : 8,
-        title : "八",
+        title : "",
         element: document.getElementById(`process_node_8`) || null,
-        intro: `<div class="content">第八步</div>`,
+        intro: `<div class="content">888888</div>`,
         step: 8,
         node_dom: 'process_node_8',
     },
     {
         url : "/buyer/35303167",
         node_id : 9,
-        title : "三",
+        title : "",
         element: document.getElementById(`company_contact`) || null,
-        intro: `<div class="content">第九步</div>`,
+        intro: `<div class="content">9999999</div>`,
         step: 9,
         node_dom: 'company_contact',
     },
     {
         url : "/buyer/35303167",
         node_id : 10,
-        title : "三",
+        title : "",
         element: document.getElementById(`partner_pane`) || null,
-        intro: `<div class="content">第十步</div>`,
+        intro: `<div class="content">10</div>`,
         step: 10,
         node_dom: 'partner_pane',
     },
     {
         url : "/buyer/35303167",
         node_id : 11,
-        title : "五",
+        title : "",
         element: document.getElementById(`left_menu`) || null,
-        intro: `<div class="content">第十一步</div>`,
+        intro: `<div class="content">11</div>`,
         step: 11,
         node_dom: 'left_menu',
     },
@@ -838,9 +864,9 @@ var experience_process_flag = [
     {
         url : "/billsearch",
         node_id : 12,
-        title : "十二",
+        title : "",
         element: document.getElementById(`process_node_12`) || null,
-        intro: `<div class="content">第十二步</div>`,
+        intro: `<div class="content">12</div>`,
         step: 12,
         node_dom: 'process_node_12',
     },
@@ -848,27 +874,27 @@ var experience_process_flag = [
     {
         url : "/customs-data/united_states",
         node_id : 13,
-        title : "十三",
+        title : "",
         element: document.getElementById(`process_node_13`) || null,
-        intro: `<div class="content">第十三步</div>`,
+        intro: `<div class="content">13</div>`,
         step: 13,
         node_dom: 'process_node_13',
     },
     {
         url : "/customs-data/united_states",
         node_id : 14,
-        title : "十四",
+        title : "",
         element: document.getElementById(`process_node_14`) || null,
-        intro: `<div class="content">第十四步</div>`,
+        intro: `<div class="content">14</div>`,
         step: 14,
         node_dom: 'process_node_14',
     },
     {
         url : "/customs-data/united_states",
         node_id : 15,
-        title : "十五",
+        title : "",
         element: document.getElementById(`report_tab`) || null,
-        intro: `<div class="content">第十五步</div>`,
+        intro: `<div class="content">15</div>`,
         step: 15,
         node_dom: 'report_tab',
     },
@@ -876,9 +902,9 @@ var experience_process_flag = [
     {
         url : "/customs-data/united_states",
         node_id : 16,
-        title : "十六",
+        title : "",
         element: document.getElementById(`report_tab`) || null,
-        intro: `<div class="content">第十六步</div>`,
+        intro: ``,
         step: 16,
         node_dom: 'report_tab',
     },
@@ -2138,15 +2164,19 @@ function show_time(str_date) {
     return '刚刚'
 }
      
-// 体验流程
+// 黄钻体验流程
 function experience_process(){
-    let process_flag = wg.user.user_functional.enode || 1
+    let process_flag = getCookies('_process_flag')
+    if(!process_flag){
+        process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
+        $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
+    } 
+    
+    // let process_flag = wg.user.user_functional.enode || 1 //权限校验中屏蔽了0 
     if(!get_experience_process()) return false
     let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
     console.log(url,now_url)
-    let xflag = (process_flag == 1 || process_flag == 7 || process_flag == 12 || process_flag == 13)
-    if(url != now_url && xflag) return false
-    // if(process_flag == 1 || process_flag == 7 || process_flag == 12 || process_flag == 13) return false
+    if(url != now_url) return false
     // 引导流程中不显示其他弹窗
     if(document.querySelector('meta[name="no_full_pop"]')){
         document.querySelector('meta[name="no_full_pop"]').setAttribute('content',"yes")
@@ -2161,24 +2191,31 @@ function experience_process(){
 
 // 体验引导流程相关权限
 function get_experience_process(){
-    // 是否体验过
     let experience_flag = Number(wg.user.user_functional.experience) || 0
-    let process_flag = Number(wg.user.user_functional.enode) || 1
+    let process_flag = getCookies('_process_flag')
+    if(!process_flag){
+        process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
+        $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
+    } 
     console.log("体验开通情况",experience_flag,"引导节点",process_flag)
 
     // 校验权限
     // 未登录不出现
     if(!wg.user.id) return false
-    // 已申请通过或者后台开通 且 未不在体验中显示
+    // 已开通且不在体验中
     if(experience_flag != 1 ) return false
     // 体验引导流程未走完出现
-    if(process_flag == -1) return false
+    if(process_flag == -1 || process_flag == 0) return false
     return true
 }
 
 // 获取断点的地址
 function get_process_url(){
-    let process_flag = wg.user.user_functional.enode || 1
+    let process_flag = getCookies('_process_flag')
+    if(!process_flag){
+        process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
+        $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
+    } 
     let url = experience_process_flag[process_flag - 1].url
     return url
 }
@@ -2190,10 +2227,14 @@ function get_process_url(){
  */
 function add_process_node(id,first){
         console.log(id,"当前流程节点id")
-
-        let process_flag = wg.user.user_functional.enode || 1
-        let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
         if(!get_experience_process()) return false
+
+        let process_flag = getCookies('_process_flag')
+        if(!process_flag){
+            process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
+            $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
+        } 
+        let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
 
         if(first){
             window.location.pathname = url
@@ -2228,8 +2269,8 @@ function introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url){
     console.log(steps_list,'new_list')
 
     that.setOptions({
-            nextLabel: "下一步",
-            doneLabel: "结束",
+            nextLabel: unity_lang('introJs_next_step'),
+            doneLabel: unity_lang('introJs_finish'),
             /* 引导说明框相对高亮说明区域的位置 */
             tooltipPosition: 'auto',
             /* 是否使用点点点显示进度 */
@@ -2249,7 +2290,9 @@ function introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url){
           }).onafterchange(function(obj){
                 let now_node_id = $(obj).data("step")
                 // 改流程节点 (已完成的节点)
-                abandon_experience("enode",now_node_id)
+                $.wSetCookie('_process_flag', now_node_id, 86400000, function () {
+                    abandon_experience("enode",now_node_id)
+                })
                 document.body.style.overflow='hidden'
                 djs_5s()
           }).oncomplete(function(obj) {
@@ -2257,12 +2300,15 @@ function introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url){
                 console.log(obj,max_idx,num_id,next_url)
                 if(obj + 1 == max_idx && num_id!==1){
                     // 改流程节点 (已完成的节点)
-                    //引导结束
+                    // 引导结束
                     if(max_id == 15){
-                        abandon_experience_ty('enode',-1)
-                        return process_toast_over()
+                        $.wSetCookie('_process_flag', -1, 86400000, function () {
+                            abandon_experience_ty('enode',-1)
+                        })
                     }else{
-                        abandon_experience_url("enode",(max_id + 1),next_url)
+                        $.wSetCookie('_process_flag', (max_id + 1), 86400000, function () {
+                            abandon_experience_url('enode', (max_id + 1),next_url)
+                        })
                     }
                 }
           }).onstart(function(obj){
@@ -2301,7 +2347,7 @@ function djs_5s(){
     let time = 5
     let timer = setInterval(function(){
         time--
-        if(time <= 0) return clearInterval(timer),$next_btn.text("下一步"),$next_btn.removeClass("djs-dom")
+        if(time <= 0) return clearInterval(timer),$next_btn.text(unity_lang('introJs_next_step')),$next_btn.removeClass("djs-dom")
         $next_btn.text(`${time} s`)
     },1000)
 }
@@ -2312,7 +2358,7 @@ function process_toast_over(){
 
     let content = ""
     content = `<div class='yaoqing'>
-                    <h2>引导已完成</h2>
+                    <h2>${unity_lang('introjs_the_experience_is_over')}</h2>
                     <div class='yaoqing-content'>
                     </div>
                 </div>`
@@ -2323,7 +2369,7 @@ function process_toast_over(){
         skin: 'layui-layer-rim',
         area: ['600px', ''], // 配置长高
         shadeClose: false, //点击遮罩关闭
-        btn:["确定"],
+        btn:[`${unity_lang('introjs_confirm')}`],
         yes:function(index, layero){
             window.location.pathname = window.location.pathname
             layer.close(index)
@@ -2334,10 +2380,12 @@ function process_toast_over(){
 
 //开通体验
 function active_yellow_ty(){
+    console.log("开通07896875764674")
     $.ajax("/async/experience/start", {
         datatype: 'text/html',
         type: 'get',
         success: function (result) {
+            process_toast_over()
         }
     });
 }
@@ -2426,6 +2474,7 @@ function abandon_experience(key,id){
 }
 
 function abandon_experience_url(key,id,url){
+    console.log("000000000000005555555555555555555")
     $.ajax('/user/functional', {
         data: {
             key: key,
@@ -2523,7 +2572,7 @@ function full_pop(designation_pop = '') {
                     // 继续引导弹窗
                     case 'process_toast_jx':
                         open_options['area'] = ['600px', '']
-                        open_options['title'] = '提示'
+                        open_options['title'] = unity_lang('layer_tips')
                         open_options['closeBtn'] = false
                         break
                     case 'big_class_exchange':
