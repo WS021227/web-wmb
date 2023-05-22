@@ -447,7 +447,7 @@ let share_lang = {
         en: 'Continue the experience'
     },
     'trip_tips_giveup': {
-        cn: '放弃体验',
+        cn: '终止体验',
         en: 'Give up'
     },
 
@@ -461,7 +461,7 @@ let share_lang = {
         en: "Finish"
     },
     'introjs_the_experience_is_over':{
-        cn: "体验已结束",
+        cn: "引导已结束",
         en: "The experience is over"
     },
     'introjs_confirm':{
@@ -765,7 +765,7 @@ var experience_process_flag = [
         node_id : 1,
         title : "",
         element: document.getElementById(`process_node_1`) || null,
-        intro: `<div class="content">1111</div>`,
+        intro: `<div class="content">从网站顶部导航，快速进入采购商或供应商的列表页。</div>`,
         step: 1,
         node_dom: 'process_node_1',
     },
@@ -774,7 +774,7 @@ var experience_process_flag = [
         node_id : 2,
         title : "",
         element: document.getElementById(`process_node_2`) || null,
-        intro: `<div class="content">2222</div>`,
+        intro: `<div class="content">提供了3种方式搜索目标公司。产品关键词搜索匹配结果更多,Hs编码搜索匹配结果更精准,特定搜索请使用公司名称搜索...</div>`,
         step: 2,
         node_dom: 'process_node_2',
     },
@@ -783,7 +783,7 @@ var experience_process_flag = [
         node_id : 3,
         title : "",
         element: document.getElementById(`process_node_3`) || null,
-        intro: `<div class="content">3333</div>`,
+        intro: `<div class="content">这里可以筛选目标公司的归属国，点击“更多”可以选择更多的归属国。</div>`,
         step: 3,
         node_dom: 'process_node_3',
     },
@@ -792,7 +792,7 @@ var experience_process_flag = [
         node_id : 4,
         title : "",
         element: document.getElementById(`process_node_4`) || null,
-        intro: `<div class="content">4444</div>`,
+        intro: `<div class="content">这里是热门的公司筛选推荐，点选后搜索结果更精准。比如点选“包含联系方式”，那么搜索结果的公司都包含联系方式。</div>`,
         step: 4,
         node_dom: 'process_node_4',
     },
@@ -801,7 +801,7 @@ var experience_process_flag = [
         node_id : 5,
         title : "",
         element: document.getElementById("process_node_5") || null,
-        intro: `<div class="content">5555</div>`,
+        intro: `<div class="content">自定义公司筛选模块，比如这个“联系方式”模块，如选中“包含邮箱”，那么搜索结果的公司都含有邮箱信息。</div>`,
         step: 5,
         node_dom: 'process_node_5',
     },
@@ -810,7 +810,7 @@ var experience_process_flag = [
         node_id : 6,
         title : "",
         element: document.getElementById(`process_node_6`) || null,
-        intro: `<div class="content">66666</div>`,
+        intro: `<div class="content">这是搜索匹配的公司及简介，点击公司名称可查看该公司贸易报告。包括：联系方式、交易详情、贸易伙伴、主营产品、贸易区域等内容...</div>`,
         step: 6,
         node_dom: 'process_node_6',
     },
@@ -820,7 +820,7 @@ var experience_process_flag = [
         node_id : 7,
         title : "",
         element: document.getElementById(`btn_social_media`) || null,
-        intro: `<div class="content">7777777</div>`,
+        intro: `<div class="content" style="width:550px"><span style="padding-bottom:8px;display:block;">提供的“社媒邮件采集”工具。通过此工具，一键快速，帮您找到目标公司关键人邮箱和社交账号！。请观看此工具的操作演示视频（有声），如需单独体验请联系客服。</span><div><video class="editor" controls autoplay width="550px;"><source src="http://1254062548.vod2.myqcloud.com/25f6b08cvodtransgzp1254062548/6fe1b71b5285890801401512533/v.f40.mp4"  type="video/mp4"></video></div></div>`,
         step: 7,
         node_dom: 'btn_social_media',
     },
@@ -829,7 +829,7 @@ var experience_process_flag = [
         node_id : 8,
         title : "",
         element: document.getElementById(`process_node_8`) || null,
-        intro: `<div class="content">888888</div>`,
+        intro: `<div class="content">公司采供最多的产品，点选产品名称可查阅当前公司采供该“产品”的分析报告；点击“更多”可自主创建采供产品或筛选其他产品。</div>`,
         step: 8,
         node_dom: 'process_node_8',
     },
@@ -838,7 +838,7 @@ var experience_process_flag = [
         node_id : 9,
         title : "",
         element: document.getElementById(`company_contact`) || null,
-        intro: `<div class="content">9999999</div>`,
+        intro: `<div class="content">这里可查阅该公司的参考联系方式，可能包括：邮箱、电话、传真、联系人、地址等信息...</div>`,
         step: 9,
         node_dom: 'company_contact',
     },
@@ -847,7 +847,7 @@ var experience_process_flag = [
         node_id : 10,
         title : "",
         element: document.getElementById(`partner_pane`) || null,
-        intro: `<div class="content">10</div>`,
+        intro: `<div class="content">目标公司的贸易伙伴，按照双方交易量排序。点击“详情”可查阅双方之间的贸易记录；点击“全部”查阅当前公司所有贸易伙伴。</div>`,
         step: 10,
         node_dom: 'partner_pane',
     },
@@ -856,7 +856,7 @@ var experience_process_flag = [
         node_id : 11,
         title : "",
         element: document.getElementById(`left_menu`) || null,
-        intro: `<div class="content">11</div>`,
+        intro: `<div class="content">当前公司贸易报告目录，点击目录名可查看对应维度的所有数据及贸易概况。</div>`,
         step: 11,
         node_dom: 'left_menu',
     },
@@ -866,7 +866,7 @@ var experience_process_flag = [
         node_id : 12,
         title : "",
         element: document.getElementById(`process_node_12`) || null,
-        intro: `<div class="content">12</div>`,
+        intro: `<div class="content">数据源目标国家，共计34个。点击国家名可查询该国最新的进出口数据，并以此创建行业报；点击“样本”可查看系统创建的样本数据。</div>`,
         step: 12,
         node_dom: 'process_node_12',
     },
@@ -876,7 +876,7 @@ var experience_process_flag = [
         node_id : 13,
         title : "",
         element: document.getElementById(`process_node_13`) || null,
-        intro: `<div class="content">13</div>`,
+        intro: `<div class="content">行业报告高级搜索功能，特定字段支持多值输入，搜索数据或创建行业报告。点击“展开”可填写更多字段值。</div>`,
         step: 13,
         node_dom: 'process_node_13',
     },
@@ -885,7 +885,7 @@ var experience_process_flag = [
         node_id : 14,
         title : "",
         element: document.getElementById(`process_node_14`) || null,
-        intro: `<div class="content">14</div>`,
+        intro: `<div class="content">点击“详情”可查看该条提关单的全字段（原始海关）数据。</div>`,
         step: 14,
         node_dom: 'process_node_14',
     },
@@ -894,7 +894,7 @@ var experience_process_flag = [
         node_id : 15,
         title : "",
         element: document.getElementById(`report_tab`) || null,
-        intro: `<div class="content">15</div>`,
+        intro: `<div class="content">行业报告目录，点击对应的目录名可查阅详尽的分析报告图表、数据。</div>`,
         step: 15,
         node_dom: 'report_tab',
     },
@@ -2165,14 +2165,9 @@ function show_time(str_date) {
 }
      
 // 黄钻体验流程
-function experience_process(){
+function experience_process(){ 
+    console.log(wg.user.id)
     let process_flag = getCookies('_process_flag')
-    if(!process_flag){
-        process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
-        $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
-    } 
-    
-    // let process_flag = wg.user.user_functional.enode || 1 //权限校验中屏蔽了0 
     if(!get_experience_process()) return false
     let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
     console.log(url,now_url)
@@ -2191,17 +2186,30 @@ function experience_process(){
 
 // 体验引导流程相关权限
 function get_experience_process(){
-    let experience_flag = Number(wg.user.user_functional.experience) || 0
+    let experience_flag = getCookies('_experience_flag')
+    if(!experience_flag){
+        experience_flag = Number(wg.user.user_functional.experience) || 1
+    }
+
     let process_flag = getCookies('_process_flag')
     if(!process_flag){
-        process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
+        process_flag = Number(wg.user.user_functional.enode) || 0//权限校验中屏蔽了0 
         $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
     } 
-    console.log("体验开通情况",experience_flag,"引导节点",process_flag)
+
+    // 过期时间
+    let etime = wg.user.experience_ct
+    if(etime == "") return false
+    let now_time = new Date().getTime(),experience_time = new Date(etime).getTime()
+    let experience_show_flag = now_time - experience_time
+
+    console.log("体验开通情况",experience_flag,"引导节点",process_flag,"过期时间",experience_show_flag)
 
     // 校验权限
     // 未登录不出现
     if(!wg.user.id) return false
+    // 过期不显示
+    if(experience_show_flag > 86400000) return false
     // 已开通且不在体验中
     if(experience_flag != 1 ) return false
     // 体验引导流程未走完出现
@@ -2212,6 +2220,7 @@ function get_experience_process(){
 // 获取断点的地址
 function get_process_url(){
     let process_flag = getCookies('_process_flag')
+    if(process_flag == 0) process_flag = 1
     if(!process_flag){
         process_flag = wg.user.user_functional.enode || 1//权限校验中屏蔽了0 
         $.wSetCookie('_process_flag', process_flag, 86400000, function () {})
@@ -2266,7 +2275,7 @@ function introJs_setting(steps_list,node_id,max_id,max_idx,node_index,next_url){
             node_index = index + 1
         }
     })
-    console.log(steps_list,'new_list')
+    console.log(steps_list,node_index,'new_list')
 
     that.setOptions({
             nextLabel: unity_lang('introJs_next_step'),
@@ -2355,12 +2364,10 @@ function djs_5s(){
 // 引导已完成弹窗
 function process_toast_over(){
     document.body.style.overflow='auto'
-
     let content = ""
     content = `<div class='yaoqing'>
-                    <h2>${unity_lang('introjs_the_experience_is_over')}</h2>
-                    <div class='yaoqing-content'>
-                    </div>
+                    <h2>接下来，请自主体验黄钻。</h2>
+                    <div class='yaoqing-content'>体验引导已结束。您的黄钻账号已开启，建议您按照引导流程涉及到的页面和功能实操体验。体验中如有任何疑问可联系客服。</div>
                 </div>`
     layer.open({
         content: content,
@@ -2381,13 +2388,16 @@ function process_toast_over(){
 //开通体验
 function active_yellow_ty(){
     console.log("开通07896875764674")
-    $.ajax("/async/experience/start", {
-        datatype: 'text/html',
-        type: 'get',
-        success: function (result) {
-            process_toast_over()
-        }
-    });
+    $.wSetCookie('_experience_flag', 2, 86400000, function () {
+        $.ajax("/async/experience/start", {
+            datatype: 'text/html',
+            type: 'get',
+            success: function (result) {
+                console.log(wg.user.user_functional.experience,"6666")
+                process_toast_over()
+            }
+        });
+    })
 }
 
 // 鼠标移动轨迹判断
@@ -2569,6 +2579,16 @@ function full_pop(designation_pop = '') {
             if (result.state == 0) {
                 open_options['content'] = result.content
                 switch (result.mark) {
+                    // 体验过期弹窗
+                    case 'process_toast_overdue':
+                        open_options['area'] = ['600px', '']
+                        open_options['title'] = unity_lang('layer_tips')
+                        open_options.cancel = function (index) {
+                            $.wSetCookie('_experience_time', 'false', 86400000, function () {
+                                layer.close(index)
+                            })
+                        }
+                        break
                     // 继续引导弹窗
                     case 'process_toast_jx':
                         open_options['area'] = ['600px', '']
@@ -2653,10 +2673,11 @@ function full_pop(designation_pop = '') {
                             }
                         }
                         break
+                    //体验结束
                     case 'experience_end':
                         open_options['area'] = ['650px', '']
                         open_options['title'] = '提示'
-                        open_options['content'] = '<div style="padding:40px 0;"><b style="display:block;padding-top:5px;font-size:18px;text-align:center;">你好，您的钻石会员体验时间已到。</b><span style="color:#333;font-weight:normal;font-size:15px;padding:10px 30px;display:inline-block;line-height:150%;text-align:left;text-align:center;display:block;">在体验的过程中，如有任何问题或疑问，请联系客服咨询。</span><a style="display:block;font-size:14.4px;color:#fff;text-align:center;height:40px;line-height:40px;background:#007FFF;margin:0 220px;border-radius:3px;" href="javascript:void(0)" onclick="experience_remote()">再次申请远程体验</a></div>'
+                        open_options['content'] = '<div class="yaoqing"><h2>您的钻石会员体验已结束。</h2><div class="yaoqing-content">在体验的过程中，如有任何问题或疑问，请联系客服咨询。</div></div>'
                         break
                     case 'ben_or_js_perfect':
                         open_options['closeBtn'] = false
@@ -3882,7 +3903,10 @@ function experience_ing() {
             '<i><svg t="1653280283655" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="15462" width="25" height="25"><path d="M584.06738 657.815846H730.175589V365.74561H584.06738V657.815846zM291.997145 657.815846h146.035118V365.74561H291.997145V657.815846z m219.052677 292.143326c240.979872 0 438.105353-197.198572 438.105353-438.178444 0-240.906781-197.125482-438.105353-438.105353-438.105353-240.979872 0-438.105353 197.198572-438.105354 438.105353 0 240.979872 197.125482 438.178444 438.105354 438.178444zM0 512.365453c0-281.399001 230.235546-511.634547 511.634547-511.634547s511.634547 230.235546 511.634547 511.634547-230.235546 511.634547-511.634547 511.634547-511.634547-230.235546-511.634547-511.634547z" p-id="15463" fill="#ffffff"></path></svg></i> ' +
             '</a>')
     }
-    let total_seconds = wg.user.total_seconds
+    let end_seconds = new Date(wg.user.experience_end_time).getTime()/1000
+    let now_time = parseInt(new Date().getTime()/1000)
+    let total_seconds = end_seconds - now_time
+    console.log(total_seconds,"倒计时时间")
     iexperience_countdown = window.setInterval(function () {
         total_seconds--
         if (total_seconds <= 0) {

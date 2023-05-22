@@ -86,7 +86,7 @@ table.dataTable{margin-bottom:10px;width:99.9%;}
 #marketing_studies_list_wrapper table.dataTable{margin-bottom:0;}
 
 #tab_buyer_port .export-data{margin-right:200px;}
-#report_tab{display:block;text-align:left;}
+#report_tab{display:flex;justify-content:space-between;}
 #report_tab a i{display:inline-block;height:14px;width:12px;background: url(../../images/data_imgs/ico_share_data.png) -85px -10px no-repeat;
     opacity: 0.8;margin-right:3px;}
 .collect-supplier-head{background:#fafafa;}
@@ -446,10 +446,12 @@ input::-webkit-input-placeholder {
     transition: all .2s ease-in-out;
     border-radius:5px;
     text-transform: capitalize;
-    padding:0 15px;
+    padding:0 10px;
     display:inline-block;
     margin-right:10px;
     background:#EDEFF3;
+    width:100%;
+    text-align:center;
 }
 .report-box .report-tab a:last-child{margin-right:0;}
 .report-box .report-tab .more-report{

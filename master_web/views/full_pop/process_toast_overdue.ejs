@@ -29,7 +29,7 @@
         outline: none;
         height: 44px;
         line-height: 44px;
-        padding:0 60px;
+        padding:0 40px;
         margin:0 5px;
         font-size: 15px;
         text-align: center;
@@ -46,17 +46,18 @@
         outline: none;
         height: 42px;
         line-height: 42px;
-        padding:0 30px;
-         margin:0 5px;
+        width:200px;
+        margin:0 5px;
         font-size: 15px;
         text-align: center;
         background: #fff;
-        border:1px #ccc solid;
+        border:1px #3B8CFF solid;
         border-radius: 5px;
         cursor: pointer;
         display: inline-block;
-        color: #999;
-      }
+        color: #3B8CFF;
+        font-weight: bold;
+    }
     .guide-btn font {
         margin-left: 5px;
         font-family: SimSun;
@@ -146,67 +147,26 @@
     <div class="guide-content">
         <%if(wglobals.lang == 'cn'){%>
         <div class="guide-topic">
-            <h2>邀请您体验黄钻会员！</h2>
-            <p style="text-align:left;">开通体验后，系统将引导您了解黄钻会员特有的功能和查阅权限；引导完毕后可自主体验。任何疑问请致电：021-64033826。祝您玩的开心^_^！</p>
-            <a class="guide-btn btn-disabled" id="btn_experience_start">现在，开始在线体验 →</a>
-            <% if((wglobals.user.user_functional||{}).exp_rt != 1){ %><a class="guide-btn-open" onclick="experience_start_to_remote()">放弃体验</a><%}%>
-            <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding:0 100px;padding-top:10px;">重要提示：自主体验仅一次机会，请确保有充足时间体验。</p>
+            <h2>黄钻体验已过期</h2>
+            <p>由于24小时内未完成体验，有效期已过。如需重新开启体验请联系客服。</p>
+            <a class="guide-btn" id="btn_experience" href="">确定</a>
         </div>
         <%}else{%>
         <div class="guide-topic">
-            <h2>Diamond Member Experience Is To Begin</h2>
-            <p style="text-align:left;">After confirming the activation experience, your account will be upgraded to a yellow diamond member. The account will have the highest authority for all data query and function use of the foreign trade state network. Any questions, contact us, whatsapp:+8616621075894.Happy experience ^ _ ^!</p>
-            <a class="guide-btn btn-disabled" id="btn_experience_start">Now open the experience →</a>
-            <% if((wglobals.user.user_functional||{}).exp_rt != 1){ %><a class="guide-btn-open" onclick="experience_start_to_remote()">Give up the experience</a><%}%>
-            <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding:0 100px;">Be cautious: Just one chance, please make sure you have enough time to experience it.</p>
+            <h2>The guide is overdue</h2>
+            <p></p>
+            <a class="guide-btn" id="btn_experience" href="">confirm</a>
         </div>
         <%}%>    
     </div>
-</div> 
+</div>
 <script type="application/javascript">
-    $(function (){
-        experience_pop_back()
+$(function(){
+    $("#btn_experience").click(function(){
+        $.wSetCookie('_experience_time', 'false', 86400000, function () {
+            layer.closeAll()
+        })
     })
-    // 体验弹窗 -开启体验倒计时弹窗
-    function experience_pop_back() {
-        var count = 0, end_count = 3,
-            btn_experience_start = document.querySelector('#btn_experience_start')
-            btn_experience_start.classList.remove("btn-disabled");
-            btn_experience_start.innerHTML = '<%=translate('pop_experience')%>'
-            btn_experience_start.setAttribute('onclick', 'start_experience(this)')
-    }
-    function start_experience(elem) {
-            $.wSetCookie('_process_flag', 1, 86400000, function () {
-                abandon_experience_url("enode",1,"/buyer")
-            })
-        // 开始体验
-        // $.ajax("/async/experience/start", {
-        //     datatype: 'text/html',
-        //     type: 'get',
-        //     success: function (result) {
-        //         if(result.state != 0) return layer.msg(`${result.message}`)
-        //         // layer.closeByChild($(elem))
-        //         // layer.open({
-        //         //     type: 1,
-        //         //     skin: 'layui-layer-rim',
-        //         //     area: ['600px', '500px'], // 配置长高
-        //         //     shadeClose: false, //点击遮罩关闭
-        //         //     maxmin: false,
-        //         //     closeBtn: 0,
-        //         //     content: result,
-        //         //     title: 'Tips'
-        //         // })
-        //     }
-        // });
-    }
-    function experience_start_to_remote(){
-        abandon_experience("experience",7)
-        layer.closeAll()
-        // experience_remote()
-        // 关闭体验
-        // close_experience(function () {
-        //     experience_remote()
-        // })
-    }
+})
 </script>
 
