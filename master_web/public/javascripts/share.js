@@ -2191,30 +2191,13 @@ function show_time(str_date) {
 // 黄钻体验流程
 function experience_process(){ 
     console.log(wg.user.id, 123123)
-    // let process_flag = getCookies('_process_flag')
-    // if(!get_experience_process()) return false
-    // let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
-    // console.log(url,now_url)
-    // if(url != now_url) return false
+    let process_flag = getCookies('_process_flag')
+    if(!get_experience_process()) return false
+    let url = experience_process_flag[process_flag - 1].url,now_url = window.location.pathname
+    console.log(url,now_url)
+    if(url != now_url) return process_continue_toast()
 
-    // '<div id="experience_pop">\n' +
-    // '    <div class="guide-content">\n' +
-    // '        <%if(wglobals.lang == \'cn\'){%>\n' +
-    // '        <div class="guide-topic">\n' +
-    // '            <h2>黄钻体验引导中...</h2>\n' +
-    // '            <p>你目前正处在黄钻体验的引导流程，完成引导后可自主体验。</p>\n' +
-    // '            <a class="guide-btn" id="btn_experience_start" href="javascript:void(0);" onclick="goto_node()">继续体验</a>\n' +
-    // '        </div>\n' +
-    // '        <%}else{%>\n' +
-    // '        <div class="guide-topic">\n' +
-    // '            <h2>Experience guiding...</h2>\n' +
-    // '            <p>You are currently in the guidance of the yellow diamond trial, and you can experience it independently after completing the guidance.</p>\n' +
-    // '            <a class="guide-btn" id="btn_experience_start" href="javascript:void(0);" onclick="goto_node()">Continue to experience</a>\n' +
-    // '        </div>\n' +
-    // '        <%}%>    \n' +
-    // '    </div>\n' +
-    // '</div>'
-    $.alert('你目前正处在黄钻体验的引导流程，完成引导后可自主体验。')
+    // $.alert('你目前正处在黄钻体验的引导流程，完成引导后可自主体验。')
     // // 引导流程中不显示其他弹窗
     // if(document.querySelector('meta[name="no_full_pop"]')){
     //     document.querySelector('meta[name="no_full_pop"]').setAttribute('content',"yes")
@@ -2225,6 +2208,52 @@ function experience_process(){
     //     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(meta);
     // }
     // no_full_pop = document.querySelector('meta[name="no_full_pop"]').getAttribute('content')
+}
+
+// 继续体验弹窗
+function process_continue_toast(){
+    let _dom =  (wg.lang == 'cn' ?
+    `
+        <div class="guide-topic" style='text-align: center;'>
+           <h2 style='padding:25px 50px'>黄钻体验引导中...</h2>
+           <p style='padding:0px 50px;padding-bottom:10px'>你目前正处在黄钻体验的引导流程，完成引导后可自主体验。</p>
+       </div>
+    `:
+    `
+        <div class="guide-topic">
+           <h2 style='padding:25px 50px'>Experience guiding...</h2>
+           <p style='padding:0px 50px;padding-bottom:10px'>You are currently in the guidance of the yellow diamond trial, and you can experience it independently after completing the guidance.</p>
+       </div>
+    `)
+    let _html =  `
+                    <div id="experience_pop">
+                       <div class="guide-content">
+                           ${_dom}
+                       </div>
+                   </div>
+                `
+    layer.open({
+        content: _html,
+        title: unity_lang('layer_tips'),
+        type: 1,
+        skin: 'layui-layer-rim',
+        area: ['600px', ''], // 配置长高
+        shadeClose: false, //点击遮罩关闭
+        btn:[`${unity_lang('introjs_confirm')}`],
+        closeBtn:0,
+        yes:function(index, layero){
+            layer.close(index)
+            let url = get_process_url()
+            window.location.pathname = url
+        }      
+    })
+}
+   
+
+// 跳转至流程节点
+function goto_node(){
+    let url = get_process_url()
+    window.location.pathname = url
 }
 
 // 体验引导流程相关权限
