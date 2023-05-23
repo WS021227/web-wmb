@@ -191,56 +191,78 @@ function login_valid_user_pop(req, res) {
                     },
                     // 体验弹窗验证  体验中不弹任何弹窗
                     function (data, callback) {
-                        var experience = parseInt(user_functional.experience) || 1;
+                        var experience = parseInt(user_functional.experience);
                         var experience_ct = _user.experience_ct,experience_show_flag
                         var process_flag = tools.getCookie(req,'_process_flag')
                         if(!process_flag){
-                            process_flag = Number(user_functional.enode) || 0
+                            process_flag = user_functional.enode || 0
                             tools.setCookie(req, res, '_process_flag', process_flag, 86400)
                         }
+
+                        process_flag = Number(process_flag)
                         if(experience_ct && experience_ct!=""){
                             let now_time = new Date().getTime(),experience_time = new Date(experience_ct).getTime()
                             experience_show_flag = now_time - experience_time
-                        }
-                        // 体验过期
-                        if(experience_show_flag > 86400000){
-                            if(tools.getCookie(req,'_experience_time')) return callback(null, 1) 
-                            if(vfd_pop(designation_pop, 'process_toast_overdue')) return callback(null, 1)
-                            res.wrender('./full_pop/process_toast_overdue.ejs', {}, function (err, str) {
-                                res.send({
-                                    content: str,
-                                    state: 0,
-                                    mark: 'process_toast_overdue'
+                             // 体验过期
+                            if(experience_show_flag > 86400000){
+                                if(tools.getCookie(req,'_experience_time')) return callback(null, 1) 
+                                if(vfd_pop(designation_pop, 'process_toast_overdue')) return callback(null, 1)
+                                res.wrender('./full_pop/process_toast_overdue.ejs', {}, function (err, str) {
+                                    res.send({
+                                        content: str,
+                                        state: 0,
+                                        mark: 'process_toast_overdue'
+                                    })
                                 })
-                            })
-                            return
+                                return
+                            }
                         }
+                       
                         // 引导节点
                         // 引导流程中不弹其他弹窗,中断引导流程的用户,弹窗提示继续引导
                         // 1 已开通未体验
-                        if (experience == 1 && process_flag == 0) {
-                            if(vfd_pop(designation_pop, 'experience_pop')) return callback(null, 1)
-                            res.wrender('./full_pop/experience.ejs', {}, function (err, str) {
-                                res.send({
-                                    content: str,
-                                    state: 0,
-                                    mark: 'experience_pop'
+                        // if(experience == 1 && process_flag != -1)
+
+
+                        if(experience == 1){
+                            // 正常流程
+                            if(process_flag == -1) {
+
+                                if (vfd_pop(designation_pop, 'experience_pop')) return callback(null, 1)
+                                res.wrender('./full_pop/experience.ejs', {}, function (err, str) {
+                                    res.send({
+                                        content: str,
+                                        state: 0,
+                                        mark: 'experience_pop'
+                                    })
                                 })
-                            })
-                            return
+                                return
+                            }
+                            return res.send({})
                         }
+                        // if (experience == 1 && process_flag == 0) {
+                        //     if(vfd_pop(designation_pop, 'experience_pop')) return callback(null, 1)
+                        //     res.wrender('./full_pop/experience.ejs', {}, function (err, str) {
+                        //         res.send({
+                        //             content: str,
+                        //             state: 0,
+                        //             mark: 'experience_pop'
+                        //         })
+                        //     })
+                        //     return
+                        // }
                         // 继续体验
-                        if(experience == 1 && process_flag != -1 && process_flag != 0){
-                            if(vfd_pop(designation_pop, 'process_toast_jx')) return callback(null, 1)
-                            res.wrender('./full_pop/process_toast_jx.ejs', {node_id: process_flag}, function (err, str) {
-                                res.send({
-                                    content: str,
-                                    state: 0,
-                                    mark: 'process_toast_jx'
-                                })
-                            })
-                            return
-                        }
+                        // if(experience == 1 && process_flag != -1 && process_flag != 0){
+                        //     if(vfd_pop(designation_pop, 'process_toast_jx')) return callback(null, 1)
+                        //     res.wrender('./full_pop/process_toast_jx.ejs', {node_id: process_flag}, function (err, str) {
+                        //         res.send({
+                        //             content: str,
+                        //             state: 0,
+                        //             mark: 'process_toast_jx'
+                        //         })
+                        //     })
+                        //     return
+                        // }
                         // # 4 体验完成需要弹窗
                         if (experience == 4) {
                             if(vfd_pop(designation_pop, 'experience_end')) return callback(null, 1)

@@ -20,7 +20,7 @@ input:-internal-autofill-selected{background-color:#fff;}
 
 .data-select-display-none{display: none;}
 .data-select{height:77px;border-bottom:2px solid #C7CFDC;margin-bottom:-5px;}
-.data-select span{display:inline-block;height:77px;line-height:77px;font-size:14.4px;margin-right:20px;position:relative;}
+.data-select span{display:inline-block;height:77px;line-height:77px;font-size:15.4px;margin-right:20px;position:relative;}
 .data-select span font{position:absolute;right:0;top:-13px;font-size:12.4px;color:#D90000; font-family: Arial, Helvetica, sans-serif;
 transform: scale(.8);text-transform: uppercase;font-weight: bold;}
 .data-select span a{color:#333;}
@@ -52,7 +52,7 @@ transform: scale(.8);text-transform: uppercase;font-weight: bold;}
 .bang-classroom {
     background-color: #FFFFFF;
     padding: 20px 20px 5px;
-    margin-top: 20px;
+    margin-top: 20px;border-radius:5px;
 }
 .bang-list li {
     font-size: 13.4px;
@@ -91,18 +91,15 @@ table.dataTable{margin-bottom:10px;width:99.9%;}
     opacity: 0.8;margin-right:3px;}
 .collect-supplier-head{background:#fafafa;}
 .search-tips{
-    padding: 9px 0;
-    border-radius: 3px;
     /*
     background-color: #FFFCF9;
     border: 1px dashed #E2E1CF;
     */
-    color: #535232;
-    font-size: 12.4px;
-    display: none;
-    margin-top:11px;margin-bottom:-10px;text-align:left;
+    margin-bottom:15px;
+    color:#535232;
+    display:none;
 }
-.search-tips p{color:#E98B0C;font-size:12.4px;}
+.search-tips p{color:#E98B0C;font-size:13.4px;text-align:center;font-weight:bold;text-transform:capitalize;}
 .search-tips span{float:right;color:#5b5d61;}
 #company_loading {
     text-align: center;
@@ -163,7 +160,7 @@ table.dataTable{margin-bottom:10px;width:99.9%;}
     width: 940px;
 }
 .industry-report h2{
-    font-size:25.4px;
+    font-size:23.4px;
     color:#fff;
     font-weight: bold;
     margin-bottom:10px;
@@ -254,8 +251,9 @@ table.dataTable{margin-bottom:10px;width:99.9%;}
 .industry-tags-box {
     background-color: #FFFFFF;
     padding: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
     padding-bottom:10px;
+    border-radius:5px;
 }
 
 .industry-tags-box h2 {
@@ -441,14 +439,14 @@ input::-webkit-input-placeholder {
      cursor: pointer;
      font-weight:bold;
     color:#1f3a5f;
-    height:36px;
-    line-height:36px;
+    height:37px;
+    line-height:37px;
     transition: all .2s ease-in-out;
     border-radius:5px;
     text-transform: capitalize;
     padding:0 10px;
     display:inline-block;
-    margin-right:10px;
+    margin-right:8px;
     background:#EDEFF3;
     width:100%;
     text-align:center;

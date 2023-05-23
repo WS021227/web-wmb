@@ -1197,6 +1197,7 @@ function get_search_tags(sc_params, reload, sid) {
         $.each(data.list, function (a, b) {
             if (b.user_id == 0) {
                 let suo = verify_vip_level(wg.user.vip_level, b.auth || '') ? '' : '<i class="suo"></i>'
+                console.log(verify_vip_level(wg.user.vip_level, b.auth || ''),"0.0.0.00000.0.0.0.0")
                 let disc = '',
                     company_mark = b.params.company_mark
                 if (company_mark == 'product' && (!key || key == '*' || search_type != 2)) {

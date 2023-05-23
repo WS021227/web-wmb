@@ -2224,7 +2224,7 @@ function get_contact(){
 function xn_contact() {
     $('#company_contact').html('<h2 class="trade-contact-title">' + unity_lang('detail_contact_title') + '<a href="/social-media?s=contact_moudle" target="_blank">' + unity_lang('detail_contact_more') + ' →</a></h2>' +
         '<div class="ct-mask"><div class="contact-img">' +
-        '<img src="https://static.52wmb.com/wmb_new/images/data_imgs/contact_detail.png?v=20221109" style="padding-top:9px;padding-left:1px;"/>\n' +
+        '<img src="../../images/data_imgs/contact_detail.png?v=20221109" style="padding-top:9px;padding-left:1px;"/>\n' +
         '</div></div>'
     ).removeClass('display-none')
 

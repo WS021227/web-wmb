@@ -1,4 +1,4 @@
-.company-foot-left{padding-left:185px;}
+.company-foot-left{padding-left:190px;}
 /*分辨率
 @media screen and (max-width:1600px)
 {
@@ -156,7 +156,7 @@ table.dataTable tbody tr:hover td:nth-child(4) font{
     width:900px;
 }
 .details-head h2 {
-    font-size: 34.4px;
+    font-size: 31.4px;
     color: #fff;   
     font-family:微软雅黑;
     font-weight: bold;
@@ -249,9 +249,9 @@ table.dataTable tbody tr:hover td:nth-child(4) font{
 
 .referee-box {
     background-color: #FFFFFF;
-    margin-top: 20px;
-    border-radius: 5px;
-    padding: 20px 20px 10px;
+    margin-top:15px;
+    border-radius:5px;
+    padding:15px 15px 10px;
     overflow: hidden;
 }
 .referee-box h2 {
@@ -332,24 +332,24 @@ table.dataTable tbody tr:hover td:nth-child(4) font{
     line-height:36px;
 }
 .left-menu li i{
-    float:right;width:12px;height:14px;margin-top:12px;
+    float:right;width:12px;height:14px;margin-top:10px;
     background: url(../../images/data_imgs/ico_share_data.png) -85px -10px no-repeat;
     opacity:0.6;
 }
-.left-menu li font{float:right;font-size:12.4px;color:#888;scale:0.85;font-family:Arial, Helvetica, sans-serif;font-weight:normal;padding-top:1px;}
+.left-menu li font{float:right;font-size:12.4px;color:#888;scale:0.85;font-family:Arial, Helvetica, sans-serif;font-weight:normal;padding-top:1px;margin-right:4px;}
 .left-menu li.active font{color:#fff;font-weight:bold;}
 
 .left-menu li span{float:right;color:#1f3a5f;font-family:fangsong;font-weight:bold;font-size:13.4px;line-height:37px;}
 .left-menu li.active{background:#005FB9;border-radius:5px;}
 .left-menu li.active a{color:#fff;}
 .left-menu li.active span{color:#fff;}
-.right-content-box {width: 700px;float: right;}
+.right-content-box {width:707px;float: right;}
 .right-content {padding-bottom:20px;}
 .summarize {
     background-color: #fff;
     border-radius: 6px;
-    margin-bottom:16px;
-    padding: 20px 20px;  
+    margin-bottom:15px;
+    padding:15px;  
 }
 .summarize h2 {
     font-weight:600;
@@ -1240,7 +1240,7 @@ nav .active{
 /**右侧参考联系方式样式**/
 .trade-contact{
     background: #fff;
-    padding:20px;
+    padding:15px;
     border-radius:6px ;
     margin-bottom:15px;
 }

@@ -11,6 +11,7 @@
         font-size: 22px;
         color: #333;
         font-weight: bold;
+        text-transform:capitalize;
     }
     .guide-content .guide-topic p {
         font-size: 15px;
@@ -29,7 +30,7 @@
         outline: none;
         height: 44px;
         line-height: 44px;
-        padding:0 60px;
+        padding:0 40px;
         margin:0 5px;
         font-size: 15px;
         text-align: center;
@@ -46,7 +47,7 @@
         outline: none;
         height: 42px;
         line-height: 42px;
-        padding:0 30px;
+        padding:0 20px;
          margin:0 5px;
         font-size: 15px;
         text-align: center;
@@ -154,11 +155,11 @@
         </div>
         <%}else{%>
         <div class="guide-topic">
-            <h2>Diamond Member Experience Is To Begin</h2>
-            <p style="text-align:left;">After confirming the activation experience, your account will be upgraded to a yellow diamond member. The account will have the highest authority for all data query and function use of the foreign trade state network. Any questions, contact us, whatsapp:+8616621075894.Happy experience ^ _ ^!</p>
+            <h2>Invite you to experience yellow diamond member!</h2>
+            <p style="text-align:left;">After activatiing the trial, the system will guide you to understand the unique functions and permissions of Yellow Diamond members; after the guidance is completed, you can try it independently. If you have any questions, please whatsapp: +8616621075894. I wish you a happy time^_^!</p>
             <a class="guide-btn btn-disabled" id="btn_experience_start">Now open the experience →</a>
             <% if((wglobals.user.user_functional||{}).exp_rt != 1){ %><a class="guide-btn-open" onclick="experience_start_to_remote()">Give up the experience</a><%}%>
-            <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding:0 100px;">Be cautious: Just one chance, please make sure you have enough time to experience it.</p>
+            <p style="font-size:12px;color:#f60;padding:0;padding-top:5px;letter-spacing:0.3px;padding-left:50px;padding-right:50px;">Tips: There is only one chance to experience independently, please make sure you have enough time to try it.</p>
         </div>
         <%}%>    
     </div>

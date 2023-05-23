@@ -1,5 +1,5 @@
 
-.company-foot-left{padding-left:185px;}
+.company-foot-left{padding-left:190px;}
 /*分辨率
 @media screen and (max-width:1600px)
 {
@@ -29,11 +29,9 @@ mark{
 /*公司分类融入*/
 #search_tags{display:none;}
 .sousou-screen p a font{position:absolute;right:-3px;top:-25px;font-size:12.4px;color:#D90000;font-family:Arial, Helvetica, sans-serif;transform: scale(.8);text-transform:uppercase;font-weight:bold;}
-
-
-.company-list-filter{background:#fff;border:1px #EAEDF2 solid;margin:25px 0;box-shadow: 0px 0px 10px rgb(0 0 0 / 4%)}
+.company-list-filter{background:#fff;margin:25px 0;}
 .sousou-screen{border-bottom:1px #EAEDF2 solid;margin-bottom:0;overflow:hidden;display:block;}
-.sousou-screen p{border-left:1px #EAEDF2 solid;box-sizing: border-box;padding-left:15px;float:left;}
+.sousou-screen p{box-sizing: border-box;padding-left:15px;float:left;}
 .sousou-screen p a{margin:0;height:auto;padding:0;display:inline;margin-right:18px;line-height:44px;}
 .sousou-screen p a:hover{background:none;}
 .sousou-screen b{margin:0;width:120px;text-align:center;background:#Fefefe;height:auto;line-height:44px;float:left;}
@@ -71,12 +69,12 @@ mark{
 
 .company-category{background:#Fefefe;}
 .company-category-name{width:120px;float:left;text-align:center;font-size:14.4px;color:#333;font-weight:bold;padding:13px 0;}
-.company-category-item{float:left;background:#fff;border-left:1px #EAEDF2 solid;box-sizing:border-box;padding:13px 15px;width:762px;}
+.company-category-item{float:left;background:#fff;box-sizing:border-box;padding:13px 15px;width:772px;}
 .company-category-re{overflow:hidden;position:relative;}
 
 
 .company-category-re ul{display: inline-block;height:auto;margin-top:8px;white-space: nowrap;word-break: keep-all;}
-.company-category-re ul li{display: inline-block;vertical-align: top;width:119px;min-height: 35px;padding:10px 0;background:#F4F6F8; border-radius:5px;margin-right:10px;position:relative;
+.company-category-re ul li{display: inline-block;vertical-align: top;width:125px;min-height: 35px;padding:5px 0;background:#F4F6F8; border-radius:5px;margin-right:10px;position:relative;
 padding-left:52px;cursor: pointer;word-break: break-all;}
 .company-category-re ul li:hover{background:#EAEDF2;}
 .company-category-re ul li b{display:inline-block;font-size:14.4px;color:#333;font-weight:normal;}
@@ -85,7 +83,7 @@ padding-left:52px;cursor: pointer;word-break: break-all;}
 .company-category-re ul li i.suo{display:inline-block;height:20px;width:20px;position:absolute; right:-4px;top:-7px;opacity:0.6;
     background:url(../../images/data_imgs/ico_share_data.png?v=1108) -81px -8px #ddd no-repeat;border-radius:100px;
 }
-.company-category-re ul li i.icon{display:inline-block;height:35px;width:35px;position:absolute;left:10px;top:12px;}
+.company-category-re ul li i.icon{display:inline-block;height:35px;width:35px;position:absolute;left:10px;top:5px;}
 .company-category-re ul li:nth-child(1) i.icon{background:url(../../images/data_imgs/ico_share_data.png?v=1108) -485px -450px no-repeat;}
 .company-category-re ul li:nth-child(2) i.icon{background:url(../../images/data_imgs/ico_share_data.png?v=1108) -436px -452px no-repeat;}
 .company-category-re ul li:nth-child(3) i.icon{background:url(../../images/data_imgs/ico_share_data.png?v=1108) -292px -452px no-repeat;}
@@ -170,7 +168,7 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
 .sousou-list .sousou-list-head {display: block;color:#333;font-size:15.4px;}
 .sousou-list .sousou-list-head span{float: right;clear:none;}
 .filter-modules{width: 158px;float: left;}
-.filter-modules .module{padding:6px 0;border-bottom:1px #e5e5e6 solid;}
+.filter-modules .module{padding:7px 0;}
 .filter-modules .module:first-child{padding-top:0;border-bottom:none;}
 .filter-modules .module:nth-child(8){border-bottom:none;}
 .filter-modules .module h2{
@@ -218,7 +216,7 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
 
 .filter-modules .module ul .more-filter font{font-family:fangsong;}
 .sousuo-data-list-content{
-    width:700px;
+    width:707px;
     float: right;  
     padding-bottom:25px;  
 }
@@ -236,19 +234,19 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
 }
 .seach-list li{
     background-color: #fff;
-    padding: 20px 20px;
+    padding:15px;
     border-radius:5px;
     margin-top:15px;
-    padding-bottom:25px;
-    position:relative;transition: all .2s ease-in-out;
+    position:relative;
+    transition: all .2s ease-in-out;
 }
 .seach-list li:hover{transition: all .2s ease-in-out;background:#fff;}
-.seach-list li h2{padding-right:90px;}
-.seach-list li h2 a{color:#1f3a5f;font-size:22.4px;font-family:微软雅黑;text-transform: capitalize;}
+.seach-list li h2{padding-right:90px;line-height:100%;}
+.seach-list li h2 a{color:#1f3a5f;font-size:21.4px;font-family:微软雅黑;text-transform: capitalize;}
 .seach-list li:hover h2 a{color:#005FB9;}
 .seach-list li p b{color:#666;text-transform:capitalize;}
 .seach-list li p b.highlight{color:#333;text-transform: lowercase;}
-.list-company-like{position:absolute;right:20px;top:20px;font-size:13.4px;color:#666;display:inline-table;vertical-align: middle;cursor: pointer;}
+.list-company-like{position:absolute;right:15px;top:15px;font-size:12.4px;color:#666;display:inline-table;vertical-align: middle;cursor: pointer;}
 .list-company-like .like{
     display:inline-block;height:18px;width:18px;float:left;
     background:url(../../wmb_new/images/data_imgs/ico_share_data.png) -7px -6px no-repeat;opacity:0.6;
@@ -320,7 +318,7 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
     display: inline-block;
     color: #1f3a5f;
     background:#EAEDF2;
-    padding:2.5px 10px;
+    padding:1.5px 10px;
     border-radius:100px;
     font-size:12.4px;
     margin-left:5px;
@@ -332,7 +330,7 @@ color:#fff;top:50%;margin-top:-11px;cursor: pointer;background:rgba(0, 0, 0, .65
 .contact.seach-list-span{border:1px #37b580 solid;color:#fff;background:#37b580;}
 .yellow.seach-list-span{border:1px blueviolet solid;color:blueviolet;}
 .collections.seach-list-span{border:1px #06c solid;color:#06c;}
-.search-list-date{float:right;color:#999;font-size:12.4px;}
+.search-list-date{float:right;color:#666;font-size:12.4px;}
 .product-sort,.default-sort{float:right;}
 .default-sort .mdselect-btn, .product-sort .mdselect-btn{padding:0;line-height:20px;}
 .default-sort .mdselect-ul, .product-sort .mdselect-ul{right:0;left:auto;min-width:95px;top:29px;}

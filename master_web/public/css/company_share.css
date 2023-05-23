@@ -12,7 +12,7 @@ input:focus{outline:none}
 .history-keys span{cursor: pointer;padding: 0 3px;font-size: 13.4px;color: #666666;text-transform:capitalize;}
 .result-box {display: flex;}
 .sousou-data-left {background-color: #FFFFFF; box-shadow: 4px 0px 4px 1px rgb(0 0 0 / 2%);}
-.sousou-data-left .sousou-data {width: 920px;padding-right: 20px;height: auto;}
+.sousou-data-left .sousou-data {width:920px;padding-right: 20px;height: auto;}
 .soso-data-right{width: 100%;}
 .soso-data-right .module-content {overflow: hidden;width: 350px;margin-top: 25px;}
 .module-content h2 {font-size: 15.4px;color: #333333;font-weight: bold;margin-bottom:6px;}

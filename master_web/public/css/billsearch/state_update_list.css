@@ -206,7 +206,7 @@
     line-height: 30px;
     position:relative;
     background:#fff;
-    margin-bottom:10px;
+    margin-bottom:5px;
     border-radius:5px;
 }
 .customs-countries-list li:first-child{border-radius:0;}
@@ -235,7 +235,7 @@
 .data-type {width:247px;display:inline-block;}
 .freight-count{width:143px;display:inline-block;}
 .last-update{width:133px;display:inline-block;}
-.frequency{width:70px;display:inline-block;text-align:center;}
+.frequency{width:70px;display:inline-block;text-align:right;}
 .frequency font{display:inline-block;height:24px;line-height:24px;padding:0 10px;border:1px #005FB9 solid;border-radius:100px;color:#005FB9;font-size:12.4px;}
 .frequency:hover font{background:#007FFF;color:#fff;border:1px #007FFF solid;}
 .customs-countries-list li.customs-countries-head{border-bottom:2px solid #C7CFDC;padding-top:0;background:none;}

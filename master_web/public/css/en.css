@@ -2,6 +2,7 @@
     position:absolute;left:0;top:50px;z-index:2;width:230px;transition: all .2s ease-in-out;opacity:0;display:none;}
 .leftsidebar .leftsidebar-mine:hover ul{background:#fff;border:1px #eee solid;padding:0;box-shadow: 0 0 10px rgb(0 0 0 / 10%);
     position:absolute;left:0;top:50px;z-index:2;width:230px;transition: all .2s ease-in-out;opacity:1;display:block;}
+#report_tab{justify-content:center;}
 
 
 .bang-mall div:nth-child(2){width:338.5px;}
@@ -29,7 +30,7 @@
 .member-price-select li{width:275px;}
 .member-type-tab ul li font{padding:0 30px;}
 .collect-supplier-list thead tr th{font-size:12.4px;}
-.report-box .report-tab a{padding:0 10px;margin:0 3px;}
+.report-box .report-tab a{padding:0 15px;margin:0 4px;width:auto;font-size:13.4px;}
 .adds-dd .dropdown-menu{width:300px;top:30px;}
 .seach-list-span{margin-left:-5px;}
 .group-content span{margin-top:0;}
@@ -50,7 +51,6 @@
 .leftsidebar div span.course{width:130px;}
 .sjj-right-c{font-size:13.5px;}
 
-.report-box .report-tab a{font-size:13.4px;}
 .member-order-list li.df2022-credit-show::after{content:"Valid Until 12/31/2022 23:59:59";}
 .js-experience-upload>a{left:350px;}
 .jungle-scout-experience-box>span{font-size:13.4px;}
